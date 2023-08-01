@@ -8,7 +8,7 @@ const Navigation = () => {
   return (
     <>
       <StyleNavigation>
-        <StyleLink href="/">Logo</StyleLink>
+        <StyleLink href="/home">Logo</StyleLink>
         <StyleLink
           href="/home"
           className={pathname === '/home' ? 'active' : ''}
