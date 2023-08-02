@@ -2,6 +2,7 @@ import './globals.css';
 import { Roboto } from 'next/font/google';
 import Header from '../components/Header/Header';
 import Head from 'next/head';
+import ReduxProvider from '../redux/ReduxProvider/ReduxProvider';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -15,15 +16,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <Head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <body className={roboto.className}>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <ReduxProvider>
+      <html lang="en">
+        <Head>
+          <meta charset="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
+        <body className={roboto.className}>
+          <Header />
+          {children}
+        </body>
+      </html>
+    </ReduxProvider>
   );
 }
