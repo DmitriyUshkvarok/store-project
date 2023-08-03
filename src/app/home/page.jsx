@@ -1,8 +1,13 @@
+import HomeAboutSection from "@/src/components/HomeAboutSection/HomeAboutSection";
+
 const HomePage = () => {
   return (
-    <div>
-      <h2>Home</h2>
-    </div>
+    <>
+    <div>auto scroll</div>
+   <HomeAboutSection/>
+
+      
+    </>
   );
 };
 
