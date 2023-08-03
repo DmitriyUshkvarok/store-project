@@ -29,12 +29,12 @@ const Navigation = () => {
         >
           About Us
         </StyleLink>
-        <StyleLink
+        {/* <StyleLink
           href="/offer"
           className={pathname === '/offer' ? 'active' : ''}
         >
           Offer
-        </StyleLink>
+        </StyleLink> */}
         <StyleLink
           href="/gallery"
           className={pathname === '/gallery' ? 'active' : ''}
