@@ -1,17 +1,19 @@
-'use client';
+// 'use client';
 
-import { infoProduct } from '@/src/components/CatalogList/dataCatalogList';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useParams, useSearchParams } from 'next/navigation';
+// import { infoProduct } from '@/src/components/CatalogList/dataCatalogList';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import { useParams, useSearchParams } from 'next/navigation';
+import ProductDetail from '@/src/components/ProductDetail/ProductDetail';
 
 const InfoPage = () => {
-  const search = useSearchParams().get('id');
-  const params = useParams();
-  console.log(params);
+  // const search = useSearchParams().get('id');
+  // const params = useParams();
+  // console.log(params);
   return (
     <div>
-      <div>
+      <ProductDetail />
+      {/* <div>
         <Link href={`/home`}>Головна/</Link>{' '}
         <Link href={`/oferta`}>Каталог/</Link>
         <Link href={`/oferta/${params.product}`}>{params.product}/</Link>
@@ -37,7 +39,7 @@ const InfoPage = () => {
       <div>
         <p>Опис</p>
         <p>{infoProduct.desc}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

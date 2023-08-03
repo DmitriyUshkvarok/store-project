@@ -1,5 +1,4 @@
 'use client';
-
 import { products } from '@/src/components/CatalogList/dataCatalogList';
 import Image from 'next/image';
 import Link from 'next/link';

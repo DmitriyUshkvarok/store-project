@@ -1,5 +1,8 @@
 'use client';
+import { infoProduct } from '@/src/components/CatalogList/dataCatalogList';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   incrementQuantity,
@@ -7,37 +10,67 @@ import {
 } from '@/src/redux/orderQantity/quantitySlice';
 import { addToCart } from '@/src/redux/cart/cartSlise';
 
-const ProductDetail = ({ image, onClose }) => {
+const ProductDetail = () => {
+  const params = useParams();
+  const search = useSearchParams().get('id');
+  console.log(search);
+  console.log(params);
   const dispatch = useDispatch();
-  const quantity = useSelector((state) => state.quantity[image.id] || 0);
+  const quantity = useSelector((state) => state.quantity[search] || 0);
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity({ itemId: image.id }));
+    dispatch(incrementQuantity({ itemId: search }));
   };
 
   const handleDecrement = () => {
-    dispatch(decrementQuantity({ itemId: image.id }));
+    dispatch(decrementQuantity({ itemId: search }));
   };
 
   const handleBuy = () => {
-    dispatch(addToCart({ ...image, quantity }));
+    const productToAdd = {
+      id: search,
+      title: infoProduct.title,
+      price: infoProduct.price,
+      image: infoProduct.img,
+    };
+    dispatch(addToCart(productToAdd));
   };
 
   return (
     <div>
-      <button onClick={onClose}>Close</button>
-      <h4>{image.title}</h4>
-      <Image src={image.image} alt={image.title} width={300} height={200} />
-      <p>{image.description}</p>
-      <p>{image.price}</p>
       <div>
-        <button onClick={handleDecrement}>-</button>
-        <span>{quantity}</span>
-        <button onClick={handleIncrement}>+</button>
+        <Link href={`/home`}>Головна/</Link>
+        <Link href={`/oferta`}>Каталог/</Link>
+        <Link href={`/oferta/${params.product}`}>{params.product}/</Link>
+        <Link href={`/oferta/${params.product}/${params.subProduct}`}>
+          {params.subProduct}/
+        </Link>
+        <span>{params.info}</span>
       </div>
-      <button type="button" onClick={handleBuy}>
-        купить
-      </button>
+      <div>
+        <Image
+          src={infoProduct.img}
+          alt={infoProduct.title}
+          width={600}
+          height={600}
+        />
+        <h3>{infoProduct.title}</h3>
+        <p>{infoProduct.price}</p>
+        <div>
+          <button onClick={handleDecrement}>-</button>
+          <span>{quantity}</span>
+          <button onClick={handleIncrement}>+</button>
+        </div>
+        <button type="button" onClick={handleBuy}>
+          Купити
+        </button>
+        <p>Артикуль: {infoProduct.articl}</p>
+        <p>Категорія: {infoProduct.category}</p>
+      </div>
+      <div>
+        <p>Опис</p>
+        <p>{infoProduct.desc}</p>
+      </div>
     </div>
   );
 };

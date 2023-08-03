@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import {
