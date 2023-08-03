@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ReduxProvider>
-      <html lang="en">
+      <html lang="uk">
         <Head>
           <meta charset="UTF-8" />
           <meta

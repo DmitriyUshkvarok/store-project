@@ -12,6 +12,7 @@ export const items = [
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrccpkluhOxQvIu50zNlHLcMmcvabEZfg9iA&usqp=CAU',
         description: 'Image 1 description',
+        price: 22.49,
       },
       {
         id: 2,
@@ -19,6 +20,7 @@ export const items = [
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQv_E9HomesUgfQyn5hCM_NiH230IX0K2g0w&usqp=CAU',
         description: 'Image 2 description',
+        price: 12.99,
       },
     ],
   },
@@ -30,18 +32,20 @@ export const items = [
     description: 'французкий производитель',
     imageData: [
       {
-        id: 1,
+        id: 3,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXhrDsvPa8aLlZ9fLLyp32mo3bGfu92wpn4g&usqp=CAU',
         description: 'Image 1 description',
+        price: 32.99,
       },
       {
-        id: 2,
+        id: 4,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDuXyicBUkp8bz5C0JYKGura670dkzNLMyA&usqp=CAU',
         description: 'Image 2 description',
+        price: 3.99,
       },
     ],
   },
@@ -53,18 +57,20 @@ export const items = [
     description: 'итальянский производитель',
     imageData: [
       {
-        id: 1,
+        id: 5,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPi927PYH4zaWJt0606czkKnJs47Hk9HqGyw&usqp=CAU',
         description: 'Image 1 description',
+        price: 3.99,
       },
       {
-        id: 2,
+        id: 6,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSihKJEJNmmiX2lobOs1TmYRGD-iEqCQGyOvQ&usqp=CAU',
         description: 'Image 2 description',
+        price: 2.99,
       },
     ],
   },
@@ -76,18 +82,20 @@ export const items = [
     description: 'польский производитель',
     imageData: [
       {
-        id: 1,
+        id: 7,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxVihDs1jHFdFiw-OEl8td3jhUkekpwHVHFQ&usqp=CAU',
         description: 'Image 1 description',
+        price: 4.99,
       },
       {
-        id: 2,
+        id: 8,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFa104LjNESZSAAN-t1b3fXGsbQgkQ7ML7Q&usqp=CAU',
         description: 'Image 2 description',
+        price: 5.99,
       },
     ],
   },
@@ -99,18 +107,20 @@ export const items = [
     description: 'украинский производитель',
     imageData: [
       {
-        id: 1,
+        id: 9,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtfYCmU-KQ0XnXb7XPyPzkm2zH5ejrF12r0A&usqp=CAU',
         description: 'Image 1 description',
+        price: 6.99,
       },
       {
-        id: 2,
+        id: 10,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq-2MLmPVb1QhYesjvfUb438RlQp4MrVljMA&usqp=CAU',
         description: 'Image 2 description',
+        price: 7.99,
       },
     ],
   },
@@ -122,18 +132,20 @@ export const items = [
     description: 'испанский производитель',
     imageData: [
       {
-        id: 1,
+        id: 11,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5O1tkt2CDRSJsPU2Aulf6VWh4ZT4ixUKPr34_OxKxJYApT1rLygBlVSHfduQIErmkWyA&usqp=CAU',
         description: 'Image 1 description',
+        price: 8.99,
       },
       {
-        id: 2,
+        id: 12,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX5KCKFLN0KiORc9lCT3sru29w0sm3P50bwQ&usqp=CAU',
         description: 'Image 2 description',
+        price: 1.99,
       },
     ],
   },
@@ -145,18 +157,20 @@ export const items = [
     description: 'португальский призводитель',
     imageData: [
       {
-        id: 1,
+        id: 13,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrltLl7_CmHWe134bnRtO2AkWOkqJN2qeZvQ&usqp=CAU',
         description: 'Image 1 description',
+        price: 4.59,
       },
       {
-        id: 2,
+        id: 14,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0_Y6G1XsTedr8LpV2-zbYrfLJggvq6G2JQg&usqp=CAU',
         description: 'Image 2 description',
+        price: 2.89,
       },
     ],
   },
@@ -168,18 +182,20 @@ export const items = [
     description: 'словакский производитель',
     imageData: [
       {
-        id: 1,
+        id: 15,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcW3mpijSV9FK8XfjNTwda_Sr0BeTHcNqzOg&usqp=CAU',
         description: 'Image 1 description',
+        price: 5.49,
       },
       {
-        id: 2,
+        id: 16,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTst4_jrB46w6ODHA21iQmQERoimfe0h28p8Q&usqp=CAU',
         description: 'Image 2 description',
+        price: 2.99,
       },
     ],
   },
@@ -191,18 +207,20 @@ export const items = [
     description: 'американский производитель',
     imageData: [
       {
-        id: 1,
+        id: 17,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqmwrPC-L2IDd7ofyhVEYCSmD4zyIafYxiNw&usqp=CAU',
         description: 'Image 1 description',
+        price: 2.59,
       },
       {
-        id: 2,
+        id: 18,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc1Nwx8wRmdfYHhipUUgz-XN_FOI0_BdRFkw&usqp=CAU',
         description: 'Image 2 description',
+        price: 5.19,
       },
     ],
   },
@@ -214,18 +232,20 @@ export const items = [
     description: 'канадский производитель',
     imageData: [
       {
-        id: 1,
+        id: 19,
         title: 'Image 1',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThd5MgISlKPoVRWNlPeO8bD_hi6Rj-p7mcTSmjmTEx57wxaL-_XixsVQHoYH5cMJ-kkHQ&usqp=CAU',
         description: 'Image 1 description',
+        price: 2.59,
       },
       {
-        id: 2,
+        id: 20,
         title: 'Image 2',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGiADVA8qu0u9I10sAckcn8pdOe9YTKHRE4asy-G8_tG8p4SG1pLzpdI1Hoq_bQhW9yOw&usqp=CAU',
         description: 'Image 2 description',
+        price: 2.29,
       },
     ],
   },
