@@ -9,6 +9,7 @@ const Spinner = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: '70px',
       }}
     >
       <BallTriangle
