@@ -11,7 +11,6 @@ import {
   PaginationBox,
   Picture,
 } from './GalleryList.styled';
-import './stele.css';
 
 const GalleryList = () => {
   const photos = [
@@ -21,30 +20,29 @@ const GalleryList = () => {
     '/photoForGalerryHARD/431.jpg',
     '/photoForGalerryHARD/4151132.jpg',
   ];
-  const itemsPerPage = 6;
+  const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(photos.length / itemsPerPage);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const lightbox = new SimpleLightbox('.gallery a', {
-        captionDelay: 250,
-        disableRightClick: true,
-        showCounter: false,
-      });
+    const lightbox = new SimpleLightbox('.gallery a', {
+      captionDelay: 250,
+      disableRightClick: true,
+      showCounter: false,
+      scrollZoom: false,
+    });
 
-      lightbox.on('shown.simplelightbox', () => {
-        document.body.classList.add('body-lock');
-      });
+    lightbox.on('shown.simplelightbox', () => {
+      document.body.classList.add('body-lock');
+    });
 
-      lightbox.on('close.simplelightbox', () => {
-        document.body.classList.remove('body-lock');
-      });
+    lightbox.on('close.simplelightbox', () => {
+      document.body.classList.remove('body-lock');
+    });
 
-      return () => {
-        lightbox.destroy();
-      };
-    }
+    return () => {
+      lightbox.destroy();
+    };
   }, []);
 
   const handlePrevPage = () => {
@@ -74,6 +72,7 @@ const GalleryList = () => {
               alt={`Image ${index + 1}`}
               width="330"
               height="206"
+              sizes="(max-width: 640px) 100vw, 50vw"
             />
           </a>
         ))}
