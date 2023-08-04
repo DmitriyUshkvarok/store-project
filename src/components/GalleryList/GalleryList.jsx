@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Image from 'next/image';
+import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 
 const GalleryList = () => {
   const photos = [
@@ -71,13 +72,19 @@ const GalleryList = () => {
       </div>
 
       <div className="pagination">
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+        <ButtonWhiteAndBlack
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
           Попередні фото
-        </button>
+        </ButtonWhiteAndBlack>
         <span>{`${currentPage} / ${totalPages}`}</span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        <ButtonWhiteAndBlack
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
           Наступні фото
-        </button>
+        </ButtonWhiteAndBlack>
       </div>
     </div>
   );
