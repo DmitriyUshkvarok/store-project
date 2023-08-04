@@ -12,12 +12,9 @@ const GalleryList = () => {
     '/photoForGalerryHARD/431.jpg',
     '/photoForGalerryHARD/4151132.jpg',
   ];
-
-  const itemsPerPage = 3; // Кількість фото на одній сторінці
-
+  const itemsPerPage = 2;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPhotos = photos.length;
-  const totalPages = Math.ceil(totalPhotos / itemsPerPage);
+  const totalPages = Math.ceil(photos.length / itemsPerPage);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -41,21 +38,18 @@ const GalleryList = () => {
     }
   }, []);
 
-  // Перехід до попередньої сторінки
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
   };
 
-  // Перехід до наступної сторінки
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
     }
   };
 
-  // Фотографії для поточної сторінки
   const currentPhotos = photos.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -78,11 +72,11 @@ const GalleryList = () => {
 
       <div className="pagination">
         <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Prev
+          Попередні фото
         </button>
         <span>{`${currentPage} / ${totalPages}`}</span>
         <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next
+          Наступні фото
         </button>
       </div>
     </div>
