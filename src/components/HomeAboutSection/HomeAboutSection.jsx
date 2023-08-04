@@ -105,6 +105,7 @@ const HomeAboutSection = () => {
                 використовувати для виробництва зеленої енергії з
                 фотоелектричних панелей
               </ItemAssure>
+
               <Pigments>
                 <Image
                   src="/box.png"
