@@ -8,13 +8,19 @@ import {
   DecorSpanBackLink,
   CurrentNavDecor,
 } from '@/src/components/CatalogList/CatalogList.styled';
+import {
+  ListDynamic,
+  Container,
+  StyledLink,
+  ItemListDynamic,
+} from './DynamicCategory.styled';
 
 const DynamicCatalogList = () => {
   const params = useParams();
 
   const id = useSearchParams().get('id');
   return (
-    <div>
+    <Container>
       <WrapNav>
         <Link href={`/home`}>
           <DecorSpanBackLink>Головна /</DecorSpanBackLink>
@@ -24,10 +30,10 @@ const DynamicCatalogList = () => {
         </Link>
         <CurrentNavDecor>{params.product}</CurrentNavDecor>
       </WrapNav>
-      <ul>
+      <ListDynamic>
         {products.map((product) => (
-          <li key={product.id}>
-            <Link
+          <ItemListDynamic key={product.id}>
+            <StyledLink
               href={{
                 pathname: `${`/oferta/${params.product}/${product.url}`}`,
                 query: { id: product.id },
@@ -40,11 +46,11 @@ const DynamicCatalogList = () => {
                 width={300}
                 height={200}
               />
-            </Link>
-          </li>
+            </StyledLink>
+          </ItemListDynamic>
         ))}
-      </ul>
-    </div>
+      </ListDynamic>
+    </Container>
   );
 };
 

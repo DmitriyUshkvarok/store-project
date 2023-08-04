@@ -3,9 +3,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 export const StyledLink = styled(Link)`
-  webkit-transition: all 0.15s ease-out 0s;
-  -moz-transition: all 0.15s ease-out 0s;
-  transition: all 0.15s ease-out 0s;
   background: #fff;
   position: relative;
   margin-bottom: 30px;
