@@ -3,6 +3,8 @@ import { Roboto } from 'next/font/google';
 import Header from '../components/Header/Header';
 import Head from 'next/head';
 import ReduxProvider from '../redux/ReduxProvider/ReduxProvider';
+import ProvaiderToastContainer from '../components/ToastContainer/ToastContainer';
+import 'react-toastify/dist/ReactToastify.css';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -26,8 +28,9 @@ export default function RootLayout({ children }) {
           />
         </Head>
         <body className={roboto.className}>
+          <ProvaiderToastContainer />
           <Header />
-          {children}
+          <main>{children}</main>
         </body>
       </html>
     </ReduxProvider>

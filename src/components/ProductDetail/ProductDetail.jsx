@@ -9,6 +9,8 @@ import {
   decrementQuantity,
 } from '@/src/redux/orderQantity/quantitySlice';
 import { addToCart } from '@/src/redux/cart/cartSlise';
+import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 const ProductDetail = () => {
   const params = useParams();
@@ -27,13 +29,23 @@ const ProductDetail = () => {
   };
 
   const handleBuy = () => {
+    const date = new Date();
+    const formatData = format(new Date(date), 'dd MMMM, yyyy | HH:mm');
+
+    if (quantity === 0) {
+      toast.warning('Оберіть кількість товару');
+      return;
+    }
+
     const productToAdd = {
       id: search,
       title: infoProduct.title,
       price: infoProduct.price,
       image: infoProduct.img,
+      data: formatData,
     };
     dispatch(addToCart(productToAdd));
+    toast.success('Товар додано до кошику');
   };
 
   return (

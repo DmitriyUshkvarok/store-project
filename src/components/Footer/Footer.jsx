@@ -1,7 +1,7 @@
 import Container from '../Container/Container';
 const Footer = () => {
   return (
-    <div
+    <footer
       style={{
         backgroundColor: 'gray',
         paddingTop: '15px',
@@ -33,7 +33,7 @@ const Footer = () => {
           <li>qwe</li>
         </ul>
       </Container>
-    </div>
+    </footer>
   );
 };
 

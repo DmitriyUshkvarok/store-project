@@ -1,5 +1,5 @@
 'use client';
-
+import { StyleButtonBack } from './ButtonBack.styled';
 import { useRouter } from 'next/navigation';
 
 const ButtonBack = () => {
@@ -10,9 +10,9 @@ const ButtonBack = () => {
   };
 
   return (
-    <button type="button" onClick={handleBack}>
-      Back
-    </button>
+    <StyleButtonBack type="button" onClick={handleBack}>
+      Назад
+    </StyleButtonBack>
   );
 };
 

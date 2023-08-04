@@ -7,6 +7,7 @@ export const BasketSection = styled.section`
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  margin-top: 90px;
 `;
 
 export const BasketTitle = styled.h2`

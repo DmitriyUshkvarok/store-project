@@ -21,10 +21,15 @@ const quantitySlice = createSlice({
         state[itemId]--;
       }
     },
+    clearQuantityById: (state, action) => {
+      const { itemId } = action.payload;
+      delete state[itemId];
+    },
   },
 });
 
-export const { incrementQuantity, decrementQuantity } = quantitySlice.actions;
+export const { incrementQuantity, decrementQuantity, clearQuantityById } =
+  quantitySlice.actions;
 
 const persisteQuantityReducer = persistReducer(
   quantityPersistConfig,
