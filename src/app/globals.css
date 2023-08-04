@@ -34,5 +34,5 @@ p {
 }
 
 .body-lock {
-  position: fixed;
+  overflow: hidden;
 }
