@@ -24,20 +24,56 @@ import { BsArrowRight } from 'react-icons/bs';
 
 import Image from 'next/image';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import SwiperCore, { Autoplay } from 'swiper';
+
+SwiperCore.use([Autoplay]);
+
+const SwiperComponent = ({ photos }) => (
+  <Swiper
+    slidesPerView={1}
+    loop={true}
+    autoplay={{
+      delay: 100,
+    }}
+  >
+    {photos.map((photo, index) => (
+      <SwiperSlide key={index}>
+        <Image
+          src={photo}
+          alt={`Slide photo ${index + 1}`}
+          width="250"
+          height="188"
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+);
+
 const HomeAboutSection = () => {
-  const photos = ['/ready.png', '../../../public/box.png'];
   return (
     <Overlay>
       <Container>
         <BoxOffer>
           <Title>Пропозиція</Title>
+
           <List>
             <Item>
               <ItemLink href={`/oferta`}>
                 <Chip> пігменти </Chip>порошок
               </ItemLink>
             </Item>
-            <Item> картинка </Item>
+            <Item>
+              {' '}
+              <SwiperComponent
+                photos={[
+                  '/pigment/92f4.jpeg',
+                  '/pigment/000.jpg',
+                  '/pigment/111.jpeg',
+                ]}
+              />{' '}
+            </Item>
             <Item>
               {' '}
               <ItemLink href={`/oferta`}>
@@ -45,15 +81,43 @@ const HomeAboutSection = () => {
                 <Chip>пігменти </Chip>рідина
               </ItemLink>
             </Item>
-            <Item> картинка</Item>
-            <Item>картинка </Item>
+            <Item>
+              {' '}
+              <SwiperComponent
+                photos={[
+                  '/pigment/111.jpeg',
+                  '/pigment/abstract.jpeg',
+                  '/pigment/generated.webp',
+                ]}
+              />{' '}
+            </Item>
+            <Item>
+              {' '}
+              <SwiperComponent
+                photos={[
+                  '/pigment/poroshkovye.jpeg',
+                  '/pigment/istock4.jpeg',
+                  '/pigment/fc01.jpeg',
+                ]}
+              />
+            </Item>
+
             <Item>
               <ItemLink href={`/oferta`}>
                 {' '}
                 <Chip>еко-пігменти </Chip>порошок
               </ItemLink>
             </Item>
-            <Item>картинка </Item>
+            <Item>
+              {' '}
+              <SwiperComponent
+                photos={[
+                  '/pigment/000.jpg',
+                  '/pigment/colourblock.jpeg',
+                  '/pigment/gears.jpg',
+                ]}
+              />{' '}
+            </Item>
             <Item>
               <ItemLink href={`/oferta`}>
                 {' '}
