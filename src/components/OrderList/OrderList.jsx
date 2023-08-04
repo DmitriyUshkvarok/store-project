@@ -13,6 +13,7 @@ import {
   CartListItem,
   CartListSection,
   StyleCartImage,
+  ProductName,
   CounterWrapper,
   BtnIncrement,
   InputCounter,
@@ -21,10 +22,16 @@ import {
   TotalPriceTitle,
   TotalPriceInfo,
   DataInfo,
+  StylePrice,
+  StyleQuantity,
+  StyleRiDeleteBin5Fill,
 } from './OrderList.styled';
-import { RiDeleteBin5Fill } from 'react-icons/ri';
+
 import { removeFromCart } from '@/src/redux/cart/cartSlise';
-import { clearQuantityById } from '@/src/redux/orderQantity/quantitySlice';
+import {
+  clearQuantityById,
+  setQuantityById,
+} from '@/src/redux/orderQantity/quantitySlice';
 
 const OrderList = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -52,6 +59,10 @@ const OrderList = () => {
     dispatch(clearQuantityById({ itemId }));
   };
 
+  const handleChangeQuantity = (itemId, newQuantity) => {
+    dispatch(setQuantityById({ itemId, quantity: newQuantity }));
+  };
+
   return (
     <>
       <CartListSection>
@@ -74,23 +85,29 @@ const OrderList = () => {
                     width={50}
                     height={50}
                   />
-                  <h3>{item.title}</h3>
-                  <p>Price: ${item.price}</p>
-                  <p>Quantity: {quantity[item.id] || 0}</p>
+                  <ProductName>{item.title}</ProductName>
+                  <StylePrice>Price: ${item.price}</StylePrice>
+                  <StyleQuantity>
+                    Quantity: {quantity[item.id] || 0}
+                  </StyleQuantity>
                   <CounterWrapper>
                     <BtnIncrement onClick={() => handleDecrement(item.id)}>
                       -
                     </BtnIncrement>
-                    <InputCounter>{quantity[item.id] || 0}</InputCounter>
+                    <InputCounter
+                      type="text"
+                      value={quantity[item.id] || 0}
+                      onChange={(e) =>
+                        handleChangeQuantity(item.id, e.target.value)
+                      }
+                    />
                     <BtnDecrement onClick={() => handleIncrement(item.id)}>
                       +
                     </BtnDecrement>
                   </CounterWrapper>
                   <DataInfo>{item.data}</DataInfo>
-                  <RiDeleteBin5Fill
+                  <StyleRiDeleteBin5Fill
                     size={25}
-                    color="coral"
-                    style={{ cursor: 'pointer' }}
                     onClick={() => handleRemoveItem(item.id)}
                   />
                 </CartListItem>
