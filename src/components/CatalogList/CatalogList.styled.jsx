@@ -2,8 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+export const BcgContainer = styled.div`
+  background-image: url('/bcgOferta.jpg');
+  background-repeat: no-repeat;
+
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+`;
+
 export const StyledLink = styled(Link)`
-  background: #fff;
   position: relative;
   margin-bottom: 30px;
   display: block;
@@ -18,16 +26,16 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Container = styled.div`
-  padding: 40px 20px;
+  padding: 110px 20px;
 
   background-color: #c0c0c01c;
 
   @media screen and (min-width: 768px) {
-    padding: 40px 62px;
+    padding: 70px 62px;
   }
 
   @media screen and (min-width: 1340px) {
-    padding: 40px 143px;
+    padding: 70px 143px;
   }
 `;
 
@@ -41,7 +49,7 @@ export const WrapNav = styled.div`
 `;
 
 export const CurrentNavDecor = styled.span`
-  color: grey;
+  color: #ffffff8c;
 `;
 
 export const ListCatalog = styled.ul`
@@ -107,12 +115,18 @@ export const WrapContentCard = styled.div`
   padding: 15px;
   display: flex;
   align-items: center;
+  background-color: #c4c3c38f;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+  color: #212529;
 `;
 
 export const TitleCard = styled.h3`
   margin-bottom: 30px;
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000bf;
 `;
 
 export const ProductTitleCard = styled.p`
@@ -122,6 +136,7 @@ export const ProductTitleCard = styled.p`
 
 export const DecorSpanBackLink = styled.span`
   cursor: pointer;
+  color: white;
 `;
 
 //------------------------------------------

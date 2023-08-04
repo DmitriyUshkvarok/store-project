@@ -1,7 +1,9 @@
+'use client';
 import Footer from '@/src/components/Footer/Footer';
 import PartnersSlider from '@/src/components/PartnersSlider/PartnersSlider';
 import ContactBlock from '@/src/components/ContactBlock/ContactBlock';
 import PromoBlockAllPages from '@/src/components/PromoBlockAllPages/PromoBlockAllPages';
+import { BcgContainer } from '@/src/components/CatalogList/CatalogList.styled';
 
 export const metadata = {
   title: 'Shop | Offer',
@@ -12,7 +14,7 @@ const OfferLayout = ({ children }) => {
   return (
     <>
       <PromoBlockAllPages />
-      <div>{children}</div>
+      <BcgContainer>{children}</BcgContainer>
       <ContactBlock />
       <PartnersSlider />
       <Footer />
