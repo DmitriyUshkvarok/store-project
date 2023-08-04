@@ -20,14 +20,24 @@ export const PaginationBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-top: 34px;
   margin-bottom: 34px;
+
+  /* Медіа-правило для екранів шириною 700px і більше */
+  @media screen and (min-width: 700px) {
+    flex-direction: row;
+  }
 `;
 
 export const PageNumber = styled.span`
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-weight: 800;
+
+  @media screen and (min-width: 700px) {
+    margin: 0 15px 0 15px;
+  }
 `;
 
 export const Picture = styled(Image)`

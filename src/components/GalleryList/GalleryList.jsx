@@ -72,7 +72,6 @@ const GalleryList = () => {
               alt={`Image ${index + 1}`}
               width="330"
               height="206"
-              sizes="(max-width: 640px) 100vw, 50vw"
             />
           </a>
         ))}
