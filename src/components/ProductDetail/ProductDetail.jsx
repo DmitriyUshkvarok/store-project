@@ -13,8 +13,7 @@ import { addToCart } from '@/src/redux/cart/cartSlise';
 const ProductDetail = () => {
   const params = useParams();
   const search = useSearchParams().get('id');
-  console.log(search);
-  console.log(params);
+
   const dispatch = useDispatch();
   const quantity = useSelector((state) => state.quantity[search] || 0);
 

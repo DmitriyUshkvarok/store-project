@@ -1,43 +1,60 @@
 'use client';
 import { catalog } from './dataCatalogList';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+
+import {
+  ListCatalog,
+  ItemListCatalog,
+  StyledImage,
+  WrapContentCard,
+  ThumbCardImg,
+  Container,
+  WrapNav,
+  CurrentNavDecor,
+  StyledLink,
+  TitleCard,
+  ProductTitleCard,
+  DecorSpanBackLink,
+} from './CatalogList.styled';
 
 const CatalogList = () => {
-  <div>
-    <Link href={`/home`}>Головна</Link>;
-  </div>;
-
   return (
-    <div>
+    <Container>
       <div>
-        <Link href={`/home`}>Головна/</Link> <span>Каталог</span>
+        <WrapNav>
+          <Link href={`/home`}>
+            <DecorSpanBackLink>Головна /</DecorSpanBackLink>
+          </Link>
+          <CurrentNavDecor>Каталог</CurrentNavDecor>
+        </WrapNav>
+        <TitleCard>Каталог</TitleCard>
+        <ListCatalog>
+          {catalog.map((item) => (
+            <ItemListCatalog key={item.id}>
+              <StyledLink
+                href={{
+                  pathname: `/oferta/${item.url}`,
+                  query: { id: item.id },
+                }}
+              >
+                <ThumbCardImg>
+                  <StyledImage
+                    priority
+                    src={item.img}
+                    alt={item.title}
+                    width={350}
+                    height={180}
+                  />
+                </ThumbCardImg>
+                <WrapContentCard>
+                  <ProductTitleCard>{item.title}</ProductTitleCard>
+                </WrapContentCard>
+              </StyledLink>
+            </ItemListCatalog>
+          ))}
+        </ListCatalog>
       </div>
-      <ul
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '20px',
-        }}
-      >
-        {catalog.map((item) => (
-          <li key={item.id}>
-            <Link
-              href={{
-                pathname: `/oferta/${item.url}`,
-                query: { id: item.id },
-              }}
-            >
-              <h2>{item.title}</h2>
-              <Image src={item.img} alt={item.title} width={300} height={200} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    </Container>
   );
 };
 
