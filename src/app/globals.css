@@ -32,3 +32,7 @@ h4,
 p {
   margin: 0;
 }
+
+.body-lock {
+  position: fixed;
+}
