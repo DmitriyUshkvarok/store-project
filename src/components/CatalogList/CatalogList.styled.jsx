@@ -27,8 +27,12 @@ export const StyledLink = styled(Link)`
 
 export const Container = styled.div`
   padding: 110px 20px;
+  background-image: url('/bcgOferta.jpg');
+  background-repeat: no-repeat;
 
-  background-color: #c0c0c01c;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     padding: 70px 62px;

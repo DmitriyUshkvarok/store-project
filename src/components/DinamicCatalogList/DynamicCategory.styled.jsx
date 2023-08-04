@@ -4,7 +4,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   padding: 70px 20px;
 
-  background-color: #c0c0c01c;
+  background-image: url('/bcgOferta.jpg');
+  background-repeat: no-repeat;
+
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     padding: 70px 62px;
