@@ -4,6 +4,14 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Image from 'next/image';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
+import {
+  Gallery,
+  GalleryBox,
+  PageNumber,
+  PaginationBox,
+  Picture,
+} from './GalleryList.styled';
+import './stele.css';
 
 const GalleryList = () => {
   const photos = [
@@ -13,7 +21,7 @@ const GalleryList = () => {
     '/photoForGalerryHARD/431.jpg',
     '/photoForGalerryHARD/4151132.jpg',
   ];
-  const itemsPerPage = 3;
+  const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(photos.length / itemsPerPage);
 
@@ -57,11 +65,11 @@ const GalleryList = () => {
   );
 
   return (
-    <div>
-      <div className="gallery">
+    <GalleryBox>
+      <Gallery className="gallery">
         {currentPhotos.map((photo, index) => (
           <a href={photo} key={index}>
-            <Image
+            <Picture
               src={photo}
               alt={`Image ${index + 1}`}
               width="330"
@@ -69,24 +77,24 @@ const GalleryList = () => {
             />
           </a>
         ))}
-      </div>
+      </Gallery>
 
-      <div className="pagination">
+      <PaginationBox className="pagination">
         <ButtonWhiteAndBlack
           onClick={handlePrevPage}
           disabled={currentPage === 1}
         >
           Попередні фото
         </ButtonWhiteAndBlack>
-        <span>{`${currentPage} / ${totalPages}`}</span>
+        <PageNumber>{`${currentPage} / ${totalPages}`}</PageNumber>
         <ButtonWhiteAndBlack
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
           Наступні фото
         </ButtonWhiteAndBlack>
-      </div>
-    </div>
+      </PaginationBox>
+    </GalleryBox>
   );
 };
 
