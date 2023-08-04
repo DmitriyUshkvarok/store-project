@@ -18,6 +18,7 @@ import {
 } from './CatalogList.styled';
 
 const CatalogList = () => {
+  console.log(catalog);
   return (
     <Container>
       <div>
