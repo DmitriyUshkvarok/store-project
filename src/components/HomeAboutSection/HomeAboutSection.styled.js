@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from "next/link";
 
 export const Overlay = styled.section`
   padding-top: 50px;
@@ -39,11 +40,48 @@ margin-bottom: 100px;
 `
 
 export const Item = styled.li`
-display: block;
-background: red;
+
+
 width: 250px;
 height: 188px;
 border: 1px solid black;
+
+color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+
+&:nth-child(1) {
+  background: red; 
+}
+&:nth-child(3) {
+  background: #188ae8; 
+}
+&:nth-child(6) {
+  background: #c336b7;
+}
+&:nth-child(8) {
+  background: #29a936;
+}
+`
+export const Chip = styled.span`
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.025em;
+    `;
+
+
+export const ItemLink = styled(Link)`
+display: flex;
+flex-direction: column;
+padding-top: 30px;
+padding-left: 30px;
+padding-bottom: 115px;
+
+cursor: pointer;
 `
 
 
@@ -66,13 +104,15 @@ export const BoxCompany = styled.div`
     padding: 30px;
     padding-left: 200px;
     box-sizing: border-box;
+  
 
 `;
+
 
 export const Subject = styled.h2`
 border-bottom: 4px solid #B2B2B2;
     color: #131313;
-    font-family: gotham;
+    
     font-size: 30px;
     font-weight: bold;
     letter-spacing: 0.025em;
@@ -90,28 +130,25 @@ color: #666666;
 
 `;
 
-export const Btn = styled.button`
+
+export const StyledLink = styled(Link)`
 color: #000000;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-family: gotham;
-    font-size: 14px;
-    font-weight: bold;
-    height: 42px;
-    letter-spacing: 6px;
-    line-height: 42px;
-    padding-left: 20px;
-    text-transform: uppercase;
-    width: 173px;
-    border: 2px solid
-
-
-`;
+display: flex;
+align-items: center;
+gap: 20px;
+font-size: 14px;
+font-weight: bold;
+height: 42px;
+letter-spacing: 6px;
+line-height: 42px;
+padding-left: 20px;
+text-transform: uppercase;
+width: 173px;
+border: 2px solid black;`;
 
 
 // === BoxAssure ===
-
+ 
 export const BoxAssure = styled.div`
 box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
     background: #fff none repeat scroll 0 0;
@@ -119,7 +156,8 @@ box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
     padding: 30px;
     box-sizing: border-box;
 background-color: #fff;
-`;
+`; 
+
 export const ListAssure = styled.ul`
     list-style-type: none;
     padding: 20px 0 35px;
@@ -129,15 +167,13 @@ export const ListAssure = styled.ul`
 export const ItemAssure = styled.li`
  background-image: url('/li.png'); 
  background-repeat: no-repeat;
-
-
-color: #666666;
+    color: #666666;
     font-size: 14px;
     line-height: 18px;
     margin-bottom: 21px;
     min-height: 22px;
     padding-left: 35px;
-
+ 
 `;
 
 
