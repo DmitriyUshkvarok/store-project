@@ -1,25 +1,31 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 export const Overlay = styled.section`
   padding-top: 50px;
-  padding-bottom:50px;
+  padding-bottom: 50px;
 
-  background-image: url('/background-basket-page.jpeg')  ;
+  background-image: url('/background-basket-page.jpeg');
   background-repeat: no-repeat;
 
-  background-position: center; 
-  background-size: cover; 
-    overflow: hidden;
-    background-color:  #303030;
-
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  background-color: #303030;
 `;
 
 export const BoxOffer = styled.div`
-
-width: 1000px;
-margin: 0 auto;
+  @media screen and (min-width: 320px) {
+    width: 320px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 520px) {
+    width: 500px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1000px;
+  }
 `;
-
 
 export const Title = styled.h2`
   display: flex;
@@ -29,115 +35,171 @@ export const Title = styled.h2`
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 `;
+
 export const List = styled.ul`
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-margin-bottom: 100px;
-
-
-`
-
-export const Item = styled.li`
-display: block;
-background: red;
-width: 250px;
-height: 188px;
-border: 1px solid black;
-`
-
-
-export const Box = styled.div`
-display: flex;
-gap: 20px;
-justify-content: center;
-
-
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
 `;
 
+export const Item = styled.li`
+  width: 250px;
+  height: 188px;
+  border: 1px solid black;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+
+  &:nth-child(1) {
+    background: red;
+  }
+  &:nth-child(3) {
+    background: #188ae8;
+  }
+  &:nth-child(6) {
+    background: #c336b7;
+  }
+  &:nth-child(8) {
+    background: #29a936;
+  }
+`;
+export const Chip = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.025em;
+`;
+
+export const ItemLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-bottom: 115px;
+  cursor: pointer;
+`;
+
+export const Box = styled.div`
+  @media screen and (min-width: 320px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: initial;
+  }
+`;
 
 // === BoxCompany ===
 
 export const BoxCompany = styled.div`
+  @media screen and (min-width: 320px) {
+    position: relative;
     background-color: #fff;
-    box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.75);
     background: #fff none repeat scroll 0 0;
-    width: 490px;
-    padding: 30px;
-    padding-left: 200px;
-    box-sizing: border-box;
 
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 490px;
+    padding: 30px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 490px;
+    padding-left: 200px;
+  }
+`;
+
+export const Salamander = styled.div`
+  @media screen and (min-width: 320px) {
+    display: none;
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    position: absolute;
+    bottom: -17px;
+    left: -85px;
+  }
 `;
 
 export const Subject = styled.h2`
-border-bottom: 4px solid #B2B2B2;
-    color: #131313;
-    font-family: gotham;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 0.025em;
-    line-height: 58px;
-    margin-bottom: 27px;
-    padding-bottom: 5px;
+  border-bottom: 4px solid #b2b2b2;
+  color: #131313;
 
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  line-height: 58px;
+  margin-bottom: 27px;
+  padding-bottom: 5px;
 `;
 export const Text = styled.p`
-color: #666666;
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 11px;
-    text-align: justify;
-
+  color: #666666;
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 11px;
+  text-align: justify;
 `;
 
-export const Btn = styled.button`
-color: #000000;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-family: gotham;
-    font-size: 14px;
-    font-weight: bold;
-    height: 42px;
-    letter-spacing: 6px;
-    line-height: 42px;
-    padding-left: 20px;
-    text-transform: uppercase;
-    width: 173px;
-    border: 2px solid
-
-
+export const StyledLink = styled(Link)`
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  height: 42px;
+  letter-spacing: 6px;
+  line-height: 42px;
+  padding-left: 20px;
+  text-transform: uppercase;
+  width: 173px;
+  border: 2px solid black;
 `;
-
 
 // === BoxAssure ===
 
 export const BoxAssure = styled.div`
-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
+  @media screen and (min-width: 320px) {
+    position: relative;
+    box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.75);
     background: #fff none repeat scroll 0 0;
-    width: 490px;
+    width: 90%;
+    max-width: 490px;
     padding: 30px;
     box-sizing: border-box;
-background-color: #fff;
-`;
-export const ListAssure = styled.ul`
-    list-style-type: none;
-    padding: 20px 0 35px;
+    background-color: #fff;
+  }
+  @media screen and (min-width: 768px) {
+    width: 490px;
+  }
 `;
 
+export const Pigments = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+`;
+
+export const ListAssure = styled.ul`
+  list-style-type: none;
+  padding: 20px 0 35px;
+`;
 
 export const ItemAssure = styled.li`
- background-image: url('/li.png'); 
- background-repeat: no-repeat;
-
-
-color: #666666;
-    font-size: 14px;
-    line-height: 18px;
-    margin-bottom: 21px;
-    min-height: 22px;
-    padding-left: 35px;
-
+  background-image: url('/li.png');
+  background-repeat: no-repeat;
+  color: #666666;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 21px;
+  min-height: 22px;
+  padding-left: 35px;
 `;
-
-
