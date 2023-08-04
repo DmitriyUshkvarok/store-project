@@ -19,7 +19,7 @@ export const BoxOffer = styled.div`
     width: 320px;
     margin: 0 auto;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 520px) {
     width: 500px;
   }
   @media screen and (min-width: 1280px) {
@@ -107,7 +107,8 @@ export const BoxCompany = styled.div`
     background: #fff none repeat scroll 0 0;
 
     box-sizing: border-box;
-    width: 60%;
+    width: 90%;
+    max-width: 490px;
     padding: 30px;
   }
   @media screen and (min-width: 768px) {
@@ -167,16 +168,24 @@ export const StyledLink = styled(Link)`
 
 export const BoxAssure = styled.div`
   @media screen and (min-width: 320px) {
+    position: relative;
+    box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.75);
+    background: #fff none repeat scroll 0 0;
+    width: 90%;
+    max-width: 490px;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: #fff;
   }
-  box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.75);
-  background: #fff none repeat scroll 0 0;
-  width: 60%;
-  padding: 30px;
-  box-sizing: border-box;
-  background-color: #fff;
   @media screen and (min-width: 768px) {
     width: 490px;
   }
+`;
+
+export const Pigments = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `;
 
 export const ListAssure = styled.ul`

@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import Container from '../Container/Container';
 import {
   BoxOffer,
   Salamander,
+  Pigments,
   Chip,
   ItemLink,
   Box,
@@ -105,6 +105,14 @@ const HomeAboutSection = () => {
                 використовувати для виробництва зеленої енергії з
                 фотоелектричних панелей
               </ItemAssure>
+              <Pigments>
+                <Image
+                  src="/box.png"
+                  alt="paint pigments"
+                  width="130"
+                  height="130"
+                />
+              </Pigments>
             </ListAssure>
 
             <StyledLink href={`/about`}>
