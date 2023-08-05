@@ -70,6 +70,7 @@ export const Picture = styled(Image)`
   object-fit: cover;
   transition: transform 0.25s;
   overflow: hidden;
+  max-height: 206px;
 
   &:hover {
     transform: scale(1.05);
