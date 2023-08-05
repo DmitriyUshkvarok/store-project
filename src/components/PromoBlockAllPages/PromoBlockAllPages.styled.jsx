@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Box = styled.div`
   margin-top: 93px;
@@ -16,17 +16,25 @@ export const Box = styled.div`
   }
 `;
 
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 export const Firma = styled.h1`
+  transition: transform 0.45s;
   @media screen and (min-width: 520px) {
     font-size: 70px;
   }
   color: #fdfdfd;
   font-size: 40px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.856);
-
-  /* position: relative;
-
-  z-index: 999999; */
 
   &::before {
     content: '';
@@ -35,5 +43,9 @@ export const Firma = styled.h1`
     height: 120px;
     background-image: url('/him.png');
     background-size: cover;
+  }
+
+  &:hover {
+    animation: ${pulseAnimation} 0.99s infinite; /* Додати анімацію "пульсації" при ховері */
   }
 `;
