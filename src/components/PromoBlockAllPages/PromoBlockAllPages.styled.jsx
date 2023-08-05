@@ -9,17 +9,23 @@ export const Box = styled.div`
   background-size: cover;
   overflow: hidden;
 
-  min-height: 320px;
+  min-height: 200px;
+
+  @media screen and (min-width: 520px) {
+    min-height: 320px;
+  }
 `;
 
 export const Firma = styled.h1`
+  @media screen and (min-width: 520px) {
+    font-size: 70px;
+  }
   color: #ffd207;
-  font-size: 70px;
+  font-size: 40px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.856);
 
-  position: absolute;
-  top: 40px;
-  left: 80px;
+  position: relative;
+
   z-index: 999999;
 
   &::before {
