@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const BasketSection = styled.section`
+  width: 100vw;
+  min-height: 100vh;
   background-image: url('/background-basket-page.jpeg');
   background-repeat: no-repeat;
   background-attachment: fixed;

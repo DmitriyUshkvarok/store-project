@@ -1,16 +1,40 @@
 'use client';
 import { infoProduct } from '@/src/components/CatalogList/dataCatalogList';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   incrementQuantity,
   decrementQuantity,
+  setQuantityById,
 } from '@/src/redux/orderQantity/quantitySlice';
 import { addToCart } from '@/src/redux/cart/cartSlise';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+import {
+  ProductDetailSection,
+  LinkPanel,
+  StyleLinkDetail,
+  CurrentLink,
+  ProductDetailInfoBlock,
+  ImageBlock,
+  ProductName,
+  ProductBlockLeft,
+  ProductBlockRight,
+  ProductСharacterization,
+  ProductDescription,
+  ProductArticul,
+  ProductCategory,
+  CategorySpan,
+  ProductPrice,
+  SpanPrice,
+  CounterWrapper,
+  BtnIncrement,
+  InputCounter,
+  BtnDecrement,
+  OrderBtnDetails,
+} from './ProductDetail.styled';
+import Container from '../Container/Container';
 
 const ProductDetail = () => {
   const params = useParams();
@@ -47,42 +71,68 @@ const ProductDetail = () => {
     toast.success('Товар додано до кошику');
   };
 
+  const handleChangeQuantity = (newQuantity) => {
+    dispatch(setQuantityById({ itemId: search, quantity: newQuantity }));
+  };
+
   return (
-    <div>
-      <div>
-        <Link href={`/home`}>Головна/</Link>
-        <Link href={`/oferta`}>Каталог/</Link>
-        <Link href={`/oferta/${params.product}`}>{params.product}/</Link>
-        <Link href={`/oferta/${params.product}/${params.subProduct}`}>
-          {params.subProduct}/
-        </Link>
-        <span>{params.info}</span>
-      </div>
-      <div>
-        <Image
-          src={infoProduct.img}
-          alt={infoProduct.title}
-          width={600}
-          height={600}
-        />
-        <h3>{infoProduct.title}</h3>
-        <p>{infoProduct.price}</p>
+    <ProductDetailSection>
+      <Container>
+        <LinkPanel>
+          <StyleLinkDetail href={`/home`}>Головна/</StyleLinkDetail>
+          <StyleLinkDetail href={`/oferta`}>Каталог/</StyleLinkDetail>
+          <StyleLinkDetail href={`/oferta/${params.product}`}>
+            {params.product}/
+          </StyleLinkDetail>
+          <StyleLinkDetail
+            href={`/oferta/${params.product}/${params.subProduct}`}
+          >
+            {params.subProduct}/
+          </StyleLinkDetail>
+          <CurrentLink>{params.info}</CurrentLink>
+        </LinkPanel>
         <div>
-          <button onClick={handleDecrement}>-</button>
-          <span>{quantity}</span>
-          <button onClick={handleIncrement}>+</button>
+          <ProductDetailInfoBlock>
+            <ProductBlockLeft>
+              <ImageBlock>
+                <Image
+                  src={infoProduct.img}
+                  alt={infoProduct.title}
+                  width={300}
+                  height={300}
+                />
+                <ProductName>{infoProduct.title}</ProductName>
+              </ImageBlock>
+              <ProductPrice>
+                Ціна: <SpanPrice>{infoProduct.price} грн</SpanPrice>
+              </ProductPrice>
+            </ProductBlockLeft>
+            <ProductBlockRight>
+              <div>
+                <ProductСharacterization>Опис</ProductСharacterization>
+                <ProductDescription>{infoProduct.desc}</ProductDescription>
+                <ProductArticul>Артикуль: {infoProduct.articl}</ProductArticul>
+                <ProductCategory>
+                  Категорія: <CategorySpan>{infoProduct.category}</CategorySpan>
+                </ProductCategory>
+              </div>
+              <CounterWrapper>
+                <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
+                <InputCounter
+                  type="text"
+                  value={quantity}
+                  onChange={(e) => handleChangeQuantity(e.target.value)}
+                />
+                <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
+              </CounterWrapper>
+              <OrderBtnDetails type="button" onClick={handleBuy}>
+                Купити
+              </OrderBtnDetails>
+            </ProductBlockRight>
+          </ProductDetailInfoBlock>
         </div>
-        <button type="button" onClick={handleBuy}>
-          Купити
-        </button>
-        <p>Артикуль: {infoProduct.articl}</p>
-        <p>Категорія: {infoProduct.category}</p>
-      </div>
-      <div>
-        <p>Опис</p>
-        <p>{infoProduct.desc}</p>
-      </div>
-    </div>
+      </Container>
+    </ProductDetailSection>
   );
 };
 
