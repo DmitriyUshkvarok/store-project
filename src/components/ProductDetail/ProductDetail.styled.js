@@ -14,7 +14,7 @@ export const ProductDetailSection = styled.section`
 `;
 
 export const LinkPanel = styled.div`
-  padding: 7px;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   margin-bottom: 20px;
@@ -39,6 +39,13 @@ export const ProductDetailInfoBlock = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 20px;
+
+  @media screen and (max-width: 580px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 export const ProductСharacterization = styled.p`
@@ -63,6 +70,7 @@ export const ProductArticul = styled.div`
 export const ProductCategory = styled.p`
   font-weight: bold;
   color: black;
+  margin-bottom: 10px;
 `;
 
 export const CategorySpan = styled.span`
@@ -76,6 +84,10 @@ export const ProductBlockLeft = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
   border-radius: 20px;
+
+  @media screen and (max-width: 580px) {
+    width: 100%;
+  }
 `;
 
 export const ImageBlock = styled.div`
@@ -92,6 +104,7 @@ export const ProductName = styled.p`
   color: gold;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
 `;
 
 export const ProductPrice = styled.p`
@@ -113,6 +126,10 @@ export const ProductBlockRight = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
   border-radius: 20px;
+
+  @media screen and (max-width: 580px) {
+    width: 100%;
+  }
 `;
 
 export const CounterWrapper = styled.div`
