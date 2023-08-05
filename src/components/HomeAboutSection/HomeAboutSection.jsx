@@ -19,6 +19,7 @@ import {
   ListAssure,
   ItemAssure,
   StyledLink,
+  SwiperImage,
 } from './HomeAboutSection.styled';
 import { BsArrowRight } from 'react-icons/bs';
 
@@ -40,7 +41,7 @@ const SwiperComponent = ({ photos }) => (
   >
     {photos.map((photo, index) => (
       <SwiperSlide key={index}>
-        <Image
+        <SwiperImage
           src={photo}
           alt={`Slide photo ${index + 1}`}
           width="250"
@@ -132,7 +133,7 @@ const HomeAboutSection = () => {
               <Image
                 src="/ready.png"
                 alt="Salamander"
-                width="360"
+                width="450"
                 height="450"
               />
             </Salamander>

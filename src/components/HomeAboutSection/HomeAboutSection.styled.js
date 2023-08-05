@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
+import Image from 'next/image';
+
+export const SwiperImage = styled(Image)`
+  width: 250px;
+  height: 188px;
+  background-size: cover;
+`;
+
 export const Overlay = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
@@ -125,7 +133,7 @@ export const Salamander = styled.div`
     display: flex;
     position: absolute;
     bottom: -17px;
-    left: -85px;
+    left: -160px;
   }
 `;
 
