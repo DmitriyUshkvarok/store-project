@@ -33,6 +33,7 @@ export const Box = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
   max-width: 1000px;
   margin: 0 auto;
 
@@ -67,4 +68,10 @@ export const PageNumber = styled.span`
 
 export const Picture = styled(Image)`
   object-fit: cover;
+  transition: transform 0.25s;
+  overflow: hidden;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
