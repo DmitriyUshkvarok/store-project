@@ -20,7 +20,7 @@ export const Firma = styled.h1`
   @media screen and (min-width: 520px) {
     font-size: 70px;
   }
-  color: #ffd207;
+  color: #fdfdfd;
   font-size: 40px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.856);
 
