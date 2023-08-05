@@ -24,7 +24,7 @@ export const Firma = styled.h1`
   font-size: 40px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.856);
 
-  position: fixed;
+  position: relative;
 
   z-index: 999999;
 
