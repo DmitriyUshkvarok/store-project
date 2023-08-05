@@ -14,6 +14,7 @@ const ContactLayout = ({ children }) => {
       <PromoBlockAllPages />
       <div>{children}</div>
       <ContactBlock />
+
       <PartnersSlider />
       <Footer />
     </>
