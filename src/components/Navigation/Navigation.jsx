@@ -6,13 +6,37 @@ import {
   CartCount,
 } from './Navigation.styled';
 import { IoIosBasket } from 'react-icons/io';
+import { RxExit } from 'react-icons/rx';
 import { usePathname } from 'next/navigation';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useSelector } from 'react-redux';
+import Notiflix from 'notiflix';
+import { useLogoutMutation } from '@/src/redux/adminAuthApi/authApi';
+import authSelector from '@/src/redux/adminAuthApi/authSelectors';
 
 const Navigation = () => {
   const cartItems = useSelector(cartSelector.getIsItems);
   const pathname = usePathname();
+  const isToken = useSelector(authSelector.authToken);
+  const [logOut] = useLogoutMutation();
+
+  const handleClickLogOut = () => {
+    Notiflix.Confirm.show(
+      'Confirmation',
+      'Are you sure you want to log out?',
+      'Yes',
+      'No',
+      async () => {
+        try {
+          await logOut();
+          // location.reload();
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      () => {}
+    );
+  };
   return (
     <>
       <StyleNavigation>
@@ -56,6 +80,13 @@ const Navigation = () => {
             <CartCount>{cartItems.length}</CartCount>
           </CartIconWrapper>
         </StyleLink>
+        {isToken && (
+          <RxExit
+            size={30}
+            style={{ cursor: 'pointer', color: 'white' }}
+            onClick={handleClickLogOut}
+          />
+        )}
       </StyleNavigation>
     </>
   );

@@ -1,9 +1,9 @@
-import React from 'react';
+import LoginOrAdmin from '@/src/components/LoginOrAdmin/LoginOrAdmin';
 
 const Admin = () => {
   return (
     <div>
-      <h2>Admin</h2>
+      <LoginOrAdmin />
     </div>
   );
 };

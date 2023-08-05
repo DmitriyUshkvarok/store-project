@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
+import { authApi } from './authApi';
 
 const authPersistConfig = {
   key: 'auth',
@@ -11,14 +12,31 @@ const authPersistConfig = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {
-      name: null,
+    admin: {
       email: null,
+      id: null,
     },
     token: null,
     isLoggedIn: false,
   },
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
+        state.admin.email = action.payload.email;
+        state.admin.id = action.payload.id;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addMatcher(authApi.endpoints.logout.matchFulfilled, (state) => {
+        state.user = {
+          email: null,
+          id: null,
+        };
+        state.token = null;
+        state.isLoggedIn = false;
+      });
+  },
 });
 
 const persisteAuthReducer = persistReducer(

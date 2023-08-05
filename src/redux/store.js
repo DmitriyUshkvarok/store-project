@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import persisteAuthReducer from './adminAuthApi/authSlice';
 import persisteCartReducer from './cart/cartSlise';
 import persisteQuantityReducer from './orderQantity/quantitySlice';
+import { authApi } from './adminAuthApi/authApi';
 
 import {
   persistStore,
@@ -18,13 +19,14 @@ const store = configureStore({
     auth: persisteAuthReducer,
     cart: persisteCartReducer,
     quantity: persisteQuantityReducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(),
+    }).concat(authApi.middleware),
 });
 
 export const persistor = persistStore(store);
