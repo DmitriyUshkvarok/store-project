@@ -5,11 +5,13 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import Image from 'next/image';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import {
+  Box,
   Gallery,
   GalleryBox,
   PageNumber,
   PaginationBox,
   Picture,
+  Title,
 } from './GalleryList.styled';
 
 const GalleryList = () => {
@@ -64,18 +66,23 @@ const GalleryList = () => {
 
   return (
     <GalleryBox>
-      <Gallery className="gallery">
-        {currentPhotos.map((photo, index) => (
-          <a href={photo} key={index}>
-            <Picture
-              src={photo}
-              alt={`Image ${index + 1}`}
-              width="330"
-              height="206"
-            />
-          </a>
-        ))}
-      </Gallery>
+      <Box>
+        <Title>Галерея</Title>
+        <Gallery className="gallery">
+          {currentPhotos.map((photo, index) => (
+            <li key={index}>
+              <a href={photo}>
+                <Picture
+                  src={photo}
+                  alt={`Image ${index + 1}`}
+                  width="330"
+                  height="206"
+                />
+              </a>
+            </li>
+          ))}
+        </Gallery>
+      </Box>
 
       <PaginationBox className="pagination">
         <ButtonWhiteAndBlack

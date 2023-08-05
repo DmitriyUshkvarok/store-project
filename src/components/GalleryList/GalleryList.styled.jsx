@@ -9,11 +9,36 @@ export const GalleryBox = styled.div`
   margin-right: auto;
 `;
 
-export const Gallery = styled.div`
+export const Gallery = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
+
+  padding-top: 30px;
+  border-top: 4px solid gray;
+
+  margin-top: 30px;
+
+  @media screen and (min-width: 1060px) {
+    justify-content: start;
+  }
+`;
+
+export const Title = styled.h1`
+  margin-top: 30px;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1060px) {
+    justify-content: start;
+  }
 `;
 
 export const PaginationBox = styled.div`
