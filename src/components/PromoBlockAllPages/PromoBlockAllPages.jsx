@@ -1,19 +1,14 @@
+'use client';
 import Container from '../Container/Container';
+import { Box, Firma } from './PromoBlockAllPages.styled';
 
 const PromoBlockAllPages = () => {
   return (
-    <div
-      style={{
-        backgroundColor: 'lightsalmon',
-        paddingTop: '15px',
-        paddingBottom: '15px',
-        fontWeight: 'bold',
-      }}
-    >
+    <Box>
       <Container>
-        <h2>Promo Block</h2>
+        <Firma>ім-Брук</Firma>
       </Container>
-    </div>
+    </Box>
   );
 };
 
