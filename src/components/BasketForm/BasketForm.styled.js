@@ -4,11 +4,11 @@ import { Form, Field } from 'formik';
 export const StyleOrderForm = styled(Form)`
   max-width: 700px;
   padding: 40px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 4px;
 `;
 
 export const FormWrapper = styled.div`
@@ -19,19 +19,19 @@ export const FormWrapper = styled.div`
   gap: 20px;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 10px;
 `;
 
 export const OrderFormTitle = styled.h2`
-  color: gold;
+  color: #222;
   text-transform: uppercase;
   text-align: center;
   font-size: 18px;
 `;
 
 export const OrderFormSubTitle = styled.p`
-  color: aqua;
+  color: gray;
   font-size: 14px;
   text-transform: uppercase;
   text-align: center;
@@ -57,12 +57,12 @@ export const OrderStyleField = styled(Field)`
   width: 100%;
   display: flex;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   border: none;
   outline: none;
   padding: 5px;
-  color: aqua;
+  color: #222;
 
   &::placeholder {
     padding-left: 10px;
@@ -75,22 +75,19 @@ export const ValidationError = styled.div`
 `;
 
 export const OrderBtn = styled.button`
-  max-width: 200px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: none;
-  border-radius: 20px;
-  color: lightgreen;
-  text-transform: uppercase;
-  font-weight: 500;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: 0.4s;
+  background-color: #b01d1deb;
+  color: white;
+  padding: 10px 12px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 300;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  transition: 0.4s;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: green;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #222;
   }
 `;

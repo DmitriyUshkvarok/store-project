@@ -1,0 +1,7 @@
+.layoutSection {
+    padding-top: 110px;
+}
+
+.layoutWrapper {
+    display: flex;
+}

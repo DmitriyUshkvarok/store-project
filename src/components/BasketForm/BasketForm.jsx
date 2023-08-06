@@ -13,6 +13,8 @@ import {
 import { Formik, ErrorMessage } from 'formik';
 import orderSchema from '@/src/validationSchema/orderFormSchema';
 import { useState } from 'react';
+import cartSelector from '@/src/redux/cart/cartSelector';
+import { useSelector } from 'react-redux';
 
 const initialValues = {
   name: '',
@@ -22,11 +24,16 @@ const initialValues = {
 };
 
 const OrderFom = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
+  // const [isLoading, setIsLoading] = useState(false);
+  const cartItems = useSelector(cartSelector.getIsItems);
   const handleSubmit = async (values, { resetForm }) => {
-    setIsLoading(true);
-
+    // setIsLoading(true);
+    const formDataAndOrder = {
+      values,
+      cartItems,
+    };
+    console.log(formDataAndOrder);
+    localStorage.setItem('formDataAndOrder', JSON.stringify(formDataAndOrder));
     resetForm();
   };
 

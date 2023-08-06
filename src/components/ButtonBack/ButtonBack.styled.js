@@ -6,8 +6,14 @@ export const StyleButtonBack = styled.button`
   align-items: center;
   padding: 10px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   border: none;
-  color: lightcoral;
+  color: gray;
   cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #222;
+  }
 `;

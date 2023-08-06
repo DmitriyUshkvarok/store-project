@@ -1,7 +1,11 @@
 import { Btn } from './BynBuy.styled';
 
-const BtnBuy = () => {
-  return <Btn type="button">Купити</Btn>;
+const BtnBuy = ({ handleBuy }) => {
+  return (
+    <Btn type="button" onClick={handleBuy}>
+      Купити
+    </Btn>
+  );
 };
 
 export default BtnBuy;
