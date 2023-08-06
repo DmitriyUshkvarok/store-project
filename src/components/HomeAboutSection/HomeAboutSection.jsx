@@ -25,34 +25,49 @@ import { BsArrowRight } from 'react-icons/bs';
 
 import Image from 'next/image';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import SwiperCore, { Autoplay } from 'swiper';
-
-SwiperCore.use([Autoplay]);
-
-const SwiperComponent = ({ photos }) => (
-  <Swiper
-    slidesPerView={1}
-    loop={true}
-    autoplay={{
-      delay: 100,
-    }}
-  >
-    {photos.map((photo, index) => (
-      <SwiperSlide key={index}>
-        <SwiperImage
-          src={photo}
-          alt={`Slide photo ${index + 1}`}
-          width="250"
-          height="188"
-        />
-      </SwiperSlide>
-    ))}
-  </Swiper>
-);
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const HomeAboutSection = () => {
+  const EmptyArrow = () => <div style={{ display: 'none' }}></div>;
+
+  const settings = {
+    // dots: true,
+    // infinite: true,
+    speed: 4000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    prevArrow: <EmptyArrow />,
+    nextArrow: <EmptyArrow />,
+    fade: true,
+  };
+  const images = [
+    { src: '/pigment/92f4.jpeg', alt: 'Slide photo 1' },
+    { src: '/pigment/000.jpg', alt: 'Slide photo 2' },
+    { src: '/pigment/111.jpeg', alt: 'Slide photo 3' },
+  ];
+
+  const imagesR = [
+    { src: '/pigment/111.jpeg', alt: 'Slide photo 1' },
+    { src: '/pigment/abstract.jpeg', alt: 'Slide photo 2' },
+    { src: '/pigment/generated.webp', alt: 'Slide photo 3' },
+  ];
+
+  const imagesP = [
+    { src: '/pigment/poroshkovye.jpeg', alt: 'Slide photo 1' },
+    { src: '/pigment/istock4.jpeg', alt: 'Slide photo 2' },
+    { src: '/pigment/fc01.jpeg', alt: 'Slide photo 3' },
+  ];
+
+  const imagesE = [
+    { src: '/pigment/000.jpg', alt: 'Slide photo 1' },
+    { src: '/pigment/colourblock.jpeg', alt: 'Slide photo 2' },
+    { src: '/pigment/gears.jpg', alt: 'Slide photo 3' },
+  ];
+
   return (
     <Overlay>
       <Container>
@@ -66,14 +81,17 @@ const HomeAboutSection = () => {
               </ItemLink>
             </Item>
             <Item>
-              {' '}
-              <SwiperComponent
-                photos={[
-                  '/pigment/92f4.jpeg',
-                  '/pigment/000.jpg',
-                  '/pigment/111.jpeg',
-                ]}
-              />{' '}
+              <Slider {...settings}>
+                {images.map((image, index) => (
+                  <SwiperImage
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    width="250"
+                    height="188"
+                  />
+                ))}
+              </Slider>
             </Item>
             <Item>
               {' '}
@@ -83,24 +101,45 @@ const HomeAboutSection = () => {
               </ItemLink>
             </Item>
             <Item>
-              {' '}
+              <Slider {...settings}>
+                {imagesR.map((image, index) => (
+                  <SwiperImage
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    width="250"
+                    height="188"
+                  />
+                ))}
+              </Slider>{' '}
+              {/* 
               <SwiperComponent
                 photos={[
                   '/pigment/111.jpeg',
                   '/pigment/abstract.jpeg',
                   '/pigment/generated.webp',
                 ]}
-              />{' '}
+              />*/}{' '}
             </Item>
             <Item>
-              {' '}
-              <SwiperComponent
+              <Slider {...settings}>
+                {imagesP.map((image, index) => (
+                  <SwiperImage
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    width="250"
+                    height="188"
+                  />
+                ))}
+              </Slider>{' '}
+              {/* <SwiperComponent
                 photos={[
                   '/pigment/poroshkovye.jpeg',
                   '/pigment/istock4.jpeg',
                   '/pigment/fc01.jpeg',
                 ]}
-              />
+              /> */}
             </Item>
 
             <Item>
@@ -110,14 +149,24 @@ const HomeAboutSection = () => {
               </ItemLink>
             </Item>
             <Item>
-              {' '}
-              <SwiperComponent
+              <Slider {...settings}>
+                {imagesE.map((image, index) => (
+                  <SwiperImage
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    width="250"
+                    height="188"
+                  />
+                ))}
+              </Slider>{' '}
+              {/* <SwiperComponent
                 photos={[
                   '/pigment/000.jpg',
                   '/pigment/colourblock.jpeg',
                   '/pigment/gears.jpg',
                 ]}
-              />{' '}
+              /> */}{' '}
             </Item>
             <Item>
               <ItemLink href={`/oferta`}>

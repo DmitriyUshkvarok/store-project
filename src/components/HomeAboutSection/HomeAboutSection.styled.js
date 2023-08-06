@@ -5,8 +5,7 @@ import Image from 'next/image';
 
 export const SwiperImage = styled(Image)`
   width: 250px;
-  height: 188px;
-  background-size: cover;
+  height: 100%;
 `;
 
 export const Overlay = styled.section`
@@ -102,6 +101,7 @@ export const Box = styled.div`
 
   @media screen and (min-width: 1280px) {
     flex-direction: initial;
+    align-items: stretch;
   }
 `;
 
@@ -194,6 +194,7 @@ export const Pigments = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
+  width: 125px;
 `;
 
 export const ListAssure = styled.ul`

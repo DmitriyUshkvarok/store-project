@@ -1,12 +1,11 @@
-import HomeAboutSection from "@/src/components/HomeAboutSection/HomeAboutSection";
+import HomeAboutSection from '@/src/components/HomeAboutSection/HomeAboutSection';
+import { HomePromoSlider } from '@/src/components/HomePromoSlider/HomePromoSlider';
 
 const HomePage = () => {
   return (
     <>
-    <div>auto scroll</div>
-   <HomeAboutSection/>
-
-      
+      <HomePromoSlider />
+      <HomeAboutSection />
     </>
   );
 };
