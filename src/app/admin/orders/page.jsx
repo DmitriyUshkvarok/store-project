@@ -1,11 +1,11 @@
-import React from 'react'
+import AdminOrdersList from '@/src/components/AdminOrdersList/AdminOrdersList';
 
 const Orders = () => {
   return (
     <div>
-      <h2>orders</h2>
+      <AdminOrdersList />
     </div>
-  )
-}
+  );
+};
 
-export default Orders
+export default Orders;

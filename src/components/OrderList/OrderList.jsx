@@ -27,24 +27,24 @@ import {
   StyleRiDeleteBin5Fill,
 } from './OrderList.styled';
 
-import { removeFromCart } from '@/src/redux/cart/cartSlise';
+import { removeFromCart, updateTotalPrice } from '@/src/redux/cart/cartSlise';
 import {
   clearQuantityById,
   setQuantityById,
 } from '@/src/redux/orderQantity/quantitySlice';
 
 const OrderList = () => {
-  const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   const cartItems = useSelector(cartSelector.getIsItems);
   const quantity = useSelector((state) => state.quantity);
+  const totalPrice = useSelector(cartSelector.geTotalPrice);
 
   useEffect(() => {
     const total = cartItems.reduce((acc, item) => {
       return acc + item.price * (quantity[item.id] || 0);
     }, 0);
-    setTotalPrice(total);
-  }, [cartItems, quantity]);
+    dispatch(updateTotalPrice(total));
+  }, [cartItems, dispatch, quantity]);
 
   const handleIncrement = (itemId) => {
     dispatch(incrementQuantity({ itemId }));

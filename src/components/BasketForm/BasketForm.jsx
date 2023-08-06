@@ -26,11 +26,15 @@ const initialValues = {
 const OrderFom = () => {
   // const [isLoading, setIsLoading] = useState(false);
   const cartItems = useSelector(cartSelector.getIsItems);
+  const totalPrice = useSelector(cartSelector.geTotalPrice);
+  const quantity = useSelector((state) => state.quantity);
   const handleSubmit = async (values, { resetForm }) => {
     // setIsLoading(true);
     const formDataAndOrder = {
       values,
       cartItems,
+      totalPrice,
+      quantity,
     };
     console.log(formDataAndOrder);
     localStorage.setItem('formDataAndOrder', JSON.stringify(formDataAndOrder));
