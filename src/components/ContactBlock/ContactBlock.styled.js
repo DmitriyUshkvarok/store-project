@@ -35,7 +35,6 @@ export const List = styled.ul`
     gap: 20px;
   }
   @media screen and (min-width: 768px) {
-    /* gap: 30px; */
   }
   @media screen and (min-width: 1280px) {
     gap: 90px;
