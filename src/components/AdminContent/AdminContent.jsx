@@ -1,11 +1,9 @@
-import Container from '../Container/Container';
+import Orders from '@/src/app/admin/orders/page';
 
 const AdminContent = () => {
   return (
     <>
-      <Container>
-        <h1 style={{ marginTop: '150px' }}>Admin Content</h1>
-      </Container>
+      <Orders />
     </>
   );
 };

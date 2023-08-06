@@ -35,6 +35,7 @@ import {
   OrderBtnDetails,
 } from './ProductDetail.styled';
 import Container from '../Container/Container';
+import BtnBuy from '../BtnBuy/BtnBuy';
 
 const ProductDetail = () => {
   const params = useParams();
@@ -125,9 +126,7 @@ const ProductDetail = () => {
                 />
                 <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
               </CounterWrapper>
-              <OrderBtnDetails type="button" onClick={handleBuy}>
-                Купити
-              </OrderBtnDetails>
+              <BtnBuy handleBuy={handleBuy} />
             </ProductBlockRight>
           </ProductDetailInfoBlock>
         </div>

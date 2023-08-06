@@ -5,13 +5,13 @@ import { RiDeleteBin5Fill } from 'react-icons/ri';
 export const NotOrderWrapper = styled.div`
   max-width: 800px;
   padding: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
+  border-radius: 4px;
 `;
 
 export const NotOrder = styled.h2`
@@ -28,19 +28,19 @@ export const TotalPriceWrapper = styled.div`
   display: flex;
   justify-content: end;
   margin-bottom: 15px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 4px;
 `;
 
 export const TotalPriceTitle = styled.h4`
-  color: gold;
+  color: #222;
   margin-right: 10px;
 `;
 
 export const TotalPriceInfo = styled.p`
   font-weight: bold;
-  color: aqua;
+  color: gray;
 `;
 
 export const CartList = styled.ul`
@@ -48,8 +48,8 @@ export const CartList = styled.ul`
   flex-direction: column;
   gap: 20px;
   padding: 40px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 `;
 
 export const CartListItem = styled.li`
@@ -60,7 +60,7 @@ export const CartListItem = styled.li`
   width: 100%;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
+  border-radius: 4px;
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
@@ -83,7 +83,7 @@ export const CounterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   max-width: 100px;
   padding: 5px;
@@ -97,7 +97,7 @@ export const BtnIncrement = styled.button`
   font-size: 16px;
   border: none;
   background-color: transparent;
-  color: aqua;
+  color: #222;
   cursor: pointer;
   transition: transform 0.4s;
 
@@ -112,7 +112,7 @@ export const InputCounter = styled.input`
   align-items: center;
   font-size: 16px;
   background-color: transparent;
-  color: aqua;
+  color: #222;
   width: 100%;
   outline: none;
   appearance: none;
@@ -130,7 +130,7 @@ export const BtnDecrement = styled.button`
   font-size: 16px;
   border: none;
   background-color: transparent;
-  color: aqua;
+  color: #222;
   cursor: pointer;
   transition: transform 0.4s;
 
@@ -147,11 +147,11 @@ export const DataInfo = styled.p`
 `;
 
 export const StylePrice = styled.div`
-  color: gold;
+  color: #222;
 `;
 
 export const StyleQuantity = styled.div`
-  color: aqua;
+  color: gray;
 `;
 
 export const StyleRiDeleteBin5Fill = styled(RiDeleteBin5Fill)`

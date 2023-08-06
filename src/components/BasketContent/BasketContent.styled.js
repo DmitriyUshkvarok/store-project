@@ -3,11 +3,7 @@ import styled from 'styled-components';
 export const BasketSection = styled.section`
   width: 100vw;
   min-height: 100vh;
-  background-image: url('/background-basket-page.jpeg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
+  background-color: #80808029;
   padding-top: 140px;
   padding-bottom: 40px;
 `;

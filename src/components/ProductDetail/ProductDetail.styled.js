@@ -4,19 +4,15 @@ import Link from 'next/link';
 export const ProductDetailSection = styled.section`
   width: 100vw;
   min-height: 100vh;
-  background-image: url('/background-basket-page.jpeg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
+  background-color: #80808029;
   padding-top: 20px;
   padding-bottom: 20px;
 `;
 
 export const LinkPanel = styled.div`
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
   margin-bottom: 20px;
   display: flex;
   gap: 10px;
@@ -24,21 +20,21 @@ export const LinkPanel = styled.div`
 `;
 
 export const StyleLinkDetail = styled(Link)`
-  color: aqua;
+  color: #222;
   font-weight: bold;
   text-decoration: underline;
 `;
 
 export const CurrentLink = styled.span`
-  color: gold;
+  color: gray;
 `;
 
 export const ProductDetailInfoBlock = styled.div`
   display: flex;
   gap: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 4px;
 
   @media screen and (max-width: 580px) {
     flex-wrap: wrap;
@@ -49,7 +45,7 @@ export const ProductDetailInfoBlock = styled.div`
 `;
 
 export const ProductСharacterization = styled.p`
-  color: gold;
+  color: #222;
   text-align: center;
   font-size: 25px;
   margin-bottom: 10px;
@@ -63,7 +59,7 @@ export const ProductDescription = styled.p`
 `;
 
 export const ProductArticul = styled.div`
-  color: gold;
+  color: #222;
   margin-bottom: 10px;
 `;
 
@@ -83,7 +79,7 @@ export const ProductBlockLeft = styled.div`
   width: 50%;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
-  border-radius: 20px;
+  border-radius: 4px;
 
   @media screen and (max-width: 580px) {
     width: 100%;
@@ -96,12 +92,12 @@ export const ImageBlock = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 `;
 
 export const ProductName = styled.p`
-  color: gold;
+  color: #222;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
@@ -109,13 +105,13 @@ export const ProductName = styled.p`
 
 export const ProductPrice = styled.p`
   margin-top: 10px;
-  color: gold;
+  color: #222;
   text-transform: uppercase;
   text-align: center;
 `;
 
 export const SpanPrice = styled.span`
-  color: aqua;
+  color: gray;
 `;
 
 export const ProductBlockRight = styled.div`
@@ -125,7 +121,7 @@ export const ProductBlockRight = styled.div`
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
-  border-radius: 20px;
+  border-radius: 4px;
 
   @media screen and (max-width: 580px) {
     width: 100%;
@@ -154,7 +150,7 @@ export const BtnIncrement = styled.button`
   font-size: 16px;
   border: none;
   background-color: transparent;
-  color: aqua;
+  color: #222;
   cursor: pointer;
   transition: transform 0.4s;
 
@@ -169,7 +165,7 @@ export const InputCounter = styled.input`
   align-items: center;
   font-size: 16px;
   background-color: transparent;
-  color: aqua;
+  color: #222;
   width: 100%;
   outline: none;
   appearance: none;
@@ -187,7 +183,7 @@ export const BtnDecrement = styled.button`
   font-size: 16px;
   border: none;
   background-color: transparent;
-  color: aqua;
+  color: #222;
   cursor: pointer;
   transition: transform 0.4s;
 
