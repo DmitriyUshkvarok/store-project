@@ -1,24 +1,31 @@
 'use client';
-import { products } from '@/src/components/CatalogList/dataCatalogList';
-import Image from 'next/image';
 import Link from 'next/link';
+import { slugify } from 'transliteration';
+
 import { useParams, useSearchParams } from 'next/navigation';
+import { useGetCountryCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import Spinner from '../SpinerOferta/SpinerOferta';
 import {
   WrapNav,
   DecorSpanBackLink,
   CurrentNavDecor,
-} from '@/src/components/CatalogList/CatalogList.styled';
-import {
-  ListDynamic,
+  ItemListCatalog,
+  WrapContentCard,
+  ProductTitleCard,
+  StyledImage,
+  ThumbCardImg,
+  ListCatalog,
   Container,
   StyledLink,
-  ItemListDynamic,
-} from './DynamicCategory.styled';
+  TitleCard,
+} from '@/src/components/CatalogList/CatalogList.styled';
 
 const DynamicCatalogList = () => {
   const params = useParams();
 
   const id = useSearchParams().get('id');
+  const { data, isError, isLoading } = useGetCountryCategoryQuery(id);
+
   return (
     <Container>
       <WrapNav>
@@ -28,28 +35,41 @@ const DynamicCatalogList = () => {
         <Link href={`/oferta`}>
           <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
         </Link>
-        <CurrentNavDecor>{params.product}</CurrentNavDecor>
+        <CurrentNavDecor>{data?.name}</CurrentNavDecor>
       </WrapNav>
-      <ListDynamic>
-        {products.map((product) => (
-          <ItemListDynamic key={product.id}>
-            <StyledLink
-              href={{
-                pathname: `${`/oferta/${params.product}/${product.url}`}`,
-                query: { id: product.id },
-              }}
-            >
-              <h3>{product.title}</h3>
-              <Image
-                src={product.img}
-                alt={product.title}
-                width={300}
-                height={200}
-              />
-            </StyledLink>
-          </ItemListDynamic>
-        ))}
-      </ListDynamic>
+      <TitleCard>{data?.name}</TitleCard>
+      <ListCatalog>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          data?.categories.map((product) => (
+            <ItemListCatalog key={product._id}>
+              <StyledLink
+                href={{
+                  pathname: `/oferta/${params.product}/${slugify(
+                    product.name
+                  )}`,
+                  query: { id: product._id },
+                }}
+              >
+                <ThumbCardImg>
+                  <StyledImage
+                    priority
+                    src={product.url}
+                    alt={product.name}
+                    width={350}
+                    height={180}
+                  />
+                </ThumbCardImg>
+
+                <WrapContentCard>
+                  <ProductTitleCard>{product.name}</ProductTitleCard>
+                </WrapContentCard>
+              </StyledLink>
+            </ItemListCatalog>
+          ))
+        )}
+      </ListCatalog>
     </Container>
   );
 };

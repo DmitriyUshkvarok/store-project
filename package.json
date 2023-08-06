@@ -29,6 +29,7 @@
     "simplelightbox": "^2.14.1",
     "styled-components": "^5.3.1",
     "swiper": "^10.1.0",
+    "transliteration": "^2.3.5",
     "yup": "^1.2.0"
   }
 }

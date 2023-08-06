@@ -2,14 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const BcgContainer = styled.div`
-  background-image: url('/bcgOferta.jpg');
-  background-repeat: no-repeat;
-
-  background-position: center;
-  background-size: cover;
-  overflow: hidden;
-`;
+export const BcgContainer = styled.div``;
 
 export const StyledLink = styled(Link)`
   position: relative;
@@ -27,13 +20,9 @@ export const StyledLink = styled(Link)`
 
 export const Container = styled.div`
   padding: 110px 20px;
-  background-image: url('/bcgOferta.jpg');
-  background-repeat: no-repeat;
 
-  background-position: center;
-  background-size: cover;
   overflow: hidden;
-
+  background-color: #80808029;
   @media screen and (min-width: 768px) {
     padding: 70px 62px;
   }
@@ -53,7 +42,8 @@ export const WrapNav = styled.div`
 `;
 
 export const CurrentNavDecor = styled.span`
-  color: #ffffff8c;
+  color: #6c757d;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);s
 `;
 
 export const ListCatalog = styled.ul`
@@ -91,8 +81,8 @@ export const ThumbCardImg = styled.div`
   ::before {
     content: '';
     position: absolute;
-    left: 10px;
-    right: 10px;
+    left: 22px;
+    right: 21px;
     bottom: 90px;
     top: 10px;
     border: 1px solid #fff;
@@ -102,7 +92,7 @@ export const ThumbCardImg = styled.div`
 export const StyledImage = styled(Image)`
   width: 100%;
   height: 180px;
-  object-fit: cover;
+
   object-position: center;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -119,7 +109,9 @@ export const WrapContentCard = styled.div`
   padding: 15px;
   display: flex;
   align-items: center;
-  background-color: #c4c3c38f;
+  justify-content: space-between;
+
+  background-color: #fff;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
@@ -127,20 +119,23 @@ export const WrapContentCard = styled.div`
 `;
 
 export const TitleCard = styled.h3`
-  margin-bottom: 30px;
   font-size: 28px;
-  font-weight: 700;
-  color: #000000bf;
+  margin-bottom: 60px;
+  color: #222;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const ProductTitleCard = styled.p`
   font-size: 18px;
-  font-weight: 400;
+
+  color: #222;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const DecorSpanBackLink = styled.span`
   cursor: pointer;
-  color: white;
+  color: #222;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
 
 //------------------------------------------
