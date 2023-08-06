@@ -1,7 +1,9 @@
 'use client';
-import { catalog } from './dataCatalogList';
-import Link from 'next/link';
 
+import Link from 'next/link';
+import { slugify } from 'transliteration';
+
+import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import {
   ListCatalog,
   ItemListCatalog,
@@ -16,8 +18,11 @@ import {
   ProductTitleCard,
   DecorSpanBackLink,
 } from './CatalogList.styled';
+import Spinner from '../SpinerOferta/SpinerOferta';
 
 const CatalogList = () => {
+  const { data, isError, isLoading } = useGetOfertaQuery();
+
   return (
     <Container>
       <div>
@@ -29,29 +34,33 @@ const CatalogList = () => {
         </WrapNav>
         <TitleCard>Каталог</TitleCard>
         <ListCatalog>
-          {catalog.map((item) => (
-            <ItemListCatalog key={item.id}>
-              <StyledLink
-                href={{
-                  pathname: `/oferta/${item.url}`,
-                  query: { id: item.id },
-                }}
-              >
-                <ThumbCardImg>
-                  <StyledImage
-                    priority
-                    src={item.img}
-                    alt={item.title}
-                    width={350}
-                    height={180}
-                  />
-                </ThumbCardImg>
-                <WrapContentCard>
-                  <ProductTitleCard>{item.title}</ProductTitleCard>
-                </WrapContentCard>
-              </StyledLink>
-            </ItemListCatalog>
-          ))}
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            data?.map((item) => (
+              <ItemListCatalog key={item._id}>
+                <StyledLink
+                  href={{
+                    pathname: `/oferta/${slugify(item.name)}`,
+                    query: { id: item._id },
+                  }}
+                >
+                  <ThumbCardImg>
+                    <StyledImage
+                      priority
+                      src={item.url}
+                      alt={item.name}
+                      width={350}
+                      height={180}
+                    />
+                  </ThumbCardImg>
+                  <WrapContentCard>
+                    <ProductTitleCard>{item.name}</ProductTitleCard>
+                  </WrapContentCard>
+                </StyledLink>
+              </ItemListCatalog>
+            ))
+          )}
         </ListCatalog>
       </div>
     </Container>
