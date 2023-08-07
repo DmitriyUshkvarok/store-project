@@ -7,24 +7,40 @@ const AboutInfo = () => {
       <Box>
         <Title>Про нас</Title>
         <About>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil soluta
-          nemo, maxime et, perferendis ratione optio consequuntur ducimus rerum
-          accusamus voluptate animi assumenda vitae incidunt aliquid. Ipsa
-          quaerat magni deserunt. Ea, tempore quam placeat sapiente vel
-          excepturi a at atque assumenda mollitia sed reiciendis ipsum illo
-          pariatur fugit autem maxime illum sit nostrum vero. Veniam nobis ad
-          commodi illo sint? Distinctio earum sapiente rem neque sequi
-          repellendus adipisci deserunt natus laborum veniam a cupiditate
-          voluptas temporibus id unde itaque voluptates, vero nihil blanditiis
-          esse pariatur quaerat laboriosam? Explicabo, voluptates placeat. Ex,
-          doloribus quam nemo atque repudiandae quas cupiditate voluptatibus at
-          ipsum aspernatur a culpa. Unde nesciunt accusantium labore
-          exercitationem beatae incidunt molestiae, nulla vero voluptate
-          voluptatum maxime, quam illo recusandae. Laudantium fugit, quisquam
-          exercitationem aliquam, voluptatibus nesciunt sunt consequatur libero,
-          illo necessitatibus inventore tenetur. Hic quasi, ad iusto, quo
-          eligendi beatae fugiat mollitia laborum et itaque voluptatibus,
-          deserunt est facilis!
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus
+          cupiditate quae esse reprehenderit voluptatibus dicta iusto
+          accusantium iste asperiores, consequuntur eos, doloremque sunt
+          possimus unde, distinctio tenetur id optio nobis! Sequi vero dolore
+          architecto, ratione amet ipsum ea sint magnam debitis, aut velit animi
+          vitae quod cum impedit. Harum similique, sapiente qui cupiditate
+          officiis fugit minus alias vitae quibusdam libero. Asperiores, vero
+          necessitatibus? Dolorem numquam corporis commodi nisi ratione animi,
+          voluptatem fuga corrupti praesentium! At repellat quae,
+          exercitationem, a recusandae sed illum error nobis molestiae iste,
+          minus quod hic magnam? Error accusamus voluptatibus necessitatibus
+          quisquam aliquam laborum a distinctio modi, nihil, aperiam deleniti
+          placeat, excepturi perferendis ad architecto quibusdam fuga facilis
+          odit reprehenderit assumenda enim inventore doloribus fugiat
+          voluptatem? Doloribus! Temporibus deleniti reiciendis ab placeat quasi
+          suscipit illo, velit ipsa nihil nulla. Neque, omnis. Ut ipsum sed in
+          odio culpa a debitis nisi voluptate. Eaque cum ipsa atque dolore
+          commodi! Libero corporis beatae iste, cumque, inventore ullam quis quo
+          voluptatibus optio natus aut sapiente neque illum necessitatibus eos
+          cum. Voluptate nostrum voluptatum, obcaecati rerum nam sed impedit
+          tenetur ab minus. Quibusdam eius perferendis laboriosam repellendus
+          voluptate ab eligendi quis accusantium officiis blanditiis libero
+          fugiat, est deleniti in reiciendis? Laborum architecto quisquam
+          distinctio quis necessitatibus totam nulla officiis dolor inventore
+          placeat! Sint quod neque quaerat in dignissimos reprehenderit non,
+          porro minima? Quo ratione deleniti sint facilis sequi enim quis
+          incidunt rerum quam? Tempore placeat rerum temporibus ipsum itaque
+          quod deserunt sit. Ullam explicabo, doloribus minus rem illo nihil eos
+          magnam recusandae tempora laboriosam atque alias fuga? Vero molestias
+          nisi soluta, esse ut minima molestiae eum amet earum fugiat rem
+          laudantium distinctio. Laborum ad id, voluptas harum distinctio
+          nesciunt odio eveniet deserunt dicta voluptatum labore? Reiciendis ad,
+          sed quae dolore minus explicabo tempore esse? Enim eum explicabo fuga
+          deleniti nihil repudiandae tempore?
         </About>
       </Box>
     </AboutBox>

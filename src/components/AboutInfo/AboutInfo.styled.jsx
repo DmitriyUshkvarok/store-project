@@ -33,7 +33,11 @@ export const About = styled.p`
   text-align: justify;
   padding-top: 30px;
   border-top: 4px solid gray;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
 
+  color: rgb(138, 138, 138);
   margin-top: 30px;
 
   @media screen and (min-width: 1060px) {
