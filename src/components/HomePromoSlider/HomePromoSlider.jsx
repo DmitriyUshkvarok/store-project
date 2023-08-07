@@ -28,6 +28,7 @@ export const HomePromoSlider = () => {
     prevArrow: <EmptyArrow />,
     nextArrow: <EmptyArrow />,
     fade: true,
+    pauseOnHover: false,
   };
 
   return (
@@ -39,8 +40,8 @@ export const HomePromoSlider = () => {
             <ScrollImageFlag
               src={'/autoScroll/Flag.png'}
               alt={'autoScroll'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <TitleFlag>СЛАВА УКРАЇНІ!</TitleFlag>
           </Box>
@@ -49,8 +50,8 @@ export const HomePromoSlider = () => {
               // src={'../../../public/autoScroll/25.jpg'}
               src={'/autoScroll/horse.jpg'}
               alt={'autoScroll'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <Title>PRETIOX TITANIUM WHITE</Title>
           </Box>
@@ -59,8 +60,8 @@ export const HomePromoSlider = () => {
               //   src={'../../../public/autoScroll/29.jpg'}
               src={'/autoScroll/strawberry.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <Title>пігменти для фарб</Title>
           </Box>
@@ -68,8 +69,8 @@ export const HomePromoSlider = () => {
             <ScrollImage
               src={'/autoScroll/kraska.png'}
               alt={'PRETIOX TITANIUM WHITE'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <Title>пігменти для бетону</Title>
           </Box>
@@ -78,8 +79,8 @@ export const HomePromoSlider = () => {
             <ScrollImage
               src={'/autoScroll/1.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <Title>пігменти кобальтовий синій</Title>
           </Box>
@@ -87,8 +88,8 @@ export const HomePromoSlider = () => {
             <ScrollImage
               src={'/autoScroll/3.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <Title>пігменти для асфальту</Title>
           </Box>
@@ -96,8 +97,8 @@ export const HomePromoSlider = () => {
             <ScrollImage
               src={'/autoScroll/6.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
-              width="250"
-              height="220"
+              width="2000"
+              height="646"
             />
             <Title>пігменти хром зелений</Title>
           </Box>
