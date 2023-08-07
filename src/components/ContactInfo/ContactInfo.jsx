@@ -36,7 +36,7 @@ const ContactInfo = () => {
           </p>
 
           <Address>
-            <NameFirm>ПП &quot;Хім-Брук&quot;</NameFirm>
+            <NameFirm>ПП &quot;Хімбрук&quot;</NameFirm>
 
             <ul>
               <AddressItem>
@@ -61,8 +61,8 @@ const ContactInfo = () => {
           </Address>
 
           <p>IBAN: UA26003301007668</p>
-          <p>МФО-385316 в ЛФ ВАТ «ВТБ» Банк м.Львів</p>
-          <p> ЄДРПОУ-35227281 ІПН-352272813033</p>
+          <p>МФО: 385316 в АТ «Сенс-Банк»</p>
+          <p>ЄДРПОУ: 35227281</p>
           <p>Директор Діокер Петро Омелянович</p>
         </Contacts>
       </Box>
