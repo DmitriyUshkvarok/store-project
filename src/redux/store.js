@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import persisteAuthReducer from './adminAuthApi/authSlice';
 import persisteCartReducer from './cart/cartSlise';
 import persisteQuantityReducer from './orderQantity/quantitySlice';
+import persisteOrderStatusReducer from './statusOrder/statusOrderSlice';
 import { authApi } from './adminAuthApi/authApi';
 import { ofertaApi } from './ofertaApi/ofertaApi';
 import { galleryApi } from './galleryApi/galleryApi';
@@ -21,6 +22,7 @@ const store = configureStore({
     auth: persisteAuthReducer,
     cart: persisteCartReducer,
     quantity: persisteQuantityReducer,
+    status:persisteOrderStatusReducer,
     [authApi.reducerPath]: authApi.reducer,
     [ofertaApi.reducerPath]: ofertaApi.reducer,
     [galleryApi.reducerPath]: galleryApi.reducer,
