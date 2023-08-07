@@ -94,9 +94,7 @@ const HomeAboutSection = () => {
               </Slider>
             </Item>
             <Item>
-              {' '}
               <ItemLink href={`/oferta`}>
-                {' '}
                 <Chip>пігменти </Chip>рідина
               </ItemLink>
             </Item>
@@ -112,14 +110,6 @@ const HomeAboutSection = () => {
                   />
                 ))}
               </Slider>{' '}
-              {/* 
-              <SwiperComponent
-                photos={[
-                  '/pigment/111.jpeg',
-                  '/pigment/abstract.jpeg',
-                  '/pigment/generated.webp',
-                ]}
-              />*/}{' '}
             </Item>
             <Item>
               <Slider {...settings}>
@@ -132,19 +122,11 @@ const HomeAboutSection = () => {
                     height="188"
                   />
                 ))}
-              </Slider>{' '}
-              {/* <SwiperComponent
-                photos={[
-                  '/pigment/poroshkovye.jpeg',
-                  '/pigment/istock4.jpeg',
-                  '/pigment/fc01.jpeg',
-                ]}
-              /> */}
+              </Slider>
             </Item>
 
             <Item>
               <ItemLink href={`/oferta`}>
-                {' '}
                 <Chip>еко-пігменти </Chip>порошок
               </ItemLink>
             </Item>
@@ -159,19 +141,11 @@ const HomeAboutSection = () => {
                     height="188"
                   />
                 ))}
-              </Slider>{' '}
-              {/* <SwiperComponent
-                photos={[
-                  '/pigment/000.jpg',
-                  '/pigment/colourblock.jpeg',
-                  '/pigment/gears.jpg',
-                ]}
-              /> */}{' '}
+              </Slider>
             </Item>
             <Item>
               <ItemLink href={`/oferta`}>
-                {' '}
-                <Chip> еко-пігменти</Chip> рідина{' '}
+                <Chip> еко-пігменти</Chip> рідина
               </ItemLink>
             </Item>
           </List>
@@ -182,8 +156,8 @@ const HomeAboutSection = () => {
               <Image
                 src="/ready.png"
                 alt="Salamander"
-                width="450"
-                height="450"
+                width="500"
+                height="550"
               />
             </Salamander>
 
@@ -208,7 +182,6 @@ const HomeAboutSection = () => {
 
             <ListAssure>
               <ItemAssure>
-                {' '}
                 найбільша кольорова палітра синтетичних неорганічних пігментів у
                 Польщі
               </ItemAssure>
@@ -224,8 +197,8 @@ const HomeAboutSection = () => {
                 <Image
                   src="/box.png"
                   alt="paint pigments"
-                  width="130"
-                  height="130"
+                  width="160"
+                  height="160"
                 />
               </Pigments>
             </ListAssure>

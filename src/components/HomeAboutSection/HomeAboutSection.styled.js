@@ -118,6 +118,7 @@ export const BoxCompany = styled.div`
     width: 90%;
     max-width: 490px;
     padding: 30px;
+    padding-bottom: 80px;
   }
   @media screen and (min-width: 768px) {
     width: 490px;
@@ -132,8 +133,8 @@ export const Salamander = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     position: absolute;
-    bottom: -17px;
-    left: -160px;
+    bottom: -18px;
+    left: -190px;
   }
 `;
 
@@ -157,6 +158,9 @@ export const Text = styled.p`
 `;
 
 export const StyledLink = styled(Link)`
+  position: absolute;
+  bottom: 20px;
+
   color: #000000;
   display: flex;
   align-items: center;
@@ -184,6 +188,7 @@ export const BoxAssure = styled.div`
     padding: 30px;
     box-sizing: border-box;
     background-color: #fff;
+    padding-bottom: 80px;
   }
   @media screen and (min-width: 768px) {
     width: 490px;
@@ -191,10 +196,15 @@ export const BoxAssure = styled.div`
 `;
 
 export const Pigments = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 125px;
+  @media screen and (min-width: 320px) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 125px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 155px;
+  }
 `;
 
 export const ListAssure = styled.ul`
