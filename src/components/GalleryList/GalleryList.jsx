@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import Image from 'next/image';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
+import Spinner from '../SpinerOferta/SpinerOferta';
+import { smoothScrollToTop } from '@/src/utils/smoothScrollToTop';
+import { useGetGalleryQuery } from '@/src/redux/galleryApi/galleryApi';
 import {
   Box,
   Gallery,
@@ -15,72 +17,74 @@ import {
 } from './GalleryList.styled';
 
 const GalleryList = () => {
-  const photos = [
-    '/photoForGalerryHARD/211.jpg',
-    '/photoForGalerryHARD/398.jpg',
-    '/photoForGalerryHARD/78.jpg',
-    '/photoForGalerryHARD/431.jpg',
-    '/photoForGalerryHARD/4151132.jpg',
-  ];
+  const { data, isError, isLoading } = useGetGalleryQuery();
   const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(photos.length / itemsPerPage);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPhotos, setCurrentPhotos] = useState([]);
 
   useEffect(() => {
-    const lightbox = new SimpleLightbox('.gallery a', {
-      captionDelay: 250,
-      disableRightClick: true,
-      showCounter: false,
-      scrollZoom: false,
-    });
-
-    lightbox.on('shown.simplelightbox', () => {
-      document.body.classList.add('body-lock');
-    });
-
-    lightbox.on('close.simplelightbox', () => {
-      document.body.classList.remove('body-lock');
-    });
-
-    return () => {
-      lightbox.destroy();
-    };
-  }, []);
+    if (data) {
+      setTotalPages(Math.ceil(data.length / itemsPerPage));
+      setCurrentPhotos(
+        data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+      );
+    }
+  }, [data, currentPage]);
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
+      smoothScrollToTop();
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
+      smoothScrollToTop();
     }
   };
 
-  const currentPhotos = photos.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const lightbox = new SimpleLightbox('.gallery a', {
+        captionDelay: 250,
+        disableRightClick: true,
+        showCounter: false,
+        scrollZoom: false,
+      });
+
+      lightbox.on('shown.simplelightbox', () => {
+        document.body.classList.add('body-lock');
+      });
+
+      lightbox.on('close.simplelightbox', () => {
+        document.body.classList.remove('body-lock');
+      });
+
+      return () => {
+        lightbox.destroy();
+      };
+    }
+  }, [currentPhotos]);
 
   return (
     <GalleryBox>
       <Box>
         <Title>Галерея</Title>
         <Gallery className="gallery">
-          {currentPhotos.map((photo, index) => (
-            <li key={index}>
-              <a href={photo}>
-                <Picture
-                  src={photo}
-                  alt={`Image ${index + 1}`}
-                  width="330"
-                  height="206"
-                />
-              </a>
-            </li>
-          ))}
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            currentPhotos.map(({ url, _id }) => (
+              <li key={_id}>
+                <a href={url}>
+                  <Picture src={url} alt={`Image`} width="330" height="206" />
+                </a>
+              </li>
+            ))
+          )}
         </Gallery>
       </Box>
 
