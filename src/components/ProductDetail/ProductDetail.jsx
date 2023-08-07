@@ -80,15 +80,15 @@ const ProductDetail = () => {
     <ProductDetailSection>
       <Container>
         <LinkPanel>
-          <StyleLinkDetail href={`/home`}>Головна/</StyleLinkDetail>
-          <StyleLinkDetail href={`/oferta`}>Каталог/</StyleLinkDetail>
+          <StyleLinkDetail href={`/home`}>Головна /</StyleLinkDetail>
+          <StyleLinkDetail href={`/oferta`}>Каталог /</StyleLinkDetail>
           <StyleLinkDetail href={`/oferta/${params.product}`}>
-            {params.product}/
+            {params.product} /
           </StyleLinkDetail>
           <StyleLinkDetail
             href={`/oferta/${params.product}/${params.subProduct}`}
           >
-            {params.subProduct}/
+            {params.subProduct} /
           </StyleLinkDetail>
           <CurrentLink>{params.info}</CurrentLink>
         </LinkPanel>

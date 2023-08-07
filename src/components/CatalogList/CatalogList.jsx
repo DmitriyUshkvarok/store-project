@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { slugify } from 'transliteration';
-
+import BtnBuy from '../BtnBuy/BtnBuy';
 import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import {
   ListCatalog,
@@ -56,6 +56,7 @@ const CatalogList = () => {
                   </ThumbCardImg>
                   <WrapContentCard>
                     <ProductTitleCard>{item.name}</ProductTitleCard>
+                    <BtnBuy />
                   </WrapContentCard>
                 </StyledLink>
               </ItemListCatalog>

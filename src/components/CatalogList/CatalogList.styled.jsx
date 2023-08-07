@@ -19,7 +19,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Container = styled.div`
-  padding: 110px 20px;
+  padding: 80px 20px;
 
   overflow: hidden;
   background-color: #80808029;
@@ -55,7 +55,9 @@ export const ListCatalog = styled.ul`
   gap: 20px;
   justify-content: center;
 
-  @media screen and (min-width: 430px) {
+  @media screen and (min-width: 874px) and (max-widh: 1435px) {
+    margin: 0 auto;
+    width: 780px;
   }
 `;
 
@@ -65,12 +67,19 @@ export const ItemListCatalog = styled.li`
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  @media screen and (min-width: 420px) {
-    width: 380px;
-  }
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease;
+
+  @media screen and (min-width: 420px) {
+    width: 380px;
+  }
+
+  @media screen and (min-width: 874px) {
+    &:last-child {
+      margin-right: auto;
+    }
+  }
 
   &:hover {
     transform: scale(1.1);
@@ -123,17 +132,22 @@ export const TitleCard = styled.h3`
   margin-bottom: 60px;
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 `;
 
 export const ProductTitleCard = styled.p`
   font-size: 18px;
-
+  text-transform: uppercase;
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  letter-spacing: 3px;
 `;
 
 export const DecorSpanBackLink = styled.span`
   cursor: pointer;
+
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
