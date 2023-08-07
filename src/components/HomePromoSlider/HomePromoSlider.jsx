@@ -2,14 +2,7 @@
 
 import Image from 'next/image';
 import Container from '../Container/Container';
-import {
-  Section,
-  ScrollImage,
-  Box,
-  Title,
-  ScrollImageFlag,
-  TitleFlag,
-} from './HomePromoSlider.styled';
+import { Section, ScrollImage, Box, Title } from './HomePromoSlider.styled';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -37,13 +30,13 @@ export const HomePromoSlider = () => {
       <div>
         <Slider {...settings}>
           <Box>
-            <ScrollImageFlag
+            <ScrollImage
               src={'/autoScroll/Flag.png'}
               alt={'autoScroll'}
               width="2000"
               height="646"
             />
-            <TitleFlag>СЛАВА УКРАЇНІ!</TitleFlag>
+            <Title>СЛАВА УКРАЇНІ!</Title>
           </Box>
           <Box>
             <ScrollImage
