@@ -6,7 +6,7 @@ const PromoBlockAllPages = () => {
   return (
     <Box>
       <Container>
-        <Firma>ім-Брук</Firma>
+        <Firma>імбрук</Firma>
       </Container>
     </Box>
   );

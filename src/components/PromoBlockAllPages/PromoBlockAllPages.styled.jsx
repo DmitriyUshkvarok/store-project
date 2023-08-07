@@ -27,6 +27,7 @@ const pulseAnimation = keyframes`
     transform: scale(1);
   }
 `;
+
 export const Firma = styled.h1`
   transition: transform 0.45s;
   @media screen and (min-width: 520px) {
@@ -46,6 +47,6 @@ export const Firma = styled.h1`
   }
 
   &:hover {
-    animation: ${pulseAnimation} 0.99s infinite; /* Додати анімацію "пульсації" при ховері */
+    animation: ${pulseAnimation} 0.99s infinite;
   }
 `;
