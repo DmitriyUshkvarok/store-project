@@ -70,7 +70,7 @@ export const ScrollImage = styled(Image)`
     height: 315px;
     margin: 0 auto;
     background-color: #303030;
-    /* object-fit: cover; */
+    object-fit: cover;
   }
 
   @media screen and (min-width: 1280px) {
