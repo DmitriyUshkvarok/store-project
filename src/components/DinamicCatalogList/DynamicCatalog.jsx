@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { slugify } from 'transliteration';
-
 import { useParams, useSearchParams } from 'next/navigation';
 import { useGetCountryCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Spinner from '../SpinerOferta/SpinerOferta';
+import BtnBuy from '../BtnBuy/BtnBuy';
 import {
   WrapNav,
   DecorSpanBackLink,
@@ -64,6 +64,7 @@ const DynamicCatalogList = () => {
 
                 <WrapContentCard>
                   <ProductTitleCard>{product.name}</ProductTitleCard>
+                  <BtnBuy />
                 </WrapContentCard>
               </StyledLink>
             </ItemListCatalog>

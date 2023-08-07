@@ -34,10 +34,10 @@ const SubProductCatalog = () => {
     <Container>
       <WrapNav>
         <Link href={`/home`}>
-          <DecorSpanBackLink></DecorSpanBackLink>Головна/
+          <DecorSpanBackLink></DecorSpanBackLink>Головна /
         </Link>
         <Link href={`/oferta`}>
-          <DecorSpanBackLink> Каталог/</DecorSpanBackLink>
+          <DecorSpanBackLink> Каталог /</DecorSpanBackLink>
         </Link>
         <BtnBackNav click={handlClickBack} text={params.product} />
         <CurrentNavDecor>/{data?.name}</CurrentNavDecor>
