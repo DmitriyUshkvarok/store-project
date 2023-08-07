@@ -18,7 +18,7 @@ const ContactInfo = () => {
       <Box>
         <Title>
           <a href={`/home`}>
-            <Firma>ім-Брук</Firma>
+            <Firma>імбрук</Firma>
           </a>
         </Title>
         <Contacts>
@@ -30,16 +30,21 @@ const ContactInfo = () => {
             Замовлення та всі питання надсилайте електронною поштою або
             телефонуйте нам, менеджер проконсультує вас деатально.
           </p>
+          <p>
+            Повідомляємо, що відділ продажу компанії працює в зручний для вас
+            час з понеділка по п&rsquo;ятницю з 10:00 до 20:00.
+          </p>
 
           <Address>
-            <NameFirm>ТОВ &quot;Хім-Брук&quot;</NameFirm>
+            <NameFirm>ПП &quot;Хім-Брук&quot;</NameFirm>
+
             <ul>
               <AddressItem>
                 <AddressLink
                   href="https://goo.gl/maps/zSzGXAno3n1fgtpi9"
                   target="_blank"
                 >
-                  м. Львів, пл. Ринок, 1
+                  Україна 79000, м. Львів, пл. Ринок, 1
                 </AddressLink>
               </AddressItem>
               <AddressItem>
@@ -54,10 +59,11 @@ const ContactInfo = () => {
               </AddressItem>
             </ul>
           </Address>
-          <p>
-            Повідомляємо, що відділ продажу компанії працює в зручний для вас
-            час з понеділка по п&rsquo;ятницю з 10:00 до 20:00.
-          </p>
+
+          <p>IBAN: UA26003301007668</p>
+          <p>МФО-385316 в ЛФ ВАТ «ВТБ» Банк м.Львів</p>
+          <p> ЄДРПОУ-35227281 ІПН-352272813033</p>
+          <p>Директор Діокер Петро Омелянович</p>
         </Contacts>
       </Box>
     </ConatctBox>
