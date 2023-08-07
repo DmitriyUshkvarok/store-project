@@ -17,8 +17,7 @@ export const Btn = styled.button`
   width: 250px;
   border: 2px solid;
 
-  &:hover,
-  &:focus {
+  &:hover {
     outline: none;
     opacity: 0.7;
   }

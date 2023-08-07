@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 export const GalleryBox = styled.div`
-  /* width: 1000px; */
   padding-left: 30px;
   padding-right: 30px;
   margin-left: auto;
@@ -50,7 +49,6 @@ export const PaginationBox = styled.div`
   margin-top: 34px;
   margin-bottom: 34px;
 
-  /* Медіа-правило для екранів шириною 700px і більше */
   @media screen and (min-width: 700px) {
     flex-direction: row;
   }
