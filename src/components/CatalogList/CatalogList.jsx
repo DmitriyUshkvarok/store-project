@@ -42,7 +42,7 @@ const CatalogList = () => {
                 <StyledLink
                   href={{
                     pathname: `/oferta/${slugify(item.name)}`,
-                    query: { id: item._id },
+                    query: { id: item._id, country: item._id },
                   }}
                 >
                   <ThumbCardImg>

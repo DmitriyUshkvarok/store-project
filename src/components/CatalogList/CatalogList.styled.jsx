@@ -55,9 +55,12 @@ export const ListCatalog = styled.ul`
   gap: 20px;
   justify-content: center;
 
-  @media screen and (min-width: 874px) and (max-widh: 1435px) {
+  @media screen and (min-width: 874px) {
     margin: 0 auto;
     width: 780px;
+  }
+  @media screen and (min-width: 1304px) {
+    width: 1180px;
   }
 `;
 
