@@ -40,6 +40,7 @@ export const Firma = styled.h1`
   &::before {
     content: '';
     display: inline-block;
+    margin-left: 120px;
     width: 120px;
     height: 120px;
     background-image: url('/him.png');
