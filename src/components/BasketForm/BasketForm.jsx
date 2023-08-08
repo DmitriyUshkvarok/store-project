@@ -15,30 +15,55 @@ import orderSchema from '@/src/validationSchema/orderFormSchema';
 import { useState } from 'react';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useSelector } from 'react-redux';
+import { useCreateOrdersMutation } from '@/src/redux/ordersApi/ordersApi';
 
 const initialValues = {
   name: '',
   email: '',
-  location: '',
+  address: '',
   phone: '',
 };
 
 const OrderFom = () => {
   // const [isLoading, setIsLoading] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
   const cartItems = useSelector(cartSelector.getIsItems);
   const totalPrice = useSelector(cartSelector.geTotalPrice);
   const quantity = useSelector((state) => state.quantity);
+  const [createOrders, { isLoading, isError, isSuccess }] =
+    useCreateOrdersMutation();
+
   const handleSubmit = async (values, { resetForm }) => {
-    // setIsLoading(true);
     const formDataAndOrder = {
-      values,
-      cartItems,
-      totalPrice,
-      quantity,
+      buyer: values,
+      products: cartItems.map((item) => ({
+        url: item.image.src,
+        date: item.data,
+        productId: item.id,
+        price: item.price,
+        name: item.title,
+      })),
+      quantity: Object.keys(quantity)
+        .filter((key) => !key.startsWith('_'))
+        .map((productId) => ({
+          productId,
+          productQuantity: quantity[productId],
+        })),
+      totalPrice: totalPrice,
     };
-    console.log(formDataAndOrder);
-    localStorage.setItem('formDataAndOrder', JSON.stringify(formDataAndOrder));
-    resetForm();
+
+    try {
+      const response = await createOrders(formDataAndOrder);
+
+      if (response.error) {
+        console.error('Ошибка при создании заказа:', response.error);
+      } else {
+        resetForm();
+        setOrderSuccess(true);
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке заказа:', error);
+    }
   };
 
   return (
@@ -81,11 +106,11 @@ const OrderFom = () => {
             <OrderFormGroup>
               <OrderFormLabel htmlFor="order-adress">Адреса:</OrderFormLabel>
               <OrderStyleField
-                name="location"
+                name="address"
                 placeholder="Адреса:"
                 id="order-adress"
               />
-              <ErrorMessage name="location">
+              <ErrorMessage name="address">
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
@@ -100,7 +125,15 @@ const OrderFom = () => {
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
-            <OrderBtn type="submit">Підтвердити замовлення</OrderBtn>
+            <OrderBtn type="submit">
+              {isLoading ? 'Чекайте...' : 'Підтвердити замовлення'}
+            </OrderBtn>
+            {orderSuccess && (
+              <p>
+                Ваш замовлення було успішно оформлено. Продавець скоро
+                зв&#39;яжеться з вами.
+              </p>
+            )}
           </FormWrapper>
         </StyleOrderForm>
       </Formik>

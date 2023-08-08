@@ -2,11 +2,19 @@ import styled, { css } from 'styled-components';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 
 export const OrderAdminWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: lightgray;
+  padding: 40px;
+`;
+
+export const AllOrdersList = styled.ul`
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: lightgray;
-  padding: 40px;
+  gap: 10px;
+  background-color: lightblue;
 `;
 
 export const BtnStatusBlock = styled.div`
@@ -70,7 +78,7 @@ export const OrderItemsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: lightgray;
+  background-color: lightpink;
   padding: 10px;
   margin-bottom: 20px;
 `;

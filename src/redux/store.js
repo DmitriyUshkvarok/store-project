@@ -6,6 +6,8 @@ import persisteOrderStatusReducer from './statusOrder/statusOrderSlice';
 import { authApi } from './adminAuthApi/authApi';
 import { ofertaApi } from './ofertaApi/ofertaApi';
 import { galleryApi } from './galleryApi/galleryApi';
+import { ordersApi } from './ordersApi/ordersApi';
+import { adminOrdersApi } from './adminOrdersApi/adminOrdersApi';
 
 import {
   persistStore,
@@ -22,17 +24,25 @@ const store = configureStore({
     auth: persisteAuthReducer,
     cart: persisteCartReducer,
     quantity: persisteQuantityReducer,
-    status:persisteOrderStatusReducer,
+    status: persisteOrderStatusReducer,
     [authApi.reducerPath]: authApi.reducer,
     [ofertaApi.reducerPath]: ofertaApi.reducer,
     [galleryApi.reducerPath]: galleryApi.reducer,
+    [ordersApi.reducerPath]: ordersApi.reducer,
+    [adminOrdersApi.reducerPath]: adminOrdersApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware, ofertaApi.middleware, galleryApi.middleware),
+    }).concat(
+      authApi.middleware,
+      ofertaApi.middleware,
+      galleryApi.middleware,
+      ordersApi.middleware,
+      adminOrdersApi.middleware
+    ),
 });
 
 export const persistor = persistStore(store);

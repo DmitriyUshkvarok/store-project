@@ -18,7 +18,7 @@ const orderSchema = yup.object().shape({
       return emailRegex.test(value);
     })
     .required('обов’язкове поле'),
-  location: yup.string().required('обов’язкове поле'),
+  address: yup.string().required('обов’язкове поле'),
   phone: yup.string().required('обов’язкове поле'),
 });
 
