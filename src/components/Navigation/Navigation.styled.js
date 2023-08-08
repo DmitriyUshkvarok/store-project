@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const StyleNavigation = styled.nav`
   display: flex;
@@ -18,7 +19,25 @@ export const StyleLink = styled(Link)`
   &.active,
   &:hover,
   &:focus {
-    background-color: #e51927;
+    background-color: #fe0000;
+  }
+`;
+
+export const DivStyleLink = styled(Link)`
+  display: inline-block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 53px;
+  padding: 0 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #fe0000;
   }
 `;
 
@@ -38,4 +57,10 @@ export const CartCount = styled.span`
   align-items: center;
   background-color: red;
   color: white;
+
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #fe0000;
+  }
 `;

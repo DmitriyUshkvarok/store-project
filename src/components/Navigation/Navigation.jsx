@@ -4,6 +4,9 @@ import {
   StyleLink,
   CartIconWrapper,
   CartCount,
+  ImageStyled,
+  BoxForYear,
+  DivStyleLink,
 } from './Navigation.styled';
 import { IoIosBasket } from 'react-icons/io';
 import { RxExit } from 'react-icons/rx';
@@ -13,6 +16,7 @@ import { useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
 import { useLogoutMutation } from '@/src/redux/adminAuthApi/authApi';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
+import Image from 'next/image';
 
 const Navigation = () => {
   const cartItems = useSelector(cartSelector.getIsItems);
@@ -71,7 +75,7 @@ const Navigation = () => {
         >
           Контакти
         </StyleLink>
-        <StyleLink
+        <DivStyleLink
           href="/basket"
           className={pathname === '/basket' ? 'active' : ''}
         >
@@ -79,7 +83,7 @@ const Navigation = () => {
             <IoIosBasket size={30} />
             <CartCount>{cartItems.length}</CartCount>
           </CartIconWrapper>
-        </StyleLink>
+        </DivStyleLink>
         {isToken && (
           <RxExit
             size={30}
