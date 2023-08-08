@@ -11,8 +11,11 @@ export const StyleHeader = styled.header`
 `;
 
 export const ImageStyled = styled(Image)`
+  @media screen and (min-width: 1100px) {
+    margin-left: 105px;
+  }
   position: relative;
-  margin-left: 105px;
+  margin-left: 35px;
   width: 125px;
   height: 206px;
   z-index: 1111111;
