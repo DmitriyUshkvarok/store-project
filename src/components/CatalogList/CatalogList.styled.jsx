@@ -24,11 +24,10 @@ export const Container = styled.div`
   overflow: hidden;
   background-color: #80808029;
   @media screen and (min-width: 768px) {
-    padding: 70px 62px;
+    padding: 70px 30px;
   }
 
   @media screen and (min-width: 1340px) {
-    padding: 70px 143px;
   }
 `;
 
@@ -57,10 +56,10 @@ export const ListCatalog = styled.ul`
 
   @media screen and (min-width: 874px) {
     margin: 0 auto;
-    width: 780px;
+    width: 621px;
   }
-  @media screen and (min-width: 1304px) {
-    width: 1180px;
+  @media screen and (min-width: 1000px) {
+    width: 944px;
   }
 `;
 
@@ -75,7 +74,7 @@ export const ItemListCatalog = styled.li`
   transition: transform 0.3s ease;
 
   @media screen and (min-width: 420px) {
-    width: 380px;
+    width: 300px;
   }
 
   @media screen and (min-width: 874px) {
@@ -103,7 +102,7 @@ export const ThumbCardImg = styled.div`
 
 export const StyledImage = styled(Image)`
   width: 100%;
-  height: 180px;
+  height: 160px;
 
   object-position: center;
   border-top-left-radius: 4px;
@@ -114,7 +113,7 @@ export const StyledImage = styled(Image)`
 
 export const WrapContentCard = styled.div`
   width: 100%;
-  height: 80px;
+  height: 64px;
   font-size: 15px;
   font-weight: 300;
   position: relative;
@@ -137,6 +136,12 @@ export const TitleCard = styled.h3`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
   letter-spacing: 2px;
+  padding-bottom: 33px;
+
+  border-bottom: 4px solid gray;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const ProductTitleCard = styled.p`

@@ -52,15 +52,13 @@ const DynamicCatalogList = () => {
                   query: { id: product._id, country: countryId },
                 }}
               >
-                <ThumbCardImg>
-                  <StyledImage
-                    priority
-                    src={product.url}
-                    alt={product.name}
-                    width={350}
-                    height={180}
-                  />
-                </ThumbCardImg>
+                <StyledImage
+                  priority
+                  src={product.url}
+                  alt={product.name}
+                  width={350}
+                  height={180}
+                />
 
                 <WrapContentCard>
                   <ProductTitleCard>{product.name}</ProductTitleCard>

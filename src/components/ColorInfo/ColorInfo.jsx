@@ -73,15 +73,13 @@ const ColorInfo = () => {
                   query: { id: color._id, country: countryId },
                 }}
               >
-                <ThumbCardImg>
-                  <StyledImage
-                    priority
-                    src={color.url}
-                    alt={color.name}
-                    width={350}
-                    height={180}
-                  />
-                </ThumbCardImg>
+                <StyledImage
+                  priority
+                  src={color.url}
+                  alt={color.name}
+                  width={350}
+                  height={180}
+                />
 
                 <WrapContentCard>
                   <ProductTitleCard>{color.name}</ProductTitleCard>

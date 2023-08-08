@@ -45,15 +45,14 @@ const CatalogList = () => {
                     query: { id: item._id, country: item._id },
                   }}
                 >
-                  <ThumbCardImg>
-                    <StyledImage
-                      priority
-                      src={item.url}
-                      alt={item.name}
-                      width={350}
-                      height={180}
-                    />
-                  </ThumbCardImg>
+                  <StyledImage
+                    priority
+                    src={item.url}
+                    alt={item.name}
+                    width={350}
+                    height={180}
+                  />
+
                   <WrapContentCard>
                     <ProductTitleCard>{item.name}</ProductTitleCard>
                     <BtnBuy />
