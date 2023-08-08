@@ -12,7 +12,7 @@ export const StyleHeader = styled.header`
 
 export const ImageStyled = styled(Image)`
   position: relative;
-  margin-left: 20px;
+  margin-left: 70px;
   width: 125px;
   height: 206px;
   z-index: 1111111;

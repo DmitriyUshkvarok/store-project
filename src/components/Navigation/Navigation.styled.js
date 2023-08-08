@@ -19,7 +19,7 @@ export const StyleLink = styled(Link)`
   &.active,
   &:hover,
   &:focus {
-    background-color: #fe0000;
+    background-color: #e3010f;
   }
 `;
 
@@ -37,7 +37,7 @@ export const DivStyleLink = styled(Link)`
   &.active,
   &:hover,
   &:focus {
-    background-color: #fe0000;
+    background-color: #e3010f;
   }
 `;
 
@@ -61,6 +61,6 @@ export const CartCount = styled.span`
   &.active,
   &:hover,
   &:focus {
-    background-color: #fe0000;
+    background-color: #e3010f;
   }
 `;
