@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
-import { slugify } from 'transliteration';
+import { slugify, transliterate } from 'transliteration';
 import { useGetSubCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import BtnBackNav from '@/src/components/BtnBackNav/BtnBackNav';
 import BtnBuy from '../BtnBuy/BtnBuy';
@@ -20,12 +20,16 @@ import {
   DecorSpanBackLink,
 } from '@/src/components/CatalogList/CatalogList.styled';
 import Spinner from '../SpinerOferta/SpinerOferta';
+import transliterateToCyrillic from '@/src/helper/translation';
 
 const SubProductCatalog = () => {
   const params = useParams();
   const id = useSearchParams().get('id');
+  const countryId = useSearchParams().getAll('country');
   const router = useRouter();
   const { data, isError, isLoading } = useGetSubCategoryQuery(id);
+
+  const cyriicaName = transliterateToCyrillic(params.product);
 
   const handlClickBack = () => {
     router.back();
@@ -39,7 +43,7 @@ const SubProductCatalog = () => {
         <Link href={`/oferta`}>
           <DecorSpanBackLink> Каталог /</DecorSpanBackLink>
         </Link>
-        <BtnBackNav click={handlClickBack} text={params.product} />
+        <BtnBackNav click={handlClickBack} text={cyriicaName} />
         <CurrentNavDecor>/{data?.name}</CurrentNavDecor>
       </WrapNav>
       <TitleCard>{data?.name}</TitleCard>
@@ -55,7 +59,7 @@ const SubProductCatalog = () => {
                     pathname: `/oferta/${params.product}/${
                       params.subProduct
                     }/${slugify(product.name)}`,
-                    query: { id: product._id },
+                    query: { id: product._id, country: countryId },
                   }}
                 >
                   <StyledImage

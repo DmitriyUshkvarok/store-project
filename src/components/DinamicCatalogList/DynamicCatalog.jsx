@@ -22,7 +22,7 @@ import {
 
 const DynamicCatalogList = () => {
   const params = useParams();
-
+  const countryId = useSearchParams().getAll('country');
   const id = useSearchParams().get('id');
   const { data, isError, isLoading } = useGetCountryCategoryQuery(id);
 
@@ -42,25 +42,23 @@ const DynamicCatalogList = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          data?.categories.map((product) => (
+          data?.categories?.map((product) => (
             <ItemListCatalog key={product._id}>
               <StyledLink
                 href={{
                   pathname: `/oferta/${params.product}/${slugify(
                     product.name
                   )}`,
-                  query: { id: product._id },
+                  query: { id: product._id, country: countryId },
                 }}
               >
-                <ThumbCardImg>
-                  <StyledImage
-                    priority
-                    src={product.url}
-                    alt={product.name}
-                    width={350}
-                    height={180}
-                  />
-                </ThumbCardImg>
+                <StyledImage
+                  priority
+                  src={product.url}
+                  alt={product.name}
+                  width={350}
+                  height={180}
+                />
 
                 <WrapContentCard>
                   <ProductTitleCard>{product.name}</ProductTitleCard>
