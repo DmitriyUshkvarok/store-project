@@ -40,36 +40,36 @@ const Navigation = () => {
   return (
     <>
       <StyleNavigation>
-        <StyleLink href="/home">Logo</StyleLink>
+        {/* <StyleLink href="/home">Logo</StyleLink> */}
         <StyleLink
           href="/home"
           className={pathname === '/home' ? 'active' : ''}
         >
-          Home Page
+          Головна сторінка
         </StyleLink>
         <StyleLink
           href="/about"
           className={pathname === '/about' ? 'active' : ''}
         >
-          About Us
+          Про нас
         </StyleLink>
         <StyleLink
           href="/oferta"
           className={pathname === '/offer' ? 'active' : ''}
         >
-          Oferta
+          Каталог товарів
         </StyleLink>
         <StyleLink
           href="/gallery"
           className={pathname === '/gallery' ? 'active' : ''}
         >
-          Gallery
+          Галерея
         </StyleLink>
         <StyleLink
           href="/contact"
           className={pathname === '/contact' ? 'active' : ''}
         >
-          Contact
+          Контакти
         </StyleLink>
         <StyleLink
           href="/basket"

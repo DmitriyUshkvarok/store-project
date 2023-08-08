@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Box = styled.div`
-  margin-top: 93px;
+  /* margin-top: 93px; */
   background-image: url('/promo-photo.jpg');
   background-repeat: no-repeat;
 

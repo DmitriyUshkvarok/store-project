@@ -13,9 +13,12 @@ export const StyleLink = styled(Link)`
   font-size: 14px;
   font-weight: bold;
   line-height: 53px;
+  padding: 0 21px;
 
-  &.active {
-    color: #ff0000;
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #e51927;
   }
 `;
 
