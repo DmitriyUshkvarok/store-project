@@ -1,14 +1,27 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
 export const StyleHeader = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.4);
   background-color: #242424;
-  padding-top: 20px;
-  padding-bottom: 20px;
   width: 100%;
+  height: 53px;
   z-index: 999;
+  display: flex;
+`;
+
+export const ImageStyled = styled(Image)`
+  @media screen and (min-width: 1100px) {
+    margin-left: 105px;
+  }
+  position: relative;
+  margin-left: 35px;
+  width: 125px;
+  height: 206px;
+  z-index: 1111111;
+`;
+
+export const HeaderBox = styled.div`
+  display: flex;
+  align-items: flex-start;
 `;

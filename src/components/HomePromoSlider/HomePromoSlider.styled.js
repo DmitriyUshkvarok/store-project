@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export const Section = styled.section`
   @media screen and (min-width: 320px) {
-    margin-top: 93px;
+    /* margin-top: 93px; */
     height: 315px;
   }
 

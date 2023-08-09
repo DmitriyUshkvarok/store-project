@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Box = styled.div`
-  margin-top: 93px;
+  /* margin-top: 93px; */
   background-image: url('/promo-photo.jpg');
   background-repeat: no-repeat;
 
@@ -40,6 +40,7 @@ export const Firma = styled.h1`
   &::before {
     content: '';
     display: inline-block;
+    margin-left: 120px;
     width: 120px;
     height: 120px;
     background-image: url('/him.png');

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const StyleNavigation = styled.nav`
   display: flex;
@@ -13,9 +14,30 @@ export const StyleLink = styled(Link)`
   font-size: 14px;
   font-weight: bold;
   line-height: 53px;
+  padding: 0 21px;
 
-  &.active {
-    color: #ff0000;
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #e3010f;
+  }
+`;
+
+export const DivStyleLink = styled(Link)`
+  display: inline-block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 53px;
+  padding: 0 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #e3010f;
   }
 `;
 
@@ -35,4 +57,10 @@ export const CartCount = styled.span`
   align-items: center;
   background-color: red;
   color: white;
+
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #e3010f;
+  }
 `;

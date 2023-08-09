@@ -4,6 +4,9 @@ import {
   StyleLink,
   CartIconWrapper,
   CartCount,
+  ImageStyled,
+  BoxForYear,
+  DivStyleLink,
 } from './Navigation.styled';
 import { IoIosBasket } from 'react-icons/io';
 import { RxExit } from 'react-icons/rx';
@@ -13,6 +16,7 @@ import { useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
 import { useLogoutMutation } from '@/src/redux/adminAuthApi/authApi';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
+import Image from 'next/image';
 
 const Navigation = () => {
   const cartItems = useSelector(cartSelector.getIsItems);
@@ -40,38 +44,38 @@ const Navigation = () => {
   return (
     <>
       <StyleNavigation>
-        <StyleLink href="/home">Logo</StyleLink>
+        {/* <StyleLink href="/home">Logo</StyleLink> */}
         <StyleLink
           href="/home"
           className={pathname === '/home' ? 'active' : ''}
         >
-          Home Page
+          Головна сторінка
         </StyleLink>
         <StyleLink
           href="/about"
           className={pathname === '/about' ? 'active' : ''}
         >
-          About Us
+          Про нас
         </StyleLink>
         <StyleLink
           href="/oferta"
           className={pathname === '/offer' ? 'active' : ''}
         >
-          Oferta
+          Каталог товарів
         </StyleLink>
         <StyleLink
           href="/gallery"
           className={pathname === '/gallery' ? 'active' : ''}
         >
-          Gallery
+          Галерея
         </StyleLink>
         <StyleLink
           href="/contact"
           className={pathname === '/contact' ? 'active' : ''}
         >
-          Contact
+          Контакти
         </StyleLink>
-        <StyleLink
+        <DivStyleLink
           href="/basket"
           className={pathname === '/basket' ? 'active' : ''}
         >
@@ -79,7 +83,7 @@ const Navigation = () => {
             <IoIosBasket size={30} />
             <CartCount>{cartItems.length}</CartCount>
           </CartIconWrapper>
-        </StyleLink>
+        </DivStyleLink>
         {isToken && (
           <RxExit
             size={30}
