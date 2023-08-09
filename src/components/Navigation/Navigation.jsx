@@ -15,6 +15,7 @@ import {
   StyleLinkForBurger,
   DropDownMenuForBurger,
   DropdownForOferta,
+  StyleLinkForBurgerOferta,
 } from './Navigation.styled';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosBasket } from 'react-icons/io';
@@ -106,6 +107,7 @@ const Navigation = () => {
         </StyleLink>
         <BurgerMenu>
           <RxHamburgerMenu />
+          {/* <DropdownForOferta> */}
           <DropdownForBurger>
             <StyleLinkForBurger
               href="/home"
@@ -119,37 +121,29 @@ const Navigation = () => {
             >
               Про нас
             </StyleLinkForBurger>
-            <DropdownForOferta>
-              <StyleLinkForBurger
-                href="/oferta"
-                className={pathname === '/offer' ? 'active' : ''}
-              >
-                Каталог товарів
-              </StyleLinkForBurger>
 
-              <DropDownMenuForBurger>
-                <ul>
-                  <li>
-                    <Link href="/about">Країна</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">Вид</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">Клас</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">Колрі</Link>
-                  </li>
-                </ul>
-              </DropDownMenuForBurger>
-            </DropdownForOferta>
-            <StyleLinkForBurger
+            <DropDownMenuForBurger>
+              <ul>
+                <li>
+                  <Link href="/about">Країна</Link>
+                </li>
+                <li>
+                  <Link href="/about">Вид</Link>
+                </li>
+                <li>
+                  <Link href="/about">Клас</Link>
+                </li>
+                <li>
+                  <Link href="/about">Колрі</Link>
+                </li>
+              </ul>
+            </DropDownMenuForBurger>
+            <StyleLinkForBurgerOferta
               href="/oferta"
               className={pathname === '/offer' ? 'active' : ''}
             >
               Каталог товарів
-            </StyleLinkForBurger>
+            </StyleLinkForBurgerOferta>
 
             <DropDownMenuForBurger>
               <ul>
@@ -174,6 +168,7 @@ const Navigation = () => {
               Галерея
             </StyleLinkForBurger>
           </DropdownForBurger>
+          {/* </DropdownForOferta> */}
         </BurgerMenu>
         <BasketStyleLink
           href="/basket"
