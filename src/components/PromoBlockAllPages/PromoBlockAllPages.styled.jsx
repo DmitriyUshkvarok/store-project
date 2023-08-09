@@ -29,9 +29,13 @@ const pulseAnimation = keyframes`
 `;
 
 export const Firma = styled.h1`
+  @media screen and (min-width: 390px) {
+    font-size: 40px;
+  }
   transition: transform 0.45s;
-  @media screen and (min-width: 520px) {
+  @media screen and (min-width: 680px) {
     font-size: 70px;
+    margin-left: 120px;
   }
   color: #fdfdfd;
   font-size: 40px;
@@ -40,7 +44,7 @@ export const Firma = styled.h1`
   &::before {
     content: '';
     display: inline-block;
-    margin-left: 120px;
+    margin-left: 40px;
     width: 120px;
     height: 120px;
     background-image: url('/him.png');

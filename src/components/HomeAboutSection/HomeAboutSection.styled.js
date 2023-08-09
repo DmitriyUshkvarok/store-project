@@ -53,7 +53,7 @@ export const List = styled.ul`
 export const Item = styled.li`
   width: 250px;
   height: 188px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   color: #ffffff;
   font-size: 22px;
   font-weight: 500;

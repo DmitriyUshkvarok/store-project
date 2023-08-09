@@ -8,6 +8,10 @@ export const StyleHeader = styled.header`
   height: 53px;
   z-index: 999;
   display: flex;
+  justify-content: center;
+  @media (width < 970px) {
+    justify-content: flex-end;
+  }
 `;
 
 export const ImageStyled = styled(Image)`
@@ -19,6 +23,10 @@ export const ImageStyled = styled(Image)`
   width: 125px;
   height: 206px;
   z-index: 1111111;
+
+  @media (width < 530px) {
+    display: none;
+  }
 `;
 
 export const HeaderBox = styled.div`
