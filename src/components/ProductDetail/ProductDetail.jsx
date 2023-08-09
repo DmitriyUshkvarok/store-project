@@ -32,14 +32,17 @@ import {
   BtnIncrement,
   InputCounter,
   BtnDecrement,
-  OrderBtnDetails,
 } from './ProductDetail.styled';
 import Container from '../Container/Container';
 import BtnBuy from '../BtnBuy/BtnBuy';
+import cartSelector from '@/src/redux/cart/cartSelector';
 
 const ProductDetail = () => {
   const params = useParams();
   const search = useSearchParams().get('id');
+  const cartItems = useSelector(cartSelector.getIsItems);
+
+  const isProductInCart = cartItems.some((item) => item.id === search);
 
   const dispatch = useDispatch();
   const quantity = useSelector((state) => state.quantity[search] || 0);
@@ -67,9 +70,19 @@ const ProductDetail = () => {
       price: infoProduct.price,
       image: infoProduct.img,
       data: formatData,
+      brand: infoProduct.brand,
+      color: infoProduct.color,
     };
-    dispatch(addToCart(productToAdd));
-    toast.success('Товар додано до кошику');
+    // dispatch(addToCart(productToAdd));
+    // toast.success('Товар додано до кошику');
+    // Проверка наличия товара в корзине по его id
+
+    if (isProductInCart) {
+      toast.info('Цей товар вже є у кошику');
+    } else {
+      dispatch(addToCart(productToAdd));
+      toast.success('Товар додано до кошику');
+    }
   };
 
   const handleChangeQuantity = (newQuantity) => {
@@ -126,7 +139,7 @@ const ProductDetail = () => {
                 />
                 <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
               </CounterWrapper>
-              <BtnBuy handleBuy={handleBuy} />
+              <BtnBuy handleBuy={handleBuy} isAddedToCart={isProductInCart} />
             </ProductBlockRight>
           </ProductDetailInfoBlock>
         </div>

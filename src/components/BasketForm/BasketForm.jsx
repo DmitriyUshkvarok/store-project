@@ -37,11 +37,13 @@ const OrderFom = () => {
     const formDataAndOrder = {
       buyer: values,
       products: cartItems.map((item) => ({
-        url: item.image.src,
+        // url: item.image.src,
         date: item.data,
         productId: item.id,
         price: item.price,
         name: item.title,
+        brand: item.brand,
+        color: item.color,
       })),
       quantity: Object.keys(quantity)
         .filter((key) => !key.startsWith('_'))

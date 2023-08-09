@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+// import Image from 'next/image';
 import {
   OrderAdminWrapper,
   AllOrdersList,
@@ -90,6 +90,8 @@ const AdminOrdersList = () => {
                   >
                     <OrderName>{item.name}</OrderName>
                     <OrderData>Дата заказа: {item.date}</OrderData>
+                    <p> {item.color}</p>
+                    <p> {item.brand}</p>
                     <p>Ціна: {item.price}</p>
                     {order.quantity.map((quantityItem) => {
                       if (quantityItem.productId === item.productId) {
@@ -101,12 +103,12 @@ const AdminOrdersList = () => {
                       }
                       return null;
                     })}
-                    <Image
+                    {/* <Image
                       src={item.url}
                       alt={item.name}
                       width={70}
                       height={70}
-                    />
+                    /> */}
                   </OrderItemsListItem>
                 ))}
               </OrderItemsList>

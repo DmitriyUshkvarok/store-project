@@ -52,6 +52,8 @@ export const subProduct = [
     price: '2235',
     img: img7,
     url: 'blok-parkannyi-kolotyi-rvanyi-kamin-6-21',
+    brand: 'no information',
+    color: 'no information',
   },
   {
     id: '22355',
@@ -59,6 +61,8 @@ export const subProduct = [
     price: '2215',
     img: img7,
     url: 'blok-parkannyi-kolotyi-rvanyi-kamin-61-2221',
+    brand: 'no information',
+    color: 'no information',
   },
   {
     id: '13',
@@ -66,6 +70,8 @@ export const subProduct = [
     price: '25',
     img: img7,
     url: 'blok-parkannyi-kolotyi-rvanyi-kamin-62-1221',
+    brand: 'no information',
+    color: 'no information',
   },
   {
     id: '44',
@@ -73,6 +79,8 @@ export const subProduct = [
     price: '25',
     img: img7,
     url: 'blok-parkannyi-kolotyi-rvanyi-kamin-6-2111',
+    brand: 'no information',
+    color: 'no information',
   },
   {
     id: '25',
@@ -80,6 +88,8 @@ export const subProduct = [
     price: '25',
     img: img7,
     url: 'blok-parkannyi-kolotyi-rvanyi-kamin-6-2',
+    brand: 'no information',
+    color: 'no information',
   },
   {
     id: '66',
@@ -87,11 +97,15 @@ export const subProduct = [
     price: '25',
     img: img7,
     url: 'blok-parkannyi-kolotyi-rvanyi-kamin-10',
+    brand: 'no information',
+    color: 'no information',
   },
 ];
 
 export const infoProduct = {
   title: 'Рваний камінь кладочний Аляска',
+  brand: 'no information',
+  color: 'no information',
   price: '70',
   img: img8,
   articl: '1001',
