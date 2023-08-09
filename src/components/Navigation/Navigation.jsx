@@ -7,6 +7,8 @@ import {
   ImageStyled,
   BoxForYear,
   DivStyleLink,
+  DropDownMenu,
+  Dropdown,
 } from './Navigation.styled';
 import { IoIosBasket } from 'react-icons/io';
 import { RxExit } from 'react-icons/rx';
@@ -17,6 +19,7 @@ import Notiflix from 'notiflix';
 import { useLogoutMutation } from '@/src/redux/adminAuthApi/authApi';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Navigation = () => {
   const cartItems = useSelector(cartSelector.getIsItems);
@@ -57,12 +60,31 @@ const Navigation = () => {
         >
           Про нас
         </StyleLink>
-        <StyleLink
-          href="/oferta"
-          className={pathname === '/offer' ? 'active' : ''}
-        >
-          Каталог товарів
-        </StyleLink>
+        <Dropdown>
+          <StyleLink
+            href="/oferta"
+            className={pathname === '/offer' ? 'active' : ''}
+          >
+            Каталог товарів
+          </StyleLink>
+          <DropDownMenu>
+            <ul>
+              <li>
+                <Link href="/about">Країна</Link>
+              </li>
+              <li>
+                <Link href="/about">Вид</Link>
+              </li>
+              <li>
+                <Link href="/about">Клас</Link>
+              </li>
+              <li>
+                <Link href="/about">Колрі</Link>
+              </li>
+            </ul>
+          </DropDownMenu>
+        </Dropdown>
+
         <StyleLink
           href="/gallery"
           className={pathname === '/gallery' ? 'active' : ''}

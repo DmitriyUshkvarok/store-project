@@ -64,3 +64,21 @@ export const CartCount = styled.span`
     background-color: #e3010f;
   }
 `;
+
+export const DropDownMenu = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 111111;
+`;
+
+export const Dropdown = styled.div`
+  position: relative;
+  display: inline-block;
+
+  &:hover ${DropDownMenu} {
+    display: block;
+  }
+`;
