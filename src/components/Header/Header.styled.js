@@ -24,7 +24,7 @@ export const ImageStyled = styled(Image)`
   height: 206px;
   z-index: 1111111;
 
-  @media (width < 500px) {
+  @media (width < 530px) {
     display: none;
   }
 `;

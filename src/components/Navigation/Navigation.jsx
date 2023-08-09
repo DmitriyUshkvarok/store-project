@@ -4,21 +4,13 @@ import {
   StyleLink,
   CartIconWrapper,
   CartCount,
-  ImageStyled,
-  BoxForYear,
-  DivStyleLink,
   DropDownMenu,
   Dropdown,
   BasketStyleLink,
   BurgerMenu,
   DropdownForBurger,
   StyleLinkForBurger,
-  DropDownMenuForBurger,
-  DropdownForOferta,
-  StyleLinkForBurgerOferta,
-  ListForBurger,
   ItemForBurger,
-  ListMenu,
   LinkForB,
 } from './Navigation.styled';
 import { RxHamburgerMenu } from 'react-icons/rx';
@@ -30,14 +22,39 @@ import { useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
 import { useLogoutMutation } from '@/src/redux/adminAuthApi/authApi';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
-import Image from 'next/image';
-import Link from 'next/link';
+import { useState, useRef, useEffect } from 'react';
 
 const Navigation = () => {
+  const [togle, setTogle] = useState(false);
+  // const [subTogle, setSubTogle] = useState(false);
   const cartItems = useSelector(cartSelector.getIsItems);
   const pathname = usePathname();
   const isToken = useSelector(authSelector.authToken);
   const [logOut] = useLogoutMutation();
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setTogle(false);
+      }
+    };
+
+    window.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClick = () => {
+    setTogle(!togle);
+  };
+
+  // const handelClickSub = () => {
+  //   setSubTogle(!subTogle);
+  // };
 
   const handleClickLogOut = () => {
     Notiflix.Confirm.show(
@@ -111,46 +128,46 @@ const Navigation = () => {
         >
           Контакти
         </StyleLink>
-        <BurgerMenu>
+        <BurgerMenu onClick={handleClick} ref={dropdownRef}>
           <RxHamburgerMenu style={{ color: 'white' }} />
-          <DropdownForBurger>
-            <StyleLinkForBurger
-              href="/home"
-              className={pathname === '/home' ? 'active' : ''}
-            >
-              Головна сторінка
-            </StyleLinkForBurger>
-            <StyleLinkForBurger
-              href="/about"
-              className={pathname === '/about' ? 'active' : ''}
-            >
-              Про нас
-            </StyleLinkForBurger>
+          <DropdownForBurger togle={togle}>
+            <ul>
+              <li>
+                <StyleLinkForBurger
+                  href="/home"
+                  className={pathname === '/home' ? 'active' : ''}
+                >
+                  Головна сторінка
+                </StyleLinkForBurger>
+              </li>
+              <li>
+                <StyleLinkForBurger
+                  href="/about"
+                  className={pathname === '/about' ? 'active' : ''}
+                >
+                  Про нас
+                </StyleLinkForBurger>
+              </li>
+              <li>
+                <StyleLinkForBurger
+                  // onClick={handelClickSub}
+                  href="/oferta"
+                  className={pathname === '/offer' ? 'active' : ''}
+                >
+                  Каталог товарів
+                </StyleLinkForBurger>
+              </li>
+              <li>
+                <StyleLinkForBurger
+                  href="/gallery"
+                  className={pathname === '/gallery' ? 'active' : ''}
+                >
+                  Галерея
+                </StyleLinkForBurger>
+              </li>
+            </ul>
 
-            {/* <DropDownMenuForBurger>
-              <ul>
-                <li>
-                  <Link href="/about">Країна</Link>
-                </li>
-                <li>
-                  <Link href="/about">Вид</Link>
-                </li>
-                <li>
-                  <Link href="/about">Клас</Link>
-                </li>
-                <li>
-                  <Link href="/about">Колрі</Link>
-                </li>
-              </ul>
-            </DropDownMenuForBurger> */}
-            <StyleLinkForBurgerOferta
-              href="/oferta"
-              className={pathname === '/offer' ? 'active' : ''}
-            >
-              Каталог товарів
-            </StyleLinkForBurgerOferta>
-
-            <DropDownMenuForBurger>
+            {/* <DropDownMenuForBurger subTogle={subTogle}>
               <ListMenu>
                 <li>
                   <Link href="/about">Країна!!</Link>
@@ -165,13 +182,7 @@ const Navigation = () => {
                   <Link href="/about">Колір</Link>
                 </li>
               </ListMenu>
-            </DropDownMenuForBurger>
-            <StyleLinkForBurger
-              href="/gallery"
-              className={pathname === '/gallery' ? 'active' : ''}
-            >
-              Галерея
-            </StyleLinkForBurger>
+            </DropDownMenuForBurger> */}
           </DropdownForBurger>
         </BurgerMenu>
         <BasketStyleLink

@@ -123,28 +123,29 @@ export const Dropdown = styled.div`
 `;
 
 export const DropdownForBurger = styled.div`
-  display: none;
+  visibility: ${(props) => (props.togle ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.togle ? 1 : 0)};
+  transform: translateY(${(props) => (props.menuVisible ? '0' : '-10px')});
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 
   position: absolute;
   background-color: #242424;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1111122;
-  width: 220px;
+  width: 350px;
   left: -28vh;
-  top: 34px;
+  top: 59px;
 `;
 
 export const BurgerMenu = styled.div`
   display: none;
+  cursor: pointer;
+  padding: 15px;
   @media (width < 970px) {
     display: block;
     position: relative;
     display: inline-block;
-
-    &:hover ${DropdownForBurger} {
-      display: block;
-    }
   }
 `;
 
@@ -158,43 +159,13 @@ export const StyleLinkForBurger = styled(Link)`
   font-size: 14px;
   font-weight: bold;
   line-height: 53px;
-  padding: 0 21px;
+  padding: 25px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.active,
   &:hover,
   &:focus {
     background-color: #e3010f;
-  }
-`;
-
-export const DropDownMenuForBurger = styled.div`
-  display: none;
-  position: relative;
-  background-color: #242424;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1111122;
-`;
-
-export const StyleLinkForBurgerOferta = styled.div`
-  position: relative;
-
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 53px;
-  padding: 0 21px;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &.active,
-  &:hover,
-  &:focus {
-    background-color: #e3010f;
-  }
-
-  &:hover + ${DropDownMenuForBurger} {
-    display: block;
   }
 `;
 
@@ -218,3 +189,33 @@ export const LinkForB = styled(Link)`
   display: inline-block;
   width: 100%;
 `;
+
+// export const DropDownMenuForBurger = styled.div`
+//   display: none;
+//   position: relative;
+//   background-color: #242424;
+//   min-width: 160px;
+//   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+//   z-index: 1111122;
+// `;
+
+// export const StyleLinkForBurgerOferta = styled.div`
+//   position: relative;
+
+//   color: #ffffff;
+//   font-size: 14px;
+//   font-weight: bold;
+//   line-height: 53px;
+//   padding: 0 21px;
+//   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+//   &.active,
+//   &:hover,
+//   &:focus {
+//     background-color: #e3010f;
+//   }
+
+//   &:hover + ${DropDownMenuForBurger} {
+//     display: block;
+//   }
+// `;

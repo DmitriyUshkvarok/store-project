@@ -30,7 +30,7 @@ const pulseAnimation = keyframes`
 
 export const Firma = styled.h1`
   transition: transform 0.45s;
-  @media screen and (min-width: 610px) {
+  @media screen and (min-width: 820px) {
     font-size: 70px;
     margin-left: 120px;
   }
