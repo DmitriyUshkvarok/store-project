@@ -25,10 +25,9 @@ import {
 const DynamicCatalogList = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const countryId = useSearchParams().getAll('country');
-
-  const { data, isError, isLoading } = useGetCountryCategoryQuery(countryId);
+  // const countryId = useSearchParams().getAll('country');
   const country = useSelector((state) => state.oferta.countrie);
+  const { data, isError, isLoading } = useGetCountryCategoryQuery(country.id);
 
   const handleChooseCategory = (caterory) => {
     dispatch(setDataAndIdCategoty(caterory));
@@ -60,10 +59,6 @@ const DynamicCatalogList = () => {
                   pathname: `/oferta/${params.product}/${slugify(
                     product.name
                   )}`,
-                  query: {
-                    country: countryId,
-                    category: product._id,
-                  },
                 }}
               >
                 <StyledImage

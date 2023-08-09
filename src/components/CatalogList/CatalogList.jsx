@@ -51,7 +51,6 @@ const CatalogList = () => {
                 <StyledLink
                   href={{
                     pathname: `/oferta/${slugify(item.name)}`,
-                    query: { country: item._id },
                   }}
                 >
                   <StyledImage

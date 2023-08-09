@@ -23,29 +23,32 @@ import {
 } from '@/src/components/CatalogList/CatalogList.styled';
 import transliterateToCyrillic from '@/src/helper/translation';
 import { useDispatch, useSelector } from 'react-redux';
+import { setDataAndIdColor } from '@/src/redux/ofertaApi/ofertaSlice';
 
 const ColorInfo = () => {
   const params = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
-  const countryName = useSelector((state) => state.oferta.countrie.name);
-  const categoryName = useSelector((state) => state.oferta.categoty.name);
-  const subcategoryName = useSelector((state) => state.oferta.subcategory.name);
-  const countryId = useSearchParams().getAll('country');
-  const categoryId = useSearchParams().getAll('category');
-  const subcategoryId = useSearchParams().getAll('subcategory');
+  const country = useSelector((state) => state.oferta.countrie);
+  const category = useSelector((state) => state.oferta.categoty);
+  const subcategory = useSelector((state) => state.oferta.subcategory);
+  // const countryId = useSearchParams().getAll('country');
+  // const categoryId = useSearchParams().getAll('category');
+  // const subcategoryId = useSearchParams().getAll('subcategory');
 
   const { data, isError, isLoading } = useGetColorQuery({
-    countryId,
-    categoryId,
-    subcategoryId,
+    countryId: country.id,
+    categoryId: category.id,
+    subcategoryId: subcategory.id,
   });
 
   const handlClickBack = () => {
     router.back();
   };
-  const cyrilicaProductName = transliterateToCyrillic(params.product);
-  const cyrilicaSubProductName = transliterateToCyrillic(params.subProduct);
+
+  const handleChooseSubColor = (color) => {
+    dispatch(setDataAndIdColor(color));
+  };
 
   return (
     <Container>
@@ -56,30 +59,30 @@ const ColorInfo = () => {
         <Link href={`/oferta`}>
           <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
         </Link>
-        <Link
-          href={`/oferta/${params.product}?id=${countryId}&country=${countryId}`}
-        >
-          <DecorSpanBackLink>{countryName} /</DecorSpanBackLink>
+        <Link href={`/oferta/${params.product}?id=${country.id}`}>
+          <DecorSpanBackLink>{country.name} /</DecorSpanBackLink>
         </Link>
         <DecorSpanBackLink>
-          <BtnBackNav click={handlClickBack} text={categoryName} />
+          <BtnBackNav click={handlClickBack} text={category.name} />
         </DecorSpanBackLink>
 
-        <CurrentNavDecor>/ {subcategoryName}</CurrentNavDecor>
+        <CurrentNavDecor>/ {subcategory.name}</CurrentNavDecor>
       </WrapNav>
-      <TitleCard>{subcategoryName}</TitleCard>
+      <TitleCard>{subcategory.name}</TitleCard>
       <ListCatalog>
         {isLoading ? (
           <Spinner />
         ) : (
           data?.map((color) => (
-            <ItemListCatalog key={color._id}>
+            <ItemListCatalog
+              onClick={() => handleChooseSubColor(color)}
+              key={color._id}
+            >
               <StyledLink
                 href={{
                   pathname: `/oferta/${params.product}/${params.subProduct}/${
                     params.color
                   }/${slugify(color.name)}`,
-                  query: { id: color._id, country: countryId },
                 }}
               >
                 <StyledImage
