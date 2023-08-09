@@ -22,14 +22,24 @@ import {
   TitleCard,
 } from '@/src/components/CatalogList/CatalogList.styled';
 import transliterateToCyrillic from '@/src/helper/translation';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ColorInfo = () => {
   const params = useParams();
   const router = useRouter();
-  const id = useSearchParams().get('id');
+  const dispatch = useDispatch();
+  const countryName = useSelector((state) => state.oferta.countrie.name);
+  const categoryName = useSelector((state) => state.oferta.categoty.name);
+  const subcategoryName = useSelector((state) => state.oferta.subcategory.name);
   const countryId = useSearchParams().getAll('country');
+  const categoryId = useSearchParams().getAll('category');
+  const subcategoryId = useSearchParams().getAll('subcategory');
 
-  const { data, isError, isLoading } = useGetColorQuery(id);
+  const { data, isError, isLoading } = useGetColorQuery({
+    countryId,
+    categoryId,
+    subcategoryId,
+  });
 
   const handlClickBack = () => {
     router.back();
@@ -49,21 +59,20 @@ const ColorInfo = () => {
         <Link
           href={`/oferta/${params.product}?id=${countryId}&country=${countryId}`}
         >
-          <DecorSpanBackLink>{cyrilicaProductName} /</DecorSpanBackLink>
+          <DecorSpanBackLink>{countryName} /</DecorSpanBackLink>
         </Link>
         <DecorSpanBackLink>
-          {' '}
-          <BtnBackNav click={handlClickBack} text={cyrilicaSubProductName} />
+          <BtnBackNav click={handlClickBack} text={categoryName} />
         </DecorSpanBackLink>
 
-        <CurrentNavDecor>/ {data?.name}</CurrentNavDecor>
+        <CurrentNavDecor>/ {subcategoryName}</CurrentNavDecor>
       </WrapNav>
-      <TitleCard>{data?.name}</TitleCard>
+      <TitleCard>{subcategoryName}</TitleCard>
       <ListCatalog>
         {isLoading ? (
           <Spinner />
         ) : (
-          data?.colors.map((color) => (
+          data?.map((color) => (
             <ItemListCatalog key={color._id}>
               <StyledLink
                 href={{
