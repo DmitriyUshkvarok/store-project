@@ -30,13 +30,13 @@ const SubProductCatalog = () => {
   const countrie = useSelector((state) => state.oferta.countrie);
   const category = useSelector((state) => state.oferta.categoty);
 
-  const countryId = useSearchParams().getAll('country');
-  const categoryId = useSearchParams().getAll('category');
+  // const countryId = useSearchParams().getAll('country');
+  // const categoryId = useSearchParams().getAll('category');
 
   const router = useRouter();
   const { data, isError, isLoading } = useGetSubCategoryQuery({
-    countryId,
-    categoryId,
+    countryId: countrie.id,
+    categoryId: category.id,
   });
 
   const handlClickBack = () => {
@@ -74,11 +74,6 @@ const SubProductCatalog = () => {
                     pathname: `/oferta/${params.product}/${
                       params.subProduct
                     }/${slugify(product.name)}`,
-                    query: {
-                      country: countryId,
-                      category: categoryId,
-                      subcategory: product._id,
-                    },
                   }}
                 >
                   <StyledImage

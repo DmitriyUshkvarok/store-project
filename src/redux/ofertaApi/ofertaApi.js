@@ -25,6 +25,11 @@ export const ofertaApi = createApi({
         `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}`,
       providesTags: ['products'],
     }),
+    getInfoProduct: builder.query({
+      query: (qwery) =>
+        `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}&color=${qwery.colorId}`,
+      providesTags: ['products'],
+    }),
   }),
 });
 
@@ -33,4 +38,5 @@ export const {
   useGetCountryCategoryQuery,
   useGetSubCategoryQuery,
   useGetColorQuery,
+  useGetInfoProductQuery,
 } = ofertaApi;

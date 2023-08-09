@@ -1,7 +1,7 @@
 'use client';
 import { infoProduct } from '@/src/components/CatalogList/dataCatalogList';
 import Image from 'next/image';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   incrementQuantity,
@@ -11,6 +11,8 @@ import {
 import { addToCart } from '@/src/redux/cart/cartSlise';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+import { useGetInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
+
 import {
   ProductDetailSection,
   LinkPanel,
@@ -36,11 +38,27 @@ import {
 import Container from '../Container/Container';
 import BtnBuy from '../BtnBuy/BtnBuy';
 import cartSelector from '@/src/redux/cart/cartSelector';
+import BtnBackNav from '../BtnBackNav/BtnBackNav';
 
 const ProductDetail = () => {
   const params = useParams();
+  const router = useRouter();
   const search = useSearchParams().get('id');
   const cartItems = useSelector(cartSelector.getIsItems);
+  const country = useSelector((state) => state.oferta.countrie);
+  const category = useSelector((state) => state.oferta.categoty);
+  const subcategory = useSelector((state) => state.oferta.subcategory);
+  const color = useSelector((state) => state.oferta.color);
+
+  const { data, isError, isLoading } = useGetInfoProductQuery({
+    countryId: country.id,
+    categoryId: category.id,
+    subcategoryId: subcategory.id,
+    colorId: color.id,
+  });
+
+  console.log(data);
+  //Теперь в useSearchParams у нас ничего нет все достаем с селектора который тебе нужен(там храниться name и id)
 
   const isProductInCart = cartItems.some((item) => item.id === search);
 
@@ -89,6 +107,10 @@ const ProductDetail = () => {
     dispatch(setQuantityById({ itemId: search, quantity: newQuantity }));
   };
 
+  const handlClickBack = () => {
+    router.back();
+  };
+
   return (
     <ProductDetailSection>
       <Container>
@@ -96,14 +118,16 @@ const ProductDetail = () => {
           <StyleLinkDetail href={`/home`}>Головна /</StyleLinkDetail>
           <StyleLinkDetail href={`/oferta`}>Каталог /</StyleLinkDetail>
           <StyleLinkDetail href={`/oferta/${params.product}`}>
-            {params.product} /
+            {country.name} /
           </StyleLinkDetail>
           <StyleLinkDetail
             href={`/oferta/${params.product}/${params.subProduct}`}
           >
-            {params.subProduct} /
+            {category.name} /
           </StyleLinkDetail>
-          <CurrentLink>{params.info}</CurrentLink>
+          <BtnBackNav click={handlClickBack} text={subcategory.name} />
+
+          <CurrentLink>{color.name}</CurrentLink>
         </LinkPanel>
         <div>
           <ProductDetailInfoBlock>
