@@ -16,6 +16,8 @@ import {
   DropDownMenuForBurger,
   DropdownForOferta,
   StyleLinkForBurgerOferta,
+  ListForBurger,
+  ItemForBurger,
 } from './Navigation.styled';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosBasket } from 'react-icons/io';
@@ -77,18 +79,18 @@ const Navigation = () => {
           </StyleLink>
           <DropDownMenu>
             <ul>
-              <li>
+              <ItemForBurger>
                 <Link href="/about">Країна</Link>
-              </li>
-              <li>
+              </ItemForBurger>
+              <ItemForBurger>
                 <Link href="/about">Вид</Link>
-              </li>
-              <li>
+              </ItemForBurger>
+              <ItemForBurger>
                 <Link href="/about">Клас</Link>
-              </li>
-              <li>
-                <Link href="/about">Колрі</Link>
-              </li>
+              </ItemForBurger>
+              <ItemForBurger>
+                <Link href="/about">Колір</Link>
+              </ItemForBurger>
             </ul>
           </DropDownMenu>
         </Dropdown>
