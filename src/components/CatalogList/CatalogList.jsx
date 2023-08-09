@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { slugify } from 'transliteration';
 import BtnBuy from '../BtnBuy/BtnBuy';
+import { useDispatch } from 'react-redux';
+import { setDataAndId } from '@/src/redux/ofertaApi/ofertaSlice';
 import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import {
   ListCatalog,
@@ -21,8 +23,12 @@ import {
 import Spinner from '../SpinerOferta/SpinerOferta';
 
 const CatalogList = () => {
-  const { data, isError, isLoading } = useGetOfertaQuery();
-
+  const { data, isLoading } = useGetOfertaQuery();
+  console.log(data);
+  const dispatch = useDispatch();
+  const handleChooseCountry = (country) => {
+    dispatch(setDataAndId(country));
+  };
   return (
     <Container>
       <div>
@@ -38,11 +44,14 @@ const CatalogList = () => {
             <Spinner />
           ) : (
             data?.map((item) => (
-              <ItemListCatalog key={item._id}>
+              <ItemListCatalog
+                key={item._id}
+                onClick={() => handleChooseCountry(item)}
+              >
                 <StyledLink
                   href={{
                     pathname: `/oferta/${slugify(item.name)}`,
-                    query: { id: item._id, country: item._id },
+                    query: { country: item._id },
                   }}
                 >
                   <StyledImage

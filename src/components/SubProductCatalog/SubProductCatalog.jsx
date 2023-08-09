@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
-import { slugify, transliterate } from 'transliteration';
+import { slugify } from 'transliteration';
 import { useGetSubCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import BtnBackNav from '@/src/components/BtnBackNav/BtnBackNav';
 import BtnBuy from '../BtnBuy/BtnBuy';
@@ -21,18 +21,30 @@ import {
 } from '@/src/components/CatalogList/CatalogList.styled';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import transliterateToCyrillic from '@/src/helper/translation';
+import { useSelector, useDispatch } from 'react-redux';
+import { setDataAndIdSubCategoty } from '@/src/redux/ofertaApi/ofertaSlice';
 
 const SubProductCatalog = () => {
   const params = useParams();
-  const id = useSearchParams().get('id');
-  const countryId = useSearchParams().getAll('country');
-  const router = useRouter();
-  const { data, isError, isLoading } = useGetSubCategoryQuery(id);
+  const dispatch = useDispatch();
+  const countrie = useSelector((state) => state.oferta.countrie);
+  const category = useSelector((state) => state.oferta.categoty);
 
-  const cyriicaName = transliterateToCyrillic(params.product);
+  const countryId = useSearchParams().getAll('country');
+  const categoryId = useSearchParams().getAll('category');
+
+  const router = useRouter();
+  const { data, isError, isLoading } = useGetSubCategoryQuery({
+    countryId,
+    categoryId,
+  });
 
   const handlClickBack = () => {
     router.back();
+  };
+
+  const handleChooseSubCategory = (subcaterory) => {
+    dispatch(setDataAndIdSubCategoty(subcaterory));
   };
   return (
     <Container>
@@ -43,23 +55,30 @@ const SubProductCatalog = () => {
         <Link href={`/oferta`}>
           <DecorSpanBackLink> Каталог /</DecorSpanBackLink>
         </Link>
-        <BtnBackNav click={handlClickBack} text={cyriicaName} />
-        <CurrentNavDecor>/{data?.name}</CurrentNavDecor>
+        <BtnBackNav click={handlClickBack} text={countrie.name} />
+        <CurrentNavDecor>/ {category.name}</CurrentNavDecor>
       </WrapNav>
-      <TitleCard>{data?.name}</TitleCard>
+      <TitleCard>{category.name}</TitleCard>
       <div>
         <ListCatalog>
           {isLoading ? (
             <Spinner />
           ) : (
-            data?.subcategories?.map((product) => (
-              <ItemListCatalog key={product._id}>
+            data?.map((product) => (
+              <ItemListCatalog
+                onClick={() => handleChooseSubCategory(product)}
+                key={product._id}
+              >
                 <StyledLink
                   href={{
                     pathname: `/oferta/${params.product}/${
                       params.subProduct
                     }/${slugify(product.name)}`,
-                    query: { id: product._id, country: countryId },
+                    query: {
+                      country: countryId,
+                      category: categoryId,
+                      subcategory: product._id,
+                    },
                   }}
                 >
                   <StyledImage

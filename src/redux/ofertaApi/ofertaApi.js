@@ -5,23 +5,25 @@ export const ofertaApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://paints.onrender.com',
   }),
-  tagTypes: ['countries', 'categories', 'subcategories'],
+  tagTypes: ['products', 'categories', 'subcategories'],
   endpoints: (builder) => ({
     getOferta: builder.query({
-      query: () => '/countries',
-      providesTags: ['countries'],
+      query: () => '/products',
+      providesTags: ['products'],
     }),
     getCountryCategory: builder.query({
-      query: (id) => `/countries/${id}`,
-      providesTags: ['countries'],
+      query: (id) => `/products?country=${id}`,
+      providesTags: ['products'],
     }),
     getSubCategory: builder.query({
-      query: (id) => `/categories/${id}`,
-      providesTags: ['categories'],
+      query: (qwery) =>
+        `/products?country=${qwery.countryId}&category=${qwery.categoryId}`,
+      providesTags: ['products'],
     }),
     getColor: builder.query({
-      query: (id) => `/subcategories/${id}`,
-      providesTags: ['subcategories'],
+      query: (qwery) =>
+        `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}`,
+      providesTags: ['products'],
     }),
   }),
 });
