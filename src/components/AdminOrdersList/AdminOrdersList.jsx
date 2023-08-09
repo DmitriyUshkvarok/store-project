@@ -103,12 +103,6 @@ const AdminOrdersList = () => {
                       }
                       return null;
                     })}
-                    {/* <Image
-                      src={item.url}
-                      alt={item.name}
-                      width={70}
-                      height={70}
-                    /> */}
                   </OrderItemsListItem>
                 ))}
               </OrderItemsList>

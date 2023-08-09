@@ -37,7 +37,6 @@ const OrderFom = () => {
     const formDataAndOrder = {
       buyer: values,
       products: cartItems.map((item) => ({
-        // url: item.image.src,
         date: item.data,
         productId: item.id,
         price: item.price,

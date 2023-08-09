@@ -58,12 +58,13 @@ export const ProductDescription = styled.p`
   margin-bottom: 20px;
 `;
 
-export const ProductArticul = styled.div`
+export const ProductWeight = styled.div`
   color: #222;
+  font-weight: bold;
   margin-bottom: 10px;
 `;
 
-export const ProductCategory = styled.p`
+export const ProductPackingType = styled.p`
   font-weight: bold;
   color: black;
   margin-bottom: 10px;
@@ -72,6 +73,7 @@ export const ProductCategory = styled.p`
 export const CategorySpan = styled.span`
   color: lightcoral;
   font-weight: normal;
+  margin-left: 10px;
 `;
 
 export const ProductBlockLeft = styled.div`
@@ -112,6 +114,18 @@ export const ProductPrice = styled.p`
 
 export const SpanPrice = styled.span`
   color: gray;
+`;
+
+export const ProductBrand = styled.p`
+  color: #222;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const ProductColor = styled.p`
+  color: #222;
+  font-weight: bold;
+  margin-bottom: 10px;
 `;
 
 export const ProductBlockRight = styled.div`

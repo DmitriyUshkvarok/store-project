@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useDispatch, useSelector } from 'react-redux';
 import {

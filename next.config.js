@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['encrypted-tbn0.gstatic.com'],
+    domains: [
+      'encrypted-tbn0.gstatic.com',
+      'res.cloudinary.com/pro-task-cloud/',
+      'set-iset.ru',
+    ],
 
     remotePatterns: [
       {

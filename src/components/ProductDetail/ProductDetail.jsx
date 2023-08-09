@@ -1,7 +1,6 @@
 'use client';
-import { infoProduct } from '@/src/components/CatalogList/dataCatalogList';
 import Image from 'next/image';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   incrementQuantity,
@@ -25,11 +24,13 @@ import {
   ProductBlockRight,
   ProductСharacterization,
   ProductDescription,
-  ProductArticul,
-  ProductCategory,
+  ProductWeight,
+  ProductPackingType,
   CategorySpan,
   ProductPrice,
   SpanPrice,
+  ProductBrand,
+  ProductColor,
   CounterWrapper,
   BtnIncrement,
   InputCounter,
@@ -43,34 +44,36 @@ import BtnBackNav from '../BtnBackNav/BtnBackNav';
 const ProductDetail = () => {
   const params = useParams();
   const router = useRouter();
-  const search = useSearchParams().get('id');
   const cartItems = useSelector(cartSelector.getIsItems);
   const country = useSelector((state) => state.oferta.countrie);
   const category = useSelector((state) => state.oferta.categoty);
   const subcategory = useSelector((state) => state.oferta.subcategory);
   const color = useSelector((state) => state.oferta.color);
 
-  const { data, isError, isLoading } = useGetInfoProductQuery({
+  const { data, isLoading } = useGetInfoProductQuery({
     countryId: country.id,
     categoryId: category.id,
     subcategoryId: subcategory.id,
     colorId: color.id,
   });
 
-  console.log(data);
-  //Теперь в useSearchParams у нас ничего нет все достаем с селектора который тебе нужен(там храниться name и id)
+  const productInfo = data?.[0];
 
-  const isProductInCart = cartItems.some((item) => item.id === search);
+  const isProductInCart = cartItems.some(
+    (item) => item.id === productInfo?._id
+  );
 
   const dispatch = useDispatch();
-  const quantity = useSelector((state) => state.quantity[search] || 0);
+  const quantity = useSelector(
+    (state) => state.quantity[productInfo?._id] || 0
+  );
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity({ itemId: search }));
+    dispatch(incrementQuantity({ itemId: productInfo?._id }));
   };
 
   const handleDecrement = () => {
-    dispatch(decrementQuantity({ itemId: search }));
+    dispatch(decrementQuantity({ itemId: productInfo?._id }));
   };
 
   const handleBuy = () => {
@@ -83,17 +86,14 @@ const ProductDetail = () => {
     }
 
     const productToAdd = {
-      id: search,
-      title: infoProduct.title,
-      price: infoProduct.price,
-      image: infoProduct.img,
+      id: productInfo?._id,
+      title: productInfo?.name,
+      price: productInfo?.price,
+      image: productInfo?.url,
       data: formatData,
-      brand: infoProduct.brand,
-      color: infoProduct.color,
+      brand: productInfo?.brand,
+      color: color.name,
     };
-    // dispatch(addToCart(productToAdd));
-    // toast.success('Товар додано до кошику');
-    // Проверка наличия товара в корзине по его id
 
     if (isProductInCart) {
       toast.info('Цей товар вже є у кошику');
@@ -104,7 +104,9 @@ const ProductDetail = () => {
   };
 
   const handleChangeQuantity = (newQuantity) => {
-    dispatch(setQuantityById({ itemId: search, quantity: newQuantity }));
+    dispatch(
+      setQuantityById({ itemId: productInfo?._id, quantity: newQuantity })
+    );
   };
 
   const handlClickBack = () => {
@@ -130,42 +132,61 @@ const ProductDetail = () => {
           <CurrentLink>{color.name}</CurrentLink>
         </LinkPanel>
         <div>
-          <ProductDetailInfoBlock>
-            <ProductBlockLeft>
-              <ImageBlock>
-                <Image
-                  src={infoProduct.img}
-                  alt={infoProduct.title}
-                  width={300}
-                  height={300}
-                />
-                <ProductName>{infoProduct.title}</ProductName>
-              </ImageBlock>
-              <ProductPrice>
-                Ціна: <SpanPrice>{infoProduct.price} грн</SpanPrice>
-              </ProductPrice>
-            </ProductBlockLeft>
-            <ProductBlockRight>
-              <div>
-                <ProductСharacterization>Опис</ProductСharacterization>
-                <ProductDescription>{infoProduct.desc}</ProductDescription>
-                <ProductArticul>Артикуль: {infoProduct.articl}</ProductArticul>
-                <ProductCategory>
-                  Категорія: <CategorySpan>{infoProduct.category}</CategorySpan>
-                </ProductCategory>
-              </div>
-              <CounterWrapper>
-                <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
-                <InputCounter
-                  type="text"
-                  value={quantity}
-                  onChange={(e) => handleChangeQuantity(e.target.value)}
-                />
-                <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
-              </CounterWrapper>
-              <BtnBuy handleBuy={handleBuy} isAddedToCart={isProductInCart} />
-            </ProductBlockRight>
-          </ProductDetailInfoBlock>
+          {isLoading ? (
+            <p>Загрузка данных...</p>
+          ) : (
+            <ProductDetailInfoBlock>
+              <ProductBlockLeft>
+                <ImageBlock>
+                  <Image
+                    src={
+                      productInfo?.url ||
+                      'https://set-iset.ru/wp-content/uploads/woocommerce-placeholder.png'
+                    }
+                    alt={productInfo?.name || ''}
+                    width={500}
+                    height={400}
+                    style={{ marginBottom: '10px' }}
+                  />
+                  <ProductName>{productInfo?.name}</ProductName>
+                </ImageBlock>
+                <ProductPrice>
+                  Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
+                </ProductPrice>
+              </ProductBlockLeft>
+              <ProductBlockRight>
+                <div>
+                  <ProductСharacterization>Опис</ProductСharacterization>
+                  <ProductDescription>
+                    {productInfo?.description}
+                  </ProductDescription>
+                  <ProductWeight>
+                    Вага:<CategorySpan>{productInfo?.weight}</CategorySpan>
+                  </ProductWeight>
+                  <ProductPackingType>
+                    Тип упаковки:
+                    <CategorySpan>{productInfo?.packingType}</CategorySpan>
+                  </ProductPackingType>
+                  <ProductBrand>
+                    бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
+                  </ProductBrand>
+                  <ProductColor>
+                    Колір:<CategorySpan>{color.name}</CategorySpan>
+                  </ProductColor>
+                </div>
+                <CounterWrapper>
+                  <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
+                  <InputCounter
+                    type="text"
+                    value={quantity}
+                    onChange={(e) => handleChangeQuantity(e.target.value)}
+                  />
+                  <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
+                </CounterWrapper>
+                <BtnBuy handleBuy={handleBuy} isAddedToCart={isProductInCart} />
+              </ProductBlockRight>
+            </ProductDetailInfoBlock>
+          )}
         </div>
       </Container>
     </ProductDetailSection>
