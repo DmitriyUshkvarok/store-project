@@ -18,6 +18,8 @@ import {
   StyleLinkForBurgerOferta,
   ListForBurger,
   ItemForBurger,
+  ListMenu,
+  LinkForB,
 } from './Navigation.styled';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosBasket } from 'react-icons/io';
@@ -80,16 +82,18 @@ const Navigation = () => {
           <DropDownMenu>
             <ul>
               <ItemForBurger>
-                <Link href="/about">Країна</Link>
+                <LinkForB href="/oferta/ukraina?id=64cc2ff867326ed9bd3fce3c&country=64cc2ff867326ed9bd3fce3c">
+                  Країна
+                </LinkForB>
               </ItemForBurger>
               <ItemForBurger>
-                <Link href="/about">Вид</Link>
+                <LinkForB href="/about">Вид</LinkForB>
               </ItemForBurger>
               <ItemForBurger>
-                <Link href="/about">Клас</Link>
+                <LinkForB href="/about">Клас</LinkForB>
               </ItemForBurger>
               <ItemForBurger>
-                <Link href="/about">Колір</Link>
+                <LinkForB href="/about">Колір</LinkForB>
               </ItemForBurger>
             </ul>
           </DropDownMenu>
@@ -108,8 +112,7 @@ const Navigation = () => {
           Контакти
         </StyleLink>
         <BurgerMenu>
-          <RxHamburgerMenu />
-          {/* <DropdownForOferta> */}
+          <RxHamburgerMenu style={{ color: 'white' }} />
           <DropdownForBurger>
             <StyleLinkForBurger
               href="/home"
@@ -124,7 +127,7 @@ const Navigation = () => {
               Про нас
             </StyleLinkForBurger>
 
-            <DropDownMenuForBurger>
+            {/* <DropDownMenuForBurger>
               <ul>
                 <li>
                   <Link href="/about">Країна</Link>
@@ -139,7 +142,7 @@ const Navigation = () => {
                   <Link href="/about">Колрі</Link>
                 </li>
               </ul>
-            </DropDownMenuForBurger>
+            </DropDownMenuForBurger> */}
             <StyleLinkForBurgerOferta
               href="/oferta"
               className={pathname === '/offer' ? 'active' : ''}
@@ -148,9 +151,9 @@ const Navigation = () => {
             </StyleLinkForBurgerOferta>
 
             <DropDownMenuForBurger>
-              <ul>
+              <ListMenu>
                 <li>
-                  <Link href="/about">Країна</Link>
+                  <Link href="/about">Країна!!</Link>
                 </li>
                 <li>
                   <Link href="/about">Вид</Link>
@@ -159,9 +162,9 @@ const Navigation = () => {
                   <Link href="/about">Клас</Link>
                 </li>
                 <li>
-                  <Link href="/about">Колрі</Link>
+                  <Link href="/about">Колір</Link>
                 </li>
-              </ul>
+              </ListMenu>
             </DropDownMenuForBurger>
             <StyleLinkForBurger
               href="/gallery"
@@ -170,7 +173,6 @@ const Navigation = () => {
               Галерея
             </StyleLinkForBurger>
           </DropdownForBurger>
-          {/* </DropdownForOferta> */}
         </BurgerMenu>
         <BasketStyleLink
           href="/basket"

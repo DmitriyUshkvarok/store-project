@@ -11,7 +11,7 @@ export const StyleNavigation = styled.nav`
 export const StyleLink = styled(Link)`
   display: inherit;
 
-  @media (0px <= width <= 960px) {
+  @media (0px <= width <= 970px) {
     display: none;
   }
   color: #ffffff;
@@ -78,14 +78,13 @@ export const CartCount = styled.span`
 
 export const ItemForBurger = styled.li`
   color: #b1b1b1;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   line-height: 33px;
   padding: 0 21px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &.active,
   &:hover,
   &:focus {
     background-color: #e3010f;
@@ -125,16 +124,20 @@ export const Dropdown = styled.div`
 
 export const DropdownForBurger = styled.div`
   display: none;
+
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #242424;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1111122;
+  width: 220px;
+  left: -28vh;
+  top: 34px;
 `;
 
 export const BurgerMenu = styled.div`
   display: none;
-  @media (width < 960px) {
+  @media (width < 970px) {
     display: block;
     position: relative;
     display: inline-block;
@@ -148,7 +151,7 @@ export const BurgerMenu = styled.div`
 export const StyleLinkForBurger = styled(Link)`
   display: none;
 
-  @media (width < 960px) {
+  @media (width < 970px) {
     display: block;
   }
   color: #ffffff;
@@ -168,7 +171,7 @@ export const StyleLinkForBurger = styled(Link)`
 export const DropDownMenuForBurger = styled.div`
   display: none;
   position: relative;
-  background-color: #f9f9f9;
+  background-color: #242424;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1111122;
@@ -176,13 +179,42 @@ export const DropDownMenuForBurger = styled.div`
 
 export const StyleLinkForBurgerOferta = styled.div`
   position: relative;
-  /* display: inline-block; */
 
-  &:hover {
-    color: red;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 53px;
+  padding: 0 21px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.active,
+  &:hover,
+  &:focus {
+    background-color: #e3010f;
   }
 
   &:hover + ${DropDownMenuForBurger} {
     display: block;
   }
+`;
+
+export const ListMenu = styled.ul`
+  background-color: #6f6f6f;
+  padding-left: 30px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 33px;
+  padding: 0 21px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.active,
+  &:hover {
+    background-color: #e3010f;
+  }
+`;
+
+export const LinkForB = styled(Link)`
+  display: inline-block;
+  width: 100%;
 `;

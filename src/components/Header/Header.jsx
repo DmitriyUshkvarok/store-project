@@ -11,17 +11,17 @@ import Navigation from '../Navigation/Navigation';
 const Header = () => {
   return (
     <StyleHeader>
-      <Container>
-        <HeaderBox>
-          <Navigation />
-          <ImageStyled
-            src="/182ukr.png"
-            alt={'роки на ринку'}
-            width={125}
-            height={206}
-          ></ImageStyled>
-        </HeaderBox>
-      </Container>
+      {/* <Container> */}
+      <HeaderBox>
+        <Navigation />
+        <ImageStyled
+          src="/182ukr.png"
+          alt={'роки на ринку'}
+          width={125}
+          height={206}
+        ></ImageStyled>
+      </HeaderBox>
+      {/* </Container> */}
     </StyleHeader>
   );
 };
