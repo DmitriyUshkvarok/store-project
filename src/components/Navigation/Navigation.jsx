@@ -9,7 +9,14 @@ import {
   DivStyleLink,
   DropDownMenu,
   Dropdown,
+  BasketStyleLink,
+  BurgerMenu,
+  DropdownForBurger,
+  StyleLinkForBurger,
+  DropDownMenuForBurger,
+  DropdownForOferta,
 } from './Navigation.styled';
+import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosBasket } from 'react-icons/io';
 import { RxExit } from 'react-icons/rx';
 import { usePathname } from 'next/navigation';
@@ -97,7 +104,78 @@ const Navigation = () => {
         >
           Контакти
         </StyleLink>
-        <DivStyleLink
+        <BurgerMenu>
+          <RxHamburgerMenu />
+          <DropdownForBurger>
+            <StyleLinkForBurger
+              href="/home"
+              className={pathname === '/home' ? 'active' : ''}
+            >
+              Головна сторінка
+            </StyleLinkForBurger>
+            <StyleLinkForBurger
+              href="/about"
+              className={pathname === '/about' ? 'active' : ''}
+            >
+              Про нас
+            </StyleLinkForBurger>
+            <DropdownForOferta>
+              <StyleLinkForBurger
+                href="/oferta"
+                className={pathname === '/offer' ? 'active' : ''}
+              >
+                Каталог товарів
+              </StyleLinkForBurger>
+
+              <DropDownMenuForBurger>
+                <ul>
+                  <li>
+                    <Link href="/about">Країна</Link>
+                  </li>
+                  <li>
+                    <Link href="/about">Вид</Link>
+                  </li>
+                  <li>
+                    <Link href="/about">Клас</Link>
+                  </li>
+                  <li>
+                    <Link href="/about">Колрі</Link>
+                  </li>
+                </ul>
+              </DropDownMenuForBurger>
+            </DropdownForOferta>
+            <StyleLinkForBurger
+              href="/oferta"
+              className={pathname === '/offer' ? 'active' : ''}
+            >
+              Каталог товарів
+            </StyleLinkForBurger>
+
+            <DropDownMenuForBurger>
+              <ul>
+                <li>
+                  <Link href="/about">Країна</Link>
+                </li>
+                <li>
+                  <Link href="/about">Вид</Link>
+                </li>
+                <li>
+                  <Link href="/about">Клас</Link>
+                </li>
+                <li>
+                  <Link href="/about">Колрі</Link>
+                </li>
+              </ul>
+            </DropDownMenuForBurger>
+            <StyleLinkForBurger
+              href="/gallery"
+              className={pathname === '/gallery' ? 'active' : ''}
+            >
+              Галерея
+            </StyleLinkForBurger>
+          </DropdownForBurger>
+        </BurgerMenu>
+        <BasketStyleLink
           href="/basket"
           className={pathname === '/basket' ? 'active' : ''}
         >
@@ -105,7 +183,7 @@ const Navigation = () => {
             <IoIosBasket size={30} />
             <CartCount>{cartItems.length}</CartCount>
           </CartIconWrapper>
-        </DivStyleLink>
+        </BasketStyleLink>
         {isToken && (
           <RxExit
             size={30}
