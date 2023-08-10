@@ -145,7 +145,7 @@ export const TitleCard = styled.h3`
 `;
 
 export const ProductTitleCard = styled.p`
-  font-size: 18px;
+  font-size: 14px;
   text-transform: uppercase;
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
