@@ -133,9 +133,10 @@ export const DropdownForBurger = styled.div`
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1111122;
-  width: 300px;
+  width: 282px;
   @media (width > 600px) {
     left: -28vh;
+    width: 300px;
   }
 
   top: 59px;
