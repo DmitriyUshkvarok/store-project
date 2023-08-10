@@ -5,7 +5,6 @@ const BtnBuy = ({ handleBuy, isAddedToCart }) => {
   return (
     <Btn type="button" onClick={handleBuy} disabled={isAddedToCart}>
       {isAddedToCart ? 'Товар у кошику' : 'Купити'}
-      <BsArrowRight size="18px" />
     </Btn>
   );
 };
