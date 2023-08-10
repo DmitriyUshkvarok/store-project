@@ -30,6 +30,10 @@ export const ofertaApi = createApi({
         `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}&color=${qwery.colorId}`,
       providesTags: ['products'],
     }),
+    getAllProducts: builder.query({
+      query: () => '/products/all',
+      providesTags: ['products'],
+    }),
   }),
 });
 
@@ -39,4 +43,5 @@ export const {
   useGetSubCategoryQuery,
   useGetColorQuery,
   useGetInfoProductQuery,
+  useGetAllProductsQuery,
 } = ofertaApi;
