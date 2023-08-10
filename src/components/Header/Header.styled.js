@@ -9,7 +9,7 @@ export const StyleHeader = styled.header`
   z-index: 999;
   display: flex;
   justify-content: center;
-  @media (width < 970px) {
+  @media (width < 981px) {
     justify-content: flex-end;
   }
 `;

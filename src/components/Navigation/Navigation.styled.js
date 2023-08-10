@@ -11,7 +11,7 @@ export const StyleNavigation = styled.nav`
 export const StyleLink = styled(Link)`
   display: inherit;
 
-  @media (0px <= width <= 970px) {
+  @media (0px <= width <= 980px) {
     display: none;
   }
   color: #ffffff;
@@ -127,14 +127,17 @@ export const DropdownForBurger = styled.div`
   opacity: ${(props) => (props.togle ? 1 : 0)};
   transform: translateY(${(props) => (props.menuVisible ? '0' : '-10px')});
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-
+  left: -21vh;
   position: absolute;
   background-color: #242424;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1111122;
   width: 300px;
-  left: -28vh;
+  @media (width > 370px) {
+    left: -28vh;
+  }
+
   top: 59px;
 `;
 
@@ -142,7 +145,7 @@ export const BurgerMenu = styled.div`
   display: none;
   cursor: pointer;
   padding: 15px;
-  @media (width < 970px) {
+  @media (width < 981px) {
     display: block;
     position: relative;
     display: inline-block;
@@ -152,7 +155,7 @@ export const BurgerMenu = styled.div`
 export const StyleLinkForBurger = styled(Link)`
   display: none;
 
-  @media (width < 970px) {
+  @media (width < 981px) {
     display: block;
   }
   color: #ffffff;
