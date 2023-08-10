@@ -127,14 +127,14 @@ export const DropdownForBurger = styled.div`
   opacity: ${(props) => (props.togle ? 1 : 0)};
   transform: translateY(${(props) => (props.menuVisible ? '0' : '-10px')});
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  left: -21vh;
+  left: -10vh;
   position: absolute;
   background-color: #242424;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1111122;
   width: 300px;
-  @media (width > 370px) {
+  @media (width > 600px) {
     left: -28vh;
   }
 

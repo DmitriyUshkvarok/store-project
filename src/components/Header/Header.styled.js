@@ -32,4 +32,7 @@ export const ImageStyled = styled(Image)`
 export const HeaderBox = styled.div`
   display: flex;
   align-items: flex-start;
+  @media (width < 580px) {
+    margin-right: 20px;
+  }
 `;
