@@ -1,7 +1,10 @@
 'use client';
-// import Image from 'next/image';
+import css from './adminOrderList.module.css';
 import {
   OrderAdminWrapper,
+  FilterCheckBoxBlock,
+  LabelFilter,
+  InputCheckFilter,
   AllOrdersList,
   BtnStatusBlock,
   BtnStatus,
@@ -21,21 +24,33 @@ import {
   OrderData,
   StyleAdminRiDeleteBin5Fill,
 } from './AdminOrderList.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleStatus } from '@/src/redux/statusOrder/statusOrderSlice';
-import orderStatusSelector from '@/src/redux/statusOrder/statusOrderSelector';
+import { useState } from 'react';
 import { MdPendingActions } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import {
   useGetOrdersByAdminQuery,
   useDeleteOrderMutation,
+  useUpdateOrderStatusMutation,
 } from '@/src/redux/adminOrdersApi/adminOrdersApi';
+import ReactPaginate from 'react-paginate';
 
 const AdminOrdersList = () => {
-  const dispatch = useDispatch();
-  const getStatus = useSelector(orderStatusSelector.getStatus);
-  const { data: ordersFromServer } = useGetOrdersByAdminQuery();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [showDone, setShowDone] = useState(false);
+  const pageSize = 10;
+  const { data: response } = useGetOrdersByAdminQuery({
+    page: currentPage + 1,
+    limit: 10,
+    done: showDone,
+  });
+
+  const ordersFromServer = response?.orders || []; // Массив заказов
+  const totalOrdersCount = response?.total || 0; // Общее количество заказов
+  const totalPages = Math.ceil(totalOrdersCount / pageSize); // Общее количество страниц
+  const hasNextPage = ordersFromServer.length === pageSize;
+
   const [deleteOrderMutation] = useDeleteOrderMutation();
+  const [updateOrderStatusMutation] = useUpdateOrderStatusMutation();
 
   const handleDeleteOrder = async (orderId) => {
     try {
@@ -45,22 +60,50 @@ const AdminOrdersList = () => {
     }
   };
 
+  const handleToggleStatus = async (orderId, done) => {
+    try {
+      await updateOrderStatusMutation({ orderId, done });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const handleShowDoneToggle = () => {
+    setShowDone(!showDone);
+  };
+
   return (
     <OrderAdminWrapper>
+      <FilterCheckBoxBlock>
+        <LabelFilter>
+          Показати виконані замовлення:
+          <InputCheckFilter
+            type="checkbox"
+            checked={showDone}
+            onChange={handleShowDoneToggle}
+          />
+        </LabelFilter>
+      </FilterCheckBoxBlock>
       {ordersFromServer?.length === 0 ? (
         <p>Немає доступних замовлень</p>
       ) : (
         ordersFromServer?.map((order) => (
           <AllOrdersList key={order._id}>
             <BtnStatusBlock>
-              <BtnStatus onClick={() => dispatch(toggleStatus())}>
-                {getStatus ? (
+              <BtnStatus
+                onClick={() => handleToggleStatus(order._id, !order.done)}
+              >
+                {order.done ? (
                   <>
-                    В очікуванні <MdPendingActions color="orange" size={20} />
+                    Виконано <AiFillCheckCircle color="green" size={20} />
                   </>
                 ) : (
                   <>
-                    Виконано <AiFillCheckCircle color="green" size={20} />
+                    В очікуванні <MdPendingActions color="orange" size={20} />
                   </>
                 )}
               </BtnStatus>
@@ -86,7 +129,7 @@ const AdminOrdersList = () => {
                 {order.products.map((item) => (
                   <OrderItemsListItem
                     key={item.productId}
-                    isPending={getStatus}
+                    isPending={order.done}
                   >
                     <OrderName>{item.name}</OrderName>
                     <OrderData>Дата заказа: {item.date}</OrderData>
@@ -117,6 +160,23 @@ const AdminOrdersList = () => {
             />
           </AllOrdersList>
         ))
+      )}
+      {ordersFromServer?.length > 0 && (
+        <ReactPaginate
+          previousLabel={'Попередні'}
+          nextLabel={'Наступні'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={totalPages}
+          pageClassName={css.page}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageChange}
+          containerClassName={css.pagination}
+          activeClassName={css.active}
+          nextClassName={!hasNextPage ? css.disabled : ''}
+          previousClassName={currentPage === 0 ? css.disabled : ''}
+        />
       )}
     </OrderAdminWrapper>
   );

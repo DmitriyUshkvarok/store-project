@@ -15,7 +15,10 @@ export const adminOrdersApi = createApi({
   tagTypes: ['adminOrders'],
   endpoints: (builder) => ({
     getOrdersByAdmin: builder.query({
-      query: () => '/orders',
+      query: ({ page = 1, limit = 10, done }) => {
+        const queryParams = new URLSearchParams({ page, limit, done });
+        return `/orders?${queryParams.toString()}`;
+      },
       providesTags: ['adminOrders'],
     }),
     deleteOrder: builder.mutation({
@@ -25,8 +28,19 @@ export const adminOrdersApi = createApi({
       }),
       invalidatesTags: ['adminOrders'],
     }),
+    updateOrderStatus: builder.mutation({
+      query: ({ orderId, done }) => ({
+        url: `/orders/${orderId}`,
+        method: 'PATCH',
+        body: { done },
+      }),
+      invalidatesTags: ['adminOrders'],
+    }),
   }),
 });
 
-export const { useGetOrdersByAdminQuery, useDeleteOrderMutation } =
-  adminOrdersApi;
+export const {
+  useGetOrdersByAdminQuery,
+  useDeleteOrderMutation,
+  useUpdateOrderStatusMutation,
+} = adminOrdersApi;

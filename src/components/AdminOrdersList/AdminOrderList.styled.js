@@ -9,6 +9,22 @@ export const OrderAdminWrapper = styled.div`
   padding: 40px;
 `;
 
+export const FilterCheckBoxBlock = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const LabelFilter = styled.label`
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+export const InputCheckFilter = styled.input`
+  margin-left: 5px;
+  cursor: pointer;
+`;
+
 export const AllOrdersList = styled.ul`
   position: relative;
   display: flex;
@@ -96,10 +112,10 @@ export const OrderItemsListItem = styled.li`
   ${({ isPending }) =>
     isPending
       ? css`
-          background-color: lightcoral;
+          background-color: lightgreen;
         `
       : css`
-          background-color: lightgreen;
+          background-color: lightcoral;
         `}
 
   @media screen and (max-width: 850px) {
