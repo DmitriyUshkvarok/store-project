@@ -30,8 +30,9 @@ export const ofertaApi = createApi({
         `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}&color=${qwery.colorId}`,
       providesTags: ['products'],
     }),
-    getAllProducts: builder.query({
-      query: () => '/products/all',
+    getAllProductsFiltered: builder.query({
+      query: (qwery) =>
+        `/products/all?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}&color=${qwery.colorId}&minPrice=${qwery.minPrice}&maxPrice=${qwery.maxPrice}&page=${qwery.page}`,
       providesTags: ['products'],
     }),
   }),
@@ -43,5 +44,5 @@ export const {
   useGetSubCategoryQuery,
   useGetColorQuery,
   useGetInfoProductQuery,
-  useGetAllProductsQuery,
+  useGetAllProductsFilteredQuery,
 } = ofertaApi;
