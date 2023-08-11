@@ -104,13 +104,13 @@ const Navigation = () => {
                 </LinkForB>
               </ItemForBurger>
               <ItemForBurger>
-                <LinkForB href="/about">Вид</LinkForB>
+                <LinkForB href="/about">Країни виробництва</LinkForB>
               </ItemForBurger>
               <ItemForBurger>
                 <LinkForB href="/about">Клас</LinkForB>
               </ItemForBurger>
               <ItemForBurger>
-                <LinkForB href="/about">Колір</LinkForB>
+                <LinkForB href="/allproducts">Увесь наш товар</LinkForB>
               </ItemForBurger>
             </ul>
           </DropDownMenu>

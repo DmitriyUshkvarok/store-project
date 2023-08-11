@@ -47,6 +47,7 @@ const ColorInfo = () => {
   };
 
   const handleChooseSubColor = (color) => {
+    console.log(color);
     dispatch(setDataAndIdColor(color));
   };
 

@@ -19,6 +19,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { propertiesApi } from './propertiesApi/propertiesApi';
 
 const store = configureStore({
   reducer: {
@@ -29,6 +30,7 @@ const store = configureStore({
     oferta: persistedOfertaReducer,
     [authApi.reducerPath]: authApi.reducer,
     [ofertaApi.reducerPath]: ofertaApi.reducer,
+    [propertiesApi.reducerPath]: propertiesApi.reducer,
     [galleryApi.reducerPath]: galleryApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
     [adminOrdersApi.reducerPath]: adminOrdersApi.reducer,
@@ -41,6 +43,7 @@ const store = configureStore({
     }).concat(
       authApi.middleware,
       ofertaApi.middleware,
+      propertiesApi.middleware,
       galleryApi.middleware,
       ordersApi.middleware,
       adminOrdersApi.middleware
