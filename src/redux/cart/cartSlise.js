@@ -24,11 +24,18 @@ const cartSlice = createSlice({
     updateTotalPrice: (state, action) => {
       state.totalPrice = action.payload;
     },
+    removeAllFromCart: (state) => {
+      state.items = [];
+    },
   },
 });
 
-export const { addToCart, removeFromCart, updateTotalPrice } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  updateTotalPrice,
+  removeAllFromCart,
+} = cartSlice.actions;
 
 const persisteCartReducer = persistReducer(
   cartPersistConfig,

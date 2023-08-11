@@ -1,10 +1,10 @@
-import LoginOrAdmin from '@/src/components/LoginOrAdmin/LoginOrAdmin';
+import AdminPanel from '@/src/components/AdminPanel/AdminPanel';
 
 const Admin = () => {
   return (
-    <div>
-      <LoginOrAdmin />
-    </div>
+    <>
+      <AdminPanel />
+    </>
   );
 };
 

@@ -137,57 +137,64 @@ const ProductDetail = () => {
           {isLoading ? (
             <p>Загрузка данных...</p>
           ) : (
-            <ProductDetailInfoBlock>
-              <ProductBlockLeft>
-                <ImageBlock>
-                  <Image
-                    src={
-                      productInfo?.url ||
-                      'https://set-iset.ru/wp-content/uploads/woocommerce-placeholder.png'
-                    }
-                    alt={productInfo?.name || ''}
-                    width={500}
-                    height={400}
-                    style={{ marginBottom: '10px' }}
-                  />
-                  <ProductName>{productInfo?.name}</ProductName>
-                </ImageBlock>
-                <ProductPrice>
-                  Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
-                </ProductPrice>
-              </ProductBlockLeft>
-              <ProductBlockRight>
-                <div>
-                  <ProductСharacterization>Опис</ProductСharacterization>
-                  <ProductDescription>
-                    {productInfo?.description}
-                  </ProductDescription>
-                  <ProductWeight>
-                    Вага:<CategorySpan>{productInfo?.weight}</CategorySpan>
-                  </ProductWeight>
-                  <ProductPackingType>
-                    Тип упаковки:
-                    <CategorySpan>{productInfo?.packingType}</CategorySpan>
-                  </ProductPackingType>
-                  <ProductBrand>
-                    бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
-                  </ProductBrand>
-                  <ProductColor>
-                    Колір:<CategorySpan>{color.name}</CategorySpan>
-                  </ProductColor>
-                </div>
-                <CounterWrapper>
-                  <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
-                  <InputCounter
-                    type="text"
-                    value={quantity}
-                    onChange={(e) => handleChangeQuantity(e.target.value)}
-                  />
-                  <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
-                </CounterWrapper>
-                <BtnBuy handleBuy={handleBuy} isAddedToCart={isProductInCart} />
-              </ProductBlockRight>
-            </ProductDetailInfoBlock>
+            <div>
+              {data?.map((productInfo) => (
+                <ProductDetailInfoBlock key={productInfo._id}>
+                  <ProductBlockLeft>
+                    <ImageBlock>
+                      <Image
+                        src={
+                          productInfo?.url ||
+                          'https://set-iset.ru/wp-content/uploads/woocommerce-placeholder.png'
+                        }
+                        alt={productInfo?.name || ''}
+                        width={500}
+                        height={400}
+                        style={{ marginBottom: '10px' }}
+                      />
+                      <ProductName>{productInfo?.name}</ProductName>
+                    </ImageBlock>
+                    <ProductPrice>
+                      Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
+                    </ProductPrice>
+                  </ProductBlockLeft>
+                  <ProductBlockRight>
+                    <div>
+                      <ProductСharacterization>Опис</ProductСharacterization>
+                      <ProductDescription>
+                        {productInfo?.description}
+                      </ProductDescription>
+                      <ProductWeight>
+                        Вага:<CategorySpan>{productInfo?.weight}</CategorySpan>
+                      </ProductWeight>
+                      <ProductPackingType>
+                        Тип упаковки:
+                        <CategorySpan>{productInfo?.packingType}</CategorySpan>
+                      </ProductPackingType>
+                      <ProductBrand>
+                        бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
+                      </ProductBrand>
+                      <ProductColor>
+                        Колір:<CategorySpan>{color.name}</CategorySpan>
+                      </ProductColor>
+                    </div>
+                    <CounterWrapper>
+                      <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
+                      <InputCounter
+                        type="text"
+                        value={quantity}
+                        onChange={(e) => handleChangeQuantity(e.target.value)}
+                      />
+                      <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
+                    </CounterWrapper>
+                    <BtnBuy
+                      handleBuy={handleBuy}
+                      isAddedToCart={isProductInCart}
+                    />
+                  </ProductBlockRight>
+                </ProductDetailInfoBlock>
+              ))}
+            </div>
           )}
         </div>
       </Container>

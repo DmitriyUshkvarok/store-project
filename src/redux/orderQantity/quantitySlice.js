@@ -29,6 +29,9 @@ const quantitySlice = createSlice({
       const { itemId, quantity } = action.payload;
       state[itemId] = Number(quantity);
     },
+    clearAllQuantities: (state) => {
+      return {};
+    },
   },
 });
 
@@ -37,6 +40,7 @@ export const {
   decrementQuantity,
   clearQuantityById,
   setQuantityById,
+  clearAllQuantities,
 } = quantitySlice.actions;
 
 const persisteQuantityReducer = persistReducer(

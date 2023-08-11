@@ -33,6 +33,7 @@ import {
   useUpdateOrderStatusMutation,
 } from '@/src/redux/adminOrdersApi/adminOrdersApi';
 import ReactPaginate from 'react-paginate';
+import { toast } from 'react-toastify';
 
 const AdminOrdersList = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -63,6 +64,7 @@ const AdminOrdersList = () => {
   const handleToggleStatus = async (orderId, done) => {
     try {
       await updateOrderStatusMutation({ orderId, done });
+      toast.success('товар додано до виконаних замовлень');
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +98,7 @@ const AdminOrdersList = () => {
             <BtnStatusBlock>
               <BtnStatus
                 onClick={() => handleToggleStatus(order._id, !order.done)}
+                disabled={order.done}
               >
                 {order.done ? (
                   <>

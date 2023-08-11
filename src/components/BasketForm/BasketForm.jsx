@@ -12,10 +12,14 @@ import {
 } from './BasketForm.styled';
 import { Formik, ErrorMessage } from 'formik';
 import orderSchema from '@/src/validationSchema/orderFormSchema';
-import { useState } from 'react';
 import cartSelector from '@/src/redux/cart/cartSelector';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useCreateOrdersMutation } from '@/src/redux/ordersApi/ordersApi';
+import {
+  updateTotalPrice,
+  removeAllFromCart,
+} from '@/src/redux/cart/cartSlise';
+import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 
 const initialValues = {
   name: '',
@@ -24,9 +28,9 @@ const initialValues = {
   phone: '',
 };
 
-const OrderFom = () => {
+const OrderFom = ({ setOrderSuccess }) => {
   // const [isLoading, setIsLoading] = useState(false);
-  const [orderSuccess, setOrderSuccess] = useState(false);
+  const dispatch = useDispatch();
   const cartItems = useSelector(cartSelector.getIsItems);
   const totalPrice = useSelector(cartSelector.geTotalPrice);
   const quantity = useSelector((state) => state.quantity);
@@ -59,6 +63,10 @@ const OrderFom = () => {
       if (response.error) {
         console.error('Ошибка при создании заказа:', response.error);
       } else {
+        dispatch(updateTotalPrice(0));
+        dispatch(removeAllFromCart());
+        dispatch(clearAllQuantities());
+
         resetForm();
         setOrderSuccess(true);
       }
@@ -129,12 +137,6 @@ const OrderFom = () => {
             <OrderBtn type="submit">
               {isLoading ? 'Чекайте...' : 'Підтвердити замовлення'}
             </OrderBtn>
-            {orderSuccess && (
-              <p>
-                Ваш замовлення було успішно оформлено. Продавець скоро
-                зв&#39;яжеться з вами.
-              </p>
-            )}
           </FormWrapper>
         </StyleOrderForm>
       </Formik>
