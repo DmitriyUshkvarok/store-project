@@ -4,7 +4,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 // Гребанный NEXT!!!
 
-const ModalUpdateForm = ({ show, handleClose, children }) => {
+const ModalAdminByForm = ({ show, handleClose, children }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -22,4 +22,4 @@ const ModalUpdateForm = ({ show, handleClose, children }) => {
   );
 };
 
-export default ModalUpdateForm;
+export default ModalAdminByForm;

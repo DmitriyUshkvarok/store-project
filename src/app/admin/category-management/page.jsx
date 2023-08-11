@@ -1,9 +1,7 @@
+import CategoryManagmentAdmin from '@/src/components/CategoryManagmentAdmin/CategoryManagmentAdmin';
+
 const CategoryManagement = () => {
-  return (
-    <div>
-      <h2>CategoryManagement</h2>
-    </div>
-  );
+  return <CategoryManagmentAdmin />;
 };
 
 export default CategoryManagement;
