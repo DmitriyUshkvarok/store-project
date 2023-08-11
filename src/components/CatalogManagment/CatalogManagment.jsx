@@ -3,7 +3,7 @@
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Image from 'next/image';
 import { useState } from 'react';
-import ModalUpdateForm from '@/src/components/ModalAdmin/ModalUpdateForm';
+import ModalUpdateForm from '@/src/components/modalAdmin/ModalUpdateForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 import {
   ListOferta,
