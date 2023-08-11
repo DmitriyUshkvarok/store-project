@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Spinner from '../SpinerOferta/SpinerOferta';
 import Slider from 'rc-slider';
 import Link from 'next/link';
 import 'rc-slider/assets/index.css';
 import { Box, AboutBox, Title, Products, Picture } from './AllProducts.styled';
 import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import Spinner from '../SpinerOferta/SpinerOferta';
 import { useDispatch } from 'react-redux';
 import { slugify } from 'transliteration';
 import {
@@ -14,6 +14,7 @@ import {
   setDataAndIdColor,
   setDataAndIdSubCategoty,
 } from '@/src/redux/ofertaApi/ofertaSlice';
+
 import {
   useGetCategoriesQuery,
   useGetColorsQuery,
@@ -56,19 +57,19 @@ const AllProducts = () => {
     dispatch(setDataAndIdColor(color));
   };
 
-  const handleMinPriceChange = (value) => {
-    setQwery((prevQwery) => ({
-      ...prevQwery,
-      minPrice: value,
-    }));
-  };
+  //   const handleMinPriceChange = (value) => {
+  //     setQwery((prevQwery) => ({
+  //       ...prevQwery,
+  //       minPrice: value,
+  //     }));
+  //   };
 
-  const handleMaxPriceChange = (value) => {
-    setQwery((prevQwery) => ({
-      ...prevQwery,
-      maxPrice: value,
-    }));
-  };
+  //   const handleMaxPriceChange = (value) => {
+  //     setQwery((prevQwery) => ({
+  //       ...prevQwery,
+  //       maxPrice: value,
+  //     }));
+  //   };
 
   return (
     <>
