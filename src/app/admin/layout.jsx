@@ -1,6 +1,6 @@
 import AdminSidebar from '@/src/components/AdminSidebar/AdminSidebar';
 import styles from './admin-layout.module.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from '@/src/components/Container/Container';
 
 const AdminLayout = ({ children }) => {
