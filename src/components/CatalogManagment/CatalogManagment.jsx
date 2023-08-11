@@ -2,15 +2,15 @@
 
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Image from 'next/image';
+import { useState } from 'react';
+import ModalUpdateForm from '@/src/components/ModalAdmin/ModalUpdateForm';
+import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 import {
   ListOferta,
   ItemOferta,
   TagContainer,
   CaptionWrap,
 } from './CatalogManagment.styled';
-import { useState } from 'react';
-import ModalUpdateForm from '@/src/components/ModalAdmin/ModalUpdateForm';
-import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 
 function truncateText(text, maxLength) {
   if (text.length <= maxLength) {
@@ -30,7 +30,6 @@ const CatalogManagementAdmin = () => {
     setShow(true);
   };
   const { data } = useGetAllInfoProductQuery();
-  console.log(data);
 
   return (
     <>
