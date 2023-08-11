@@ -7,7 +7,7 @@ import {
   useGetAllColorQuery,
 } from '@/src/redux/ofertaApi/ofertaApi';
 import Image from 'next/image';
-import ModalUpdateForm from '@/src/components/modalAdmin/ModalUpdateForm';
+import ModalUpdateForm from '@/src/components/ModalAdmin/ModalUpdateForm';
 import { useState } from 'react';
 import FormAdd from '@/src/components/FormAdd/FormAdd';
 import FormUpdate from '@/src/components/FormUpdate/FormUpdate';
