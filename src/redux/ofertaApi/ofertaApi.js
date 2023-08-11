@@ -70,6 +70,51 @@ export const ofertaApi = createApi({
       }),
       invalidatesTags: ['products'],
     }),
+    addCountries: builder.mutation({
+      query: (formData) => ({
+        url: `/countries `,
+        method: 'POST',
+        body: formData,
+      }),
+
+      invalidatesTags: ['countries'],
+    }),
+    addCategoties: builder.mutation({
+      query: (formData) => ({
+        url: `/categories `,
+        method: 'POST',
+        body: formData,
+      }),
+
+      invalidatesTags: ['categories'],
+    }),
+    addSubCategoties: builder.mutation({
+      query: (formData) => ({
+        url: `/subcategories `,
+        method: 'POST',
+        body: formData,
+      }),
+
+      invalidatesTags: ['subcategories'],
+    }),
+    addColoros: builder.mutation({
+      query: (formData) => ({
+        url: `/colors `,
+        method: 'POST',
+        body: formData,
+      }),
+
+      invalidatesTags: ['colors'],
+    }),
+    addProduct: builder.mutation({
+      query: (formData) => ({
+        url: `/products `,
+        method: 'POST',
+        body: formData,
+      }),
+
+      invalidatesTags: ['products'],
+    }),
   }),
 });
 
@@ -86,4 +131,9 @@ export const {
   useGetAllSubcategoryQuery,
   useGetAllColorQuery,
   useUpdateProductMutation,
+  useAddCountriesMutation,
+  useAddCategotiesMutation,
+  useAddSubCategotiesMutation,
+  useAddColorosMutation,
+  useAddProductMutation,
 } = ofertaApi;

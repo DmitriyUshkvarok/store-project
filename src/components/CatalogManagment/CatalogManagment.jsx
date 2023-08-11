@@ -9,7 +9,8 @@ import {
   CaptionWrap,
 } from './CatalogManagment.styled';
 import { useState } from 'react';
-import ModalUpdateForm from '../modalAdmin/ModalUpdateForm';
+import ModalUpdateForm from '../ModalAdmin/ModalUpdateForm';
+import FormUpdateProductAdmin from '../FormUpdateProductAdmin/FormUpdateProductAdmin';
 
 function truncateText(text, maxLength) {
   if (text.length <= maxLength) {
@@ -29,6 +30,7 @@ const CatalogManagementAdmin = () => {
     setShow(true);
   };
   const { data } = useGetAllInfoProductQuery();
+  console.log(data);
 
   return (
     <>
@@ -85,11 +87,9 @@ const CatalogManagementAdmin = () => {
           </ItemOferta>
         ))}
       </ListOferta>
-      <ModalUpdateForm
-        selectProduct={selectProduct}
-        show={show}
-        handleClose={handleClose}
-      />
+      <ModalUpdateForm show={show} handleClose={handleClose}>
+        <FormUpdateProductAdmin selectProduct={selectProduct} />
+      </ModalUpdateForm>
     </>
   );
 };

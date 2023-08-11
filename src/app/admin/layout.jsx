@@ -10,7 +10,7 @@ const AdminLayout = ({ children }) => {
           <div>
             <AdminSidebar />
           </div>
-          <div>{children}</div>
+          <div style={{ width: '100%' }}>{children}</div>
         </div>
       </Container>
     </section>
