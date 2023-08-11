@@ -2,6 +2,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
 
+import Slider from 'rc-slider';
+
 export const AboutBox = styled.div`
   padding-left: 30px;
   padding-right: 30px;
@@ -12,33 +14,96 @@ export const AboutBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  margin-top: 30px;
+  padding: 20px 0;
 `;
 
 export const Box = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  max-width: 1000px;
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+  /* max-width: 1000px; */
   margin: 0 auto;
 
-  @media screen and (min-width: 1060px) {
+  /* @media screen and (min-width: 1060px) {
     justify-content: start;
+  } */
+`;
+
+export const BoxFilter = styled.div`
+  padding: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+export const TitleFilter = styled.h3`
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #222;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  margin-bottom: 5px;
+`;
+
+export const StyledSelect = styled.select`
+  width: 100%;
+  min-width: 150px;
+  padding: 5px;
+  border: 1.5px solid #000;
+  font-size: 14px;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+`;
+export const Chip = styled.span`
+  font-size: 14px;
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 5px;
+`;
+
+export const StyledSlider = styled(Slider)`
+  .rc-slider-rail {
+    background: white;
+    border: 1px solid #aaaaaa;
+    height: 6px;
+  }
+
+  .rc-slider-track {
+    background: #aaaaaa;
+    height: 6px;
+  }
+
+  .rc-slider-handle {
+    border: 2px solid #aaaaaa;
+    background: white;
+    height: 15px;
+    &:hover,
+    &:focus {
+      border: 2px solid #8f8d8d;
+      border-color: #8f8d8d;
+    }
+  }
+  && .rc-slider-handle-dragging {
+    border-color: #8f8d8d !important;
+    box-shadow: 0 0 0 5px #8f8d8d !important;
   }
 `;
+
+// ================   ProductsList
 export const ProductsList = styled.ul`
   display: flex;
-  justify-content: start;
+  /* justify-content: center; */
   flex-wrap: wrap;
   gap: 20px;
-  padding: 40px;
+  padding: 40px 20px;
 
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
 
-  @media screen and (min-width: 1060px) {
+  @media screen and (min-width: 990px) {
+    justify-content: start;
   }
 `;
 export const Overlay = styled.div`
@@ -123,6 +188,36 @@ export const Picture = styled(Image)`
   border-radius: 6px 6px 0 0;
 `;
 
+export const Btn = styled.button`
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 700px) {
+    width: 350px;
+  }
+  cursor: pointer;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: gotham;
+  font-size: 14px;
+  font-weight: bold;
+  height: 42px;
+  letter-spacing: 6px;
+  line-height: 42px;
+  padding-left: 20px;
+  text-transform: uppercase;
+
+  border: 2px solid;
+
+  margin: 0 auto;
+  &:hover {
+    outline: none;
+    opacity: 0.7;
+  }
+`;
+// =====================
 export const ProductDetailSection = styled.section`
   width: 100vw;
   min-height: 100vh;
