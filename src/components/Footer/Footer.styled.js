@@ -26,6 +26,10 @@ export const Text = styled.p`
   font-size: 14px;
   line-height: 22px;
   text-align: justify;
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
 `;
 
 export const Title = styled.h2`
@@ -46,6 +50,10 @@ export const ListContact = styled.ul`
 
 export const ItemContact = styled.li`
   color: #b4b4b4;
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
 `;
 
 export const Box = styled.div`
@@ -64,6 +72,10 @@ export const Item = styled.li`
   color: #b4b4b4;
   font-size: 14px;
   letter-spacing: 0.025em;
+  &:hover,
+  &:focus {
+    color: #fff;
+  }
 `;
 
 export const BoxAbout = styled.div`

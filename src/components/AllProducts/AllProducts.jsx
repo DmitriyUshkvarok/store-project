@@ -3,7 +3,20 @@ import { useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import Link from 'next/link';
 import 'rc-slider/assets/index.css';
-import { Box, AboutBox, Title, Products, Picture } from './AllProducts.styled';
+import {
+  Box,
+  AboutBox,
+  Title,
+  ProductsList,
+  Picture,
+  Item,
+  BoxTitle,
+  TitleProduct,
+  Price,
+  Overlay,
+  TextOverlay,
+  PictureOverlay,
+} from './AllProducts.styled';
 import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import { useDispatch } from 'react-redux';
@@ -196,12 +209,12 @@ const AllProducts = () => {
           </div>
 
           {/* ===============ФІЛЬР END ====================*/}
-          <Products>
+          <ProductsList>
             {isLoading ? (
               <Spinner />
             ) : (
               allProductsFiltered.map((product) => (
-                <li
+                <Item
                   key={product._id}
                   onClick={() =>
                     handleChooseProduct(
@@ -219,20 +232,32 @@ const AllProducts = () => {
                       product.color.name
                     )}`}
                   >
-                    <Picture
-                      src={product.url}
-                      alt={`Image`}
-                      width="230"
-                      height="1266"
-                    />
-                    <h2>{product.name}</h2>
-                    <p>Виробник: {product.country.name}</p>
-                    <p>Ціна: {product.price} грн.</p>
+                    <PictureOverlay>
+                      <Picture
+                        src={product.url}
+                        alt={`Image`}
+                        width="230"
+                        height="1266"
+                      />
+                    </PictureOverlay>
+
+                    <BoxTitle>
+                      <TitleProduct>{product.name}</TitleProduct>
+                      <Price>Ціна: {product.price} грн.</Price>
+                    </BoxTitle>
+
+                    <Overlay>
+                      <TextOverlay>{product.description}</TextOverlay>
+                      <TextOverlay>
+                        Виробник: {product.country.name}
+                      </TextOverlay>
+                    </Overlay>
+                    <div></div>
                   </Link>
-                </li>
+                </Item>
               ))
             )}
-          </Products>
+          </ProductsList>
           {data?.products.length >= 10 && (
             <button type="button" onClick={handelMoreLoad}>
               Завантажити ще товар
