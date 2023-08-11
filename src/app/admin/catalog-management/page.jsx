@@ -1,9 +1,7 @@
+import CatalogManagementAdmin from '@/src/components/CatalogManagment/CatalogManagment';
+
 const CatalogManagement = () => {
-  return (
-    <div>
-      <h2>CatalogManagement</h2>
-    </div>
-  );
+  return <CatalogManagementAdmin />;
 };
 
 export default CatalogManagement;

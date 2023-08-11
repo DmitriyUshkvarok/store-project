@@ -37,7 +37,7 @@ const AdminSidebar = () => {
             }
             href="/admin/category-management"
           >
-            Управление категориями
+            Добавить товар
           </StyleLink>
           <StyleBsFillGearFill />
         </PanelCategoryListItem>
@@ -46,7 +46,7 @@ const AdminSidebar = () => {
             className={pathname === '/admin/product-management' ? 'active' : ''}
             href="/admin/product-management"
           >
-            Управление продуктами
+            Галерея
           </StyleLink>
           <StyleBsFillGearFill />
         </PanelCategoryListItem>

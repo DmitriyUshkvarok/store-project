@@ -5,7 +5,10 @@ import { slugify } from 'transliteration';
 import BtnBuy from '../BtnBuy/BtnBuy';
 import { useDispatch } from 'react-redux';
 import { setDataAndId } from '@/src/redux/ofertaApi/ofertaSlice';
-import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import {
+  useGetOfertaQuery,
+  useGetAllProductQuery,
+} from '@/src/redux/ofertaApi/ofertaApi';
 import {
   ListCatalog,
   ItemListCatalog,
@@ -24,7 +27,7 @@ import Spinner from '../SpinerOferta/SpinerOferta';
 
 const CatalogList = () => {
   const { data, isLoading } = useGetOfertaQuery();
-  console.log(data);
+
   const dispatch = useDispatch();
   const handleChooseCountry = (country) => {
     dispatch(setDataAndId(country));

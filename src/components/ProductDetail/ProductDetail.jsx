@@ -57,6 +57,8 @@ const ProductDetail = () => {
     colorId: color.id,
   });
 
+  console.log(data);
+
   const productInfo = data?.[0];
 
   const isProductInCart = cartItems.some(
