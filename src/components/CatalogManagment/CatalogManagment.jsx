@@ -9,8 +9,8 @@ import {
   CaptionWrap,
 } from './CatalogManagment.styled';
 import { useState } from 'react';
-import ModalUpdateForm from '../ModalAdmin/ModalUpdateForm';
-import FormUpdateProductAdmin from '../FormUpdateProductAdmin/FormUpdateProductAdmin';
+import ModalUpdateForm from '@/src/components/ModalAdmin/ModalUpdateForm';
+import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 
 function truncateText(text, maxLength) {
   if (text.length <= maxLength) {

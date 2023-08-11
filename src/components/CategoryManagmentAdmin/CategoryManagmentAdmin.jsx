@@ -17,11 +17,11 @@ import {
   TitleDesc,
   Title,
 } from './CategoryManagmentAdmin.styled';
-import ModalUpdateForm from '../ModalAdmin/ModalUpdateForm';
+import ModalUpdateForm from '@/src/components/ModalAdmin/ModalUpdateForm';
 import { useState } from 'react';
-import FormAdd from '../FormAdd/FormAdd';
-import FormUpdate from '../FormUpdate/FormUpdate';
-import FormAddAny from '../FormAddAny/FormAddAny';
+import FormAdd from '@/src/components/FormAdd/FormAdd';
+import FormUpdate from '@/src/components/FormUpdate/FormUpdate';
+import FormAddAny from '@/src/components/FormAddAny/FormAddAny';
 
 const CategoryManagmentAdmin = () => {
   const [show, setShow] = useState(false);
