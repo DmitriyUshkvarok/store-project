@@ -159,6 +159,14 @@ const Navigation = () => {
               </li>
               <li>
                 <StyleLinkForBurger
+                  href="/allproducts"
+                  className={pathname === '/allproducts' ? 'active' : ''}
+                >
+                  Увесь наш товар
+                </StyleLinkForBurger>
+              </li>
+              <li>
+                <StyleLinkForBurger
                   href="/gallery"
                   className={pathname === '/gallery' ? 'active' : ''}
                 >
