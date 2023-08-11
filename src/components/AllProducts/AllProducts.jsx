@@ -47,8 +47,6 @@ const AllProducts = () => {
     }
   }, [data]);
 
-  console.log(countries);
-
   const handleChooseProduct = (country, category, subcategory, color) => {
     console.log(`subcategory`, subcategory);
     dispatch(setDataAndId(country));
@@ -170,6 +168,9 @@ const AllProducts = () => {
             )}
           </select>
           <div>
+            <span>
+              Діапазон цін: {qwery.minPrice} грн. - {qwery.maxPrice} грн.
+            </span>
             <Slider
               range
               value={[qwery.minPrice, qwery.maxPrice]}
@@ -183,9 +184,6 @@ const AllProducts = () => {
               min={0}
               max={10000}
             />
-            <span>
-              Діапазон цін: {qwery.minPrice} грн. - {qwery.maxPrice} грн.
-            </span>
           </div>
           <Products>
             {isLoading ? (
