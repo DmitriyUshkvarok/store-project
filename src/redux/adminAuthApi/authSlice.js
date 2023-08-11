@@ -18,6 +18,7 @@ const authSlice = createSlice({
     },
     token: null,
     isLoggedIn: false,
+    isRefreshing: false,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -29,12 +30,26 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addMatcher(authApi.endpoints.logout.matchFulfilled, (state) => {
-        state.user = {
+        state.admin = {
           email: null,
           id: null,
         };
         state.token = null;
         state.isLoggedIn = false;
+      })
+      .addMatcher(authApi.endpoints.checkToken.matchPending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addMatcher(
+        authApi.endpoints.checkToken.matchFulfilled,
+        (state, action) => {
+          state.admin = action.payload;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        }
+      )
+      .addMatcher(authApi.endpoints.checkToken.matchRejected, (state) => {
+        state.isRefreshing = false;
       });
   },
 });

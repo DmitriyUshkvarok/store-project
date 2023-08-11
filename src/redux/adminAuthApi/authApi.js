@@ -29,7 +29,12 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['auth'],
     }),
+    checkToken: builder.query({
+      query: () => '/admin/check',
+      providesTags: ['auth'],
+    }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = authApi;
+export const { useLoginMutation, useLogoutMutation, useCheckTokenQuery } =
+  authApi;
