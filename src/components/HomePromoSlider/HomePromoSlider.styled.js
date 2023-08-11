@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 
 import Image from 'next/image';
 
 export const Section = styled.section`
   @media screen and (min-width: 320px) {
-    /* margin-top: 93px; */
     height: 315px;
   }
 
@@ -25,7 +23,6 @@ export const Box = styled.div`
     height: 646px;
   }
 `;
-// export const ScrollImageFlag = styled(Image)`
 //   @media screen and (min-width: 320px) {
 //     position: absolute;
 //     left: 0;
@@ -77,18 +74,29 @@ export const ScrollImage = styled(Image)`
     height: 646px;
   }
 `;
+export const BoxTitle = styled.div`
+  @media screen and (min-width: 320px) {
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+    height: 90%;
+    align-items: flex-end;
+  }
+  @media screen and (min-width: 520px) {
+    width: 500px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1000px;
+  }
+`;
 
 export const Title = styled.h2`
-  position: absolute;
-  bottom: 35px;
-  left: 30px;
-  z-index: 2;
   font-size: 20px;
-
-  background-color: #333333;
   color: #ffffff;
-  font-weight: bold;
-  padding: 10px;
+  padding: 10px 25px;
   text-align: center;
   text-transform: uppercase;
+  font-weight: bold;
+  opacity: 0.8;
+  background-color: #333333;
 `;

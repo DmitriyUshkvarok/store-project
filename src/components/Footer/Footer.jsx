@@ -8,10 +8,12 @@ import {
   ListContact,
   StyleFooter,
   BoxFooter,
+  Text,
   Title,
   Box,
   List,
   Item,
+  BoxAbout,
 } from './Footer.styled';
 const Footer = () => {
   return (
@@ -19,8 +21,18 @@ const Footer = () => {
       <Container>
         <BoxFooter>
           <Box>
+            <Title>Про нас</Title>
+            <Text>
+              Приватне підприємтсво `Хімбрук` є компанією з багаторічним
+              досвідом дистрибуції неорганічних синтетичних пігментів для різних
+              галузей промисловості (виробництва, будівельних матеріалів,
+              лакофарбової продукції, штучних пластмас і ін.).
+            </Text>
+          </Box>
+
+          <Box>
             <address>
-              <Title>ZWUKSO Sp. z oo Sp.k.</Title>
+              <Title>ПП `Хімбрук`</Title>
               <ListContact>
                 <ItemContact>
                   <a
@@ -40,26 +52,32 @@ const Footer = () => {
             </address>
           </Box>
           <Box>
+            <Title>Навігація</Title>
             <List>
               <Item>
-                <MdKeyboardArrowRight /> <Link href={`/home`}>Home Page</Link>
+                <MdKeyboardArrowRight />
+                <Link href={`/home`}> Головна сторінка</Link>
               </Item>
               <Item>
-                <MdKeyboardArrowRight /> <Link href={`/about`}>About Us</Link>
+                <MdKeyboardArrowRight /> <Link href={`/about`}> Про нас</Link>
               </Item>
               <Item>
-                <MdKeyboardArrowRight /> <Link href={`/oferta`}>Oferta</Link>
+                <MdKeyboardArrowRight />
+                <Link href={`/oferta`}> Каталог товарів</Link>
               </Item>
               <Item>
-                <MdKeyboardArrowRight /> <Link href={`/gallery`}>Gallery</Link>
+                <MdKeyboardArrowRight /> <Link href={`/gallery`}>Галерея</Link>
               </Item>
               <Item>
-                <MdKeyboardArrowRight /> <Link href={`/contact`}>Contact</Link>
+                <MdKeyboardArrowRight /> <Link href={`/contact`}>Контакти</Link>
               </Item>
             </List>
           </Box>
         </BoxFooter>
       </Container>
+      <BoxAbout>
+        <p>Усі права захищено 2023 Хімбрук веб-сайт </p>
+      </BoxAbout>
     </StyleFooter>
   );
 };

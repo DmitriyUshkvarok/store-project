@@ -127,7 +127,7 @@ export const DropdownForBurger = styled.div`
   opacity: ${(props) => (props.togle ? 1 : 0)};
   transform: translateY(${(props) => (props.menuVisible ? '0' : '-10px')});
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  left: -10vh;
+  left: -124px;
   position: absolute;
   background-color: #242424;
   min-width: 160px;
@@ -163,8 +163,8 @@ export const StyleLinkForBurger = styled(Link)`
   color: #ffffff;
   font-size: 14px;
   font-weight: bold;
-  line-height: 53px;
-  padding: 25px;
+  line-height: 23px;
+  padding: 15px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.active,

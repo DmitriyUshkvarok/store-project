@@ -1,8 +1,12 @@
 'use client';
 
-import Image from 'next/image';
-import Container from '../Container/Container';
-import { Section, ScrollImage, Box, Title } from './HomePromoSlider.styled';
+import {
+  Section,
+  ScrollImage,
+  Box,
+  Title,
+  BoxTitle,
+} from './HomePromoSlider.styled';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -11,8 +15,6 @@ export const HomePromoSlider = () => {
   const EmptyArrow = () => <div style={{ display: 'none' }}></div>;
 
   const settings = {
-    // dots: true,
-    // infinite: true,
     speed: 2500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -26,46 +28,51 @@ export const HomePromoSlider = () => {
 
   return (
     <Section>
-      {/* <Container> */}
       <div>
         <Slider {...settings}>
           <Box>
             <ScrollImage
-              src={'/autoScroll/Flag.png'}
+              src={'/autoScroll/Flag.jpg'}
               alt={'autoScroll'}
               width="2000"
               height="646"
             />
-            <Title>СЛАВА УКРАЇНІ!</Title>
+            <BoxTitle>
+              <Title>СЛАВА УКРАЇНІ!</Title>
+            </BoxTitle>
           </Box>
           <Box>
             <ScrollImage
-              // src={'../../../public/autoScroll/25.jpg'}
               src={'/autoScroll/horse.jpg'}
               alt={'autoScroll'}
               width="2000"
               height="646"
             />
-            <Title>PRETIOX TITANIUM WHITE</Title>
+            <BoxTitle>
+              <Title>PRETIOX TITANIUM WHITE</Title>
+            </BoxTitle>
           </Box>
           <Box>
             <ScrollImage
-              //   src={'../../../public/autoScroll/29.jpg'}
               src={'/autoScroll/strawberry.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
               height="646"
             />
-            <Title>пігменти для фарб</Title>
+            <BoxTitle>
+              <Title>пігменти для фарб</Title>
+            </BoxTitle>
           </Box>
           <Box>
             <ScrollImage
-              src={'/autoScroll/kraska.png'}
+              src={'/autoScroll/promo-farby.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
               height="646"
             />
-            <Title>пігменти для бетону</Title>
+            <BoxTitle>
+              <Title>пігменти для бетону</Title>
+            </BoxTitle>
           </Box>
 
           <Box>
@@ -75,7 +82,9 @@ export const HomePromoSlider = () => {
               width="2000"
               height="646"
             />
-            <Title>пігменти кобальтовий синій</Title>
+            <BoxTitle>
+              <Title>пігменти кобальтовий синій</Title>
+            </BoxTitle>
           </Box>
           <Box>
             <ScrollImage
@@ -84,7 +93,9 @@ export const HomePromoSlider = () => {
               width="2000"
               height="646"
             />
-            <Title>пігменти для асфальту</Title>
+            <BoxTitle>
+              <Title>пігменти для асфальту</Title>
+            </BoxTitle>
           </Box>
           <Box>
             <ScrollImage
@@ -93,11 +104,12 @@ export const HomePromoSlider = () => {
               width="2000"
               height="646"
             />
-            <Title>пігменти хром зелений</Title>
+            <BoxTitle>
+              <Title>пігменти хром зелений</Title>
+            </BoxTitle>
           </Box>
         </Slider>
       </div>
-      {/* </Container> */}
     </Section>
   );
 };

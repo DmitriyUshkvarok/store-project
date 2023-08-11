@@ -12,7 +12,7 @@ const PartnersSlider = () => {
       <Container>
         <Marquee speed={50} gradient={false} pauseOnHover={true}>
           <Image
-            src={'/autoScroll/Flag.png'}
+            src={'/autoScroll/Flag.jpg'}
             alt={'autoScroll'}
             width="100"
             height="100"
