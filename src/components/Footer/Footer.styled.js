@@ -3,19 +3,29 @@ import styled from 'styled-components';
 export const StyleFooter = styled.footer`
   border-bottom: 1px solid #505050;
   overflow: hidden;
-  padding-bottom: 70px;
-  padding-top: 90px;
+
+  padding-top: 70px;
   background: #242424;
   background-image: url('/him.png');
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: center;
 `;
 export const BoxFooter = styled.div`
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+  }
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-  flex-wrap: wrap;
+  padding-left: 20px;
+  padding-right: 20px;
   gap: 40px;
+`;
+export const Text = styled.p`
+  color: #b4b4b4;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: justify;
 `;
 
 export const Title = styled.h2`
@@ -39,15 +49,29 @@ export const ItemContact = styled.li`
 `;
 
 export const Box = styled.div`
-  width: 200px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+  width: 250px;
+  padding-bottom: 50px;
 `;
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 10px;
 `;
 export const Item = styled.li`
   color: #b4b4b4;
   font-size: 14px;
+  letter-spacing: 0.025em;
+`;
+
+export const BoxAbout = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  border-top: 0.5px solid #b4b4b4;
+  padding: 20px;
+  color: #b4b4b4;
+  font-size: 11px;
   letter-spacing: 0.025em;
 `;
