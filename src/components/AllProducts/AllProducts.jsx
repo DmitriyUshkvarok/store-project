@@ -24,14 +24,16 @@ import {
 
 const AllProducts = () => {
   const [allProductsFiltered, setAllProducts] = useState([]);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [qwery, setQwery] = useState({
     countryId: '',
     categoryId: '',
     subcategoryId: '',
     colorId: '',
     minPrice: 0,
-    maxPrice: 100000,
-    page: 1,
+    maxPrice: 10000,
+    page: currentPage,
   });
   const dispatch = useDispatch();
 
@@ -42,20 +44,37 @@ const AllProducts = () => {
   const colors = useGetColorsQuery();
 
   useEffect(() => {
-    if (data) {
+    if (data && isLoadingMore) {
+      setAllProducts((prevProducts) => [...prevProducts, ...data.products]);
+      setIsLoadingMore(false);
+    }
+    if (data && !isLoadingMore) {
+      setQwery((prevQwery) => ({
+        ...prevQwery,
+        page: 1,
+      }));
       setAllProducts(data.products);
     }
   }, [data]);
 
   const handleChooseProduct = (country, category, subcategory, color) => {
-    console.log(`subcategory`, subcategory);
     dispatch(setDataAndId(country));
     dispatch(setDataAndIdCategoty(category));
     dispatch(setDataAndIdSubCategoty(subcategory));
     dispatch(setDataAndIdColor(color));
   };
 
+  const handelMoreLoad = () => {
+    setIsLoadingMore(true);
+    const nextPage = currentPage + 1;
+    setQwery((prevQwery) => ({
+      ...prevQwery,
+      page: nextPage,
+    }));
+  };
+
   console.log(`allProductsFiltered`, allProductsFiltered);
+  console.log(`qwery==>>>>`, qwery);
   return (
     <>
       <AboutBox>
@@ -214,6 +233,11 @@ const AllProducts = () => {
               ))
             )}
           </Products>
+          {data?.products.length >= 10 && (
+            <button type="button" onClick={handelMoreLoad}>
+              Завантажити ще товар
+            </button>
+          )}
         </Box>
       </AboutBox>
     </>
