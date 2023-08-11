@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { clearToken } from './authSlice';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -31,6 +32,14 @@ export const authApi = createApi({
     }),
     checkToken: builder.query({
       query: () => '/admin/check',
+
+      onQueryStarted: (_, { dispatch, getState, queryFulfilled }) => {
+        const token = getState().auth.token;
+        if (!token) {
+          dispatch(clearToken());
+          queryFulfilled(undefined);
+        }
+      },
       providesTags: ['auth'],
     }),
   }),

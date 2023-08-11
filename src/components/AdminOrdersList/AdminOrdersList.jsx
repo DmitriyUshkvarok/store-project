@@ -93,76 +93,79 @@ const AdminOrdersList = () => {
       {ordersFromServer?.length === 0 ? (
         <p>Немає доступних замовлень</p>
       ) : (
-        ordersFromServer?.map((order) => (
-          <AllOrdersList key={order._id}>
-            <BtnStatusBlock>
-              <BtnStatus
-                onClick={() => handleToggleStatus(order._id, !order.done)}
-                disabled={order.done}
-              >
-                {order.done ? (
-                  <>
-                    Виконано <AiFillCheckCircle color="green" size={20} />
-                  </>
-                ) : (
-                  <>
-                    В очікуванні <MdPendingActions color="orange" size={20} />
-                  </>
-                )}
-              </BtnStatus>
-            </BtnStatusBlock>
-            <UserInfoBlock>
-              <UserInfoTitle>Інформація про покупця:</UserInfoTitle>
-              <UserInfoName>
-                Name: <SpanInfoUser>{order.buyer.name}</SpanInfoUser>
-              </UserInfoName>
-              <UserInfoEmail>
-                Email: <SpanInfoUser>{order.buyer.email}</SpanInfoUser>
-              </UserInfoEmail>
-              <UserInfoPhone>
-                Phone: <SpanInfoUser>{order.buyer.phone}</SpanInfoUser>
-              </UserInfoPhone>
-              <UserInfLocation>
-                Location: <SpanInfoUser>{order.buyer.address}</SpanInfoUser>
-              </UserInfLocation>
-            </UserInfoBlock>
-            <OrderItemsBlock>
-              <OrderItemsTitle>Елементи замовлення:</OrderItemsTitle>
-              <OrderItemsList>
-                {order.products.map((item) => (
-                  <OrderItemsListItem
-                    key={item.productId}
-                    isPending={order.done}
-                  >
-                    <OrderName>{item.name}</OrderName>
-                    <OrderData>Дата заказа: {item.date}</OrderData>
-                    <p> {item.color}</p>
-                    <p> {item.brand}</p>
-                    <p>Ціна: {item.price}</p>
-                    {order.quantity.map((quantityItem) => {
-                      if (quantityItem.productId === item.productId) {
-                        return (
-                          <p key={quantityItem._id}>
-                            Кількість: {quantityItem.productQuantity}
-                          </p>
-                        );
-                      }
-                      return null;
-                    })}
-                  </OrderItemsListItem>
-                ))}
-              </OrderItemsList>
-            </OrderItemsBlock>
-            <TotalPriceBlock>
-              <h2>Разом:</h2>
-              <p>{order.totalPrice} гривень</p>
-            </TotalPriceBlock>
-            <StyleAdminRiDeleteBin5Fill
-              size={25}
-              onClick={() => handleDeleteOrder(order._id)}
-            />
-          </AllOrdersList>
-        ))
+        ordersFromServer
+          .slice()
+          .reverse()
+          .map((order) => (
+            <AllOrdersList key={order._id}>
+              <BtnStatusBlock>
+                <BtnStatus
+                  onClick={() => handleToggleStatus(order._id, !order.done)}
+                  disabled={order.done}
+                >
+                  {order.done ? (
+                    <>
+                      Виконано <AiFillCheckCircle color="green" size={20} />
+                    </>
+                  ) : (
+                    <>
+                      В очікуванні <MdPendingActions color="orange" size={20} />
+                    </>
+                  )}
+                </BtnStatus>
+              </BtnStatusBlock>
+              <UserInfoBlock>
+                <UserInfoTitle>Інформація про покупця:</UserInfoTitle>
+                <UserInfoName>
+                  Name: <SpanInfoUser>{order.buyer.name}</SpanInfoUser>
+                </UserInfoName>
+                <UserInfoEmail>
+                  Email: <SpanInfoUser>{order.buyer.email}</SpanInfoUser>
+                </UserInfoEmail>
+                <UserInfoPhone>
+                  Phone: <SpanInfoUser>{order.buyer.phone}</SpanInfoUser>
+                </UserInfoPhone>
+                <UserInfLocation>
+                  Location: <SpanInfoUser>{order.buyer.address}</SpanInfoUser>
+                </UserInfLocation>
+              </UserInfoBlock>
+              <OrderItemsBlock>
+                <OrderItemsTitle>Елементи замовлення:</OrderItemsTitle>
+                <OrderItemsList>
+                  {order.products.map((item) => (
+                    <OrderItemsListItem
+                      key={item.productId}
+                      isPending={order.done}
+                    >
+                      <OrderName>{item.name}</OrderName>
+                      <OrderData>Дата заказа: {item.date}</OrderData>
+                      <p> {item.color}</p>
+                      <p> {item.brand}</p>
+                      <p>Ціна: {item.price}</p>
+                      {order.quantity.map((quantityItem) => {
+                        if (quantityItem.productId === item.productId) {
+                          return (
+                            <p key={quantityItem._id}>
+                              Кількість: {quantityItem.productQuantity}
+                            </p>
+                          );
+                        }
+                        return null;
+                      })}
+                    </OrderItemsListItem>
+                  ))}
+                </OrderItemsList>
+              </OrderItemsBlock>
+              <TotalPriceBlock>
+                <h2>Разом:</h2>
+                <p>{order.totalPrice} гривень</p>
+              </TotalPriceBlock>
+              <StyleAdminRiDeleteBin5Fill
+                size={25}
+                onClick={() => handleDeleteOrder(order._id)}
+              />
+            </AllOrdersList>
+          ))
       )}
       {ordersFromServer?.length > 0 && (
         <ReactPaginate

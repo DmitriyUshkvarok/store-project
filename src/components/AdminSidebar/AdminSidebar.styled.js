@@ -29,6 +29,8 @@ export const StyleLink = styled(Link)`
   justify-content: start;
   align-items: center;
   padding: 10px;
+  text-decoration: none;
+  color: inherit;
 
   &.active {
     background-color: lightgrey;

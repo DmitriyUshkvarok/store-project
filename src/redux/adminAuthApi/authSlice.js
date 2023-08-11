@@ -20,7 +20,11 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
   },
-  reducers: {},
+  reducers: {
+    clearToken: (state) => {
+      state.token = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
@@ -59,4 +63,5 @@ const persisteAuthReducer = persistReducer(
   authSlice.reducer
 );
 
+export const { clearToken } = authSlice.actions;
 export default persisteAuthReducer;

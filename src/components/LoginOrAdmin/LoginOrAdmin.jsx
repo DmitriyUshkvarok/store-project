@@ -14,6 +14,7 @@ const LoginOrAdmin = () => {
     }
   );
 
+  console.log(tokenInfo);
   if (isSuccess && tokenInfo) {
     return <AdminContent />;
   } else {
