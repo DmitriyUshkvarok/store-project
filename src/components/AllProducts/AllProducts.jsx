@@ -32,7 +32,7 @@ const AllProducts = () => {
     subcategoryId: '',
     colorId: '',
     minPrice: 0,
-    maxPrice: 100000000,
+    maxPrice: 10000,
     page: currentPage,
   });
   const dispatch = useDispatch();
@@ -190,7 +190,7 @@ const AllProducts = () => {
                   }));
                 }}
                 min={0}
-                max={100000000}
+                max={10000}
               />
             </div>
           </div>
