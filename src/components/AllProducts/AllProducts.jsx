@@ -55,27 +55,16 @@ const AllProducts = () => {
     dispatch(setDataAndIdColor(color));
   };
 
-  //   const handleMinPriceChange = (value) => {
-  //     setQwery((prevQwery) => ({
-  //       ...prevQwery,
-  //       minPrice: value,
-  //     }));
-  //   };
-
-  //   const handleMaxPriceChange = (value) => {
-  //     setQwery((prevQwery) => ({
-  //       ...prevQwery,
-  //       maxPrice: value,
-  //     }));
-  //   };
-
+  console.log(`allProductsFiltered`, allProductsFiltered);
   return (
     <>
       <AboutBox>
         <Box>
           <Title>Увесь товар</Title>
+          {/* ===============ФІЛЬР ====================*/}
           <div>
             <p>ФІЛЬТР</p>
+
             <p>Обери країну</p>
             <select
               value={qwery.countryId}
@@ -144,47 +133,50 @@ const AllProducts = () => {
                 ))
               )}
             </select>
-          </div>
-          <p>Обери колір</p>
-          <select
-            value={qwery.colorId}
-            onChange={(e) => {
-              const selectedCountryId = e.target.value;
-              setQwery((prevQwery) => ({
-                ...prevQwery,
-                colorId: selectedCountryId,
-              }));
-            }}
-          >
-            <option value="">Всі кольори</option>
-            {colors.isLoading ? (
-              <option value="">Loading</option>
-            ) : (
-              colors.data.map((color) => (
-                <option key={color._id} value={color._id}>
-                  {color.name}
-                </option>
-              ))
-            )}
-          </select>
-          <div>
-            <span>
-              Діапазон цін: {qwery.minPrice} грн. - {qwery.maxPrice} грн.
-            </span>
-            <Slider
-              range
-              value={[qwery.minPrice, qwery.maxPrice]}
-              onChange={(values) => {
+
+            <p>Обери колір</p>
+            <select
+              value={qwery.colorId}
+              onChange={(e) => {
+                const selectedCountryId = e.target.value;
                 setQwery((prevQwery) => ({
                   ...prevQwery,
-                  minPrice: values[0],
-                  maxPrice: values[1],
+                  colorId: selectedCountryId,
                 }));
               }}
-              min={0}
-              max={10000}
-            />
+            >
+              <option value="">Всі кольори</option>
+              {colors.isLoading ? (
+                <option value="">Loading</option>
+              ) : (
+                colors.data.map((color) => (
+                  <option key={color._id} value={color._id}>
+                    {color.name}
+                  </option>
+                ))
+              )}
+            </select>
+            <div>
+              <span>
+                Діапазон цін: {qwery.minPrice} грн. - {qwery.maxPrice} грн.
+              </span>
+              <Slider
+                range
+                value={[qwery.minPrice, qwery.maxPrice]}
+                onChange={(values) => {
+                  setQwery((prevQwery) => ({
+                    ...prevQwery,
+                    minPrice: values[0],
+                    maxPrice: values[1],
+                  }));
+                }}
+                min={0}
+                max={10000}
+              />
+            </div>
           </div>
+
+          {/* ===============ФІЛЬР END ====================*/}
           <Products>
             {isLoading ? (
               <Spinner />
@@ -215,7 +207,7 @@ const AllProducts = () => {
                       height="1266"
                     />
                     <h2>{product.name}</h2>
-                    <p>Виробник: {product.country[name]}</p>
+                    <p>Виробник: {product.country.name}</p>
                     <p>Ціна: {product.price} грн.</p>
                   </Link>
                 </li>
