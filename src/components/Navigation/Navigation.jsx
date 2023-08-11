@@ -173,6 +173,14 @@ const Navigation = () => {
                   Галерея
                 </StyleLinkForBurger>
               </li>
+              <li>
+                <StyleLinkForBurger
+                  href="/contact"
+                  className={pathname === '/contact' ? 'active' : ''}
+                >
+                  Контакти
+                </StyleLinkForBurger>
+              </li>
             </ul>
 
             {/* <DropDownMenuForBurger subTogle={subTogle}>

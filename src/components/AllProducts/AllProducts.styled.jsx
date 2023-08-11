@@ -7,7 +7,8 @@ export const AboutBox = styled.div`
   padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 34px;
+  padding-bottom: 34px;
+  background-color: #80808029;
 `;
 
 export const Title = styled.h1`
@@ -26,35 +27,100 @@ export const Box = styled.div`
     justify-content: start;
   }
 `;
-export const Products = styled.ul`
+export const ProductsList = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
-  gap: 5px;
-  text-align: justify;
-  padding-top: 30px;
-  border-top: 4px solid gray;
+  gap: 20px;
+  padding: 40px;
+
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
 
-  color: rgb(138, 138, 138);
-  margin-top: 30px;
-
   @media screen and (min-width: 1060px) {
-    justify-content: start;
   }
+`;
+export const Overlay = styled.div`
+  display: inline-block;
+  position: absolute;
+  content: '';
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 10px;
+  opacity: 0.8;
+  background-color: #333333;
+  overflow: auto;
+  transform: translateY(101%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const TextOverlay = styled.p`
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  line-height: 20px;
+`;
+
+export const PictureOverlay = styled.div``;
+
+export const Item = styled.li`
+  position: relative;
+  overflow: hidden;
+  width: 270px;
+  background-color: #fff;
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+
+  transition: transform 0.25s;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+  &:hover ${Overlay} {
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const BoxTitle = styled.div`
+  padding: 10px;
+`;
+export const TitleProduct = styled.h3`
+  color: #131313;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  line-height: 20px;
+  margin-bottom: 13px;
+`;
+
+export const Price = styled.p`
+  color: #131313;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  line-height: 20px;
+  margin-bottom: 13px;
 `;
 
 export const Picture = styled(Image)`
   object-fit: cover;
-  transition: transform 0.25s;
   overflow: hidden;
-  max-height: 206px;
+  width: 100%;
 
-  &:hover {
-    transform: scale(1.05);
-  }
+  height: 160px;
+  border-radius: 6px 6px 0 0;
 `;
 
 export const ProductDetailSection = styled.section`
