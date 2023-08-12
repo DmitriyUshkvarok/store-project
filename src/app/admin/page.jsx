@@ -1,9 +1,9 @@
-import AdminPanel from '@/src/components/AdminPanel/AdminPanel';
+import LoginOrAdmin from '@/src/components/LoginOrAdmin/LoginOrAdmin';
 
 const Admin = () => {
   return (
     <>
-      <AdminPanel />
+      <LoginOrAdmin />
     </>
   );
 };
