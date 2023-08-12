@@ -10,7 +10,7 @@ export const AboutBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 34px;
-  background-color: #80808029;
+  max-width: 1000px;
 `;
 
 export const Title = styled.h1`
@@ -19,22 +19,36 @@ export const Title = styled.h1`
 
 export const Box = styled.div`
   display: flex;
-  justify-content: center;
-  /* flex-wrap: wrap; */
-  /* flex-direction: column; */
-  /* max-width: 1000px; */
-  margin: 0 auto;
-
-  /* @media screen and (min-width: 1060px) {
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 4px solid gray;
+  @media screen and (max-width: 710px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media screen and (min-width: 1000px) {
     justify-content: start;
-  } */
+  }
 `;
 
 export const BoxFilter = styled.div`
-  padding: 40px 10px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 15px;
+  @media screen and (max-width: 710px) {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+  }
+`;
+export const TitleF = styled.h2`
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #222;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  margin-bottom: 5px;
 `;
 export const TitleFilter = styled.h3`
   font-size: 14px;
@@ -49,7 +63,7 @@ export const StyledSelect = styled.select`
   width: 100%;
   min-width: 150px;
   padding: 5px;
-  border: 1.5px solid #000;
+  border: 1px solid #000;
   font-size: 14px;
   appearance: none;
   outline: none;
@@ -93,16 +107,15 @@ export const StyledSlider = styled(Slider)`
 // ================   ProductsList
 export const ProductsList = styled.ul`
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 40px 20px;
+  gap: 30px 20px;
 
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
 
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 1000px) {
     justify-content: start;
     width: 1000px;
   }
@@ -117,6 +130,7 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
 
+  border-radius: 4px 4px 0 0;
   padding: 10px;
   opacity: 0.8;
   background-color: #333333;
@@ -127,20 +141,19 @@ export const Overlay = styled.div`
 
 export const TextOverlay = styled.p`
   color: #fff;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 12px;
   letter-spacing: 0.025em;
-  line-height: 20px;
+  line-height: 18px;
 `;
 
-export const PictureOverlay = styled.div``;
-
-export const Item = styled.li`
+export const PictureOverlay = styled.div`
   position: relative;
   overflow: hidden;
-  width: 250px;
+`;
+
+export const Item = styled.li`
+  width: 230px;
   background-color: #fff;
-  /* background-color: rgba(255, 255, 255, 0.3); */
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
   border-radius: 4px;
 
@@ -156,6 +169,8 @@ export const Item = styled.li`
 
   &:hover {
     transform: scale(1.1);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);
   }
 `;
 
@@ -401,8 +416,7 @@ export const InputCounter = styled.input`
   width: 100%;
   outline: none;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+
   border: none;
   text-align: center;
 `;

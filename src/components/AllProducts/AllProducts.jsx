@@ -22,6 +22,7 @@ import {
   StyledSelect,
   StyledSlider,
   Chip,
+  TitleF,
 } from './AllProducts.styled';
 import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Spinner from '../SpinerOferta/SpinerOferta';
@@ -94,171 +95,135 @@ const AllProducts = () => {
     }));
   };
 
-  const toggleFilter = () => {
-    setIsFilterOpen(!isFilterOpen);
-    console.log('click', isFilterOpen);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
-      setIsFilterOpen(false);
-      console.log('click', setIsFilterOpen);
-    }
-  };
-  const handleBackdropClick = (e) => {
-    // Припустимо, у вашому компоненті BoxFilter є клас "box-filter"
-    if (!e.target.closest('.box-filter')) {
-      setIsFilterOpen(false);
-    }
-  };
-  useEffect(() => {
-    document.addEventListener('mousedown', handleBackdropClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleBackdropClick);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-  // console.log(`allProductsFiltered`, allProductsFiltered);
-  // console.log(`qwery==>>>>`, qwery);
   return (
     <>
       <AboutBox>
         <Title>Увесь товар</Title>
-        <button type="button" onClick={toggleFilter}>
-          ФІЛЬТР
-        </button>
+
         <Box>
           {/* ===============ФІЛЬР ====================*/}
 
-          {isFilterOpen && (
-            <BoxFilter className="box-filter">
-              <TitleFilter>ФІЛЬТР</TitleFilter>
+          <BoxFilter>
+            <TitleF>ФІЛЬТР</TitleF>
 
-              <div>
-                <TitleFilter> Країна</TitleFilter>
-                <StyledSelect
-                  value={qwery.countryId}
-                  onChange={(e) => {
-                    const selectedCountryId = e.target.value;
-                    setQwery((prevQwery) => ({
-                      ...prevQwery,
-                      countryId: selectedCountryId,
-                    }));
-                  }}
-                >
-                  <option value="">Всі країни</option>
-                  {countries.isLoading ? (
-                    <option value="">Loading</option>
-                  ) : (
-                    countries.data.map((country) => (
-                      <option key={country._id} value={country._id}>
-                        {country.name}
-                      </option>
-                    ))
-                  )}
-                </StyledSelect>
-              </div>
-              <div>
-                <TitleFilter>Кетегорію товару</TitleFilter>
+            <div>
+              <TitleFilter> Країна</TitleFilter>
+              <StyledSelect
+                value={qwery.countryId}
+                onChange={(e) => {
+                  const selectedCountryId = e.target.value;
+                  setQwery((prevQwery) => ({
+                    ...prevQwery,
+                    countryId: selectedCountryId,
+                  }));
+                }}
+              >
+                <option value="">Всі країни</option>
+                {countries.isLoading ? (
+                  <option value="">Loading</option>
+                ) : (
+                  countries.data.map((country) => (
+                    <option key={country._id} value={country._id}>
+                      {country.name}
+                    </option>
+                  ))
+                )}
+              </StyledSelect>
+            </div>
+            <div>
+              <TitleFilter>Кетегорію товару</TitleFilter>
 
-                <StyledSelect
-                  value={qwery.categoryId}
-                  onChange={(e) => {
-                    const selectedCategoryId = e.target.value;
-                    setQwery((prevQwery) => ({
-                      ...prevQwery,
-                      categoryId: selectedCategoryId,
-                    }));
-                  }}
-                >
-                  <option value="">Всі категорії</option>
-                  {categories.isLoading ? (
-                    <option value="">Loading</option>
-                  ) : (
-                    categories?.data.map((category) => (
-                      <option key={category._id} value={category._id}>
-                        {category.name}
-                      </option>
-                    ))
-                  )}
-                </StyledSelect>
-              </div>
-              <div>
-                <TitleFilter>Вид товару</TitleFilter>
-                <StyledSelect
-                  value={qwery.subcategoryId}
-                  onChange={(e) => {
-                    const selectedSubcategoryId = e.target.value;
-                    setQwery((prevQwery) => ({
-                      ...prevQwery,
-                      subcategoryId: selectedSubcategoryId,
-                    }));
-                  }}
-                >
-                  <option value="">Всі види</option>
-                  {subCategories.isLoading ? (
-                    <option value="">Loading</option>
-                  ) : (
-                    subCategories?.data.map((subCategory) => (
-                      <option key={subCategory._id} value={subCategory._id}>
-                        {subCategory.name}
-                      </option>
-                    ))
-                  )}
-                </StyledSelect>
-              </div>
-              <div>
-                <TitleFilter>Колір</TitleFilter>
-                <StyledSelect
-                  value={qwery.colorId}
-                  onChange={(e) => {
-                    const selectedCountryId = e.target.value;
-                    setQwery((prevQwery) => ({
-                      ...prevQwery,
-                      colorId: selectedCountryId,
-                    }));
-                  }}
-                >
-                  <option value="">Всі кольори</option>
-                  {colors.isLoading ? (
-                    <option value="">Loading</option>
-                  ) : (
-                    colors.data.map((color) => (
-                      <option key={color._id} value={color._id}>
-                        {color.name}
-                      </option>
-                    ))
-                  )}
-                </StyledSelect>
-              </div>
-              <div>
-                <TitleFilter> Ціна: </TitleFilter>
-                <Chip>
-                  {qwery.minPrice} грн. - {qwery.maxPrice} грн.
-                </Chip>
-                <StyledSlider
-                  range
-                  value={[qwery.minPrice, qwery.maxPrice]}
-                  onChange={(values) => {
-                    setQwery((prevQwery) => ({
-                      ...prevQwery,
-                      minPrice: values[0],
-                      maxPrice: values[1],
-                    }));
-                  }}
-                  min={0}
-                  max={10000}
-                />
-              </div>
-            </BoxFilter>
-          )}
+              <StyledSelect
+                value={qwery.categoryId}
+                onChange={(e) => {
+                  const selectedCategoryId = e.target.value;
+                  setQwery((prevQwery) => ({
+                    ...prevQwery,
+                    categoryId: selectedCategoryId,
+                  }));
+                }}
+              >
+                <option value="">Всі категорії</option>
+                {categories.isLoading ? (
+                  <option value="">Loading</option>
+                ) : (
+                  categories?.data.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))
+                )}
+              </StyledSelect>
+            </div>
+            <div>
+              <TitleFilter>Вид товару</TitleFilter>
+              <StyledSelect
+                value={qwery.subcategoryId}
+                onChange={(e) => {
+                  const selectedSubcategoryId = e.target.value;
+                  setQwery((prevQwery) => ({
+                    ...prevQwery,
+                    subcategoryId: selectedSubcategoryId,
+                  }));
+                }}
+              >
+                <option value="">Всі види</option>
+                {subCategories.isLoading ? (
+                  <option value="">Loading</option>
+                ) : (
+                  subCategories?.data.map((subCategory) => (
+                    <option key={subCategory._id} value={subCategory._id}>
+                      {subCategory.name}
+                    </option>
+                  ))
+                )}
+              </StyledSelect>
+            </div>
+            <div>
+              <TitleFilter>Колір</TitleFilter>
+              <StyledSelect
+                value={qwery.colorId}
+                onChange={(e) => {
+                  const selectedCountryId = e.target.value;
+                  setQwery((prevQwery) => ({
+                    ...prevQwery,
+                    colorId: selectedCountryId,
+                  }));
+                }}
+              >
+                <option value="">Всі кольори</option>
+                {colors.isLoading ? (
+                  <option value="">Loading</option>
+                ) : (
+                  colors.data.map((color) => (
+                    <option key={color._id} value={color._id}>
+                      {color.name}
+                    </option>
+                  ))
+                )}
+              </StyledSelect>
+            </div>
+            <div>
+              <TitleFilter> Ціна: </TitleFilter>
+              <Chip>
+                {qwery.minPrice} грн. - {qwery.maxPrice} грн.
+              </Chip>
+              <StyledSlider
+                range
+                value={[qwery.minPrice, qwery.maxPrice]}
+                onChange={(values) => {
+                  setQwery((prevQwery) => ({
+                    ...prevQwery,
+                    minPrice: values[0],
+                    maxPrice: values[1],
+                  }));
+                }}
+                min={0}
+                max={10000}
+              />
+            </div>
+          </BoxFilter>
+          {/* )} */}
 
           {/* ===============ФІЛЬР END ====================*/}
           <ProductsList>
@@ -291,6 +256,12 @@ const AllProducts = () => {
                         width="230"
                         height="1266"
                       />
+                      <Overlay>
+                        <TextOverlay>{product.description}</TextOverlay>
+                        <TextOverlay>
+                          Виробник: {product.country.name}
+                        </TextOverlay>
+                      </Overlay>
                     </PictureOverlay>
 
                     <BoxTitle>
@@ -298,12 +269,6 @@ const AllProducts = () => {
                       <Price>Ціна: {product.price} грн.</Price>
                     </BoxTitle>
 
-                    <Overlay>
-                      <TextOverlay>{product.description}</TextOverlay>
-                      <TextOverlay>
-                        Виробник: {product.country.name}
-                      </TextOverlay>
-                    </Overlay>
                     <div></div>
                   </Link>
                 </Item>
