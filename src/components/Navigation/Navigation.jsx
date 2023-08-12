@@ -29,7 +29,7 @@ const Navigation = () => {
   // const [subTogle, setSubTogle] = useState(false);
   const cartItems = useSelector(cartSelector.getIsItems);
   const pathname = usePathname();
-  const isToken = useSelector(authSelector.authToken);
+  const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const [logOut] = useLogoutMutation();
 
   const dropdownRef = useRef(null);
@@ -210,7 +210,7 @@ const Navigation = () => {
             <CartCount>{cartItems.length}</CartCount>
           </CartIconWrapper>
         </BasketStyleLink>
-        {isToken && (
+        {isLoggedIn && (
           <RxExit
             size={30}
             style={{ cursor: 'pointer', color: 'white' }}
