@@ -104,6 +104,7 @@ export const ProductsList = styled.ul`
 
   @media screen and (min-width: 990px) {
     justify-content: start;
+    width: 1000px;
   }
 `;
 export const Overlay = styled.div`
@@ -137,7 +138,7 @@ export const PictureOverlay = styled.div``;
 export const Item = styled.li`
   position: relative;
   overflow: hidden;
-  width: 270px;
+  width: 250px;
   background-color: #fff;
   /* background-color: rgba(255, 255, 255, 0.3); */
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
