@@ -22,6 +22,7 @@ export const ImageStyled = styled(Image)`
   margin-left: 35px;
   width: 125px;
   height: 206px;
+  /* height: auto; */
   z-index: 1111111;
 
   @media (width < 530px) {

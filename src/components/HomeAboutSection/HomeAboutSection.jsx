@@ -158,6 +158,7 @@ const HomeAboutSection = () => {
                 alt="Salamander"
                 width="500"
                 height="550"
+                priority={true}
               />
             </Salamander>
 

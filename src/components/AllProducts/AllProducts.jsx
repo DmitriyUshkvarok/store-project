@@ -253,8 +253,9 @@ const AllProducts = () => {
                       <Picture
                         src={product.url}
                         alt={`Image`}
-                        width="230"
-                        height="1266"
+                        width="250"
+                        height="1270"
+                        priority={true}
                       />
                       <Overlay>
                         <TextOverlay>{product.description}</TextOverlay>
