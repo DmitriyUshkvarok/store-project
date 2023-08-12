@@ -43,6 +43,7 @@ export const BasketStyleLink = styled(Link)`
   align-items: center;
   justify-content: center;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
 
   &.active,
   &:hover,
@@ -166,6 +167,7 @@ export const StyleLinkForBurger = styled(Link)`
   line-height: 23px;
   padding: 15px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
 
   &.active,
   &:hover,
@@ -193,6 +195,7 @@ export const ListMenu = styled.ul`
 export const LinkForB = styled(Link)`
   display: inline-block;
   width: 100%;
+  text-decoration: none;
 `;
 
 // export const DropDownMenuForBurger = styled.div`

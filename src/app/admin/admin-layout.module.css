@@ -7,3 +7,12 @@
 .layoutWrapper {
     display: flex;
 }
+
+@media (max-width:550px) {
+    .layoutWrapper {
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+    }
+
+}

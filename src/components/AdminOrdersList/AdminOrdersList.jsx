@@ -22,6 +22,10 @@ import {
   OrderItemsTitle,
   OrderName,
   OrderData,
+  OrderColor,
+  OrderBrand,
+  OrderPrice,
+  OrderQuantity,
   StyleAdminRiDeleteBin5Fill,
 } from './AdminOrderList.styled';
 import { useState } from 'react';
@@ -139,15 +143,15 @@ const AdminOrdersList = () => {
                     >
                       <OrderName>{item.name}</OrderName>
                       <OrderData>Дата заказа: {item.date}</OrderData>
-                      <p> {item.color}</p>
-                      <p> {item.brand}</p>
-                      <p>Ціна: {item.price}</p>
+                      <OrderColor>Колір: {item.color}</OrderColor>
+                      <OrderBrand>Бренд: {item.brand}</OrderBrand>
+                      <OrderPrice>Ціна: {item.price}</OrderPrice>
                       {order.quantity.map((quantityItem) => {
                         if (quantityItem.productId === item.productId) {
                           return (
-                            <p key={quantityItem._id}>
+                            <OrderQuantity key={quantityItem._id}>
                               Кількість: {quantityItem.productQuantity}
-                            </p>
+                            </OrderQuantity>
                           );
                         }
                         return null;

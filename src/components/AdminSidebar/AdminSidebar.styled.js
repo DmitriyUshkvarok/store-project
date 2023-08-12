@@ -6,7 +6,7 @@ export const PanelCategoryList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 2px solid #222;
+  border: 2px solid gray;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -14,6 +14,12 @@ export const PanelCategoryList = styled.ul`
   -o-border-radius: 4px;
   padding: 10px;
   margin-right: 15px;
+
+  @media screen and (max-width: 550px) {
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
 `;
 
 export const PanelCategoryListItem = styled.li`
@@ -21,6 +27,10 @@ export const PanelCategoryListItem = styled.li`
   max-width: 300px;
   border: 2px solid lightgray;
   border-radius: 4px;
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+  }
 `;
 
 export const StyleLink = styled(Link)`
