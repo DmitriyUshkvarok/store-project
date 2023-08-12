@@ -115,6 +115,49 @@ export const ofertaApi = createApi({
 
       invalidatesTags: ['products'],
     }),
+    updateCountries: builder.mutation({
+      query: ({ formData, countryId }) => ({
+        url: `/countries/${countryId}`,
+        method: 'PUT',
+        body: formData,
+      }),
+
+      invalidatesTags: ['countries'],
+    }),
+    updateCategories: builder.mutation({
+      query: ({ formData, categoryId }) => ({
+        url: `/categories/${categoryId}`,
+        method: 'PUT',
+        body: formData,
+      }),
+
+      invalidatesTags: ['categories'],
+    }),
+    updateSubCategories: builder.mutation({
+      query: ({ formData, subcategoryId }) => ({
+        url: `/subcategories/${subcategoryId}`,
+        method: 'PUT',
+        body: formData,
+      }),
+
+      invalidatesTags: ['subcategories'],
+    }),
+    updateColors: builder.mutation({
+      query: ({ formData, colorId }) => ({
+        url: `/colors/${colorId}`,
+        method: 'PUT',
+        body: formData,
+      }),
+
+      invalidatesTags: ['colors'],
+    }),
+    deleteProduct: builder.mutation({
+      query: (productId) => ({
+        url: `/products/${productId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['products'],
+    }),
   }),
 });
 
@@ -136,4 +179,9 @@ export const {
   useAddSubCategotiesMutation,
   useAddColorosMutation,
   useAddProductMutation,
+  useUpdateCountriesMutation,
+  useUpdateCategoriesMutation,
+  useUpdateSubCategoriesMutation,
+  useUpdateColorsMutation,
+  useDeleteProductMutation,
 } = ofertaApi;

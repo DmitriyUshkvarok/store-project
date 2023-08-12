@@ -1,22 +1,17 @@
 'use client';
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
-import {
-  useGetAllCountriesQuery,
-  useGetAllCategoryQuery,
-  useGetAllColorQuery,
-  useGetAllSubcategoryQuery,
-  useAddProductMutation,
-} from '@/src/redux/ofertaApi/ofertaApi';
+import { useAddProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
 
-const FormAdd = () => {
+const FormAdd = ({
+  countries,
+  categories,
+  subcategories,
+  colors,
+  handleClose,
+}) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [add] = useAddProductMutation();
-
-  const { data: countries } = useGetAllCountriesQuery();
-  const { data: categories } = useGetAllCategoryQuery();
-  const { data: subcategories } = useGetAllSubcategoryQuery();
-  const { data: colors } = useGetAllColorQuery();
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -33,6 +28,7 @@ const FormAdd = () => {
     formData.append('color', values.color);
 
     await add(formData);
+    handleClose();
   };
   return (
     <div>
@@ -55,13 +51,13 @@ const FormAdd = () => {
       >
         <Form>
           <label>
-            Name: <Field type="text" name="name" />
+            Назва: <Field type="text" name="name" />
           </label>
           <label>
-            Price: <Field type="text" name="price" />
+            Ціна: <Field type="text" name="price" />
           </label>
           <label>
-            Image:{' '}
+            Картинка:{' '}
             <input
               type="file"
               accept="image/*"
@@ -70,20 +66,20 @@ const FormAdd = () => {
             />
           </label>
           <label>
-            description: <Field type="text" name="description" />
+            Опис: <Field type="text" name="description" />
           </label>
           <label>
-            brand: <Field type="text" name="brand" />
+            Бренд: <Field type="text" name="brand" />
           </label>
           <label>
-            weight: <Field type="text" name="weight" />
+            Вага: <Field type="text" name="weight" />
           </label>
           <label>
-            packingType: <Field type="text" name="packingType" />
+            Тип пакування: <Field type="text" name="packingType" />
           </label>
 
           <label>
-            Country:{' '}
+            Країна:{' '}
             <Field as="select" name="country">
               {countries?.map((country) => (
                 <option value={country._id} key={country._id}>
@@ -93,7 +89,7 @@ const FormAdd = () => {
             </Field>
           </label>
           <label>
-            Category:{' '}
+            Категорія:{' '}
             <Field as="select" name="category">
               {categories?.map((category) => (
                 <option value={category._id} key={category._id}>
@@ -103,7 +99,7 @@ const FormAdd = () => {
             </Field>
           </label>
           <label>
-            Subcategory:{' '}
+            Підкатегорія:{' '}
             <Field as="select" name="subcategory">
               {subcategories?.map((subcategory) => (
                 <option value={subcategory._id} key={subcategory._id}>
@@ -113,7 +109,7 @@ const FormAdd = () => {
             </Field>
           </label>
           <label>
-            Color:{' '}
+            Колір:{' '}
             <Field as="select" name="color">
               {colors?.map((color) => (
                 <option value={color._id} key={color._id}>
@@ -122,7 +118,7 @@ const FormAdd = () => {
               ))}
             </Field>
           </label>
-          <button type="submit">Зберегти</button>
+          <button type="submit">Додати</button>
         </Form>
       </Formik>
     </div>

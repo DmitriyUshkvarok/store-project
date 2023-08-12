@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useUpdateProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState } from 'react';
 
-const FormUpdateProductAdmin = ({ selectProduct }) => {
+const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
 
   const [updateProduct] = useUpdateProductMutation();
@@ -22,6 +22,7 @@ const FormUpdateProductAdmin = ({ selectProduct }) => {
     formData.append('subcategory', values.subcategory);
     formData.append('color', values.color);
     await updateProduct({ formData, productId: selectProduct._id });
+    handleClose();
   };
   return (
     selectProduct && (
@@ -43,13 +44,13 @@ const FormUpdateProductAdmin = ({ selectProduct }) => {
       >
         <Form>
           <label>
-            Name: <Field type="text" name="name" />
+            Назва: <Field type="text" name="name" />
           </label>
           <label>
-            Price: <Field type="text" name="price" />
+            Ціна: <Field type="text" name="price" />
           </label>
           <label>
-            Image:{' '}
+            Зображення:{' '}
             <input
               type="file"
               accept="image/*"
@@ -58,20 +59,20 @@ const FormUpdateProductAdmin = ({ selectProduct }) => {
             />
           </label>
           <label>
-            description: <Field type="text" name="description" />
+            Опис: <Field type="text" name="description" />
           </label>
           <label>
-            brand: <Field type="text" name="brand" />
+            Бренд: <Field type="text" name="brand" />
           </label>
           <label>
-            weight: <Field type="text" name="weight" />
+            Вага: <Field type="text" name="weight" />
           </label>
           <label>
-            packingType: <Field type="text" name="packingType" />
+            Тип пакування: <Field type="text" name="packingType" />
           </label>
 
           <label>
-            Country:{' '}
+            Країна:{' '}
             <Field as="select" name="country">
               <option value={selectProduct.country._id}>
                 {selectProduct.country.name}
@@ -79,7 +80,7 @@ const FormUpdateProductAdmin = ({ selectProduct }) => {
             </Field>
           </label>
           <label>
-            Category:{' '}
+            Категорія:{' '}
             <Field as="select" name="category">
               <option value={selectProduct.category._id}>
                 {selectProduct.category.name}
@@ -87,7 +88,7 @@ const FormUpdateProductAdmin = ({ selectProduct }) => {
             </Field>
           </label>
           <label>
-            Subcategory:{' '}
+            Підкатегорія:{' '}
             <Field as="select" name="subcategory">
               <option value={selectProduct.subcategory._id}>
                 {selectProduct.subcategory.name}
@@ -95,14 +96,14 @@ const FormUpdateProductAdmin = ({ selectProduct }) => {
             </Field>
           </label>
           <label>
-            Color:{' '}
+            Колір:{' '}
             <Field as="select" name="color">
               <option value={selectProduct.color._id}>
                 {selectProduct.color.name}
               </option>
             </Field>
           </label>
-          <button type="submit">Update</button>
+          <button type="submit">Зберегти</button>
         </Form>
       </Formik>
     )

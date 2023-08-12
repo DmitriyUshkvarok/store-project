@@ -2,8 +2,6 @@
 
 import { Button, Modal } from 'react-bootstrap';
 
-// Гребанный NEXT!!!
-
 const ModalAdminByForm = ({ show, handleClose, children }) => {
   return (
     <>
@@ -14,7 +12,7 @@ const ModalAdminByForm = ({ show, handleClose, children }) => {
         <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Закрити
           </Button>
         </Modal.Footer>
       </Modal>
