@@ -1,24 +1,11 @@
 'use client';
 
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
-import Image from 'next/image';
 import { useState } from 'react';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
-import {
-  ListOferta,
-  ItemOferta,
-  TagContainer,
-  CaptionWrap,
-} from './CatalogManagment.styled';
-
-function truncateText(text, maxLength) {
-  if (text.length <= maxLength) {
-    return text;
-  } else {
-    return text.substring(0, maxLength) + '...';
-  }
-}
+import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
+import ListByCatalog from '../ListByCatalog/ListByCatalog';
 
 const CatalogManagementAdmin = () => {
   const [show, setShow] = useState(false);
@@ -33,61 +20,13 @@ const CatalogManagementAdmin = () => {
 
   return (
     <>
-      <CaptionWrap>
-        <p>Названия</p>
-        <p>Вес</p>
-        <p>Бренд</p>
-        <p>Описание</p>
-        <p>Упаковка</p>
-        <p>Цена</p>
-        <p>Картинка</p>
-      </CaptionWrap>
-      <ListOferta>
-        {data?.products?.map((product) => (
-          <ItemOferta key={product._id}>
-            <TagContainer>
-              <p>{product.name}</p>
-            </TagContainer>
-
-            <TagContainer>
-              <p>{product.weight}</p>
-            </TagContainer>
-
-            <TagContainer>
-              <p>{product.brand}</p>
-            </TagContainer>
-
-            <TagContainer>
-              <p> {truncateText(product.description, 15)}</p>
-            </TagContainer>
-
-            <TagContainer>
-              <p>{product.packingType}</p>
-            </TagContainer>
-
-            <TagContainer>
-              <p>{product.price}</p>
-            </TagContainer>
-
-            <TagContainer>
-              <Image
-                src={`${product?.url}`}
-                width={50}
-                height={50}
-                alt={product.name}
-              />
-            </TagContainer>
-            <TagContainer>
-              <button onClick={() => handleShow(product)} type="button">
-                update
-              </button>
-              <button type="button">delete</button>
-            </TagContainer>
-          </ItemOferta>
-        ))}
-      </ListOferta>
+      <CaptionByCatalog />
+      <ListByCatalog handleShow={handleShow} data={data} />
       <ModalAdminByForm show={show} handleClose={handleClose}>
-        <FormUpdateProductAdmin selectProduct={selectProduct} />
+        <FormUpdateProductAdmin
+          handleClose={handleClose}
+          selectProduct={selectProduct}
+        />
       </ModalAdminByForm>
     </>
   );

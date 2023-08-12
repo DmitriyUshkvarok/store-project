@@ -8,7 +8,7 @@ import {
   useAddColorosMutation,
 } from '@/src/redux/ofertaApi/ofertaApi';
 
-const FormAddAny = ({ activeForm }) => {
+const FormAddAny = ({ activeForm, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [addCountry] = useAddCountriesMutation();
   const [addCategory] = useAddCategotiesMutation();
@@ -18,20 +18,21 @@ const FormAddAny = ({ activeForm }) => {
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append('name', values.name);
-
     formData.append('file', selectedImg);
+
     if (activeForm === 'країну') {
-      return await addCountry(formData);
+      await addCountry(formData);
     }
     if (activeForm === 'категорію') {
-      return await addCategory(formData);
+      await addCategory(formData);
     }
     if (activeForm === 'підкатегорію') {
-      return await addSubCategory(formData);
+      await addSubCategory(formData);
     }
     if (activeForm === 'колір') {
-      return await addColor(formData);
+      await addColor(formData);
     }
+    handleClose();
   };
   return (
     <div>
@@ -45,10 +46,10 @@ const FormAddAny = ({ activeForm }) => {
       >
         <Form>
           <label>
-            Name: <Field type="text" name="name" />
+            Назва: <Field type="text" name="name" />
           </label>
           <label>
-            Image:{' '}
+            Зображення:{' '}
             <input
               type="file"
               accept="image/*"
