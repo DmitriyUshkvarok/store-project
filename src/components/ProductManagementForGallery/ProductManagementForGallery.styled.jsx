@@ -12,15 +12,11 @@ export const Gallery = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 20px;
 
   @media screen and (min-width: 1060px) {
     justify-content: start;
   }
-`;
-
-export const Title = styled.h1`
-  margin-top: 30px;
 `;
 
 export const Box = styled.div`
@@ -63,7 +59,7 @@ export const Picture = styled(Image)`
   object-fit: cover;
   transition: transform 0.25s;
   overflow: hidden;
-  max-height: 110px;
+  height: 110px;
   width: 160px;
 
   &:hover {

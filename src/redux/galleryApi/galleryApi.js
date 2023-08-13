@@ -11,15 +11,26 @@ export const galleryApi = createApi({
       query: () => '/gallery',
       providesTags: ['gallery'],
     }),
-    // getCountryCategory: builder.query({
-    //   query: (id) => `/countries/${id}`,
-    //   providesTags: ['countries'],
-    // }),
-    // getSubCategory: builder.query({
-    //   query: (id) => `/categories/${id}`,
-    //   providesTags: ['categories'],
-    // }),
+
+    addGalleryItem: builder.mutation({
+      query: (newItem) => ({
+        url: '/gallery',
+        method: 'POST',
+        body: newItem,
+      }),
+      invalidatesTags: [{ type: 'gallery', id: 'LIST' }],
+    }),
+    deleteGalleryItem: builder.mutation({
+      query: (_id) => ({
+        url: `/gallery/${_id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const { useGetGalleryQuery } = galleryApi;
+export const {
+  useGetGalleryQuery,
+  useAddGalleryItemMutation,
+  useDeleteGalleryItemMutation,
+} = galleryApi;

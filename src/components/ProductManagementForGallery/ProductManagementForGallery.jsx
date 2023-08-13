@@ -1,19 +1,13 @@
-// 'use client';
-
-// const ProductManagementForGallery = () => {
-//   return <div>ProductManagementForGallery</div>;
-// };
-
-// export default ProductManagementForGallery;
-// //
-
 'use client';
 import React, { useState, useEffect } from 'react';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import Spinner from '../SpinerOferta/SpinerOferta';
-import { useGetGalleryQuery } from '@/src/redux/galleryApi/galleryApi';
+import {
+  useDeleteGalleryItemMutation,
+  useGetGalleryQuery,
+} from '@/src/redux/galleryApi/galleryApi';
 import {
   Box,
   Gallery,
@@ -23,6 +17,8 @@ import {
   Picture,
   Title,
 } from './ProductManagementForGallery.styled';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const ProductManagementForGallery = () => {
   const { data, isError, isLoading } = useGetGalleryQuery();
@@ -30,6 +26,17 @@ const ProductManagementForGallery = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPhotos, setCurrentPhotos] = useState([]);
+
+  const [deleteGalleryItem] = useDeleteGalleryItemMutation();
+
+  const handleDeleteImage = async (_id) => {
+    try {
+      const result = await deleteGalleryItem(_id);
+      console.log('Response:', result);
+    } catch (error) {
+      console.error('Помилка при видаленні зображення:', error);
+    }
+  };
 
   useEffect(() => {
     if (data) {
@@ -78,6 +85,7 @@ const ProductManagementForGallery = () => {
   return (
     <GalleryBox>
       <Box>
+        <AiOutlinePlus style={{ width: '50px', height: '50px' }} />
         <Gallery className="gallery">
           {isLoading ? (
             <Spinner />
@@ -87,6 +95,7 @@ const ProductManagementForGallery = () => {
                 <a href={url}>
                   <Picture src={url} alt={`Image`} width="330" height="206" />
                 </a>
+                <RiDeleteBin2Fill onClick={() => handleDeleteImage(_id)} />
               </li>
             ))
           )}
