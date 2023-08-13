@@ -80,7 +80,7 @@ const GalleryList = () => {
             currentPhotos.map(({ url, _id }) => (
               <li key={_id}>
                 <a href={url}>
-                  <Picture src={url} alt={`Image`} width="350" height="210" />
+                  <Picture src={url} alt={`Image`} width="330" height="206" />
                 </a>
               </li>
             ))
