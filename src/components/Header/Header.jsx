@@ -1,27 +1,19 @@
 'use client';
-import {
-  BoxForYear,
-  HeaderBox,
-  ImageStyled,
-  StyleHeader,
-} from './Header.styled';
-import Container from '../Container/Container';
+import { HeaderBox, ImageStyled, StyleHeader } from './Header.styled';
 import Navigation from '../Navigation/Navigation';
 
 const Header = () => {
   return (
     <StyleHeader>
-      {/* <Container> */}
       <HeaderBox>
         <Navigation />
         <ImageStyled
           src="/182ukr.png"
           alt={'роки на ринку'}
-          width={125}
-          height={206}
+          width={150}
+          height={250}
         ></ImageStyled>
       </HeaderBox>
-      {/* </Container> */}
     </StyleHeader>
   );
 };

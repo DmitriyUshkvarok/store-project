@@ -23,40 +23,6 @@ export const Box = styled.div`
     height: 646px;
   }
 `;
-//   @media screen and (min-width: 320px) {
-//     position: absolute;
-//     left: 0;
-//     right: 0;
-//     bottom: 10px;
-//     margin: 0 auto;
-
-//     width: 500px;
-//     height: 250px;
-//     background-color: #303030;
-//     /* object-fit: cover; */
-//   }
-
-//   @media screen and (min-width: 1280px) {
-//     width: 1000px;
-//     height: 400px;
-//   }
-// `;
-// export const TitleFlag = styled.h2`
-//   position: absolute;
-//   left: 50;
-//   bottom: 10px;
-//   margin: 0 auto;
-
-//   z-index: 2;
-//   font-size: 20px;
-
-//   background-color: #333333;
-//   color: #ffffff;
-//   font-weight: bold;
-//   padding: 10px;
-//   text-align: center;
-//   text-transform: uppercase;
-// `;
 
 export const ScrollImage = styled(Image)`
   @media screen and (min-width: 320px) {

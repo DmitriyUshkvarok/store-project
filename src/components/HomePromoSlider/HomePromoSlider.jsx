@@ -35,7 +35,8 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/Flag.jpg'}
               alt={'autoScroll'}
               width="2000"
-              height="646"
+              height="650"
+              priority={true}
             />
             <BoxTitle>
               <Title>СЛАВА УКРАЇНІ!</Title>
@@ -46,7 +47,8 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/horse.jpg'}
               alt={'autoScroll'}
               width="2000"
-              height="646"
+              height="650"
+              priority={true}
             />
             <BoxTitle>
               <Title>PRETIOX TITANIUM WHITE</Title>
@@ -57,7 +59,7 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/strawberry.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
-              height="646"
+              height="650"
             />
             <BoxTitle>
               <Title>пігменти для фарб</Title>
@@ -68,7 +70,7 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/promo-farby.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
-              height="646"
+              height="650"
             />
             <BoxTitle>
               <Title>пігменти для бетону</Title>
@@ -80,7 +82,7 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/1.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
-              height="646"
+              height="650"
             />
             <BoxTitle>
               <Title>пігменти кобальтовий синій</Title>
@@ -91,7 +93,7 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/3.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
-              height="646"
+              height="650"
             />
             <BoxTitle>
               <Title>пігменти для асфальту</Title>
@@ -102,7 +104,7 @@ export const HomePromoSlider = () => {
               src={'/autoScroll/6.jpg'}
               alt={'PRETIOX TITANIUM WHITE'}
               width="2000"
-              height="646"
+              height="650"
             />
             <BoxTitle>
               <Title>пігменти хром зелений</Title>
