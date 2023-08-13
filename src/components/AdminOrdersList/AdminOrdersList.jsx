@@ -1,5 +1,6 @@
 'use client';
 import css from './adminOrderList.module.css';
+import CustomBarChart from '../CustomBarChart/CustomBarChart';
 import {
   OrderAdminWrapper,
   FilterCheckBoxBlock,
@@ -38,6 +39,7 @@ import {
 } from '@/src/redux/adminOrdersApi/adminOrdersApi';
 import ReactPaginate from 'react-paginate';
 import { toast } from 'react-toastify';
+import { animateScroll as scroll } from 'react-scroll';
 
 const AdminOrdersList = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -53,6 +55,17 @@ const AdminOrdersList = () => {
   const totalOrdersCount = response?.total || 0; // Общее количество заказов
   const totalPages = Math.ceil(totalOrdersCount / pageSize); // Общее количество страниц
   const hasNextPage = ordersFromServer.length === pageSize;
+
+  const doneOrdersCount = ordersFromServer.filter((order) => order.done).length;
+  const activeOrdersCount = ordersFromServer.filter(
+    (order) => !order.done
+  ).length;
+
+  const chartData = [
+    { label: 'Общее количество', value: totalOrdersCount },
+    { label: 'Выполненные', value: doneOrdersCount },
+    { label: 'Активные', value: activeOrdersCount },
+  ];
 
   const [deleteOrderMutation] = useDeleteOrderMutation();
   const [updateOrderStatusMutation] = useUpdateOrderStatusMutation();
@@ -76,14 +89,27 @@ const AdminOrdersList = () => {
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
+    scroll.scrollToTop({
+      duration: 1000,
+      smooth: 'easeInOutQuad',
+    });
   };
 
   const handleShowDoneToggle = () => {
     setShowDone(!showDone);
+    setCurrentPage(0);
   };
+
+  const completedOrders = ordersFromServer.filter((order) => order.done);
+  const totalProfit = completedOrders.reduce(
+    (total, order) => total + order.totalPrice,
+    0
+  );
 
   return (
     <OrderAdminWrapper>
+      <CustomBarChart data={chartData} />
+      <p>Общая прибыль: {totalProfit} гривень</p>
       <FilterCheckBoxBlock>
         <LabelFilter>
           Показати виконані замовлення:
