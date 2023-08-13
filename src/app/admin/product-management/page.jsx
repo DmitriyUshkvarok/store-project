@@ -1,8 +1,10 @@
+import ProductManagementForGallery from '@/src/components/ProductManagementForGallery/ProductManagementForGallery';
+
 const ProductManagement = () => {
   return (
-    <div>
-      <h2>ProductManagement</h2>
-    </div>
+    <>
+      <ProductManagementForGallery />
+    </>
   );
 };
 
