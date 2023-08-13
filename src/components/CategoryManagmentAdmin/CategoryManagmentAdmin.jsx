@@ -13,6 +13,7 @@ import FormUpdate from '@/src/components/FormUpdate/FormUpdate';
 import FormAddAny from '@/src/components/FormAddAny/FormAddAny';
 import CaptionByCategory from '../CaptionByCategory/CaptionByCategory';
 import ListByCategory from '../ListByCategory/ListByCategory';
+import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
 import { Container, Title } from './CategoryManagmentAdmin.styled';
 
 const CategoryManagmentAdmin = () => {
@@ -55,19 +56,23 @@ const CategoryManagmentAdmin = () => {
   return (
     <Container>
       <CaptionByCategory handleShow={handleShow} />
-      <ListByCategory data={countries} handleShow={handleShow} title="Країни" />
+      <ListByCategory
+        data={countries}
+        handleShow={handleShow}
+        title={COUNTRY}
+      />
       <ListByCategory
         data={categories}
         handleShow={handleShow}
-        title="Категорії"
+        title={CATEGORY}
       />
       <ListByCategory
         data={subcategories}
         handleShow={handleShow}
-        title="Підкатегорії"
+        title={SUBCATEGORY}
       />
 
-      <ListByCategory data={colors} handleShow={handleShow} title="Колір" />
+      <ListByCategory data={colors} handleShow={handleShow} title={COLOR} />
       <ModalAdminByForm show={show} handleClose={handleClose}>
         {showModalAdd && (
           <FormAdd

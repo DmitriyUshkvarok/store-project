@@ -1,5 +1,5 @@
 'use client';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
   useUpdateCountriesMutation,
   useUpdateCategoriesMutation,
@@ -7,6 +7,9 @@ import {
   useUpdateColorsMutation,
 } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { formSchemaUpdateAny } from '@/src/validationSchema/validationSchemaByFormAdmin';
+import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
 
 const FormUpdate = ({ activeUpdate, selectItem, selectId, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -20,17 +23,52 @@ const FormUpdate = ({ activeUpdate, selectItem, selectId, handleClose }) => {
     formData.append('name', values.name);
     formData.append('file', selectedImg);
 
-    if (activeUpdate === 'Країни') {
-      await updateCountry({ formData, countryId: selectId });
+    if (activeUpdate === COUNTRY) {
+      try {
+        const res = await updateCountry({ formData, countryId: selectId });
+        if (res.error) {
+          throw new Error(res.error.data.message);
+        }
+        toast.success(`${COUNTRY} змінено`);
+      } catch (error) {
+        return toast.error(`${error}`);
+      }
     }
-    if (activeUpdate === 'Категорії') {
-      await updateCategory({ formData, categoryId: selectId });
+    if (activeUpdate === CATEGORY) {
+      try {
+        const res = await updateCategory({ formData, categoryId: selectId });
+        if (res.error) {
+          throw new Error(res.error.data.message);
+        }
+        toast.success(`${CATEGORY} змінено`);
+      } catch (error) {
+        return toast.error(`${error}`);
+      }
     }
-    if (activeUpdate === 'Підкатегорії') {
-      await updateSubCategory({ formData, subcategoryId: selectId });
+    if (activeUpdate === SUBCATEGORY) {
+      try {
+        const res = await updateSubCategory({
+          formData,
+          subcategoryId: selectId,
+        });
+        if (res.error) {
+          throw new Error(res.error.data.message);
+        }
+        toast.success(`${SUBCATEGORY} змінено`);
+      } catch (error) {
+        return toast.error(`${error}`);
+      }
     }
-    if (activeUpdate === 'Колір') {
-      await updateColor({ formData, colorId: selectId });
+    if (activeUpdate === COLOR) {
+      try {
+        const res = await updateColor({ formData, colorId: selectId });
+        if (res.error) {
+          throw new Error(res.error.data.message);
+        }
+        toast.success(`${COLOR} змінено`);
+      } catch (error) {
+        return toast.error(`${error}`);
+      }
     }
     handleClose();
   };
@@ -38,6 +76,7 @@ const FormUpdate = ({ activeUpdate, selectItem, selectId, handleClose }) => {
     <div>
       Редагувати {activeUpdate}
       <Formik
+        validationSchema={formSchemaUpdateAny}
         initialValues={{
           name: selectItem,
           url: '',
@@ -47,6 +86,7 @@ const FormUpdate = ({ activeUpdate, selectItem, selectId, handleClose }) => {
         <Form>
           <label>
             Назва: <Field type="text" name="name" />
+            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
           </label>
           <label>
             Зображення:{' '}
@@ -56,9 +96,10 @@ const FormUpdate = ({ activeUpdate, selectItem, selectId, handleClose }) => {
               name="url"
               onChange={(e) => setSelectedImg(e.target.files[0])}
             />
+            <ErrorMessage name="url">{(msg) => <div>{msg}</div>}</ErrorMessage>
           </label>
 
-          <button type="submit">Додати</button>
+          <button type="submit">Зберегти</button>
         </Form>
       </Formik>
     </div>

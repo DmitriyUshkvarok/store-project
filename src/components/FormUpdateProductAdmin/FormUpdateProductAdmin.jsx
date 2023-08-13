@@ -1,7 +1,9 @@
 'use client';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useUpdateProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { formUpdateSchemaProduct } from '@/src/validationSchema/validationSchemaByFormAdmin';
 
 const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -21,12 +23,26 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
     formData.append('category', values.category);
     formData.append('subcategory', values.subcategory);
     formData.append('color', values.color);
-    await updateProduct({ formData, productId: selectProduct._id });
+
+    try {
+      const res = await updateProduct({
+        formData,
+        productId: selectProduct._id,
+      });
+      if (res.error) {
+        throw new Error(res.error.data.message);
+      }
+      toast.success(`Успішно збереженно`);
+    } catch (error) {
+      return toast.error(`${error}`);
+    }
+
     handleClose();
   };
   return (
     selectProduct && (
       <Formik
+        validationSchema={formUpdateSchemaProduct}
         initialValues={{
           name: selectProduct.name,
           price: selectProduct.price,
@@ -45,9 +61,13 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
         <Form>
           <label>
             Назва: <Field type="text" name="name" />
+            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
           </label>
           <label>
             Ціна: <Field type="text" name="price" />
+            <ErrorMessage name="price">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Зображення:{' '}
@@ -57,18 +77,31 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
               name="url"
               onChange={(e) => setSelectedImg(e.target.files[0])}
             />
+            <ErrorMessage name="url">{(msg) => <div>{msg}</div>}</ErrorMessage>
           </label>
           <label>
             Опис: <Field type="text" name="description" />
+            <ErrorMessage name="description">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Бренд: <Field type="text" name="brand" />
+            <ErrorMessage name="brand">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Вага: <Field type="text" name="weight" />
+            <ErrorMessage name="weight">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Тип пакування: <Field type="text" name="packingType" />
+            <ErrorMessage name="packingType">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
 
           <label>
@@ -78,6 +111,9 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 {selectProduct.country.name}
               </option>
             </Field>
+            <ErrorMessage name="country">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Категорія:{' '}
@@ -86,6 +122,9 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 {selectProduct.category.name}
               </option>
             </Field>
+            <ErrorMessage name="category">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Підкатегорія:{' '}
@@ -94,6 +133,9 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 {selectProduct.subcategory.name}
               </option>
             </Field>
+            <ErrorMessage name="subcategory">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <label>
             Колір:{' '}
@@ -102,6 +144,9 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 {selectProduct.color.name}
               </option>
             </Field>
+            <ErrorMessage name="color">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </label>
           <button type="submit">Зберегти</button>
         </Form>
