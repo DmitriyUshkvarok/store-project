@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
+import { Form } from 'formik';
+
 export const GalleryBox = styled.div`
   padding-left: 30px;
   padding-right: 30px;
@@ -27,6 +29,16 @@ export const Box = styled.div`
   max-width: 1000px;
   margin: 0 auto;
 
+  @media screen and (min-width: 1060px) {
+    justify-content: start;
+  }
+`;
+
+export const StyledForm = styled(Form)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
   @media screen and (min-width: 1060px) {
     justify-content: start;
   }

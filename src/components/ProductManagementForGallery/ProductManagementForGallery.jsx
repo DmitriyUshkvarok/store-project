@@ -5,8 +5,9 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import {
-  useDeleteGalleryItemMutation,
   useGetGalleryQuery,
+  useAddGalleryItemMutation,
+  useDeleteGalleryItemMutation,
 } from '@/src/redux/galleryApi/galleryApi';
 import {
   Box,
@@ -15,19 +16,26 @@ import {
   PageNumber,
   PaginationBox,
   Picture,
-  Title,
+  StyledForm,
 } from './ProductManagementForGallery.styled';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { Form, Formik } from 'formik';
 
 const ProductManagementForGallery = () => {
   const { data, isError, isLoading } = useGetGalleryQuery();
+  const [deleteGalleryItem] = useDeleteGalleryItemMutation();
+  const [addGalleryItem, { isLoading: isAdding, error: addError }] =
+    useAddGalleryItemMutation();
+
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPhotos, setCurrentPhotos] = useState([]);
 
-  const [deleteGalleryItem] = useDeleteGalleryItemMutation();
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const fileInputRef = React.useRef(null);
 
   const handleDeleteImage = async (_id) => {
     try {
@@ -35,6 +43,19 @@ const ProductManagementForGallery = () => {
       console.log('Response:', result);
     } catch (error) {
       console.error('Помилка при видаленні зображення:', error);
+    }
+  };
+
+  const handleSubmit = async (value, { resetForm }) => {
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append('picture', selectedFile);
+      await addGalleryItem(formData);
+      resetForm();
+      setSelectedFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''; // Очищення поля вводу файлу
+      }
     }
   };
 
@@ -85,7 +106,29 @@ const ProductManagementForGallery = () => {
   return (
     <GalleryBox>
       <Box>
-        <AiOutlinePlus style={{ width: '50px', height: '50px' }} />
+        <Formik
+          initialValues={{
+            picture: '',
+          }}
+          onSubmit={handleSubmit}
+        >
+          <StyledForm>
+            <label>
+              <input
+                type="file"
+                accept="image/*"
+                name="picture"
+                ref={fileInputRef}
+                onChange={(e) => setSelectedFile(e.target.files[0])}
+              />
+            </label>
+
+            <button style={{ border: 'none' }}>
+              <AiOutlinePlus style={{ width: '40px', height: '40px' }} />
+            </button>
+          </StyledForm>
+        </Formik>
+
         <Gallery className="gallery">
           {isLoading ? (
             <Spinner />
