@@ -14,7 +14,7 @@ import FormAddAny from '@/src/components/FormAddAny/FormAddAny';
 import CaptionByCategory from '../CaptionByCategory/CaptionByCategory';
 import ListByCategory from '../ListByCategory/ListByCategory';
 import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
-import { Container, Title } from './CategoryManagmentAdmin.styled';
+import { Box, Container, BoxCategory } from './CategoryManagmentAdmin.styled';
 
 const CategoryManagmentAdmin = () => {
   const [show, setShow] = useState(false);
@@ -56,23 +56,29 @@ const CategoryManagmentAdmin = () => {
   return (
     <Container>
       <CaptionByCategory handleShow={handleShow} />
-      <ListByCategory
-        data={countries}
-        handleShow={handleShow}
-        title={COUNTRY}
-      />
-      <ListByCategory
-        data={categories}
-        handleShow={handleShow}
-        title={CATEGORY}
-      />
-      <ListByCategory
-        data={subcategories}
-        handleShow={handleShow}
-        title={SUBCATEGORY}
-      />
+      <Box>
+        <BoxCategory>
+          <ListByCategory
+            data={countries}
+            handleShow={handleShow}
+            title={COUNTRY}
+          />
+          <ListByCategory
+            data={categories}
+            handleShow={handleShow}
+            title={CATEGORY}
+          />
+        </BoxCategory>
+        <BoxCategory>
+          <ListByCategory
+            data={subcategories}
+            handleShow={handleShow}
+            title={SUBCATEGORY}
+          />
 
-      <ListByCategory data={colors} handleShow={handleShow} title={COLOR} />
+          <ListByCategory data={colors} handleShow={handleShow} title={COLOR} />
+        </BoxCategory>
+      </Box>
       <ModalAdminByForm show={show} handleClose={handleClose}>
         {showModalAdd && (
           <FormAdd

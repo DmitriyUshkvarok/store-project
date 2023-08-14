@@ -11,12 +11,6 @@ const CaptionByCategory = ({ handleShow }) => {
   return (
     <WrapNavPanelAdmin>
       <WrapAddBtn>
-        <TitleDesc>Додати товар</TitleDesc>
-        <button type="button" onClick={() => handleShow('add')}>
-          <BsPlusCircleDotted size={14} />
-        </button>
-      </WrapAddBtn>
-      <WrapAddBtn>
         <TitleDesc>Додати країну</TitleDesc>
         <button type="button" onClick={() => handleShow('країну')}>
           <BsPlusCircleDotted size={14} />
@@ -37,6 +31,12 @@ const CaptionByCategory = ({ handleShow }) => {
       <WrapAddBtn>
         <TitleDesc>Додати колір</TitleDesc>
         <button type="button" onClick={() => handleShow('колір')}>
+          <BsPlusCircleDotted size={14} />
+        </button>
+      </WrapAddBtn>
+      <WrapAddBtn>
+        <TitleDesc>Додати товар</TitleDesc>
+        <button type="button" onClick={() => handleShow('add')}>
           <BsPlusCircleDotted size={14} />
         </button>
       </WrapAddBtn>

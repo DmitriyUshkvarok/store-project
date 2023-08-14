@@ -14,6 +14,10 @@ import {
   WrapContent,
   TitleDesc,
   Title,
+  Btn,
+  DeleteForever,
+  Create,
+  BoxBtn,
 } from './ListByCategory.styled';
 
 const ListByCategory = ({ data, handleShow, title }) => {
@@ -69,34 +73,31 @@ const ListByCategory = ({ data, handleShow, title }) => {
     }
   };
   return (
-    <>
+    <div>
       <Title>{title}</Title>
       <List>
         {data?.map((item) => (
           <Item key={item._id}>
             <WrapContent>
-              <TitleDesc>{item.name}</TitleDesc>
               <Image src={item.url} alt={item.name} width={30} height={30} />
+              <TitleDesc>{item.name}</TitleDesc>
             </WrapContent>
 
-            <div>
-              <button
-                onClick={() => handleDelete(item._id, title)}
-                type="button"
-              >
-                Delete
-              </button>
-              <button
+            <BoxBtn>
+              <Btn onClick={() => handleDelete(item._id, title)} type="button">
+                <DeleteForever />
+              </Btn>
+              <Btn
                 onClick={() => handleShow('update', title, item.name, item._id)}
                 type="button"
               >
-                Update
-              </button>
-            </div>
+                <Create />
+              </Btn>
+            </BoxBtn>
           </Item>
         ))}
       </List>
-    </>
+    </div>
   );
 };
 
