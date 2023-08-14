@@ -158,6 +158,34 @@ export const ofertaApi = createApi({
       }),
       invalidatesTags: ['products'],
     }),
+    deleteCountry: builder.mutation({
+      query: (id) => ({
+        url: `/countries/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['countries'],
+    }),
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `/categories/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['categories'],
+    }),
+    deleteSubCategory: builder.mutation({
+      query: (id) => ({
+        url: `/subcategories/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['subcategories'],
+    }),
+    deleteColor: builder.mutation({
+      query: (id) => ({
+        url: `/colors/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['colors'],
+    }),
   }),
 });
 
@@ -184,4 +212,8 @@ export const {
   useUpdateSubCategoriesMutation,
   useUpdateColorsMutation,
   useDeleteProductMutation,
+  useDeleteCountryMutation,
+  useDeleteCategoryMutation,
+  useDeleteSubCategoryMutation,
+  useDeleteColorMutation,
 } = ofertaApi;

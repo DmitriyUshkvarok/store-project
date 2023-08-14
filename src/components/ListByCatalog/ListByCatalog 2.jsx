@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useDeleteProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
-import { toast } from 'react-toastify';
+
 import { ListOferta, ItemOferta, TagContainer } from './ListByCatalog.styled';
 
 function truncateText(text, maxLength) {
@@ -13,19 +12,6 @@ function truncateText(text, maxLength) {
 }
 
 const ListByCatalog = ({ data, handleShow }) => {
-  const [deleteProduct] = useDeleteProductMutation();
-
-  const handleDelete = async (productId, product) => {
-    try {
-      const res = await deleteProduct(productId);
-      if (res.error) {
-        throw new Error(res.error.data.message);
-      }
-      toast.success(`${product} видалено`);
-    } catch (error) {
-      return toast.error(`${error}`);
-    }
-  };
   return (
     <ListOferta>
       {data?.products?.map((product) => (
@@ -66,12 +52,7 @@ const ListByCatalog = ({ data, handleShow }) => {
             <button onClick={() => handleShow(product)} type="button">
               update
             </button>
-            <button
-              onClick={() => handleDelete(product._id, product.name)}
-              type="button"
-            >
-              delete
-            </button>
+            <button type="button">delete</button>
           </TagContainer>
         </ItemOferta>
       ))}
