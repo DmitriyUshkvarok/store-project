@@ -14,6 +14,7 @@ export const PanelCategoryList = styled.ul`
   -o-border-radius: 4px;
   padding: 10px;
   margin-right: 15px;
+  min-width: 220px;
 
   @media screen and (max-width: 550px) {
     justify-content: center;

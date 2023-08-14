@@ -4,6 +4,7 @@ export const WrapNavPanelAdmin = styled.div`
   display: flex;
   gap: 36px;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const TitleDesc = styled.span`

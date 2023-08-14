@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import { MdDeleteForever, MdCreate } from 'react-icons/md';
 
+export const Box = styled.div`
+  width: 100%;
+`;
+
 export const Title = styled.h2`
   margin: 0;
   font-size: 18px;
@@ -10,18 +14,41 @@ export const Title = styled.h2`
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  @media screen and (min-width: 768px) {
-    width: 300px;
+  border: 1px solid #ccc;
+  padding-right: 10px;
+  /*  */
+
+  height: fit-content;
+  height: 350px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    background: #ccc;
+    width: 6px;
+    border-radius: 12px;
   }
-  @media screen and (min-width: 1000px) {
-    width: 400px;
+
+  ::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 12px;
+    background-color: gray;
+  }
+
+  ::-webkit-scrollbar-track {
+    width: 6px;
+    /* height: 300px; */
+    flex-shrink: 0;
+
+    border-radius: 12px;
   }
 `;
+
+/*  */
 
 export const Item = styled.li`
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   justify-content: space-between;
   padding-left: 10px;
   &:hover {
