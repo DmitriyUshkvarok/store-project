@@ -1,11 +1,13 @@
 'use client';
-
+import Pagination from 'react-bootstrap/Pagination';
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState, useEffect } from 'react';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
 import ListByCatalog from '../ListByCatalog/ListByCatalog';
+import SearchFormAdmin from '../SearchFormAdmin/SearchFormAdmin';
+import { renderPaginationItems } from '@/src/helper/renderPageButtons';
 
 const CatalogManagementAdmin = () => {
   const [products, setProducts] = useState([]);
@@ -15,6 +17,8 @@ const CatalogManagementAdmin = () => {
   const [selectProduct, setSelectProduct] = useState(null);
 
   const productsPerPage = 6;
+  const maxVisiblePages = 10;
+  const totalPages = Math.ceil(total / productsPerPage);
 
   const { data } = useGetAllInfoProductQuery({
     page: currentPage,
@@ -34,22 +38,24 @@ const CatalogManagementAdmin = () => {
     setShow(true);
   };
 
-  const totalPages = Math.ceil(total / productsPerPage);
-
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   return (
     <>
+      <SearchFormAdmin />
       <CaptionByCatalog />
       <ListByCatalog handleShow={handleShow} data={products} />
       <div>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button key={index} onClick={() => handlePageClick(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
+        <Pagination>
+          {renderPaginationItems(
+            totalPages,
+            maxVisiblePages,
+            currentPage,
+            handlePageClick
+          )}
+        </Pagination>
       </div>
       <ModalAdminByForm show={show} handleClose={handleClose}>
         <FormUpdateProductAdmin
