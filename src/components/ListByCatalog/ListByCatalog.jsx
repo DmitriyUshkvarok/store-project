@@ -28,7 +28,7 @@ const ListByCatalog = ({ data, handleShow }) => {
   };
   return (
     <ListOferta>
-      {data?.products?.map((product) => (
+      {data?.map((product) => (
         <ItemOferta key={product._id}>
           <TagContainer>
             <p>{product.name}</p>
