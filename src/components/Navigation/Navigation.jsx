@@ -12,6 +12,7 @@ import {
   StyleLinkForBurger,
   ItemForBurger,
   LinkForB,
+  MenuBurger,
 } from './Navigation.styled';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoIosBasket } from 'react-icons/io';
@@ -26,7 +27,6 @@ import { useState, useRef, useEffect } from 'react';
 
 const Navigation = () => {
   const [togle, setTogle] = useState(false);
-  // const [subTogle, setSubTogle] = useState(false);
   const cartItems = useSelector(cartSelector.getIsItems);
   const pathname = usePathname();
   const isToken = useSelector(authSelector.authToken);
@@ -34,27 +34,9 @@ const Navigation = () => {
 
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setTogle(false);
-      }
-    };
-
-    window.addEventListener('click', handleClickOutside);
-
-    return () => {
-      window.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
   const handleClick = () => {
     setTogle(!togle);
   };
-
-  // const handelClickSub = () => {
-  //   setSubTogle(!subTogle);
-  // };
 
   const handleClickLogOut = () => {
     Notiflix.Confirm.show(
@@ -65,7 +47,6 @@ const Navigation = () => {
       async () => {
         try {
           await logOut();
-          // location.reload();
         } catch (error) {
           console.log(error);
         }
@@ -76,7 +57,6 @@ const Navigation = () => {
   return (
     <>
       <StyleNavigation>
-        {/* <StyleLink href="/home">Logo</StyleLink> */}
         <StyleLink
           href="/home"
           className={pathname === '/home' ? 'active' : ''}
@@ -131,7 +111,7 @@ const Navigation = () => {
         <BurgerMenu onClick={handleClick} ref={dropdownRef}>
           <RxHamburgerMenu style={{ color: 'white' }} />
           <DropdownForBurger togle={togle}>
-            <ul>
+            <MenuBurger>
               <li>
                 <StyleLinkForBurger
                   href="/home"
@@ -150,7 +130,6 @@ const Navigation = () => {
               </li>
               <li>
                 <StyleLinkForBurger
-                  // onClick={handelClickSub}
                   href="/oferta"
                   className={pathname === '/offer' ? 'active' : ''}
                 >
@@ -173,24 +152,7 @@ const Navigation = () => {
                   Галерея
                 </StyleLinkForBurger>
               </li>
-            </ul>
-
-            {/* <DropDownMenuForBurger subTogle={subTogle}>
-              <ListMenu>
-                <li>
-                  <Link href="/about">Країна!!</Link>
-                </li>
-                <li>
-                  <Link href="/about">Вид</Link>
-                </li>
-                <li>
-                  <Link href="/about">Клас</Link>
-                </li>
-                <li>
-                  <Link href="/about">Колір</Link>
-                </li>
-              </ListMenu>
-            </DropDownMenuForBurger> */}
+            </MenuBurger>
           </DropdownForBurger>
         </BurgerMenu>
         <BasketStyleLink

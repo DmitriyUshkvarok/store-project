@@ -9,7 +9,7 @@ export const StyleHeader = styled.header`
   z-index: 999;
   display: flex;
   justify-content: center;
-  @media (width < 981px) {
+  @media (width < 1001px) {
     justify-content: flex-end;
   }
 `;
@@ -24,7 +24,7 @@ export const ImageStyled = styled(Image)`
   height: 206px;
   z-index: 1111111;
 
-  @media (width < 530px) {
+  @media (width < 606px) {
     display: none;
   }
 `;
