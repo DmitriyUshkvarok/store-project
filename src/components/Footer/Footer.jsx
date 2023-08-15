@@ -1,6 +1,6 @@
 'use client';
 
-import { MdKeyboardArrowRight } from 'react-icons/md';
+import { MdKeyboardArrowRight, MdOutlineDesktopMac } from 'react-icons/md';
 import Link from 'next/link';
 import Container from '../Container/Container';
 import {
@@ -14,8 +14,56 @@ import {
   List,
   Item,
   BoxAbout,
+  Menu,
+  TeamList,
+  TeamItem,
+  Btn,
+  TeamTitle,
+  TeamSubject,
+  StyleLink,
+  StyleAiOutlineGithub,
+  StyleAiFillLinkedin,
+  BoxLink,
+  StyledImage,
 } from './Footer.styled';
+import { useState, useRef, useEffect } from 'react';
+
+import Image from 'next/image';
+
 const Footer = () => {
+  const [menuVisible, setMenuVisible] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const toggleMenu = () => {
+    setMenuVisible((prevVisible) => !prevVisible);
+  };
+  const handleClickOutside = (event) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      !buttonRef.current.contains(event.target)
+    ) {
+      setMenuVisible(false);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      setMenuVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <StyleFooter>
       <Container>
@@ -77,6 +125,112 @@ const Footer = () => {
       </Container>
       <BoxAbout>
         <p>Усі права захищено 2023 Хімбрук веб-сайт </p>
+        <Btn ref={buttonRef} onClick={toggleMenu}>
+          <MdOutlineDesktopMac />
+        </Btn>
+        {menuVisible && (
+          <Menu ref={menuRef}>
+            <TeamList>
+              <TeamItem>
+                {/* <StyledImage src="" alt="" width="45px" /> */}
+                <TeamTitle>Oleh Paslavskyi</TeamTitle>
+                <TeamSubject>Full stack developer</TeamSubject>
+                <BoxLink>
+                  <StyleLink
+                    href="https://github.com/OPaslavskiy"
+                    target="_blank"
+                  >
+                    <StyleAiOutlineGithub />
+                  </StyleLink>
+                  <StyleLink
+                    href="https://www.linkedin.com/in/oleh-paslavskyi/"
+                    target="_blank"
+                  >
+                    <StyleAiFillLinkedin />
+                  </StyleLink>
+                </BoxLink>
+              </TeamItem>
+              <TeamItem>
+                {/* <StyledImage src="" alt="" width="45px" /> */}
+                <TeamTitle>Anastasiya Kor</TeamTitle>
+                <TeamSubject>Full stack developer</TeamSubject>
+                <BoxLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://github.com/AnastasiiaKor"
+                  >
+                    <StyleAiOutlineGithub />
+                  </StyleLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://www.linkedin.com/in/anastasiya-kor/"
+                  >
+                    <StyleAiFillLinkedin />
+                  </StyleLink>
+                </BoxLink>
+              </TeamItem>
+              <TeamItem>
+                {/* <StyledImage src="" alt="" width="45px" /> */}
+                <TeamTitle>Dmitriy Ushkvarok</TeamTitle>
+                <TeamSubject>Full stack developer</TeamSubject>
+                <BoxLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://github.com/DmitriyUshkvarok"
+                  >
+                    <StyleAiOutlineGithub />
+                  </StyleLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://www.linkedin.com/in/dmitriy-ushkvarok/"
+                  >
+                    <StyleAiFillLinkedin />
+                  </StyleLink>
+                </BoxLink>
+              </TeamItem>
+              <TeamItem>
+                {/* <StyledImage src="" alt="" width="45px" /> */}
+                <TeamTitle>Anastasiia Hudymenko</TeamTitle>
+                <TeamSubject>Full stack developer</TeamSubject>
+                <BoxLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://github.com/AnastasiiaHudymenko"
+                  >
+                    <StyleAiOutlineGithub />
+                  </StyleLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://www.linkedin.com/in/anastasia-gudymenko/"
+                  >
+                    <StyleAiFillLinkedin />
+                  </StyleLink>
+                </BoxLink>
+              </TeamItem>
+              <TeamItem>
+                {/* <StyledImage
+                  src={'/team/vt.jpg'}
+                  alt="Vitalii"
+                  width={35}
+                  height={35}
+                /> */}
+                <TeamTitle>Vitalii Nozhenko</TeamTitle>
+                <TeamSubject>Full stack developer</TeamSubject>
+                <BoxLink>
+                  <StyleLink target="_blank" href="https://github.com/VitalikN">
+                    <StyleAiOutlineGithub />
+                  </StyleLink>
+                  <StyleLink
+                    target="_blank"
+                    href="https://www.linkedin.com/in/vitalii-nozhenko/"
+                  >
+                    <StyleAiFillLinkedin />
+                  </StyleLink>
+                </BoxLink>
+              </TeamItem>
+            </TeamList>
+          </Menu>
+        )}
       </BoxAbout>
     </StyleFooter>
   );
