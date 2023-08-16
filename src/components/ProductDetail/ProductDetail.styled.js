@@ -64,12 +64,6 @@ export const ProductWeight = styled.div`
   margin-bottom: 10px;
 `;
 
-export const ProductPackingType = styled.p`
-  font-weight: bold;
-  color: black;
-  margin-bottom: 10px;
-`;
-
 export const CategorySpan = styled.span`
   color: lightcoral;
   font-weight: normal;
@@ -125,6 +119,24 @@ export const ProductBrand = styled.p`
 export const ProductColor = styled.p`
   color: #222;
   font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const ProductPackingType = styled.p`
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+`;
+
+export const ProductCountry = styled.div`
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+`;
+
+export const ProductPdf = styled.div`
+  font-weight: bold;
+  color: black;
   margin-bottom: 10px;
 `;
 

@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   incrementQuantity,
@@ -11,6 +11,7 @@ import { addToCart } from '@/src/redux/cart/cartSlise';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import { useGetInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import { AiOutlineFilePdf } from 'react-icons/ai';
 
 import {
   ProductDetailSection,
@@ -31,6 +32,8 @@ import {
   SpanPrice,
   ProductBrand,
   ProductColor,
+  ProductCountry,
+  ProductPdf,
   CounterWrapper,
   BtnIncrement,
   InputCounter,
@@ -39,25 +42,20 @@ import {
 import Container from '../Container/Container';
 import BtnBuy from '../BtnBuy/BtnBuy';
 import cartSelector from '@/src/redux/cart/cartSelector';
-import BtnBackNav from '../BtnBackNav/BtnBackNav';
 
 const ProductDetail = () => {
   const params = useParams();
-  const router = useRouter();
   const cartItems = useSelector(cartSelector.getIsItems);
   const product = useSelector((state) => state.oferta.product);
   const category = useSelector((state) => state.oferta.category);
 
   const { data, isLoading } = useGetInfoProductQuery({
     productId: product.id,
-    // categoryId: category.id,
-    // subcategoryId: subcategory.id,
-    // colorId: color.id,
   });
 
   console.log(data);
 
-  const productInfo = data?.[0];
+  const productInfo = data;
 
   const isProductInCart = cartItems.some(
     (item) => item.id === productInfo?._id
@@ -92,7 +90,7 @@ const ProductDetail = () => {
       image: productInfo?.url,
       data: formatData,
       brand: productInfo?.brand,
-      color: color.name,
+      color: productInfo?.color,
     };
 
     if (isProductInCart) {
@@ -107,10 +105,6 @@ const ProductDetail = () => {
     dispatch(
       setQuantityById({ itemId: productInfo?._id, quantity: newQuantity })
     );
-  };
-
-  const handlClickBack = () => {
-    router.back();
   };
 
   return (
@@ -130,62 +124,77 @@ const ProductDetail = () => {
             <p>Загрузка данных...</p>
           ) : (
             <div>
-              {/* {data?.map((productInfo) => (
-                <ProductDetailInfoBlock key={productInfo._id}>
-                  <ProductBlockLeft>
-                    <ImageBlock>
-                      <Image
-                        src={
-                          productInfo?.url ||
-                          'https://set-iset.ru/wp-content/uploads/woocommerce-placeholder.png'
-                        }
-                        alt={productInfo?.name || ''}
-                        width={500}
-                        height={400}
-                        style={{ marginBottom: '10px' }}
-                      />
-                      <ProductName>{productInfo?.name}</ProductName>
-                    </ImageBlock>
-                    <ProductPrice>
-                      Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
-                    </ProductPrice>
-                  </ProductBlockLeft>
-                  <ProductBlockRight>
-                    <div>
-                      <ProductСharacterization>Опис</ProductСharacterization>
-                      <ProductDescription>
-                        {productInfo?.description}
-                      </ProductDescription>
-                      <ProductWeight>
-                        Вага:<CategorySpan>{productInfo?.weight}</CategorySpan>
-                      </ProductWeight>
-                      <ProductPackingType>
-                        Тип упаковки:
-                        <CategorySpan>{productInfo?.packingType}</CategorySpan>
-                      </ProductPackingType>
-                      <ProductBrand>
-                        бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
-                      </ProductBrand>
-                      <ProductColor>
-                        Колір:<CategorySpan>{color.name}</CategorySpan>
-                      </ProductColor>
-                    </div>
-                    <CounterWrapper>
-                      <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
-                      <InputCounter
-                        type="text"
-                        value={quantity}
-                        onChange={(e) => handleChangeQuantity(e.target.value)}
-                      />
-                      <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
-                    </CounterWrapper>
-                    <BtnBuy
-                      handleBuy={handleBuy}
-                      isAddedToCart={isProductInCart}
+              <ProductDetailInfoBlock key={productInfo._id}>
+                <ProductBlockLeft>
+                  <ImageBlock>
+                    <Image
+                      src={
+                        productInfo?.url ||
+                        'https://set-iset.ru/wp-content/uploads/woocommerce-placeholder.png'
+                      }
+                      alt={productInfo?.name || ''}
+                      width={500}
+                      height={400}
+                      style={{ marginBottom: '10px', objectFit: 'cover' }}
                     />
-                  </ProductBlockRight>
-                </ProductDetailInfoBlock>
-              ))} */}
+                    <ProductName>{productInfo?.name}</ProductName>
+                  </ImageBlock>
+                  <ProductPrice>
+                    Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
+                  </ProductPrice>
+                </ProductBlockLeft>
+                <ProductBlockRight>
+                  <div>
+                    <ProductСharacterization>Опис</ProductСharacterization>
+                    <ProductDescription>
+                      {productInfo?.description}
+                    </ProductDescription>
+                    <ProductWeight>
+                      Вага:<CategorySpan>{productInfo?.weight}</CategorySpan>
+                    </ProductWeight>
+                    <ProductPackingType>
+                      Тип упаковки:
+                      <CategorySpan>{productInfo?.packingType}</CategorySpan>
+                    </ProductPackingType>
+                    <ProductBrand>
+                      бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
+                    </ProductBrand>
+                    <ProductColor>
+                      Колір:<CategorySpan>{productInfo?.color}</CategorySpan>
+                    </ProductColor>
+                    <ProductCountry>
+                      Країна:<CategorySpan>{productInfo?.country}</CategorySpan>
+                    </ProductCountry>
+                    <ProductPackingType>
+                      Тип упаковки:
+                      <CategorySpan>{productInfo?.packingType}</CategorySpan>
+                    </ProductPackingType>
+                    <ProductPdf>
+                      <a
+                        href={productInfo?.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AiOutlineFilePdf size={25} />
+                        <CategorySpan> Посилання на PDF-документ</CategorySpan>
+                      </a>
+                    </ProductPdf>
+                  </div>
+                  <CounterWrapper>
+                    <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
+                    <InputCounter
+                      type="text"
+                      value={quantity}
+                      onChange={(e) => handleChangeQuantity(e.target.value)}
+                    />
+                    <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
+                  </CounterWrapper>
+                  <BtnBuy
+                    handleBuy={handleBuy}
+                    isAddedToCart={isProductInCart}
+                  />
+                </ProductBlockRight>
+              </ProductDetailInfoBlock>
             </div>
           )}
         </div>
