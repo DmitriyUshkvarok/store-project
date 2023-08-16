@@ -56,15 +56,26 @@ const AdminOrdersList = () => {
   const totalPages = Math.ceil(totalOrdersCount / pageSize); // Общее количество страниц
   const hasNextPage = ordersFromServer.length === pageSize;
 
-  const doneOrdersCount = ordersFromServer.filter((order) => order.done).length;
-  const activeOrdersCount = ordersFromServer.filter(
-    (order) => !order.done
-  ).length;
+  const totalOrders = response?.all || 0;
+
+  const donePercentage = ((response?.total / response?.all) * 100).toFixed(2);
+  const activePercentage = (
+    ((response?.all - response?.total) / response?.all) *
+    100
+  ).toFixed(2);
 
   const chartData = [
-    { label: 'Общее количество', value: totalOrdersCount },
-    { label: 'Выполненные', value: doneOrdersCount },
-    { label: 'Активные', value: activeOrdersCount },
+    { label: 'Общее количество', value: totalOrders },
+    {
+      label: 'Выполненные',
+      value: donePercentage,
+      totalValue: response?.total,
+    },
+    {
+      label: 'Активные',
+      value: activePercentage,
+      totalValue: response?.all - response?.total,
+    },
   ];
 
   const [deleteOrderMutation] = useDeleteOrderMutation();

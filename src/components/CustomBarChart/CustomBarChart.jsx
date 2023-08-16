@@ -1,4 +1,3 @@
-import React from 'react';
 import css from './CustomBarChart.module.css';
 
 const CustomBarChart = ({ data }) => {
@@ -25,10 +24,17 @@ const CustomBarChart = ({ data }) => {
             }}
           >
             <div className={css.label}>
-              {item.label}: {item.value}
+              {item.label}:
+              {item.label === 'Выполненные' || item.label === 'Активные'
+                ? `${item.value}%`
+                : item.value}
             </div>
-            <div className={css.tooltip}>
+            {/* <div className={css.tooltip}>
               {item.label}: {item.value}
+            </div> */}
+            <div className={css.tooltip}>
+              {item.label}:
+              {item.label === 'Общее количество' ? item.value : item.totalValue}
             </div>
           </div>
         ))}
