@@ -1,40 +1,67 @@
 'use client';
 import Link from 'next/link';
 import { slugify } from 'transliteration';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
-import { useGetCountryCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
-import { setDataAndIdCategoty } from '@/src/redux/ofertaApi/ofertaSlice';
+import {
+  useGetCategoryProductsQuery,
+  useGetFilterCategoryProductsQuery,
+} from '@/src/redux/ofertaApi/ofertaApi';
+import { setDataAndIdProduct } from '@/src/redux/ofertaApi/ofertaSlice';
 import Spinner from '../SpinerOferta/SpinerOferta';
-import BtnBuy from '../BtnBuy/BtnBuy';
+import FilterByCategoryProducts from '@/src/components/FilterByCategoryProducts/FilterByCategoryProducts';
 import {
   WrapNav,
   DecorSpanBackLink,
   CurrentNavDecor,
-  ItemListCatalog,
-  WrapContentCard,
-  ProductTitleCard,
-  StyledImage,
-  ThumbCardImg,
-  ListCatalog,
-  Container,
-  StyledLink,
   TitleCard,
 } from '@/src/components/CatalogList/CatalogList.styled';
+import {
+  AboutBox,
+  ProductsList,
+  Picture,
+  Item,
+  BoxTitle,
+  TitleProduct,
+  Price,
+  Overlay,
+  TextOverlay,
+  PictureOverlay,
+  Box,
+} from '@/src/components/AllProducts/AllProducts.styled';
+import { useEffect, useState } from 'react';
 
 const DynamicCatalogList = () => {
+  const [selectCountry, setSelectCountry] = useState('');
+  const [selectColor, setSelectColor] = useState('');
+
   const params = useParams();
   const dispatch = useDispatch();
-  // const countryId = useSearchParams().getAll('country');
-  const country = useSelector((state) => state.oferta.countrie);
-  const { data, isError, isLoading } = useGetCountryCategoryQuery(country.id);
 
-  const handleChooseCategory = (caterory) => {
-    dispatch(setDataAndIdCategoty(caterory));
+  const category = useSelector((state) => state.oferta.category);
+
+  const { data, isError, isLoading } = useGetCategoryProductsQuery({
+    categoryId: category.id,
+    country: encodeURIComponent(selectCountry),
+    color: encodeURIComponent(selectColor),
+  });
+
+  useEffect(() => {}, [data]);
+
+  const handleChooseProduct = (product) => {
+    dispatch(setDataAndIdProduct(product));
+  };
+
+  const handleChooseCountry = (counrty) => {
+    setSelectCountry(counrty);
+  };
+
+  const handleChooseColor = (color) => {
+    setSelectColor(color);
   };
 
   return (
-    <Container>
+    <AboutBox>
       <WrapNav>
         <Link href={`/home`}>
           <DecorSpanBackLink>Головна /</DecorSpanBackLink>
@@ -42,43 +69,57 @@ const DynamicCatalogList = () => {
         <Link href={`/oferta`}>
           <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
         </Link>
-        <CurrentNavDecor>{country.name}</CurrentNavDecor>
+        <CurrentNavDecor>{category.name}</CurrentNavDecor>
       </WrapNav>
-      <TitleCard>{country.name}</TitleCard>
-      <ListCatalog>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          data?.map((product) => (
-            <ItemListCatalog
-              onClick={() => handleChooseCategory(product)}
-              key={product._id}
-            >
-              <StyledLink
-                href={{
-                  pathname: `/oferta/${params.product}/${slugify(
-                    product.name
-                  )}`,
-                }}
+      <TitleCard>{category.name}</TitleCard>
+      <Box>
+        <FilterByCategoryProducts
+          countries={data?.countries}
+          colors={data?.colors}
+          select={handleChooseCountry}
+          selectColor={handleChooseColor}
+        />
+        <ProductsList>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            data?.products?.map((product) => (
+              <Item
+                onClick={() => handleChooseProduct(product)}
+                key={product._id}
               >
-                <StyledImage
-                  priority
-                  src={product.url}
-                  alt={product.name}
-                  width={350}
-                  height={180}
-                />
+                <Link
+                  href={{
+                    pathname: `/oferta/${params.product}/${slugify(
+                      product.name
+                    )}`,
+                  }}
+                >
+                  <PictureOverlay>
+                    <Picture
+                      src={product.url}
+                      alt={`Image`}
+                      width="250"
+                      height="1270"
+                      priority={true}
+                    />
+                    <Overlay>
+                      <TextOverlay>{product.description}</TextOverlay>
+                      <TextOverlay>Виробник: {product.country}</TextOverlay>
+                    </Overlay>
+                  </PictureOverlay>
 
-                <WrapContentCard>
-                  <ProductTitleCard>{product.name}</ProductTitleCard>
-                  <BtnBuy />
-                </WrapContentCard>
-              </StyledLink>
-            </ItemListCatalog>
-          ))
-        )}
-      </ListCatalog>
-    </Container>
+                  <BoxTitle>
+                    <TitleProduct>{product.name}</TitleProduct>
+                    <Price>Ціна: {product.price} грн.</Price>
+                  </BoxTitle>
+                </Link>
+              </Item>
+            ))
+          )}
+        </ProductsList>
+      </Box>
+    </AboutBox>
   );
 };
 

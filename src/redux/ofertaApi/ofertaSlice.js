@@ -9,37 +9,22 @@ const ofertaPersistConfig = {
 const ofertaSlice = createSlice({
   name: 'oferta',
   initialState: {
-    countrie: { name: '', id: null },
-    categoty: { name: '', id: null },
-    subcategory: { name: '', id: null },
-    color: { name: '', id: null },
+    product: { name: '', id: null },
+    category: { name: '', id: null },
   },
   reducers: {
     setDataAndId: (state, action) => {
-      state.countrie.name = action.payload.name;
-      state.countrie.id = action.payload._id;
+      state.category.name = action.payload.name;
+      state.category.id = action.payload._id;
     },
-    setDataAndIdCategoty: (state, action) => {
-      state.categoty.name = action.payload.name;
-      state.categoty.id = action.payload._id;
-    },
-    setDataAndIdSubCategoty: (state, action) => {
-      state.subcategory.name = action.payload.name;
-      state.subcategory.id = action.payload._id;
-    },
-    setDataAndIdColor: (state, action) => {
-      state.color.name = action.payload.name;
-      state.color.id = action.payload._id;
+    setDataAndIdProduct: (state, action) => {
+      state.product.name = action.payload.name;
+      state.product.id = action.payload._id;
     },
   },
 });
 
-export const {
-  setDataAndId,
-  setDataAndIdCategoty,
-  setDataAndIdSubCategoty,
-  setDataAndIdColor,
-} = ofertaSlice.actions;
+export const { setDataAndId, setDataAndIdProduct } = ofertaSlice.actions;
 
 const persistedOfertaReducer = persistReducer(
   ofertaPersistConfig,

@@ -2,8 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const BcgContainer = styled.div``;
-
 export const StyledLink = styled(Link)`
   position: relative;
   margin-bottom: 30px;
@@ -88,18 +86,6 @@ export const ItemListCatalog = styled.li`
   }
 `;
 
-export const ThumbCardImg = styled.div`
-  ::before {
-    content: '';
-    position: absolute;
-    left: 22px;
-    right: 21px;
-    bottom: 90px;
-    top: 10px;
-    border: 1px solid #fff;
-  }
-`;
-
 export const StyledImage = styled(Image)`
   width: 100%;
   height: 160px;
@@ -131,14 +117,13 @@ export const WrapContentCard = styled.div`
 
 export const TitleCard = styled.h3`
   font-size: 28px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
   letter-spacing: 2px;
   padding-bottom: 33px;
 
-  border-bottom: 4px solid gray;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
