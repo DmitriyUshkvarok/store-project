@@ -45,16 +45,14 @@ const ProductDetail = () => {
   const params = useParams();
   const router = useRouter();
   const cartItems = useSelector(cartSelector.getIsItems);
-  const country = useSelector((state) => state.oferta.countrie);
-  const category = useSelector((state) => state.oferta.categoty);
-  const subcategory = useSelector((state) => state.oferta.subcategory);
-  const color = useSelector((state) => state.oferta.color);
+  const product = useSelector((state) => state.oferta.product);
+  const category = useSelector((state) => state.oferta.category);
 
   const { data, isLoading } = useGetInfoProductQuery({
-    countryId: country.id,
-    categoryId: category.id,
-    subcategoryId: subcategory.id,
-    colorId: color.id,
+    productId: product.id,
+    // categoryId: category.id,
+    // subcategoryId: subcategory.id,
+    // colorId: color.id,
   });
 
   console.log(data);
@@ -122,23 +120,17 @@ const ProductDetail = () => {
           <StyleLinkDetail href={`/home`}>Головна /</StyleLinkDetail>
           <StyleLinkDetail href={`/oferta`}>Каталог /</StyleLinkDetail>
           <StyleLinkDetail href={`/oferta/${params.product}`}>
-            {country.name} /
-          </StyleLinkDetail>
-          <StyleLinkDetail
-            href={`/oferta/${params.product}/${params.subProduct}`}
-          >
             {category.name} /
           </StyleLinkDetail>
-          <BtnBackNav click={handlClickBack} text={subcategory.name} />
 
-          <CurrentLink>{color.name}</CurrentLink>
+          <CurrentLink>{data?.name}</CurrentLink>
         </LinkPanel>
         <div>
           {isLoading ? (
             <p>Загрузка данных...</p>
           ) : (
             <div>
-              {data?.map((productInfo) => (
+              {/* {data?.map((productInfo) => (
                 <ProductDetailInfoBlock key={productInfo._id}>
                   <ProductBlockLeft>
                     <ImageBlock>
@@ -193,7 +185,7 @@ const ProductDetail = () => {
                     />
                   </ProductBlockRight>
                 </ProductDetailInfoBlock>
-              ))}
+              ))} */}
             </div>
           )}
         </div>

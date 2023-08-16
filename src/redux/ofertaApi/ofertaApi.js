@@ -12,29 +12,30 @@ export const ofertaApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['products', 'countries', 'categories', 'subcategories', 'colors'],
+  tagTypes: ['products', 'categories'],
   endpoints: (builder) => ({
     getOferta: builder.query({
       query: () => '/products',
       providesTags: ['products'],
     }),
-    getCountryCategory: builder.query({
-      query: (id) => `/products?country=${id}`,
+    getCategoryProducts: builder.query({
+      query: (select) =>
+        `/products?category=${select.categoryId}&country=${select?.country}&color=${select?.color}`,
       providesTags: ['products'],
     }),
-    getSubCategory: builder.query({
-      query: (qwery) =>
-        `/products?country=${qwery.countryId}&category=${qwery.categoryId}`,
-      providesTags: ['products'],
-    }),
-    getColor: builder.query({
-      query: (qwery) =>
-        `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}`,
-      providesTags: ['products'],
-    }),
+
+    // getSubCategory: builder.query({
+    //   query: (qwery) =>
+    //     `/products?country=${qwery.countryId}&category=${qwery.categoryId}`,
+    //   providesTags: ['products'],
+    // }),
+    // getColor: builder.query({
+    //   query: (qwery) =>
+    //     `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}`,
+    //   providesTags: ['products'],
+    // }),
     getInfoProduct: builder.query({
-      query: (qwery) =>
-        `/products?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}&color=${qwery.colorId}`,
+      query: (qwery) => `/products/${qwery.productId}`,
       providesTags: ['products'],
     }),
     getAllProductsFiltered: builder.query({
@@ -46,22 +47,22 @@ export const ofertaApi = createApi({
       query: ({ page, limit }) => `/products/all?page=${page}&limit=${limit}`,
       providesTags: ['products'],
     }),
-    getAllCountries: builder.query({
-      query: () => `/countries`,
-      providesTags: ['countries'],
-    }),
+    // getAllCountries: builder.query({
+    //   query: () => `/countries`,
+    //   providesTags: ['countries'],
+    // }),
     getAllCategory: builder.query({
       query: () => `/categories`,
       providesTags: ['categories'],
     }),
-    getAllSubcategory: builder.query({
-      query: () => `/subcategories`,
-      providesTags: ['subcategories'],
-    }),
-    getAllColor: builder.query({
-      query: () => `/colors`,
-      providesTags: ['colors'],
-    }),
+    // getAllSubcategory: builder.query({
+    //   query: () => `/subcategories`,
+    //   providesTags: ['subcategories'],
+    // }),
+    // getAllColor: builder.query({
+    //   query: () => `/colors`,
+    //   providesTags: ['colors'],
+    // }),
     updateProduct: builder.mutation({
       query: ({ productId, formData }) => ({
         url: `/products/${productId} `,
@@ -70,15 +71,15 @@ export const ofertaApi = createApi({
       }),
       invalidatesTags: ['products'],
     }),
-    addCountries: builder.mutation({
-      query: (formData) => ({
-        url: `/countries `,
-        method: 'POST',
-        body: formData,
-      }),
+    // addCountries: builder.mutation({
+    //   query: (formData) => ({
+    //     url: `/countries `,
+    //     method: 'POST',
+    //     body: formData,
+    //   }),
 
-      invalidatesTags: ['countries'],
-    }),
+    //   invalidatesTags: ['countries'],
+    // }),
     addCategoties: builder.mutation({
       query: (formData) => ({
         url: `/categories `,
@@ -88,24 +89,24 @@ export const ofertaApi = createApi({
 
       invalidatesTags: ['categories'],
     }),
-    addSubCategoties: builder.mutation({
-      query: (formData) => ({
-        url: `/subcategories `,
-        method: 'POST',
-        body: formData,
-      }),
+    // addSubCategoties: builder.mutation({
+    //   query: (formData) => ({
+    //     url: `/subcategories `,
+    //     method: 'POST',
+    //     body: formData,
+    //   }),
 
-      invalidatesTags: ['subcategories'],
-    }),
-    addColoros: builder.mutation({
-      query: (formData) => ({
-        url: `/colors `,
-        method: 'POST',
-        body: formData,
-      }),
+    //   invalidatesTags: ['subcategories'],
+    // }),
+    // addColoros: builder.mutation({
+    //   query: (formData) => ({
+    //     url: `/colors `,
+    //     method: 'POST',
+    //     body: formData,
+    //   }),
 
-      invalidatesTags: ['colors'],
-    }),
+    //   invalidatesTags: ['colors'],
+    // }),
     addProduct: builder.mutation({
       query: (formData) => ({
         url: `/products `,
@@ -115,15 +116,15 @@ export const ofertaApi = createApi({
 
       invalidatesTags: ['products'],
     }),
-    updateCountries: builder.mutation({
-      query: ({ formData, countryId }) => ({
-        url: `/countries/${countryId}`,
-        method: 'PUT',
-        body: formData,
-      }),
+    // updateCountries: builder.mutation({
+    //   query: ({ formData, countryId }) => ({
+    //     url: `/countries/${countryId}`,
+    //     method: 'PUT',
+    //     body: formData,
+    //   }),
 
-      invalidatesTags: ['countries'],
-    }),
+    //   invalidatesTags: ['countries'],
+    // }),
     updateCategories: builder.mutation({
       query: ({ formData, categoryId }) => ({
         url: `/categories/${categoryId}`,
@@ -133,24 +134,24 @@ export const ofertaApi = createApi({
 
       invalidatesTags: ['categories'],
     }),
-    updateSubCategories: builder.mutation({
-      query: ({ formData, subcategoryId }) => ({
-        url: `/subcategories/${subcategoryId}`,
-        method: 'PUT',
-        body: formData,
-      }),
+    // updateSubCategories: builder.mutation({
+    //   query: ({ formData, subcategoryId }) => ({
+    //     url: `/subcategories/${subcategoryId}`,
+    //     method: 'PUT',
+    //     body: formData,
+    //   }),
 
-      invalidatesTags: ['subcategories'],
-    }),
-    updateColors: builder.mutation({
-      query: ({ formData, colorId }) => ({
-        url: `/colors/${colorId}`,
-        method: 'PUT',
-        body: formData,
-      }),
+    //   invalidatesTags: ['subcategories'],
+    // }),
+    // updateColors: builder.mutation({
+    //   query: ({ formData, colorId }) => ({
+    //     url: `/colors/${colorId}`,
+    //     method: 'PUT',
+    //     body: formData,
+    //   }),
 
-      invalidatesTags: ['colors'],
-    }),
+    //   invalidatesTags: ['colors'],
+    // }),
     deleteProduct: builder.mutation({
       query: (productId) => ({
         url: `/products/${productId}`,
@@ -158,13 +159,13 @@ export const ofertaApi = createApi({
       }),
       invalidatesTags: ['products'],
     }),
-    deleteCountry: builder.mutation({
-      query: (id) => ({
-        url: `/countries/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['countries'],
-    }),
+    // deleteCountry: builder.mutation({
+    //   query: (id) => ({
+    //     url: `/countries/${id}`,
+    //     method: 'DELETE',
+    //   }),
+    //   invalidatesTags: ['countries'],
+    // }),
     deleteCategory: builder.mutation({
       query: (id) => ({
         url: `/categories/${id}`,
@@ -172,48 +173,49 @@ export const ofertaApi = createApi({
       }),
       invalidatesTags: ['categories'],
     }),
-    deleteSubCategory: builder.mutation({
-      query: (id) => ({
-        url: `/subcategories/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['subcategories'],
-    }),
-    deleteColor: builder.mutation({
-      query: (id) => ({
-        url: `/colors/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['colors'],
-    }),
+    // deleteSubCategory: builder.mutation({
+    //   query: (id) => ({
+    //     url: `/subcategories/${id}`,
+    //     method: 'DELETE',
+    //   }),
+    //   invalidatesTags: ['subcategories'],
+    // }),
+    // deleteColor: builder.mutation({
+    //   query: (id) => ({
+    //     url: `/colors/${id}`,
+    //     method: 'DELETE',
+    //   }),
+    //   invalidatesTags: ['colors'],
+    // }),
   }),
 });
 
 export const {
   useGetOfertaQuery,
-  useGetCountryCategoryQuery,
-  useGetSubCategoryQuery,
-  useGetColorQuery,
+  useGetCategoryProductsQuery,
+
+  // useGetSubCategoryQuery,
+  // useGetColorQuery,
   useGetInfoProductQuery,
   useGetAllProductsFilteredQuery,
   useGetAllInfoProductQuery,
-  useGetAllCountriesQuery,
+  // useGetAllCountriesQuery,
   useGetAllCategoryQuery,
-  useGetAllSubcategoryQuery,
-  useGetAllColorQuery,
+  // useGetAllSubcategoryQuery,
+  // useGetAllColorQuery,
   useUpdateProductMutation,
-  useAddCountriesMutation,
+  // useAddCountriesMutation,
   useAddCategotiesMutation,
-  useAddSubCategotiesMutation,
-  useAddColorosMutation,
+  // useAddSubCategotiesMutation,
+  // useAddColorosMutation,
   useAddProductMutation,
-  useUpdateCountriesMutation,
+  // useUpdateCountriesMutation,
   useUpdateCategoriesMutation,
-  useUpdateSubCategoriesMutation,
-  useUpdateColorsMutation,
+  // useUpdateSubCategoriesMutation,
+  // useUpdateColorsMutation,
   useDeleteProductMutation,
-  useDeleteCountryMutation,
+  // useDeleteCountryMutation,
   useDeleteCategoryMutation,
-  useDeleteSubCategoryMutation,
-  useDeleteColorMutation,
+  // useDeleteSubCategoryMutation,
+  // useDeleteColorMutation,
 } = ofertaApi;

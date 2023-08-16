@@ -5,10 +5,7 @@ import { slugify } from 'transliteration';
 import BtnBuy from '../BtnBuy/BtnBuy';
 import { useDispatch } from 'react-redux';
 import { setDataAndId } from '@/src/redux/ofertaApi/ofertaSlice';
-import {
-  useGetOfertaQuery,
-  useGetAllProductQuery,
-} from '@/src/redux/ofertaApi/ofertaApi';
+import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import {
   ListCatalog,
   ItemListCatalog,
@@ -29,8 +26,8 @@ const CatalogList = () => {
   const { data, isLoading } = useGetOfertaQuery();
 
   const dispatch = useDispatch();
-  const handleChooseCountry = (country) => {
-    dispatch(setDataAndId(country));
+  const handleChooseCategory = (category) => {
+    dispatch(setDataAndId(category));
   };
   return (
     <Container>
@@ -49,7 +46,7 @@ const CatalogList = () => {
             data?.map((item) => (
               <ItemListCatalog
                 key={item._id}
-                onClick={() => handleChooseCountry(item)}
+                onClick={() => handleChooseCategory(item)}
               >
                 <StyledLink
                   href={{
@@ -66,7 +63,6 @@ const CatalogList = () => {
 
                   <WrapContentCard>
                     <ProductTitleCard>{item.name}</ProductTitleCard>
-                    <BtnBuy />
                   </WrapContentCard>
                 </StyledLink>
               </ItemListCatalog>
