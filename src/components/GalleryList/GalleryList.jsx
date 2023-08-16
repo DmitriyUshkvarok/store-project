@@ -5,6 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import Spinner from '../SpinerOferta/SpinerOferta';
 // import { smoothScrollToTop } from '@/src/utils/smoothScrollToTop';
+import { animateScroll as scroll } from 'react-scroll';
 import { useGetGalleryQuery } from '@/src/redux/galleryApi/galleryApi';
 import {
   Box,
@@ -35,14 +36,20 @@ const GalleryList = () => {
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
-      // smoothScrollToTop();
+      scroll.scrollToTop({
+        duration: 0,
+        smooth: 'easeInOutQuad',
+      });
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
-      // smoothScrollToTop();
+      scroll.scrollToTop({
+        duration: 0,
+        smooth: 'easeInOutQuad',
+      });
     }
   };
 
