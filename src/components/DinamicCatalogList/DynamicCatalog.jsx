@@ -32,8 +32,11 @@ import {
 import { useEffect, useState } from 'react';
 
 const DynamicCatalogList = () => {
-  const [selectCountry, setSelectCountry] = useState('');
-  const [selectColor, setSelectColor] = useState('');
+  const [selectedCountry, setSelectCountry] = useState('');
+  const [selectedColor, setSelectColor] = useState('');
+  const [products, setProducts] = useState([]);
+  const [listCountries, setListCountries] = useState([]);
+  const [listColors, setListColors] = useState([]);
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -42,11 +45,21 @@ const DynamicCatalogList = () => {
 
   const { data, isError, isLoading } = useGetCategoryProductsQuery({
     categoryId: category.id,
-    country: encodeURIComponent(selectCountry),
-    color: encodeURIComponent(selectColor),
+    country: selectedCountry,
+    color: selectedColor,
   });
 
-  useEffect(() => {}, [data]);
+  useEffect(() => {
+    setProducts(data?.products);
+    if (data?.countries || data?.colors) {
+      setListCountries(data?.countries);
+      setListColors(data?.colors);
+    }
+
+    if (selectedColor !== '' || selectedCountry !== '') {
+      setProducts(data);
+    }
+  }, [data]);
 
   const handleChooseProduct = (product) => {
     dispatch(setDataAndIdProduct(product));
@@ -58,6 +71,11 @@ const DynamicCatalogList = () => {
 
   const handleChooseColor = (color) => {
     setSelectColor(color);
+  };
+
+  const reserFilter = () => {
+    setSelectCountry('');
+    setSelectColor('');
   };
 
   return (
@@ -74,16 +92,19 @@ const DynamicCatalogList = () => {
       <TitleCard>{category.name}</TitleCard>
       <Box>
         <FilterByCategoryProducts
-          countries={data?.countries}
-          colors={data?.colors}
+          selectedColor={selectedColor}
+          selectedCountry={selectedCountry}
+          countries={listCountries}
+          colors={listColors}
           select={handleChooseCountry}
           selectColor={handleChooseColor}
+          reset={reserFilter}
         />
         <ProductsList>
           {isLoading ? (
             <Spinner />
-          ) : (
-            data?.products?.map((product) => (
+          ) : products?.length !== 0 ? (
+            products?.map((product) => (
               <Item
                 onClick={() => handleChooseProduct(product)}
                 key={product._id}
@@ -116,6 +137,10 @@ const DynamicCatalogList = () => {
                 </Link>
               </Item>
             ))
+          ) : (
+            <div>
+              <p>На ваш запит нічого не знайдено</p>
+            </div>
           )}
         </ProductsList>
       </Box>
