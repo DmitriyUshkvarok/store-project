@@ -1,10 +1,10 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import Spinner from '../SpinerOferta/SpinerOferta';
-import { smoothScrollToTop } from '@/src/utils/smoothScrollToTop';
+// import { smoothScrollToTop } from '@/src/utils/smoothScrollToTop';
 import { useGetGalleryQuery } from '@/src/redux/galleryApi/galleryApi';
 import {
   Box,
@@ -35,14 +35,14 @@ const GalleryList = () => {
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
-      smoothScrollToTop();
+      // smoothScrollToTop();
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
-      smoothScrollToTop();
+      // smoothScrollToTop();
     }
   };
 
