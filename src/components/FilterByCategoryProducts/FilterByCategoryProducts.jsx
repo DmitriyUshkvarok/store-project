@@ -6,37 +6,56 @@ const FilterByCategoryProducts = ({
   select,
   colors,
   selectColor,
+  reset,
+  selectedCountry,
+  selectedColor,
 }) => {
   return (
     <div>
-      <Form>
-        <div key={`radio`} className="mb-3">
-          {countries?.map((counrty) => (
-            <Form.Check
-              key={counrty}
-              label={counrty}
-              name="group1"
-              type={'radio'}
-              id={counrty}
-              onChange={() => select(counrty)}
-            />
-          ))}
+      <div>
+        <div>
+          <p>Країни</p>
+          <Form>
+            <div key={`radio`} className="mb-3">
+              {countries?.map((counrty) => (
+                <Form.Check
+                  key={counrty}
+                  label={counrty}
+                  name="group1"
+                  type={'radio'}
+                  id={counrty}
+                  value={counrty}
+                  checked={counrty === selectedCountry ? true : false}
+                  onChange={() => select(counrty)}
+                />
+              ))}
+            </div>
+          </Form>
         </div>
-      </Form>
-      <Form>
-        <div key={`radio`} className="mb-3">
-          {colors?.map((color) => (
-            <Form.Check
-              key={color}
-              label={color}
-              name="group1"
-              type={'radio'}
-              id={color}
-              onChange={() => selectColor(color)}
-            />
-          ))}
+        <div>
+          <p>Колір</p>
+          <Form>
+            <div key={`radio`} className="mb-3">
+              {colors?.map((color) => (
+                <Form.Check
+                  key={color}
+                  label={color}
+                  name="group1"
+                  type={'radio'}
+                  id={color}
+                  value={color}
+                  checked={color === selectedColor ? true : false}
+                  onChange={() => selectColor(color)}
+                />
+              ))}
+            </div>
+          </Form>
         </div>
-      </Form>
+
+        <button onClick={reset} type="button">
+          Скинути фільтр
+        </button>
+      </div>
     </div>
   );
 };
