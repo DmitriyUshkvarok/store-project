@@ -9,6 +9,7 @@ import {
 } from '@/src/redux/ofertaApi/ofertaApi';
 import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
 import {
+  Box,
   List,
   Item,
   WrapContent,
@@ -73,7 +74,7 @@ const ListByCategory = ({ data, handleShow, title }) => {
     }
   };
   return (
-    <div>
+    <Box>
       <Title>{title}</Title>
       <List>
         {data?.map((item) => (
@@ -97,7 +98,7 @@ const ListByCategory = ({ data, handleShow, title }) => {
           </Item>
         ))}
       </List>
-    </div>
+    </Box>
   );
 };
 
