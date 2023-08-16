@@ -65,6 +65,8 @@ const AllProducts = () => {
   const subCategories = useGetSubcategoriesQuery();
   const colors = useGetColorsQuery();
 
+  console.log(`data`, data);
+
   useEffect(() => {
     if (data && isLoadingMore) {
       setAllProducts((prevProducts) => [...prevProducts, ...data.products]);
@@ -79,12 +81,12 @@ const AllProducts = () => {
     }
   }, [data]);
 
-  const handleChooseProduct = (country, category, subcategory, color) => {
-    dispatch(setDataAndId(country));
-    dispatch(setDataAndIdCategoty(category));
-    dispatch(setDataAndIdSubCategoty(subcategory));
-    dispatch(setDataAndIdColor(color));
-  };
+  // const handleChooseProduct = (country, category, subcategory, color) => {
+  //   dispatch(setDataAndId(country));
+  //   dispatch(setDataAndIdCategoty(category));
+  //   dispatch(setDataAndIdSubCategoty(subcategory));
+  //   dispatch(setDataAndIdColor(color));
+  // };
 
   const handelMoreLoad = () => {
     setIsLoadingMore(true);
@@ -103,7 +105,7 @@ const AllProducts = () => {
         <Box>
           {/* ===============ФІЛЬР ====================*/}
 
-          <BoxFilter>
+          {/* <BoxFilter>
             <TitleF>ФІЛЬТР</TitleF>
 
             <div>
@@ -222,7 +224,7 @@ const AllProducts = () => {
                 max={10000}
               />
             </div>
-          </BoxFilter>
+          </BoxFilter> */}
           {/* )} */}
 
           {/* ===============ФІЛЬР END ====================*/}
@@ -231,22 +233,10 @@ const AllProducts = () => {
               <Spinner />
             ) : (
               allProductsFiltered.map((product) => (
-                <Item
-                  key={product._id}
-                  onClick={() =>
-                    handleChooseProduct(
-                      product.country,
-                      product.category,
-                      product.subcategory,
-                      product.color
-                    )
-                  }
-                >
+                <Item key={product._id} onClick={() => {}}>
                   <Link
-                    href={`/oferta/${slugify(product.country.name)}/${slugify(
-                      product.category.name
-                    )}/${slugify(product.subcategory.name)}/${slugify(
-                      product.color.name
+                    href={`/oferta/${slugify(product.category.name)}/${slugify(
+                      product.name
                     )}`}
                   >
                     <PictureOverlay>
@@ -259,9 +249,7 @@ const AllProducts = () => {
                       />
                       <Overlay>
                         <TextOverlay>{product.description}</TextOverlay>
-                        <TextOverlay>
-                          Виробник: {product.country.name}
-                        </TextOverlay>
+                        <TextOverlay>Виробник: {product.country}</TextOverlay>
                       </Overlay>
                     </PictureOverlay>
 
@@ -269,8 +257,6 @@ const AllProducts = () => {
                       <TitleProduct>{product.name}</TitleProduct>
                       <Price>Ціна: {product.price} грн.</Price>
                     </BoxTitle>
-
-                    <div></div>
                   </Link>
                 </Item>
               ))
