@@ -167,7 +167,7 @@ export const ProductDensity = styled.p`
 export const ProductPdf = styled.div`
   font-weight: bold;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 
   @media screen and (max-width: 380px) {
     text-align: center;
@@ -188,11 +188,11 @@ export const ProductBlockRight = styled.div`
 
 export const CounterAndBtnWrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 20px;
-  gap: 10px;
+  gap: 20px;
 
   @media screen and (max-width: 1070px) {
     flex-wrap: wrap;

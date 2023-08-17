@@ -13,6 +13,8 @@ import {
   CartListItem,
   CartListSection,
   StyleCartImage,
+  OrdersGroup,
+  SubOrdersInfo,
   ProductName,
   CounterWrapper,
   BtnIncrement,
@@ -25,6 +27,9 @@ import {
   StylePrice,
   StyleQuantity,
   StyleRiDeleteBin5Fill,
+  PriceBox,
+  TotalWeight,
+  SpanTotalWeight,
 } from './OrderList.styled';
 
 import { removeFromCart, updateTotalPrice } from '@/src/redux/cart/cartSlise';
@@ -63,6 +68,20 @@ const OrderList = () => {
     dispatch(setQuantityById({ itemId, quantity: newQuantity }));
   };
 
+  const calculateItemTotalPrice = (item) => {
+    return item.price * (quantity[item.id] || 0);
+  };
+
+  const calculateItemTotalWeight = (item) => {
+    return item.weight * (quantity[item.id] || 0);
+  };
+
+  const calculateTotalWeight = () => {
+    return cartItems.reduce((acc, item) => {
+      return acc + calculateItemTotalWeight(item);
+    }, 0);
+  };
+
   return (
     <>
       <CartListSection>
@@ -72,10 +91,6 @@ const OrderList = () => {
           </NotOrderWrapper>
         ) : (
           <>
-            <TotalPriceWrapper>
-              <TotalPriceTitle>Загальна сума:</TotalPriceTitle>
-              <TotalPriceInfo>{totalPrice} гривень</TotalPriceInfo>
-            </TotalPriceWrapper>
             <CartList>
               {cartItems.map((item) => (
                 <CartListItem key={item.id}>
@@ -86,27 +101,52 @@ const OrderList = () => {
                     height={100}
                     priority={true}
                   />
-                  <ProductName>{item.title}</ProductName>
-                  <StylePrice>Price: ${item.price}</StylePrice>
-                  <StyleQuantity>
-                    Quantity: {quantity[item.id] || 0}
-                  </StyleQuantity>
-                  <CounterWrapper>
-                    <BtnIncrement onClick={() => handleDecrement(item.id)}>
-                      -
-                    </BtnIncrement>
-                    <InputCounter
-                      type="text"
-                      value={quantity[item.id] || 0}
-                      onChange={(e) =>
-                        handleChangeQuantity(item.id, e.target.value)
-                      }
-                    />
-                    <BtnDecrement onClick={() => handleIncrement(item.id)}>
-                      +
-                    </BtnDecrement>
-                  </CounterWrapper>
-                  <DataInfo>{item.data}</DataInfo>
+                  <OrdersGroup>
+                    <ProductName>Назва товару:</ProductName>
+                    <SubOrdersInfo>{item.title}</SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Вага:</ProductName>
+                    <SubOrdersInfo>{item.weight} кг</SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Загальна вага позиції:</ProductName>
+                    <SubOrdersInfo>
+                      {calculateItemTotalWeight(item)} кг
+                    </SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Ціна:</ProductName>
+                    <SubOrdersInfo>{item.price} гривень</SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Загальна ціна позиції:</ProductName>
+                    <SubOrdersInfo>
+                      {calculateItemTotalPrice(item)} гривень
+                    </SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Кількість:</ProductName>
+                    <SubOrdersInfo>{quantity[item.id] || 0}</SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <CounterWrapper>
+                      <BtnIncrement onClick={() => handleDecrement(item.id)}>
+                        -
+                      </BtnIncrement>
+                      <InputCounter
+                        type="text"
+                        value={quantity[item.id] || 0}
+                        onChange={(e) =>
+                          handleChangeQuantity(item.id, e.target.value)
+                        }
+                      />
+                      <BtnDecrement onClick={() => handleIncrement(item.id)}>
+                        +
+                      </BtnDecrement>
+                    </CounterWrapper>
+                    <DataInfo>{item.data}</DataInfo>
+                  </OrdersGroup>
                   <StyleRiDeleteBin5Fill
                     size={25}
                     onClick={() => handleRemoveItem(item.id)}
@@ -114,6 +154,18 @@ const OrderList = () => {
                 </CartListItem>
               ))}
             </CartList>
+            <TotalPriceWrapper>
+              <TotalWeight>
+                Загальна вага:
+                <SpanTotalWeight>
+                  {calculateTotalWeight().toFixed(1)} кг
+                </SpanTotalWeight>
+              </TotalWeight>
+              <PriceBox>
+                <TotalPriceTitle>Загальна сума:</TotalPriceTitle>
+                <TotalPriceInfo>{totalPrice} гривень</TotalPriceInfo>
+              </PriceBox>
+            </TotalPriceWrapper>
           </>
         )}
       </CartListSection>

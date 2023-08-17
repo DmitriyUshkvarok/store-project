@@ -17,8 +17,8 @@ export const FormWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7); */
   border-radius: 4px;
   padding: 10px;
 `;
@@ -75,19 +75,32 @@ export const ValidationError = styled.div`
 `;
 
 export const OrderBtn = styled.button`
-  border: none;
-  background-color: #b01d1deb;
-  color: white;
-  padding: 10px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 300;
+  color: #000000;
+  background: transparent;
+  justify-content: center;
+  display: flex;
+
+  align-items: center;
+  gap: 2px;
+  font-size: 23px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  border: 2px solid black;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  transition: 0.4s;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  transition: background-color 0.4s;
+
+  &:disabled {
+    opacity: 0.3;
+  }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: #222;
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;

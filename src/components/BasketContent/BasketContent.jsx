@@ -25,8 +25,9 @@ const BasketContent = () => {
           <OrderList orderSuccess={orderSuccess} />
           {cartItems.length === 0 && orderSuccess && (
             <InfoTextOddersClear>
-              Ваш замовлення було успішно оформлено. Продавець скоро
-              зв&#39;яжеться з вами.
+              Ваше замовлення було успішно оформлено. Для швидкого опрацювання
+              запиту - зв&#39;яжіться будь ласка з нами за телефоном:
+              067-777-77-66
               <StyleLink href="/oferta">
                 Повернутися до каталогу товару?
               </StyleLink>

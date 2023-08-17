@@ -97,6 +97,7 @@ const ProductDetail = () => {
       data: formatData,
       brand: productInfo?.brand,
       color: productInfo?.color,
+      weight: productInfo?.weight,
     };
 
     if (isProductInCart) {
@@ -198,6 +199,9 @@ const ProductDetail = () => {
                         <CategorySpan> Посилання на PDF-документ</CategorySpan>
                       </a>
                     </ProductPdf>
+                    <ProductPrice>
+                      Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
+                    </ProductPrice>
                   </div>
                   <CounterAndBtnWrapper>
                     <CounterWrapper>
@@ -209,9 +213,6 @@ const ProductDetail = () => {
                       />
                       <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
                     </CounterWrapper>
-                    <ProductPrice>
-                      Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
-                    </ProductPrice>
                     <BtnBuy
                       handleBuy={handleBuy}
                       isAddedToCart={isProductInCart}

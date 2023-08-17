@@ -26,29 +26,51 @@ export const CartListSection = styled.div`
 
 export const TotalPriceWrapper = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 15px;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1); */
   padding: 10px;
   border-radius: 4px;
 `;
 
 export const TotalPriceTitle = styled.h4`
-  color: #222;
   margin-right: 10px;
+  font-weight: normal;
+  color: gray;
+`;
+
+export const PriceBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TotalWeight = styled.div`
+  font-weight: normal;
+  color: gray;
+  font-size: 1.5rem;
+`;
+
+export const SpanTotalWeight = styled.span`
+  font-weight: bold;
+  font-size: 20px;
+  color: #222;
+  margin-left: 10px;
 `;
 
 export const TotalPriceInfo = styled.p`
   font-weight: bold;
-  color: gray;
+  font-size: 20px;
+  color: #222;
 `;
 
 export const CartList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 40px;
-  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  /* background-color: rgba(0, 0, 0, 0.1); */
   border-radius: 4px;
 `;
 
@@ -56,7 +78,7 @@ export const CartListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px;
+  padding: 3px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
@@ -75,8 +97,22 @@ export const StyleCartImage = styled(Image)`
   border-radius: 10px 0 0 10px;
 `;
 
+export const OrdersGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const SubOrdersInfo = styled.div`
+  color: lightcoral;
+`;
+
 export const ProductName = styled.h3`
   text-align: center;
+  font-weight: 500;
+  font-size: 18px;
 `;
 
 export const CounterWrapper = styled.div`
