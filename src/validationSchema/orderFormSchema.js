@@ -10,15 +10,15 @@ const orderSchema = yup.object().shape({
       'Invalid name format'
     )
     .required('обов’язкове поле'),
-  email: yup
-    .string()
-    .email('Invalid email')
-    .test('email-format', 'Invalid email format', (value) => {
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      return emailRegex.test(value);
-    })
-    .required('обов’язкове поле'),
-  address: yup.string().required('обов’язкове поле'),
+  // email: yup
+  //   .string()
+  //   .email('Invalid email')
+  //   .test('email-format', 'Invalid email format', (value) => {
+  //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  //     return emailRegex.test(value);
+  //   })
+  //   .required('обов’язкове поле'),
+  // address: yup.string().required('обов’язкове поле'),
   phone: yup.string().required('обов’язкове поле'),
 });
 

@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -19,10 +18,13 @@ import {
   StyleLinkDetail,
   CurrentLink,
   ProductDetailInfoBlock,
+  ProductFullName,
+  ProductInfoName,
   ImageBlock,
   ProductName,
   ProductBlockLeft,
   ProductBlockRight,
+  StyleImage,
   ProductСharacterization,
   ProductDescription,
   ProductWeight,
@@ -33,7 +35,11 @@ import {
   ProductBrand,
   ProductColor,
   ProductCountry,
+  ProductType,
+  ProductFormula,
+  ProductDensity,
   ProductPdf,
+  CounterAndBtnWrapper,
   CounterWrapper,
   BtnIncrement,
   InputCounter,
@@ -127,30 +133,30 @@ const ProductDetail = () => {
               <ProductDetailInfoBlock key={productInfo._id}>
                 <ProductBlockLeft>
                   <ImageBlock>
-                    <Image
+                    <StyleImage
                       src={
                         productInfo?.url ||
                         'https://set-iset.ru/wp-content/uploads/woocommerce-placeholder.png'
                       }
                       alt={productInfo?.name || ''}
-                      width={500}
-                      height={400}
-                      style={{ marginBottom: '10px', objectFit: 'cover' }}
+                      width={300}
+                      height={200}
                     />
-                    <ProductName>{productInfo?.name}</ProductName>
                   </ImageBlock>
-                  <ProductPrice>
-                    Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
-                  </ProductPrice>
+                  <ProductСharacterization>Опис</ProductСharacterization>
+                  <ProductDescription>
+                    {productInfo?.description}
+                  </ProductDescription>
                 </ProductBlockLeft>
                 <ProductBlockRight>
                   <div>
-                    <ProductСharacterization>Опис</ProductСharacterization>
-                    <ProductDescription>
-                      {productInfo?.description}
-                    </ProductDescription>
+                    <ProductFullName>{productInfo?.fullName}</ProductFullName>
+                    <ProductInfoName>
+                      {productInfo?.category.name}
+                    </ProductInfoName>
+                    <ProductName>{productInfo?.name}</ProductName>
                     <ProductWeight>
-                      Вага:<CategorySpan>{productInfo?.weight}</CategorySpan>
+                      Вага:<CategorySpan>{productInfo?.weight} кг</CategorySpan>
                     </ProductWeight>
                     <ProductPackingType>
                       Тип упаковки:
@@ -169,6 +175,19 @@ const ProductDetail = () => {
                       Тип упаковки:
                       <CategorySpan>{productInfo?.packingType}</CategorySpan>
                     </ProductPackingType>
+                    <ProductType>
+                      Тип:<CategorySpan>{productInfo?.type}</CategorySpan>
+                    </ProductType>
+                    <ProductFormula>
+                      Хімічна формула:
+                      <CategorySpan>
+                        {productInfo?.chemicalFormula}
+                      </CategorySpan>
+                    </ProductFormula>
+                    <ProductDensity>
+                      Щільність:
+                      <CategorySpan>{productInfo?.density}</CategorySpan>
+                    </ProductDensity>
                     <ProductPdf>
                       <a
                         href={productInfo?.pdfUrl}
@@ -180,19 +199,24 @@ const ProductDetail = () => {
                       </a>
                     </ProductPdf>
                   </div>
-                  <CounterWrapper>
-                    <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
-                    <InputCounter
-                      type="text"
-                      value={quantity}
-                      onChange={(e) => handleChangeQuantity(e.target.value)}
+                  <CounterAndBtnWrapper>
+                    <CounterWrapper>
+                      <BtnIncrement onClick={handleDecrement}>-</BtnIncrement>
+                      <InputCounter
+                        type="text"
+                        value={quantity}
+                        onChange={(e) => handleChangeQuantity(e.target.value)}
+                      />
+                      <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
+                    </CounterWrapper>
+                    <ProductPrice>
+                      Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
+                    </ProductPrice>
+                    <BtnBuy
+                      handleBuy={handleBuy}
+                      isAddedToCart={isProductInCart}
                     />
-                    <BtnDecrement onClick={handleIncrement}>+</BtnDecrement>
-                  </CounterWrapper>
-                  <BtnBuy
-                    handleBuy={handleBuy}
-                    isAddedToCart={isProductInCart}
-                  />
+                  </CounterAndBtnWrapper>
                 </ProductBlockRight>
               </ProductDetailInfoBlock>
             </div>

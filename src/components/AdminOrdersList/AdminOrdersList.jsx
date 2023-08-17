@@ -11,9 +11,9 @@ import {
   BtnStatus,
   UserInfoBlock,
   UserInfoName,
-  UserInfoEmail,
+  // UserInfoEmail,
   UserInfoPhone,
-  UserInfLocation,
+  // UserInfLocation,
   SpanInfoUser,
   OrderItemsBlock,
   TotalPriceBlock,
@@ -160,15 +160,15 @@ const AdminOrdersList = () => {
                 <UserInfoName>
                   Name: <SpanInfoUser>{order.buyer.name}</SpanInfoUser>
                 </UserInfoName>
-                <UserInfoEmail>
+                {/* <UserInfoEmail>
                   Email: <SpanInfoUser>{order.buyer.email}</SpanInfoUser>
-                </UserInfoEmail>
+                </UserInfoEmail> */}
                 <UserInfoPhone>
                   Phone: <SpanInfoUser>{order.buyer.phone}</SpanInfoUser>
                 </UserInfoPhone>
-                <UserInfLocation>
+                {/* <UserInfLocation>
                   Location: <SpanInfoUser>{order.buyer.address}</SpanInfoUser>
-                </UserInfLocation>
+                </UserInfLocation> */}
               </UserInfoBlock>
               <OrderItemsBlock>
                 <OrderItemsTitle>Елементи замовлення:</OrderItemsTitle>

@@ -23,8 +23,8 @@ import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 
 const initialValues = {
   name: '',
-  email: '',
-  address: '',
+  // email: '',
+  // address: '',
   phone: '',
 };
 
@@ -98,7 +98,7 @@ const OrderFom = ({ setOrderSuccess }) => {
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
-            <OrderFormGroup>
+            {/* <OrderFormGroup>
               <OrderFormLabel htmlFor="order-email">
                 Електронна адреса:
               </OrderFormLabel>
@@ -111,8 +111,8 @@ const OrderFom = ({ setOrderSuccess }) => {
               <ErrorMessage name="email">
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
-            </OrderFormGroup>
-            <OrderFormGroup>
+            </OrderFormGroup> */}
+            {/* <OrderFormGroup>
               <OrderFormLabel htmlFor="order-adress">Адреса:</OrderFormLabel>
               <OrderStyleField
                 name="address"
@@ -122,7 +122,7 @@ const OrderFom = ({ setOrderSuccess }) => {
               <ErrorMessage name="address">
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
-            </OrderFormGroup>
+            </OrderFormGroup> */}
             <OrderFormGroup>
               <OrderFormLabel htmlFor="order-phone">Телефон:</OrderFormLabel>
               <OrderStyleField
