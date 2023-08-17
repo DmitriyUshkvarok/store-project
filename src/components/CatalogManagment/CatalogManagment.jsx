@@ -2,6 +2,7 @@
 import Pagination from 'react-bootstrap/Pagination';
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState, useEffect } from 'react';
+import { useDebounce } from 'use-debounce';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
@@ -16,6 +17,7 @@ const CatalogManagementAdmin = () => {
   const [show, setShow] = useState(false);
   const [selectProduct, setSelectProduct] = useState(null);
   const [filterName, setFilterName] = useState('');
+  const [value] = useDebounce(filterName, 1000);
 
   const productsPerPage = 6;
   const maxVisiblePages = 10;
@@ -24,7 +26,7 @@ const CatalogManagementAdmin = () => {
   const { data } = useGetAllInfoProductQuery({
     page: currentPage,
     limit: productsPerPage,
-    name: filterName,
+    name: value,
   });
 
   useEffect(() => {
@@ -44,8 +46,8 @@ const CatalogManagementAdmin = () => {
     setCurrentPage(pageNumber);
   };
 
-  const filterSearch = (value) => {
-    setFilterName(value.search);
+  const filterSearch = (e) => {
+    setFilterName(e.target.value);
   };
 
   const handleAllProduct = () => {
@@ -54,10 +56,7 @@ const CatalogManagementAdmin = () => {
 
   return (
     <>
-      <SearchFormAdmin
-        handleAllProduct={handleAllProduct}
-        filterSearch={filterSearch}
-      />
+      <SearchFormAdmin filterSearch={filterSearch} />
       <CaptionByCatalog />
       {products.length === 0 ? (
         <div>

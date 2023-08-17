@@ -1,23 +1,19 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 
-const SearchFormAdmin = ({ filterSearch, handleAllProduct }) => {
-  const handleSubmit = (values, action) => {
-    filterSearch(values);
-    action.resetForm();
-  };
+const SearchFormAdmin = ({ filterSearch }) => {
   return (
     <div>
-      <Formik initialValues={{ search: '' }} onSubmit={handleSubmit}>
+      <Formik>
         <Form>
           <label>
-            <Field type="text" name="search" />
+            <input
+              onChange={(e) => filterSearch(e)}
+              type="text"
+              name="search"
+            />
           </label>
-          <button type="submit">Пошук</button>
         </Form>
       </Formik>
-      <button onClick={handleAllProduct} type="button">
-        Показати увесь товар
-      </button>
     </div>
   );
 };
