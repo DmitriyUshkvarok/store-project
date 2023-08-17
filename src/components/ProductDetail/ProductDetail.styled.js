@@ -105,7 +105,6 @@ export const CategorySpanPdf = styled.span`
 `;
 
 export const ProductBlockLeft = styled.div`
-  /* padding: 20px; */
   width: 50%;
   border-radius: 4px;
 
@@ -212,7 +211,6 @@ export const ProductBlockRight = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  /* padding: 20px; */
   border-radius: 4px;
 
   @media screen and (max-width: 580px) {
