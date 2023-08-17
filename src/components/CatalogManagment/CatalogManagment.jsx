@@ -1,14 +1,15 @@
 'use client';
-import Pagination from 'react-bootstrap/Pagination';
+
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
-import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
+// import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
 import ListByCatalog from '../ListByCatalog/ListByCatalog';
 import SearchFormAdmin from '../SearchFormAdmin/SearchFormAdmin';
 import { renderPaginationItems } from '@/src/helper/renderPageButtons';
+import { StyledPagination } from './CatalogManagment.styled';
 
 const CatalogManagementAdmin = () => {
   const [products, setProducts] = useState([]);
@@ -57,7 +58,7 @@ const CatalogManagementAdmin = () => {
   return (
     <>
       <SearchFormAdmin filterSearch={filterSearch} />
-      <CaptionByCatalog />
+      {/* <CaptionByCatalog /> */}
       {products.length === 0 ? (
         <div>
           <p>Такого товару не знайдено</p>
@@ -67,14 +68,14 @@ const CatalogManagementAdmin = () => {
       )}
 
       <div>
-        <Pagination>
+        <StyledPagination>
           {renderPaginationItems(
             totalPages,
             maxVisiblePages,
             currentPage,
             handlePageClick
           )}
-        </Pagination>
+        </StyledPagination>
       </div>
       <ModalAdminByForm show={show} handleClose={handleClose}>
         <FormUpdateProductAdmin
