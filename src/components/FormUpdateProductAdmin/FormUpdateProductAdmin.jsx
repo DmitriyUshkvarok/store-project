@@ -12,7 +12,6 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   const [updateProduct] = useUpdateProductMutation();
 
   const handleSubmit = async (values) => {
-    console.log(values);
     const formData = new FormData();
     formData.append('fullName', values.fullName);
     formData.append('type', values.type);
@@ -27,7 +26,6 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
     formData.append('price', values.price);
     formData.append('description', values.description);
     formData.append('brand', values.brand);
-    // formData.append('inStock', values.inStock);
     if (selectedImg) {
       formData.append('file', selectedImg);
     }
@@ -53,7 +51,7 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   return (
     selectProduct && (
       <Formik
-        // validationSchema={formUpdateSchemaProduct}
+        validationSchema={formUpdateSchemaProduct}
         initialValues={{
           category: selectProduct.category.name,
           chemicalFormula: selectProduct.chemicalFormula,
@@ -61,7 +59,6 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
           country: selectProduct.country,
           density: selectProduct.density,
           fullName: selectProduct.fullName,
-          // inStock: selectProduct.inStock,
           name: selectProduct.name,
           price: selectProduct.price,
           url: '',
@@ -90,9 +87,6 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
             </label>
             <label>
               Категорія: <Field readOnly type="text" name="category" />
-              <ErrorMessage name="category">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
             </label>
             <label>
               Країна: <Field type="text" name="country" />
@@ -138,9 +132,6 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 name="url"
                 onChange={(e) => setSelectedImg(e.target.files[0])}
               />
-              <ErrorMessage name="url">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
             </label>
             <label>
               PDF:{' '}
@@ -184,12 +175,6 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
             </label>
-            {/* <label>
-              Наяввність:
-              <Field type="checkbox" name="inStock" />
-              {`${values.inStock}`}
-            </label> */}
-
             <button type="submit">Зберегти</button>
           </Form>
         )}

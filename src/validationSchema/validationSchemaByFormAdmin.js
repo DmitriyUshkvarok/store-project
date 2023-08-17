@@ -17,15 +17,16 @@ export const formAddSchemaProduct = yup.object().shape({
 export const formUpdateSchemaProduct = yup.object().shape({
   name: yup.string(),
   price: yup.number(),
-
   description: yup.string(),
   brand: yup.string(),
   weight: yup.number(),
   packingType: yup.string(),
   country: yup.string(),
-  category: yup.string(),
-  subcategory: yup.string(),
   color: yup.string(),
+  chemicalFormula: yup.string(),
+  density: yup.number(),
+  fullName: yup.string(),
+  type: yup.string(),
 });
 
 export const formAddSchemaAny = yup.object().shape({
