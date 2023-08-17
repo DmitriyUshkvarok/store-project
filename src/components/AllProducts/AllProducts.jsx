@@ -43,7 +43,7 @@ import {
 const AllProducts = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const [allProductsFiltered, setAllProducts] = useState([]);
+  const [allProductsFiltered, setAllProductsFiltered] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [qwery, setQwery] = useState({
@@ -57,6 +57,7 @@ const AllProducts = () => {
   const dispatch = useDispatch();
 
   const { data, isError, isLoading } = useGetAllProductsFilteredQuery(qwery);
+  const [totalElements, setTotalElements] = useState(0);
 
   console.log(`data`, data);
 
@@ -71,8 +72,12 @@ const AllProducts = () => {
   };
 
   useEffect(() => {
+    setTotalElements(data?.total);
     if (data && isLoadingMore) {
-      setAllProducts((prevProducts) => [...prevProducts, ...data.products]);
+      setAllProductsFiltered((prevProducts) => [
+        ...prevProducts,
+        ...data.products,
+      ]);
       setIsLoadingMore(false);
     }
     if (data && !isLoadingMore) {
@@ -80,7 +85,7 @@ const AllProducts = () => {
         ...prevQwery,
         page: 1,
       }));
-      setAllProducts(data.products);
+      setAllProductsFiltered(data.products);
     }
   }, [data]);
 
@@ -233,7 +238,7 @@ const AllProducts = () => {
             )}
           </ProductsList>
         </Box>
-        {data?.products.length >= 10 && (
+        {allProductsFiltered.length !== totalElements && (
           <Btn onClick={handelMoreLoad}>Завантажити ще...</Btn>
         )}
       </AboutBox>
