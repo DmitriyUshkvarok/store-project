@@ -44,7 +44,8 @@ export const ofertaApi = createApi({
       providesTags: ['products'],
     }),
     getAllInfoProduct: builder.query({
-      query: ({ page, limit }) => `/products/all?page=${page}&limit=${limit}`,
+      query: ({ page, limit, name }) =>
+        `/products/all?page=${page}&limit=${limit}&name=${name}`,
       providesTags: ['products'],
     }),
     // getAllCountries: builder.query({

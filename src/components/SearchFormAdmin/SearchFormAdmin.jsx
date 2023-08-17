@@ -1,15 +1,17 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 
-const SearchFormAdmin = () => {
-  const handleSubmit = (values) => {};
+const SearchFormAdmin = ({ filterSearch }) => {
   return (
     <div>
-      <Formik initialValues={{ name: 'search' }} onSubmit={handleSubmit}>
+      <Formik>
         <Form>
           <label>
-            <Field type="text" name="search" />
+            <input
+              onChange={(e) => filterSearch(e)}
+              type="text"
+              name="search"
+            />
           </label>
-          <button type="submit">Пошук</button>
         </Form>
       </Formik>
     </div>

@@ -74,8 +74,7 @@ const ListByCatalog = ({ data, handleShow }) => {
           </TagContainer>
           <TagContainer>
             <a href={product?.pdfUrl} target="_blank" rel="noopener noreferrer">
-              {' '}
-              <span> Посилання на PDF-документ</span>
+              <span>PDF</span>
             </a>
           </TagContainer>
           <TagContainer>
