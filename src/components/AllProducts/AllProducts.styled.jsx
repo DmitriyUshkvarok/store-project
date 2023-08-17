@@ -63,7 +63,7 @@ export const StyledSelect = styled.select`
   width: 100%;
   min-width: 150px;
   padding: 5px;
-  border: 1px solid #000;
+  border: 2px solid #0051ff;
   font-size: 14px;
   appearance: none;
   outline: none;
@@ -201,6 +201,19 @@ export const Price = styled.p`
   line-height: 20px;
 `;
 
+export const Producer = styled.p`
+  color: #131313;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  line-height: 20px;
+  margin-bottom: 13px;
+`;
+
+export const Info = styled.span`
+  font-weight: 400;
+`;
+
 export const Picture = styled(Image)`
   object-fit: cover;
   overflow: hidden;
@@ -219,8 +232,10 @@ export const Btn = styled.button`
   }
   cursor: pointer;
   color: #000000;
+
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   font-family: gotham;
   font-size: 14px;
@@ -228,7 +243,7 @@ export const Btn = styled.button`
   height: 42px;
   letter-spacing: 6px;
   line-height: 42px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   text-transform: uppercase;
 
   border: 2px solid;
@@ -465,5 +480,31 @@ export const OrderBtnDetails = styled.button`
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: green;
+  }
+`;
+
+export const SetFilterBtn = styled.button`
+  cursor: pointer;
+  color: #000000;
+
+  gap: 20px;
+  font-family: gotham;
+  font-size: 12px;
+  font-weight: bold;
+  height: 42px;
+
+  line-height: 42px;
+  text-transform: uppercase;
+  max-width: 150px;
+  border: 2px solid;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+
+  &:hover {
+    outline: none;
+    opacity: 0.7;
   }
 `;

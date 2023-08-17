@@ -179,6 +179,7 @@ export const LinkForB = styled(Link)`
 
 export const DropdownForBurger = styled.div`
   display: flex;
+
   justify-content: center;
   visibility: ${(props) => (props.togle ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.togle ? 1 : 0)};

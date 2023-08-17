@@ -36,7 +36,19 @@ const Navigation = () => {
 
   const handleClick = () => {
     setTogle(!togle);
+
+    if (!togle) {
+      document.body.classList.add('body-lock');
+    } else {
+      document.body.classList.remove('body-lock');
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('body-lock');
+    };
+  }, []);
 
   const handleClickLogOut = () => {
     Notiflix.Confirm.show(
