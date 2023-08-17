@@ -126,7 +126,6 @@ export const ProductFullName = styled.p`
   font-size: 25px;
   font-weight: bold;
   text-transform: uppercase;
-  text-align: center;
   margin-bottom: 7px;
 `;
 
