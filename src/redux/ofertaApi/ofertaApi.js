@@ -40,7 +40,7 @@ export const ofertaApi = createApi({
     }),
     getAllProductsFiltered: builder.query({
       query: (qwery) =>
-        `/products/all?country=${qwery.countryId}&category=${qwery.categoryId}&subcategory=${qwery.subcategoryId}&color=${qwery.colorId}&minPrice=${qwery.minPrice}&maxPrice=${qwery.maxPrice}&page=${qwery.page}`,
+        `/products/all?country=${qwery.country}&category=${qwery.categoryId}&color=${qwery.color}&minPrice=${qwery.minPrice}&maxPrice=${qwery.maxPrice}&page=${qwery.page}`,
       providesTags: ['products'],
     }),
     getAllInfoProduct: builder.query({

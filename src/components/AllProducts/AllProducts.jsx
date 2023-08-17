@@ -29,10 +29,8 @@ import Spinner from '../SpinerOferta/SpinerOferta';
 import { useDispatch } from 'react-redux';
 import { slugify } from 'transliteration';
 import {
-  setDataAndId,
   setDataAndIdCategoty,
-  setDataAndIdColor,
-  setDataAndIdSubCategoty,
+  setDataAndIdProduct,
 } from '@/src/redux/ofertaApi/ofertaSlice';
 
 import {
@@ -49,10 +47,9 @@ const AllProducts = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [qwery, setQwery] = useState({
-    countryId: '',
     categoryId: '',
-    subcategoryId: '',
-    colorId: '',
+    country: '',
+    color: '',
     minPrice: 0,
     maxPrice: 10000,
     page: currentPage,
@@ -60,12 +57,18 @@ const AllProducts = () => {
   const dispatch = useDispatch();
 
   const { data, isError, isLoading } = useGetAllProductsFilteredQuery(qwery);
-  const countries = useGetCountriesQuery();
-  const categories = useGetCategoriesQuery();
-  const subCategories = useGetSubcategoriesQuery();
-  const colors = useGetColorsQuery();
 
   console.log(`data`, data);
+
+  const handelMoreLoad = () => {
+    setIsLoadingMore(true);
+    const nextPage = qwery.page + 1;
+    setQwery((prevQwery) => ({
+      ...prevQwery,
+      page: nextPage,
+    }));
+    console.log(`qwery==============>`, qwery);
+  };
 
   useEffect(() => {
     if (data && isLoadingMore) {
@@ -81,20 +84,9 @@ const AllProducts = () => {
     }
   }, [data]);
 
-  // const handleChooseProduct = (country, category, subcategory, color) => {
-  //   dispatch(setDataAndId(country));
-  //   dispatch(setDataAndIdCategoty(category));
-  //   dispatch(setDataAndIdSubCategoty(subcategory));
-  //   dispatch(setDataAndIdColor(color));
-  // };
-
-  const handelMoreLoad = () => {
-    setIsLoadingMore(true);
-    const nextPage = currentPage + 1;
-    setQwery((prevQwery) => ({
-      ...prevQwery,
-      page: nextPage,
-    }));
+  const handleChooseProduct = (product) => {
+    // dispatch(setDataAndIdCategoty(category));
+    dispatch(setDataAndIdProduct(product));
   };
 
   return (
@@ -105,28 +97,28 @@ const AllProducts = () => {
         <Box>
           {/* ===============ФІЛЬР ====================*/}
 
-          {/* <BoxFilter>
+          <BoxFilter>
             <TitleF>ФІЛЬТР</TitleF>
 
             <div>
               <TitleFilter> Країна</TitleFilter>
               <StyledSelect
-                value={qwery.countryId}
+                value={qwery.country}
                 onChange={(e) => {
                   const selectedCountryId = e.target.value;
                   setQwery((prevQwery) => ({
                     ...prevQwery,
-                    countryId: selectedCountryId,
+                    country: selectedCountryId,
                   }));
                 }}
               >
                 <option value="">Всі країни</option>
-                {countries.isLoading ? (
+                {isLoading ? (
                   <option value="">Loading</option>
                 ) : (
-                  countries.data.map((country) => (
-                    <option key={country._id} value={country._id}>
-                      {country.name}
+                  data?.countries.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
                     </option>
                   ))
                 )}
@@ -146,10 +138,10 @@ const AllProducts = () => {
                 }}
               >
                 <option value="">Всі категорії</option>
-                {categories.isLoading ? (
+                {isLoading ? (
                   <option value="">Loading</option>
                 ) : (
-                  categories?.data.map((category) => (
+                  data?.categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.name}
                     </option>
@@ -158,48 +150,24 @@ const AllProducts = () => {
               </StyledSelect>
             </div>
             <div>
-              <TitleFilter>Вид товару</TitleFilter>
-              <StyledSelect
-                value={qwery.subcategoryId}
-                onChange={(e) => {
-                  const selectedSubcategoryId = e.target.value;
-                  setQwery((prevQwery) => ({
-                    ...prevQwery,
-                    subcategoryId: selectedSubcategoryId,
-                  }));
-                }}
-              >
-                <option value="">Всі види</option>
-                {subCategories.isLoading ? (
-                  <option value="">Loading</option>
-                ) : (
-                  subCategories?.data.map((subCategory) => (
-                    <option key={subCategory._id} value={subCategory._id}>
-                      {subCategory.name}
-                    </option>
-                  ))
-                )}
-              </StyledSelect>
-            </div>
-            <div>
               <TitleFilter>Колір</TitleFilter>
               <StyledSelect
-                value={qwery.colorId}
+                value={qwery.color}
                 onChange={(e) => {
                   const selectedCountryId = e.target.value;
                   setQwery((prevQwery) => ({
                     ...prevQwery,
-                    colorId: selectedCountryId,
+                    color: selectedCountryId,
                   }));
                 }}
               >
                 <option value="">Всі кольори</option>
-                {colors.isLoading ? (
+                {isLoading ? (
                   <option value="">Loading</option>
                 ) : (
-                  colors.data.map((color) => (
-                    <option key={color._id} value={color._id}>
-                      {color.name}
+                  data?.colors.map((color) => (
+                    <option key={color} value={color}>
+                      {color}
                     </option>
                   ))
                 )}
@@ -224,8 +192,7 @@ const AllProducts = () => {
                 max={10000}
               />
             </div>
-          </BoxFilter> */}
-          {/* )} */}
+          </BoxFilter>
 
           {/* ===============ФІЛЬР END ====================*/}
           <ProductsList>
@@ -233,7 +200,10 @@ const AllProducts = () => {
               <Spinner />
             ) : (
               allProductsFiltered.map((product) => (
-                <Item key={product._id} onClick={() => {}}>
+                <Item
+                  key={product._id}
+                  onClick={() => handleChooseProduct(product)}
+                >
                   <Link
                     href={`/oferta/${slugify(product.category.name)}/${slugify(
                       product.name
