@@ -23,6 +23,8 @@ import {
   Chip,
   TitleF,
   SetFilterBtn,
+  Producer,
+  Info,
 } from './AllProducts.styled';
 import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Spinner from '../SpinerOferta/SpinerOferta';
@@ -202,8 +204,8 @@ const AllProducts = () => {
           <ProductsList>
             {isLoading ? (
               <Spinner />
-            ) : (
-              allProductsFiltered.map((product) => (
+            ) : allProductsFiltered?.length !== 0 ? (
+              allProductsFiltered?.map((product) => (
                 <Item
                   key={product._id}
                   onClick={() => handleChooseProduct(product)}
@@ -223,17 +225,25 @@ const AllProducts = () => {
                       />
                       <Overlay>
                         <TextOverlay>{product.description}</TextOverlay>
-                        <TextOverlay>Виробник: {product.country}</TextOverlay>
                       </Overlay>
                     </PictureOverlay>
 
                     <BoxTitle>
                       <TitleProduct>{product.name}</TitleProduct>
-                      <Price>Ціна: {product.price} грн.</Price>
+                      <Producer>
+                        Виробник: <Info>{product.country}</Info>{' '}
+                      </Producer>
+                      <Price>
+                        Ціна: <Info>{product.price} грн.</Info>
+                      </Price>
                     </BoxTitle>
                   </Link>
                 </Item>
               ))
+            ) : (
+              <div>
+                <p>На ваш запит нічого не знайдено</p>
+              </div>
             )}
           </ProductsList>
         </Box>
