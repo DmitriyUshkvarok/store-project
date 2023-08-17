@@ -6,7 +6,7 @@ export const Btn = styled.button`
   display: flex;
   align-items: center;
   gap: 20px;
-  font-family: gotham;
+  /* font-family: gotham; */
   font-size: 14px;
   font-weight: bold;
   height: 42px;
