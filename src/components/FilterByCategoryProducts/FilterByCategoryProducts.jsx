@@ -1,5 +1,6 @@
 'use client';
 import Form from 'react-bootstrap/Form';
+import { Btn, StyledRadio, Title } from './FilterByCategoryProducts.styled';
 
 const FilterByCategoryProducts = ({
   countries,
@@ -13,49 +14,49 @@ const FilterByCategoryProducts = ({
   return (
     <div>
       <div>
-        <div>
-          <p>Країни</p>
-          <Form>
-            <div key={`radio`} className="mb-3">
-              {countries?.map((counrty) => (
-                <Form.Check
-                  key={counrty}
-                  label={counrty}
-                  name="group1"
-                  type={'radio'}
-                  id={counrty}
-                  value={counrty}
-                  checked={counrty === selectedCountry ? true : false}
-                  onChange={() => select(counrty)}
-                />
-              ))}
-            </div>
-          </Form>
-        </div>
-        <div>
-          <p>Колір</p>
-          <Form>
-            <div key={`radio`} className="mb-3">
-              {colors?.map((color) => (
-                <Form.Check
-                  key={color}
-                  label={color}
-                  name="group1"
-                  type={'radio'}
-                  id={color}
-                  value={color}
-                  checked={color === selectedColor ? true : false}
-                  onChange={() => selectColor(color)}
-                />
-              ))}
-            </div>
-          </Form>
-        </div>
-
-        <button onClick={reset} type="button">
-          Скинути фільтр
-        </button>
+        <Title>Країни</Title>
+        <Form>
+          <div key={`radio`} className="mb-3">
+            {countries?.map((counrty) => (
+              <StyledRadio
+                key={counrty}
+                label={counrty}
+                name="group1"
+                type={'radio'}
+                id={counrty}
+                value={counrty}
+                checked={counrty === selectedCountry ? true : false}
+                onChange={() => select(counrty)}
+              />
+            ))}
+          </div>
+        </Form>
       </div>
+      <div>
+        <Title>Колір</Title>
+        <Form>
+          <div key={`radio`} className="mb-3">
+            {colors?.map((color) => (
+              <StyledRadio
+                key={color}
+                label={color}
+                name="group1"
+                type={'radio'}
+                id={color}
+                value={color}
+                checked={color === selectedColor ? true : false}
+                onChange={() => selectColor(color)}
+              />
+            ))}
+          </div>
+        </Form>
+      </div>
+      <Btn onClick={reset} type="button">
+        Скинути фільтр
+      </Btn>
+      {/* <ButtonWhiteAndBlack onClick={reset} type="button">
+        Скинути фільтр
+      </ButtonWhiteAndBlack> */}
     </div>
   );
 };

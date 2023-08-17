@@ -28,6 +28,7 @@ import {
   TextOverlay,
   PictureOverlay,
   Box,
+  TitleCountry,
 } from '@/src/components/AllProducts/AllProducts.styled';
 import { useEffect, useState } from 'react';
 
@@ -126,13 +127,13 @@ const DynamicCatalogList = () => {
                     />
                     <Overlay>
                       <TextOverlay>{product.description}</TextOverlay>
-                      <TextOverlay>Виробник: {product.country}</TextOverlay>
                     </Overlay>
                   </PictureOverlay>
 
                   <BoxTitle>
                     <TitleProduct>{product.name}</TitleProduct>
                     <Price>Ціна: {product.price} грн.</Price>
+                    <TitleCountry>Виробник: {product.country}</TitleCountry>
                   </BoxTitle>
                 </Link>
               </Item>
