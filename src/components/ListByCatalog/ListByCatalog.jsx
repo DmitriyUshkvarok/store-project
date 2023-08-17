@@ -1,8 +1,12 @@
 'use client';
 import Image from 'next/image';
-import { useDeleteProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
+import {
+  useDeleteProductMutation,
+  useUpdateProductStatusMutation,
+} from '@/src/redux/ofertaApi/ofertaApi';
 import { toast } from 'react-toastify';
 import { ListOferta, ItemOferta, TagContainer } from './ListByCatalog.styled';
+import { useState } from 'react';
 
 function truncateText(text, maxLength) {
   if (text.length <= maxLength) {
@@ -14,6 +18,7 @@ function truncateText(text, maxLength) {
 
 const ListByCatalog = ({ data, handleShow }) => {
   const [deleteProduct] = useDeleteProductMutation();
+  const [updateStatus] = useUpdateProductStatusMutation();
 
   const handleDelete = async (productId, product) => {
     try {
@@ -26,6 +31,11 @@ const ListByCatalog = ({ data, handleShow }) => {
       return toast.error(`${error}`);
     }
   };
+  const handleChangeInStock = async (item, isCheked) => {
+    const newInStock = { inStock: !isCheked };
+    await updateStatus({ productId: item._id, newInStock });
+  };
+
   return (
     <ListOferta>
       {data?.map((product) => (
@@ -63,6 +73,22 @@ const ListByCatalog = ({ data, handleShow }) => {
             />
           </TagContainer>
           <TagContainer>
+            <a href={product?.pdfUrl} target="_blank" rel="noopener noreferrer">
+              {' '}
+              <span> Посилання на PDF-документ</span>
+            </a>
+          </TagContainer>
+          <TagContainer>
+            <label>
+              Наявність в магазині
+              <input
+                value={product.inStock}
+                onChange={() => handleChangeInStock(product, product.inStock)}
+                type="checkbox"
+                checked={product.inStock}
+              />
+            </label>
+
             <button onClick={() => handleShow(product)} type="button">
               update
             </button>

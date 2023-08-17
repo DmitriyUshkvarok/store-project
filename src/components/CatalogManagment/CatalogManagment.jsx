@@ -25,6 +25,8 @@ const CatalogManagementAdmin = () => {
     limit: productsPerPage,
   });
 
+  console.log(data);
+
   useEffect(() => {
     if (data) {
       setProducts(data.products);
