@@ -58,6 +58,7 @@ export const ProductDetailInfoBlock = styled.div`
   margin-right: auto;
   border-radius: 4px;
   margin-bottom: 20px;
+  gap: 30px;
 
   @media screen and (max-width: 580px) {
     flex-wrap: wrap;
@@ -118,7 +119,7 @@ export const ImageBlock = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  margin-bottom: 20px;
 `;
 
 export const ProductFullName = styled.p`
