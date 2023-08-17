@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Section = styled.section`
   @media screen and (min-width: 320px) {
@@ -22,6 +23,17 @@ export const Box = styled.div`
   @media screen and (min-width: 1280px) {
     height: 646px;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  background: red;
 `;
 
 export const ScrollImage = styled(Image)`

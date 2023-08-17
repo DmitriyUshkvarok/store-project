@@ -11,8 +11,10 @@ import {
 } from '@/src/redux/galleryApi/galleryApi';
 import {
   Box,
+  Btn,
   Gallery,
   GalleryBox,
+  Input,
   PageNumber,
   PaginationBox,
   Picture,
@@ -35,6 +37,7 @@ const ProductManagementForGallery = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const [fileName, setFileName] = useState('Виберіть файл');
   const fileInputRef = React.useRef(null);
 
   const handleDeleteImage = async (_id) => {
@@ -53,17 +56,22 @@ const ProductManagementForGallery = () => {
       await addGalleryItem(formData);
       resetForm();
       setSelectedFile(null);
+      setFileName('Виберіть файл');
       if (fileInputRef.current) {
-        fileInputRef.current.value = ''; // Очищення поля вводу файлу
+        fileInputRef.current.value = '';
       }
     }
   };
 
   useEffect(() => {
     if (data) {
-      setTotalPages(Math.ceil(data.length / itemsPerPage));
+      const reversedData = [...data].reverse();
+      setTotalPages(Math.ceil(reversedData.length / itemsPerPage));
       setCurrentPhotos(
-        data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        reversedData.slice(
+          (currentPage - 1) * itemsPerPage,
+          currentPage * itemsPerPage
+        )
       );
     }
   }, [data, currentPage]);
@@ -113,18 +121,21 @@ const ProductManagementForGallery = () => {
           onSubmit={handleSubmit}
         >
           <StyledForm>
-            <label>
-              <input
-                type="file"
-                accept="image/*"
-                name="picture"
-                ref={fileInputRef}
-                onChange={(e) => setSelectedFile(e.target.files[0])}
-              />
-            </label>
+            <label htmlFor="fileInput">{fileName}</label>
+            <Input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              name="picture"
+              ref={fileInputRef}
+              onChange={(e) => {
+                setSelectedFile(e.target.files[0]);
+                setFileName(e.target.files[0]?.name || 'Виберіть файл');
+              }}
+            />
 
             <button style={{ border: 'none' }}>
-              <AiOutlinePlus style={{ width: '40px', height: '40px' }} />
+              <AiOutlinePlus style={{ width: '35px', height: '35px' }} />
             </button>
           </StyledForm>
         </Formik>
@@ -146,19 +157,13 @@ const ProductManagementForGallery = () => {
       </Box>
 
       <PaginationBox className="pagination">
-        <ButtonWhiteAndBlack
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-        >
+        <Btn onClick={handlePrevPage} disabled={currentPage === 1}>
           Попередні фото
-        </ButtonWhiteAndBlack>
+        </Btn>
         <PageNumber>{`${currentPage} / ${totalPages}`}</PageNumber>
-        <ButtonWhiteAndBlack
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
+        <Btn onClick={handleNextPage} disabled={currentPage === totalPages}>
           Наступні фото
-        </ButtonWhiteAndBlack>
+        </Btn>
       </PaginationBox>
     </GalleryBox>
   );
