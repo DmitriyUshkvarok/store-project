@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import Link from 'next/link';
 import 'rc-slider/assets/index.css';
 import {
@@ -23,26 +22,15 @@ import {
   StyledSlider,
   Chip,
   TitleF,
+  SetFilterBtn,
 } from './AllProducts.styled';
 import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import { useDispatch } from 'react-redux';
 import { slugify } from 'transliteration';
-import {
-  setDataAndIdCategoty,
-  setDataAndIdProduct,
-} from '@/src/redux/ofertaApi/ofertaSlice';
-
-import {
-  useGetCategoriesQuery,
-  useGetColorsQuery,
-  useGetCountriesQuery,
-  useGetSubcategoriesQuery,
-} from '@/src/redux/propertiesApi/propertiesApi';
+import { setDataAndIdProduct } from '@/src/redux/ofertaApi/ofertaSlice';
 
 const AllProducts = () => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
   const [allProductsFiltered, setAllProductsFiltered] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,7 +56,6 @@ const AllProducts = () => {
       ...prevQwery,
       page: nextPage,
     }));
-    console.log(`qwery==============>`, qwery);
   };
 
   useEffect(() => {
@@ -90,8 +77,18 @@ const AllProducts = () => {
   }, [data]);
 
   const handleChooseProduct = (product) => {
-    // dispatch(setDataAndIdCategoty(category));
     dispatch(setDataAndIdProduct(product));
+  };
+
+  const resetFilter = () => {
+    setQwery({
+      categoryId: '',
+      country: '',
+      color: '',
+      minPrice: 0,
+      maxPrice: 10000,
+      page: currentPage,
+    });
   };
 
   return (
@@ -101,7 +98,6 @@ const AllProducts = () => {
 
         <Box>
           {/* ===============ФІЛЬР ====================*/}
-
           <BoxFilter>
             <TitleF>ФІЛЬТР</TitleF>
 
@@ -197,9 +193,12 @@ const AllProducts = () => {
                 max={10000}
               />
             </div>
+            <SetFilterBtn onClick={resetFilter} type="button">
+              Скинути фільтр
+            </SetFilterBtn>
           </BoxFilter>
-
           {/* ===============ФІЛЬР END ====================*/}
+
           <ProductsList>
             {isLoading ? (
               <Spinner />

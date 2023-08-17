@@ -461,3 +461,24 @@ export const OrderBtnDetails = styled.button`
     color: green;
   }
 `;
+
+export const SetFilterBtn = styled.button`
+  cursor: pointer;
+  color: #000000;
+
+  gap: 20px;
+  font-family: gotham;
+  font-size: 12px;
+  font-weight: bold;
+  height: 42px;
+
+  line-height: 42px;
+  text-transform: uppercase;
+  max-width: 150px;
+  border: 2px solid;
+
+  &:hover {
+    outline: none;
+    opacity: 0.7;
+  }
+`;
