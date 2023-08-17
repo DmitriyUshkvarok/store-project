@@ -28,7 +28,6 @@ import {
 } from './Footer.styled';
 import { useState, useRef, useEffect } from 'react';
 
-import Image from 'next/image';
 
 const Footer = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -132,7 +131,6 @@ const Footer = () => {
           <Menu ref={menuRef}>
             <TeamList>
               <TeamItem>
-                {/* <StyledImage src="" alt="" width="45px" /> */}
                 <TeamTitle>Oleh Paslavskyi</TeamTitle>
                 <TeamSubject>Full stack developer</TeamSubject>
                 <BoxLink>
@@ -151,7 +149,6 @@ const Footer = () => {
                 </BoxLink>
               </TeamItem>
               <TeamItem>
-                {/* <StyledImage src="" alt="" width="45px" /> */}
                 <TeamTitle>Anastasiya Kor</TeamTitle>
                 <TeamSubject>Full stack developer</TeamSubject>
                 <BoxLink>
@@ -170,7 +167,6 @@ const Footer = () => {
                 </BoxLink>
               </TeamItem>
               <TeamItem>
-                {/* <StyledImage src="" alt="" width="45px" /> */}
                 <TeamTitle>Dmitriy Ushkvarok</TeamTitle>
                 <TeamSubject>Full stack developer</TeamSubject>
                 <BoxLink>
@@ -189,7 +185,6 @@ const Footer = () => {
                 </BoxLink>
               </TeamItem>
               <TeamItem>
-                {/* <StyledImage src="" alt="" width="45px" /> */}
                 <TeamTitle>Anastasiia Hudymenko</TeamTitle>
                 <TeamSubject>Full stack developer</TeamSubject>
                 <BoxLink>
@@ -208,12 +203,6 @@ const Footer = () => {
                 </BoxLink>
               </TeamItem>
               <TeamItem>
-                {/* <StyledImage
-                  src={'/team/vt.jpg'}
-                  alt="Vitalii"
-                  width={35}
-                  height={35}
-                /> */}
                 <TeamTitle>Vitalii Nozhenko</TeamTitle>
                 <TeamSubject>Full stack developer</TeamSubject>
                 <BoxLink>

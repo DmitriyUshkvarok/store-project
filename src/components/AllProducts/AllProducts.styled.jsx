@@ -138,6 +138,12 @@ export const Overlay = styled.div`
   transform: translateY(101%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
+export const TitleCountry = styled.h3`
+  color: #131313;
+  font-size: 14px;
+  letter-spacing: 0.025em;
+  line-height: 18px;
+`;
 
 export const TextOverlay = styled.p`
   color: #fff;
@@ -176,23 +182,23 @@ export const Item = styled.li`
 
 export const BoxTitle = styled.div`
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 export const TitleProduct = styled.h3`
   color: #131313;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
   letter-spacing: 0.025em;
   line-height: 20px;
-  margin-bottom: 13px;
 `;
 
 export const Price = styled.p`
   color: #131313;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   letter-spacing: 0.025em;
   line-height: 20px;
-  margin-bottom: 13px;
 `;
 
 export const Picture = styled(Image)`
