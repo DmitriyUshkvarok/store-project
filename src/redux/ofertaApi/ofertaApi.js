@@ -71,6 +71,14 @@ export const ofertaApi = createApi({
       }),
       invalidatesTags: ['products'],
     }),
+    updateProductStatus: builder.mutation({
+      query: ({ productId, neee }) => ({
+        url: `/products/${productId} `,
+        method: 'PATCH',
+        body: newInStock,
+      }),
+      invalidatesTags: ['products'],
+    }),
     // addCountries: builder.mutation({
     //   query: (formData) => ({
     //     url: `/countries `,
@@ -193,7 +201,7 @@ export const ofertaApi = createApi({
 export const {
   useGetOfertaQuery,
   useGetCategoryProductsQuery,
-
+  useUpdateProductStatusMutation,
   // useGetSubCategoryQuery,
   // useGetColorQuery,
   useGetInfoProductQuery,

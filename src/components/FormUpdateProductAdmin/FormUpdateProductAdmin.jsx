@@ -1,28 +1,39 @@
 'use client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useUpdateProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { formUpdateSchemaProduct } from '@/src/validationSchema/validationSchemaByFormAdmin';
 
 const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
+  const [selectPdf, setSelectPdf] = useState(null);
 
   const [updateProduct] = useUpdateProductMutation();
 
   const handleSubmit = async (values) => {
+    console.log(values);
     const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('price', values.price);
-    formData.append('file', selectedImg);
-    formData.append('description', values.description);
-    formData.append('brand', values.brand);
+    formData.append('fullName', values.fullName);
+    formData.append('type', values.type);
+    formData.append('density', values.density);
+    formData.append('chemicalFormula', values.chemicalFormula);
     formData.append('weight', values.weight);
     formData.append('packingType', values.packingType);
     formData.append('country', values.country);
-    formData.append('category', values.category);
-    formData.append('subcategory', values.subcategory);
+    formData.append('category', selectProduct.category._id);
     formData.append('color', values.color);
+    formData.append('name', values.name);
+    formData.append('price', values.price);
+    formData.append('description', values.description);
+    formData.append('brand', values.brand);
+    // formData.append('inStock', values.inStock);
+    if (selectedImg) {
+      formData.append('file', selectedImg);
+    }
+    if (selectPdf) {
+      formData.append('pdf', selectPdf);
+    }
 
     try {
       const res = await updateProduct({
@@ -42,114 +53,146 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   return (
     selectProduct && (
       <Formik
-        validationSchema={formUpdateSchemaProduct}
+        // validationSchema={formUpdateSchemaProduct}
         initialValues={{
+          category: selectProduct.category.name,
+          chemicalFormula: selectProduct.chemicalFormula,
+          color: selectProduct.color,
+          country: selectProduct.country,
+          density: selectProduct.density,
+          fullName: selectProduct.fullName,
+          // inStock: selectProduct.inStock,
           name: selectProduct.name,
           price: selectProduct.price,
           url: '',
+          pdfUrl: '',
+          type: selectProduct.type,
           description: selectProduct.description,
           brand: selectProduct.brand,
           weight: selectProduct.weight,
           packingType: selectProduct.packingType,
-          country: selectProduct.country._id,
-          category: selectProduct.category._id,
-          subcategory: selectProduct.subcategory._id,
-          color: selectProduct.color._id,
         }}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <label>
-            Назва: <Field type="text" name="name" />
-            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
-          <label>
-            Ціна: <Field type="text" name="price" />
-            <ErrorMessage name="price">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Зображення:{' '}
-            <input
-              type="file"
-              accept="image/*"
-              name="url"
-              onChange={(e) => setSelectedImg(e.target.files[0])}
-            />
-            <ErrorMessage name="url">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
-          <label>
-            Опис: <Field type="text" name="description" />
-            <ErrorMessage name="description">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Бренд: <Field type="text" name="brand" />
-            <ErrorMessage name="brand">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Вага: <Field type="text" name="weight" />
-            <ErrorMessage name="weight">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Тип пакування: <Field type="text" name="packingType" />
-            <ErrorMessage name="packingType">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
+        {({ values }) => (
+          <Form>
+            <label>
+              Повна назва: <Field type="text" name="fullName" />
+              <ErrorMessage name="fullName">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Назва: <Field type="text" name="name" />
+              <ErrorMessage name="name">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Категорія: <Field readOnly type="text" name="category" />
+              <ErrorMessage name="category">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Країна: <Field type="text" name="country" />
+              <ErrorMessage name="country">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Колір: <Field type="text" name="color" />
+              <ErrorMessage name="color">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Тип: <Field type="text" name="type" />
+              <ErrorMessage name="type">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Щільність: <Field type="text" name="density" />
+              <ErrorMessage name="density">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Хімічна формула: <Field type="text" name="chemicalFormula" />
+              <ErrorMessage name="chemicalFormula">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Ціна: <Field type="text" name="price" />
+              <ErrorMessage name="price">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Зображення:{' '}
+              <input
+                type="file"
+                accept="image/*"
+                name="url"
+                onChange={(e) => setSelectedImg(e.target.files[0])}
+              />
+              <ErrorMessage name="url">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              PDF:{' '}
+              <input
+                type="file"
+                accept="application/pdf"
+                name="pdfUrl"
+                onChange={(e) => setSelectPdf(e.target.files[0])}
+              />
+            </label>
 
-          <label>
-            Країна:{' '}
-            <Field as="select" name="country">
-              <option value={selectProduct.country._id}>
-                {selectProduct.country.name}
-              </option>
-            </Field>
-            <ErrorMessage name="country">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Категорія:{' '}
-            <Field as="select" name="category">
-              <option value={selectProduct.category._id}>
-                {selectProduct.category.name}
-              </option>
-            </Field>
-            <ErrorMessage name="category">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Підкатегорія:{' '}
-            <Field as="select" name="subcategory">
-              <option value={selectProduct.subcategory._id}>
-                {selectProduct.subcategory.name}
-              </option>
-            </Field>
-            <ErrorMessage name="subcategory">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Колір:{' '}
-            <Field as="select" name="color">
-              <option value={selectProduct.color._id}>
-                {selectProduct.color.name}
-              </option>
-            </Field>
-            <ErrorMessage name="color">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <button type="submit">Зберегти</button>
-        </Form>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={selectProduct.pdfUrl}
+            >
+              <span>Переглянути PGF файл</span>
+            </a>
+
+            <label>
+              Опис: <Field type="text" name="description" />
+              <ErrorMessage name="description">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Бренд: <Field type="text" name="brand" />
+              <ErrorMessage name="brand">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Вага: <Field type="text" name="weight" />
+              <ErrorMessage name="weight">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            <label>
+              Тип пакування: <Field type="text" name="packingType" />
+              <ErrorMessage name="packingType">
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+            </label>
+            {/* <label>
+              Наяввність:
+              <Field type="checkbox" name="inStock" />
+              {`${values.inStock}`}
+            </label> */}
+
+            <button type="submit">Зберегти</button>
+          </Form>
+        )}
       </Formik>
     )
   );
