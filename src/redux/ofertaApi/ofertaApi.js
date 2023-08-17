@@ -72,7 +72,7 @@ export const ofertaApi = createApi({
       invalidatesTags: ['products'],
     }),
     updateProductStatus: builder.mutation({
-      query: ({ productId, neee }) => ({
+      query: ({ productId, newInStock }) => ({
         url: `/products/${productId} `,
         method: 'PATCH',
         body: newInStock,
