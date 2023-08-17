@@ -22,7 +22,8 @@ import adminLoginSchema from '@/src/validationSchema/adminLoginSchema';
 import { useLoginMutation } from '@/src/redux/adminAuthApi/authApi';
 
 const initialValues = {
-  email: '',
+  // email: '',
+  login: '',
   password: '',
 };
 
@@ -67,11 +68,14 @@ const AdminForm = () => {
               <TitleAdminForm>Увійти до панелі адміністратора</TitleAdminForm>
               <FeedbackFormGroup>
                 <InputEmail
-                  type="email"
-                  name="email"
-                  placeholder="Електрона пошта"
+                  // type="email"
+                  // name="email"
+                  // placeholder="Електрона пошта"
+                  type="login"
+                  name="login"
+                  placeholder="Логін"
                 />
-                <StyleErrorMessage name="email">
+                <StyleErrorMessage name="login">
                   {(msg) => <Error>{msg}</Error>}
                 </StyleErrorMessage>
               </FeedbackFormGroup>

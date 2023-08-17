@@ -11,8 +11,8 @@ export const ProductDetailSection = styled.section`
 
 export const LinkPanel = styled.div`
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  /* background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px; */
   margin-bottom: 20px;
   display: flex;
   gap: 10px;
@@ -31,8 +31,8 @@ export const CurrentLink = styled.span`
 
 export const ProductDetailInfoBlock = styled.div`
   display: flex;
-  gap: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* gap: 10px; */
+  /* background-color: rgba(0, 0, 0, 0.1); */
   padding: 20px;
   border-radius: 4px;
 
@@ -73,8 +73,8 @@ export const CategorySpan = styled.span`
 export const ProductBlockLeft = styled.div`
   padding: 20px;
   width: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7); */
   border-radius: 4px;
 
   @media screen and (max-width: 580px) {
@@ -88,8 +88,8 @@ export const ImageBlock = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  /* background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px; */
 `;
 
 export const ProductName = styled.p`
@@ -145,8 +145,8 @@ export const ProductBlockRight = styled.div`
   flex-direction: column;
   width: 50%;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7); */
   border-radius: 4px;
 
   @media screen and (max-width: 580px) {

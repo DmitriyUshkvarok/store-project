@@ -29,9 +29,6 @@ const CustomBarChart = ({ data }) => {
                 ? `${item.value}%`
                 : item.value}
             </div>
-            {/* <div className={css.tooltip}>
-              {item.label}: {item.value}
-            </div> */}
             <div className={css.tooltip}>
               {item.label}:
               {item.label === 'Общее количество' ? item.value : item.totalValue}
