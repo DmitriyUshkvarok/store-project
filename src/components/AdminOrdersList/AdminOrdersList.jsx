@@ -55,26 +55,30 @@ const AdminOrdersList = () => {
   const totalOrdersCount = response?.total || 0; // Общее количество заказов
   const totalPages = Math.ceil(totalOrdersCount / pageSize); // Общее количество страниц
   const hasNextPage = ordersFromServer.length === pageSize;
-
+  const completedOrdersCount = response?.done || 0; // Number of completed orders
+  const activeOrdersCount = response?.undone || 0;
   const totalOrders = response?.all || 0;
 
-  const donePercentage = ((response?.total / response?.all) * 100).toFixed(2);
-  const activePercentage = (
-    ((response?.all - response?.total) / response?.all) *
-    100
-  ).toFixed(2);
+  const completedPercentage = Math.round(
+    (completedOrdersCount / totalOrders) * 100
+  );
+  const activePercentage = Math.round((activeOrdersCount / totalOrders) * 100);
 
   const chartData = [
-    { label: 'Общее количество', value: totalOrders },
+    {
+      label: 'Общее количество',
+      value: totalOrders,
+      totalValue: `${totalOrders}`,
+    },
     {
       label: 'Выполненные',
-      value: donePercentage,
-      totalValue: response?.total,
+      value: completedPercentage,
+      totalValue: completedOrdersCount,
     },
     {
       label: 'Активные',
       value: activePercentage,
-      totalValue: response?.all - response?.total,
+      totalValue: activeOrdersCount,
     },
   ];
 

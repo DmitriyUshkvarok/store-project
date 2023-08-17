@@ -1,10 +1,13 @@
 import AdminOrdersList from '@/src/components/AdminOrdersList/AdminOrdersList';
+import PrivatRoute from '@/src/components/PrivateRoute/PrivatRoute';
 
 const Orders = () => {
   return (
-    <div>
-      <AdminOrdersList />
-    </div>
+    <PrivatRoute>
+      <div>
+        <AdminOrdersList />
+      </div>
+    </PrivatRoute>
   );
 };
 
