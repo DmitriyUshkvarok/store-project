@@ -11,7 +11,7 @@ const PrivatRoute = ({ children }) => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      router.replace('/home');
+      router.replace('/admin');
     } else {
       setLoading(false);
     }
