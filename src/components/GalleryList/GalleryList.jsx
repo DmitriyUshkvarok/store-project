@@ -26,9 +26,13 @@ const GalleryList = () => {
 
   useEffect(() => {
     if (data) {
-      setTotalPages(Math.ceil(data.length / itemsPerPage));
+      const reversedData = [...data].reverse();
+      setTotalPages(Math.ceil(reversedData.length / itemsPerPage));
       setCurrentPhotos(
-        data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        reversedData.slice(
+          (currentPage - 1) * itemsPerPage,
+          currentPage * itemsPerPage
+        )
       );
     }
   }, [data, currentPage]);

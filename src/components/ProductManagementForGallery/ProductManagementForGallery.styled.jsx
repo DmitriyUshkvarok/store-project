@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { Form } from 'formik';
 
 export const GalleryBox = styled.div`
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -23,25 +23,47 @@ export const Gallery = styled.ul`
 
 export const Box = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
   flex-direction: column;
   max-width: 1000px;
   margin: 0 auto;
-
-  @media screen and (min-width: 1060px) {
-    justify-content: start;
-  }
 `;
 
 export const StyledForm = styled(Form)`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: start;
+  margin: 0 auto;
+
   margin-bottom: 20px;
-  @media screen and (min-width: 1060px) {
-    justify-content: start;
+  width: 100%;
+
+  label {
+    cursor: pointer;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 42px;
+    letter-spacing: 0.1em;
+    line-height: 42px;
+    text-transform: uppercase;
+    border: 1px solid;
+    margin-right: 15px;
+
+    &:hover {
+      outline: none;
+      opacity: 0.7;
+    }
   }
+`;
+export const Input = styled.input`
+  display: none;
 `;
 
 export const PaginationBox = styled.div`
@@ -76,5 +98,26 @@ export const Picture = styled(Image)`
 
   &:hover {
     transform: scale(1.05);
+  }
+`;
+export const Btn = styled.button`
+  cursor: pointer;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  height: 42px;
+  letter-spacing: 0.1em;
+  /* line-height: 42px; */
+  text-transform: uppercase;
+  border: 1px solid;
+
+  &:hover {
+    outline: none;
+    opacity: 0.7;
   }
 `;
