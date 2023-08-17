@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Btn = styled.button`
   cursor: pointer;
   color: #000000;
-
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

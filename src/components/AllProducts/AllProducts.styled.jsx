@@ -240,7 +240,7 @@ export const Btn = styled.button`
   font-size: 14px;
   font-weight: 400;
   height: 42px;
-
+  background-color: #fff;
   line-height: 42px;
 
   border: 2px solid;
@@ -483,7 +483,7 @@ export const OrderBtnDetails = styled.button`
 export const SetFilterBtn = styled.button`
   cursor: pointer;
   color: #000000;
-
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
