@@ -15,6 +15,7 @@ const CatalogManagementAdmin = () => {
   const [total, setTotal] = useState(0);
   const [show, setShow] = useState(false);
   const [selectProduct, setSelectProduct] = useState(null);
+  const [filterName, setFilterName] = useState('');
 
   const productsPerPage = 6;
   const maxVisiblePages = 10;
@@ -23,9 +24,8 @@ const CatalogManagementAdmin = () => {
   const { data } = useGetAllInfoProductQuery({
     page: currentPage,
     limit: productsPerPage,
+    name: filterName,
   });
-
-  console.log(data);
 
   useEffect(() => {
     if (data) {
@@ -44,11 +44,29 @@ const CatalogManagementAdmin = () => {
     setCurrentPage(pageNumber);
   };
 
+  const filterSearch = (value) => {
+    setFilterName(value.search);
+  };
+
+  const handleAllProduct = () => {
+    setFilterName('');
+  };
+
   return (
     <>
-      <SearchFormAdmin />
+      <SearchFormAdmin
+        handleAllProduct={handleAllProduct}
+        filterSearch={filterSearch}
+      />
       <CaptionByCatalog />
-      <ListByCatalog handleShow={handleShow} data={products} />
+      {products.length === 0 ? (
+        <div>
+          <p>Такого товару не знайдено</p>
+        </div>
+      ) : (
+        <ListByCatalog handleShow={handleShow} data={products} />
+      )}
+
       <div>
         <Pagination>
           {renderPaginationItems(
