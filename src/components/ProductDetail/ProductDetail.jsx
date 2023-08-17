@@ -44,6 +44,10 @@ import {
   BtnIncrement,
   InputCounter,
   BtnDecrement,
+  Box,
+  Product,
+  CategorySpanPdf,
+  Boxer,
 } from './ProductDetail.styled';
 import Container from '../Container/Container';
 import BtnBuy from '../BtnBuy/BtnBuy';
@@ -116,7 +120,7 @@ const ProductDetail = () => {
 
   return (
     <ProductDetailSection>
-      <Container>
+      <Box>
         <LinkPanel>
           <StyleLinkDetail href={`/home`}>Головна /</StyleLinkDetail>
           <StyleLinkDetail href={`/oferta`}>Каталог /</StyleLinkDetail>
@@ -126,11 +130,11 @@ const ProductDetail = () => {
 
           <CurrentLink>{data?.name}</CurrentLink>
         </LinkPanel>
-        <div>
+        <Product>
           {isLoading ? (
             <p>Загрузка данных...</p>
           ) : (
-            <div>
+            <Boxer>
               <ProductDetailInfoBlock key={productInfo._id}>
                 <ProductBlockLeft>
                   <ImageBlock>
@@ -144,7 +148,7 @@ const ProductDetail = () => {
                       height={200}
                     />
                   </ImageBlock>
-                  <ProductСharacterization>Опис</ProductСharacterization>
+                  {/* <ProductСharacterization>Опис</ProductСharacterization> */}
                   <ProductDescription>
                     {productInfo?.description}
                   </ProductDescription>
@@ -159,12 +163,8 @@ const ProductDetail = () => {
                     <ProductWeight>
                       Вага:<CategorySpan>{productInfo?.weight} кг</CategorySpan>
                     </ProductWeight>
-                    <ProductPackingType>
-                      Тип упаковки:
-                      <CategorySpan>{productInfo?.packingType}</CategorySpan>
-                    </ProductPackingType>
                     <ProductBrand>
-                      бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
+                      Бренд:<CategorySpan>{productInfo?.brand}</CategorySpan>
                     </ProductBrand>
                     <ProductColor>
                       Колір:<CategorySpan>{productInfo?.color}</CategorySpan>
@@ -196,11 +196,14 @@ const ProductDetail = () => {
                         rel="noopener noreferrer"
                       >
                         <AiOutlineFilePdf size={25} />
-                        <CategorySpan> Посилання на PDF-документ</CategorySpan>
+                        <CategorySpanPdf>
+                          {' '}
+                          Посилання на PDF-документ
+                        </CategorySpanPdf>
                       </a>
                     </ProductPdf>
                     <ProductPrice>
-                      Ціна:<SpanPrice>{productInfo?.price} грн</SpanPrice>
+                      Ціна:<SpanPrice>{productInfo?.price} грн.</SpanPrice>
                     </ProductPrice>
                   </div>
                   <CounterAndBtnWrapper>
@@ -220,10 +223,10 @@ const ProductDetail = () => {
                   </CounterAndBtnWrapper>
                 </ProductBlockRight>
               </ProductDetailInfoBlock>
-            </div>
+            </Boxer>
           )}
-        </div>
-      </Container>
+        </Product>
+      </Box>
     </ProductDetailSection>
   );
 };
