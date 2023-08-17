@@ -237,14 +237,11 @@ export const Btn = styled.button`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  font-family: gotham;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 400;
   height: 42px;
-  letter-spacing: 6px;
+
   line-height: 42px;
-  /* padding-left: 20px; */
-  text-transform: uppercase;
 
   border: 2px solid;
 
@@ -487,22 +484,20 @@ export const SetFilterBtn = styled.button`
   cursor: pointer;
   color: #000000;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
-  font-family: gotham;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 400;
   height: 42px;
-
-  line-height: 42px;
-  text-transform: uppercase;
-  max-width: 150px;
-  border: 2px solid;
-  margin-left: auto;
-  margin-right: auto;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 20px;
+  line-height: 42px;
 
+  border: 2px solid;
+
+  margin: 0 auto;
   &:hover {
     outline: none;
     opacity: 0.7;
