@@ -102,34 +102,10 @@ const OrderList = () => {
                     height={100}
                     priority={true}
                   />
+
                   <OrdersGroup>
-                    <ProductNameTitle>
-                      {item.title} чудовий розчинник без запаху
-                    </ProductNameTitle>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Вага:</ProductName>
-                    <SubOrdersInfo>{item.weight} кг</SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Загальна вага позиції:</ProductName>
-                    <SubOrdersInfo>
-                      {calculateItemTotalWeight(item)} кг
-                    </SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Ціна:</ProductName>
-                    <SubOrdersInfo>{item.price} гривень</SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Кількість:</ProductName>
-                    <SubOrdersInfo>{quantity[item.id] || 0}</SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Загальна ціна позиції:</ProductName>
-                    <SubOrdersInfo>
-                      {calculateItemTotalPrice(item)} гривень
-                    </SubOrdersInfo>
+                    <ProductName>Назва товару</ProductName>
+                    <SubOrdersInfo>{item.title}</SubOrdersInfo>
                   </OrdersGroup>
 
                   <OrdersGroup>
@@ -150,10 +126,38 @@ const OrderList = () => {
                     </CounterWrapper>
                     <DataInfo>{item.data}</DataInfo>
                   </OrdersGroup>
-                  <StyleRiDeleteBin5Fill
-                    size={20}
-                    onClick={() => handleRemoveItem(item.id)}
-                  />
+                  {/* <OrdersGroup>
+                    <ProductName>Кількість:</ProductName>
+                    <SubOrdersInfo>{quantity[item.id] || 0}</SubOrdersInfo>
+                  </OrdersGroup> */}
+                  <OrdersGroup>
+                    <ProductName>Вага:</ProductName>
+                    <SubOrdersInfo>{item.weight} кг</SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Загальна вага позиції:</ProductName>
+                    <SubOrdersInfo>
+                      {calculateItemTotalWeight(item)} кг
+                    </SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Ціна:</ProductName>
+                    <SubOrdersInfo>{item.price} грн.</SubOrdersInfo>
+                  </OrdersGroup>
+
+                  <OrdersGroup>
+                    <ProductName>Загальна ціна позиції:</ProductName>
+                    <SubOrdersInfo>
+                      {calculateItemTotalPrice(item)} грн.
+                    </SubOrdersInfo>
+                  </OrdersGroup>
+
+                  <div>
+                    <StyleRiDeleteBin5Fill
+                      size={18}
+                      onClick={() => handleRemoveItem(item.id)}
+                    />
+                  </div>
                 </CartListItem>
               ))}
             </CartList>

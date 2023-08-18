@@ -4,15 +4,12 @@ import { RiDeleteBin5Fill } from 'react-icons/ri';
 
 export const NotOrderWrapper = styled.div`
   max-width: 800px;
-  /* padding: 30px; */
-  /* background-color: rgba(0, 0, 0, 0.1); */
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 30px;
-  /* border-radius: 4px; */
 `;
 
 export const NotOrder = styled.h2`
@@ -22,7 +19,6 @@ export const NotOrder = styled.h2`
 `;
 
 export const CartListSection = styled.div`
-  /* margin-top: 30px; */
   padding-top: 30px;
   border-top: 4px solid gray;
 `;
@@ -33,6 +29,9 @@ export const TotalPriceWrapper = styled.div`
   align-items: flex-end;
   margin-bottom: 20px;
   margin-right: 20px;
+  @media screen and (max-width: 1000px) {
+    margin-top: 20px;
+  }
 `;
 
 export const TotalPriceTitle = styled.p`
@@ -68,30 +67,41 @@ export const CartList = styled.ul`
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-  /* background-color: rgba(0, 0, 0, 0.1); */
   border-radius: 4px;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: row;
+    width: calc(100vw - 80px);
+    overflow-x: auto;
+  }
 `;
 
 export const CartListItem = styled.li`
   display: flex;
-  /* align-items: center; */
   align-items: flex-start;
   justify-content: space-between;
   padding: 10px;
-  width: 100%;
   gap: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    min-width: 250px;
+    height: 650px;
+    gap: 5px;
+    overflow-y: auto;
   }
 `;
 
 export const StyleCartImage = styled(Image)`
-  height: 100%;
+  height: auto;
   object-fit: cover;
   width: 100px;
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    width: 180px;
+  }
 `;
 
 export const OrdersGroup = styled.div`
@@ -103,27 +113,26 @@ export const OrdersGroup = styled.div`
   /* border: 1px solid red; */
 
   @media screen and (min-width: 1000px) {
-    width: 120px;
+    width: 130px;
   }
 `;
 
 export const SubOrdersInfo = styled.div`
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const ProductName = styled.div`
   text-align: center;
   font-weight: 500;
-  font-size: 10px;
-  /* margin-bottom: 10px; */
-  height: 40px;
-`;
-
-export const ProductNameTitle = styled.div`
-  font-weight: 500;
   font-size: 12px;
-  margin-top: auto;
+  margin-bottom: 5px;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 15px;
+  }
 `;
 
 export const CounterWrapper = styled.div`
