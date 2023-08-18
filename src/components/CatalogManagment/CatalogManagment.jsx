@@ -20,7 +20,7 @@ const CatalogManagementAdmin = () => {
   const [filterName, setFilterName] = useState('');
   const [value] = useDebounce(filterName, 1000);
 
-  const productsPerPage = 6;
+  const productsPerPage = 10;
   const maxVisiblePages = 10;
   const totalPages = Math.ceil(total / productsPerPage);
 
@@ -48,7 +48,7 @@ const CatalogManagementAdmin = () => {
   };
 
   const filterSearch = (e) => {
-    console.log(e.target.value);
+    setCurrentPage(1);
     setFilterName(e.target.value);
   };
 
