@@ -137,7 +137,7 @@ const OrderList = () => {
                   <OrdersGroup>
                     <ProductName>Загальна вага позиції:</ProductName>
                     <SubOrdersInfo>
-                      {calculateItemTotalWeight(item)} кг
+                      {calculateItemTotalWeight(item).toFixed(1)} кг
                     </SubOrdersInfo>
                   </OrdersGroup>
                   <OrdersGroup>

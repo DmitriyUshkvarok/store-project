@@ -4,9 +4,9 @@ import PrivatRoute from '@/src/components/PrivateRoute/PrivatRoute';
 const Orders = () => {
   return (
     <PrivatRoute>
-      <div>
+      <>
         <AdminOrdersList />
-      </div>
+      </>
     </PrivatRoute>
   );
 };

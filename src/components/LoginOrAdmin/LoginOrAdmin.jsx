@@ -6,7 +6,6 @@ import authSelector from '@/src/redux/adminAuthApi/authSelectors';
 import { useCheckTokenQuery } from '@/src/redux/adminAuthApi/authApi';
 
 const LoginOrAdmin = () => {
-  const isToken = useSelector(authSelector.authToken);
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const {
     data: tokenInfo,
@@ -23,7 +22,7 @@ const LoginOrAdmin = () => {
   }
 
   if (
-    !isToken ||
+    !isLoggedIn ||
     (error && error.status === 401 && error.data.message === 'Not authorized')
   ) {
     return <AdminForm />;

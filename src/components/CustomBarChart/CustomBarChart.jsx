@@ -2,7 +2,7 @@ import css from './CustomBarChart.module.css';
 
 const CustomBarChart = ({ data }) => {
   const totalValue = data.find(
-    (item) => item.label === 'Общее количество'
+    (item) => item.label === 'Загальна кількість'
   ).value;
   const maxValue = Math.max(...data.map((item) => item.value));
 
@@ -16,22 +16,24 @@ const CustomBarChart = ({ data }) => {
             style={{
               height: (item.value / maxValue) * 100 + '%',
               backgroundColor:
-                item.label === 'Выполненные'
+                item.label === 'Виконано'
                   ? 'lightgreen'
-                  : item.label === 'Активные'
+                  : item.label === 'Активні'
                   ? 'lightcoral'
                   : '#8884d8',
             }}
           >
             <div className={css.label}>
               {item.label}:
-              {item.label === 'Выполненные' || item.label === 'Активные'
+              {item.label === 'Виконано' || item.label === 'Активні'
                 ? `${item.value}%`
                 : item.value}
             </div>
             <div className={css.tooltip}>
               {item.label}:
-              {item.label === 'Общее количество' ? item.value : item.totalValue}
+              {item.label === 'Загальна кількість'
+                ? item.value
+                : item.totalValue}
             </div>
           </div>
         ))}
@@ -41,16 +43,16 @@ const CustomBarChart = ({ data }) => {
           className={css.legendItem}
           style={{ backgroundColor: 'lightgreen' }}
         >
-          Выполненные
+          Виконано
         </span>
         <span
           className={css.legendItem}
           style={{ backgroundColor: 'lightcoral' }}
         >
-          Активные
+          Активні
         </span>
         <span className={css.legendItem} style={{ backgroundColor: '#8884d8' }}>
-          Общее количество
+          Загальна кількість
         </span>
       </div>
     </div>

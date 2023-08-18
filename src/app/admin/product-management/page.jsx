@@ -1,9 +1,12 @@
 import ProductManagementForGallery from '@/src/components/ProductManagementForGallery/ProductManagementForGallery';
+import PrivatRoute from '@/src/components/PrivateRoute/PrivatRoute';
 
 const ProductManagement = () => {
   return (
     <>
-      <ProductManagementForGallery />
+      <PrivatRoute>
+        <ProductManagementForGallery />
+      </PrivatRoute>
     </>
   );
 };

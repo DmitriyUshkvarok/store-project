@@ -6,6 +6,7 @@ import Head from 'next/head';
 import ReduxProvider from '../redux/ReduxProvider/ReduxProvider';
 import ProvaiderToastContainer from '../components/ToastContainer/ToastContainer';
 import 'react-toastify/dist/ReactToastify.css';
+import CallOfCurrentUser from '../components/CallOfCurrentUser/CallOfCurrentUser';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -28,10 +29,13 @@ export default function RootLayout({ children }) {
             content="width=device-width, initial-scale=1.0"
           />
         </Head>
+
         <body className={roboto.className}>
-          <ProvaiderToastContainer />
-          <Header />
-          <main>{children}</main>
+          <CallOfCurrentUser>
+            <ProvaiderToastContainer />
+            <Header />
+            <main>{children}</main>
+          </CallOfCurrentUser>
         </body>
       </html>
     </ReduxProvider>

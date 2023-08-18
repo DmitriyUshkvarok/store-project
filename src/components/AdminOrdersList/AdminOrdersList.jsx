@@ -66,17 +66,17 @@ const AdminOrdersList = () => {
 
   const chartData = [
     {
-      label: 'Общее количество',
+      label: 'Загальна кількість',
       value: totalOrders,
       totalValue: `${totalOrders}`,
     },
     {
-      label: 'Выполненные',
+      label: 'Виконано',
       value: completedPercentage,
       totalValue: completedOrdersCount,
     },
     {
-      label: 'Активные',
+      label: 'Активні',
       value: activePercentage,
       totalValue: activeOrdersCount,
     },

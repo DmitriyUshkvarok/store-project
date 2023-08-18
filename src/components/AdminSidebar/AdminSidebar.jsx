@@ -17,7 +17,7 @@ const AdminSidebar = () => {
             className={pathname === '/admin/orders' ? 'active' : ''}
             href="/admin/orders"
           >
-            Заказы
+            Замовлення
           </StyleLink>
           <StyleBsFillGearFill />
         </PanelCategoryListItem>
@@ -26,7 +26,7 @@ const AdminSidebar = () => {
             className={pathname === '/admin/catalog-management' ? 'active' : ''}
             href="/admin/catalog-management"
           >
-            Управление Каталогом
+            Керування Каталогом
           </StyleLink>
           <StyleBsFillGearFill />
         </PanelCategoryListItem>
@@ -37,7 +37,7 @@ const AdminSidebar = () => {
             }
             href="/admin/category-management"
           >
-            Добавить товар
+            Додати товар
           </StyleLink>
           <StyleBsFillGearFill />
         </PanelCategoryListItem>
@@ -47,15 +47,6 @@ const AdminSidebar = () => {
             href="/admin/product-management"
           >
             Галерея
-          </StyleLink>
-          <StyleBsFillGearFill />
-        </PanelCategoryListItem>
-        <PanelCategoryListItem>
-          <StyleLink
-            className={pathname === '/admin/analytics' ? 'active' : ''}
-            href="/admin/analytics"
-          >
-            Аналитика
           </StyleLink>
           <StyleBsFillGearFill />
         </PanelCategoryListItem>
