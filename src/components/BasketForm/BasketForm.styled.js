@@ -3,12 +3,15 @@ import { Form, Field } from 'formik';
 
 export const StyleOrderForm = styled(Form)`
   max-width: 700px;
-  padding: 40px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  padding: 20px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 4px;
+  border: 1px solid grey;
+  margin-bottom: 30px;
+
+  &:hover {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -17,25 +20,20 @@ export const FormWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  /* background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7); */
   border-radius: 4px;
   padding: 10px;
 `;
 
-export const OrderFormTitle = styled.h2`
-  color: #222;
-  text-transform: uppercase;
+export const OrderFormTitle = styled.p`
+  font-weight: 500;
   text-align: center;
-  font-size: 18px;
+  font-size: 15px;
 `;
 
 export const OrderFormSubTitle = styled.p`
-  color: gray;
-  font-size: 14px;
-  text-transform: uppercase;
+  font-size: 12px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 400;
 `;
 
 export const OrderFormGroup = styled.div`
@@ -48,30 +46,31 @@ export const OrderFormGroup = styled.div`
 `;
 
 export const OrderFormLabel = styled.label`
-  color: gray;
-  text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 export const OrderStyleField = styled(Field)`
   width: 100%;
   display: flex;
-  height: 30px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  border: none;
+  border-color: black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   outline: none;
-  padding: 5px;
-  color: #222;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
 
   &::placeholder {
-    padding-left: 10px;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 `;
 
 export const ValidationError = styled.div`
-  color: lightcoral;
+  color: #e3010f;
+  font-size: 10px;
+  font-weight: 500;
 `;
 
 export const OrderBtn = styled.button`
@@ -82,18 +81,16 @@ export const OrderBtn = styled.button`
 
   align-items: center;
   gap: 2px;
-  font-size: 23px;
+  font-size: 13px;
 
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
+  letter-spacing: 1px;
 
   border: 2px solid black;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 4px;
+  padding: 10px;
+
+  margin-top: 30px;
   transition: background-color 0.4s;
 
   &:disabled {

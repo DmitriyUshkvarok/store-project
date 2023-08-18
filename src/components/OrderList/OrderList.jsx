@@ -30,6 +30,7 @@ import {
   PriceBox,
   TotalWeight,
   SpanTotalWeight,
+  ProductNameTitle,
 } from './OrderList.styled';
 
 import { removeFromCart, updateTotalPrice } from '@/src/redux/cart/cartSlise';
@@ -101,34 +102,12 @@ const OrderList = () => {
                     height={100}
                     priority={true}
                   />
+
                   <OrdersGroup>
-                    <ProductName>Назва товару:</ProductName>
+                    <ProductName>Назва товару</ProductName>
                     <SubOrdersInfo>{item.title}</SubOrdersInfo>
                   </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Вага:</ProductName>
-                    <SubOrdersInfo>{item.weight} кг</SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Загальна вага позиції:</ProductName>
-                    <SubOrdersInfo>
-                      {calculateItemTotalWeight(item)} кг
-                    </SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Ціна:</ProductName>
-                    <SubOrdersInfo>{item.price} гривень</SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Загальна ціна позиції:</ProductName>
-                    <SubOrdersInfo>
-                      {calculateItemTotalPrice(item)} гривень
-                    </SubOrdersInfo>
-                  </OrdersGroup>
-                  <OrdersGroup>
-                    <ProductName>Кількість:</ProductName>
-                    <SubOrdersInfo>{quantity[item.id] || 0}</SubOrdersInfo>
-                  </OrdersGroup>
+
                   <OrdersGroup>
                     <CounterWrapper>
                       <BtnIncrement onClick={() => handleDecrement(item.id)}>
@@ -147,23 +126,51 @@ const OrderList = () => {
                     </CounterWrapper>
                     <DataInfo>{item.data}</DataInfo>
                   </OrdersGroup>
-                  <StyleRiDeleteBin5Fill
-                    size={25}
-                    onClick={() => handleRemoveItem(item.id)}
-                  />
+                  {/* <OrdersGroup>
+                    <ProductName>Кількість:</ProductName>
+                    <SubOrdersInfo>{quantity[item.id] || 0}</SubOrdersInfo>
+                  </OrdersGroup> */}
+                  <OrdersGroup>
+                    <ProductName>Вага:</ProductName>
+                    <SubOrdersInfo>{item.weight} кг</SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Загальна вага позиції:</ProductName>
+                    <SubOrdersInfo>
+                      {calculateItemTotalWeight(item)} кг
+                    </SubOrdersInfo>
+                  </OrdersGroup>
+                  <OrdersGroup>
+                    <ProductName>Ціна:</ProductName>
+                    <SubOrdersInfo>{item.price} грн.</SubOrdersInfo>
+                  </OrdersGroup>
+
+                  <OrdersGroup>
+                    <ProductName>Загальна ціна позиції:</ProductName>
+                    <SubOrdersInfo>
+                      {calculateItemTotalPrice(item)} грн.
+                    </SubOrdersInfo>
+                  </OrdersGroup>
+
+                  <div>
+                    <StyleRiDeleteBin5Fill
+                      size={18}
+                      onClick={() => handleRemoveItem(item.id)}
+                    />
+                  </div>
                 </CartListItem>
               ))}
             </CartList>
             <TotalPriceWrapper>
               <TotalWeight>
-                Загальна вага:
+                Загальна вага замовлення:
                 <SpanTotalWeight>
                   {calculateTotalWeight().toFixed(1)} кг
                 </SpanTotalWeight>
               </TotalWeight>
               <PriceBox>
-                <TotalPriceTitle>Загальна сума:</TotalPriceTitle>
-                <TotalPriceInfo>{totalPrice} гривень</TotalPriceInfo>
+                <TotalPriceTitle>Загальна вартість замовлення:</TotalPriceTitle>
+                <TotalPriceInfo> {totalPrice} грн.</TotalPriceInfo>
               </PriceBox>
             </TotalPriceWrapper>
           </>

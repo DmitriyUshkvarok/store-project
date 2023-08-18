@@ -87,7 +87,7 @@ const OrderFom = ({ setOrderSuccess }) => {
             <OrderFormTitle>Оформлення замовлення</OrderFormTitle>
             <OrderFormSubTitle>Контактні дані:</OrderFormSubTitle>
             <OrderFormGroup>
-              <OrderFormLabel htmlFor="order-name">Ім&#39;я:</OrderFormLabel>
+              {/* <OrderFormLabel htmlFor="order-name">Ім&#39;я:</OrderFormLabel> */}
               <OrderStyleField
                 type="text"
                 name="name"
@@ -124,7 +124,7 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup> */}
             <OrderFormGroup>
-              <OrderFormLabel htmlFor="order-phone">Телефон:</OrderFormLabel>
+              {/* <OrderFormLabel htmlFor="order-phone">Телефон:</OrderFormLabel> */}
               <OrderStyleField
                 name="phone"
                 placeholder="Телефон:"
@@ -135,7 +135,7 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup>
             <OrderBtn type="submit">
-              {isLoading ? 'Чекайте...' : 'Підтвердити замовлення'}
+              {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
             </OrderBtn>
           </FormWrapper>
         </StyleOrderForm>
