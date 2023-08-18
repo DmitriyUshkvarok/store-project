@@ -3,6 +3,7 @@
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
+
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 // import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
@@ -52,9 +53,9 @@ const CatalogManagementAdmin = () => {
     setFilterName(e.target.value);
   };
 
-  const handleAllProduct = () => {
-    setFilterName('');
-  };
+  // const handleAllProduct = () => {
+  //   setFilterName('');
+  // };
 
   return (
     <>

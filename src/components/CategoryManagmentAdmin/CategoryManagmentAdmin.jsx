@@ -1,5 +1,10 @@
 'use client';
-import { useGetAllCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import {
+  useGetAllCategoryQuery,
+  useDeleteCategoryMutation,
+} from '@/src/redux/ofertaApi/ofertaApi';
+import { toast } from 'react-toastify';
+import Notiflix from 'notiflix';
 import { BsPlusCircleDotted } from 'react-icons/bs';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import { useState } from 'react';
@@ -17,6 +22,9 @@ const CategoryManagmentAdmin = () => {
   const [showModalAdd, setShowModalAdd] = useState(false);
   const [showModalAddAny, setShowModalAddAny] = useState(false);
   const [selectItem, setSelectItem] = useState(null);
+
+  const { data } = useGetAllCategoryQuery();
+  const [deleteCategory] = useDeleteCategoryMutation();
 
   const handleShow = (action, activItem) => {
     if (action === 'add product') {
@@ -40,7 +48,33 @@ const CategoryManagmentAdmin = () => {
     setShow(false);
   };
 
-  const { data } = useGetAllCategoryQuery();
+  const handleDelete = async (item) => {
+    Notiflix.Confirm.init({
+      backgroundColor: '#f8f8f8',
+      borderRadius: '4px',
+      titleColor: 'red',
+      messageMaxLength: 210,
+      okButtonBackground: 'red',
+    });
+    Notiflix.Confirm.show(
+      'Confirmation',
+      `Ви впевнені, що бажаєте видалити категорію "${item.name}"?
+      Якщо видалити цю категорію, всі продукти цієї категорії також видаляються назавжди.`,
+      'Видалити',
+      'Відмінити',
+      async () => {
+        try {
+          const res = await deleteCategory({ id: item._id });
+          if (res.error) {
+            throw new Error(res.error.data.message);
+          }
+          toast.success(`${item.name} видалено`);
+        } catch (error) {
+          return toast.error(`${error}`);
+        }
+      }
+    );
+  };
 
   return (
     <Container>
@@ -57,6 +91,7 @@ const CategoryManagmentAdmin = () => {
             data={data}
             handleShow={handleShow}
             title="Категорії"
+            handleDelete={handleDelete}
           />
         </BoxCategory>
       </Box>

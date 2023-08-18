@@ -180,7 +180,7 @@ export const ofertaApi = createApi({
         url: `/categories/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['categories'],
+      invalidatesTags: ['categories', 'products'],
     }),
     // deleteSubCategory: builder.mutation({
     //   query: (id) => ({
