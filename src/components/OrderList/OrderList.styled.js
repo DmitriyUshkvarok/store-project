@@ -52,13 +52,13 @@ export const TotalWeight = styled.p`
 `;
 
 export const SpanTotalWeight = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   margin-left: 10px;
 `;
 
 export const TotalPriceInfo = styled.p`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   margin-left: 10px;
 `;
