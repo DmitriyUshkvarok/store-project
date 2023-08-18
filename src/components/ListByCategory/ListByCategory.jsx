@@ -1,13 +1,7 @@
 'use client';
 import Image from 'next/image';
-import { toast } from 'react-toastify';
-import {
-  useDeleteCountryMutation,
-  useDeleteCategoryMutation,
-  useDeleteSubCategoryMutation,
-  useDeleteColorMutation,
-} from '@/src/redux/ofertaApi/ofertaApi';
-import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
+import { BsPlusCircleDotted } from 'react-icons/bs';
+
 import {
   Box,
   List,
@@ -21,61 +15,19 @@ import {
   BoxBtn,
 } from './ListByCategory.styled';
 
-const ListByCategory = ({ data, handleShow, title }) => {
-  const [deleteCountry] = useDeleteCountryMutation();
-  const [deleteCategory] = useDeleteCategoryMutation();
-  const [deleteSubCategory] = useDeleteSubCategoryMutation();
-  const [deleteColor] = useDeleteColorMutation();
-
-  const handleDelete = async (id) => {
-    if (COUNTRY === title) {
-      try {
-        const res = await deleteCountry(id);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${COUNTRY} видалено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (CATEGORY === title) {
-      try {
-        const res = await deleteCategory(id);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${CATEGORY} видалено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (SUBCATEGORY === title) {
-      try {
-        const res = await deleteSubCategory(id);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${SUBCATEGORY} видалено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (COLOR === title) {
-      try {
-        const res = await deleteColor(id);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${SUBCATEGORY} видалено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-  };
+const ListByCategory = ({ data, handleShow, title, handleDelete }) => {
   return (
     <Box>
-      <Title>{title}</Title>
+      <div>
+        <Title>{title}</Title>
+        <div>
+          <p>Додати </p>
+          <button type="button" onClick={() => handleShow('add category')}>
+            <BsPlusCircleDotted size={14} />
+          </button>
+        </div>
+      </div>
+
       <List>
         {data?.map((item) => (
           <Item key={item._id}>
@@ -85,13 +37,10 @@ const ListByCategory = ({ data, handleShow, title }) => {
             </WrapContent>
 
             <BoxBtn>
-              <Btn onClick={() => handleDelete(item._id, title)} type="button">
+              <Btn onClick={() => handleDelete(item)} type="button">
                 <DeleteForever />
               </Btn>
-              <Btn
-                onClick={() => handleShow('update', title, item.name, item._id)}
-                type="button"
-              >
+              <Btn onClick={() => handleShow('update', item)} type="button">
                 <Create />
               </Btn>
             </BoxBtn>

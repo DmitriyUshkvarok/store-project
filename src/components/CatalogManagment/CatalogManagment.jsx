@@ -3,6 +3,7 @@
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
+
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
 // import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
@@ -20,7 +21,7 @@ const CatalogManagementAdmin = () => {
   const [filterName, setFilterName] = useState('');
   const [value] = useDebounce(filterName, 1000);
 
-  const productsPerPage = 6;
+  const productsPerPage = 10;
   const maxVisiblePages = 10;
   const totalPages = Math.ceil(total / productsPerPage);
 
@@ -48,12 +49,13 @@ const CatalogManagementAdmin = () => {
   };
 
   const filterSearch = (e) => {
+    setCurrentPage(1);
     setFilterName(e.target.value);
   };
 
-  const handleAllProduct = () => {
-    setFilterName('');
-  };
+  // const handleAllProduct = () => {
+  //   setFilterName('');
+  // };
 
   return (
     <>

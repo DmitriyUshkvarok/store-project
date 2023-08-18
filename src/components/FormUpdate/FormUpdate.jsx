@@ -1,84 +1,44 @@
 'use client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import {
-  useUpdateCountriesMutation,
-  useUpdateCategoriesMutation,
-  useUpdateSubCategoriesMutation,
-  useUpdateColorsMutation,
-} from '@/src/redux/ofertaApi/ofertaApi';
+import { useUpdateCategoriesMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { formSchemaUpdateAny } from '@/src/validationSchema/validationSchemaByFormAdmin';
-import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
 
-const FormUpdate = ({ activeUpdate, selectItem, selectId, handleClose }) => {
+const FormUpdate = ({ selectItem, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
-  const [updateCountry] = useUpdateCountriesMutation();
+
   const [updateCategory] = useUpdateCategoriesMutation();
-  const [updateSubCategory] = useUpdateSubCategoriesMutation();
-  const [updateColor] = useUpdateColorsMutation();
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append('name', values.name);
-    formData.append('file', selectedImg);
+    if (selectedImg) {
+      formData.append('file', selectedImg);
+    }
 
-    if (activeUpdate === COUNTRY) {
-      try {
-        const res = await updateCountry({ formData, countryId: selectId });
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${COUNTRY} змінено`);
-      } catch (error) {
-        return toast.error(`${error}`);
+    try {
+      const res = await updateCategory({
+        formData,
+        categoryId: selectItem._id,
+      });
+      if (res.error) {
+        throw new Error(res.error.data.message);
       }
+      toast.success(`${selectItem.name} змінено`);
+    } catch (error) {
+      return toast.error(`${error}`);
     }
-    if (activeUpdate === CATEGORY) {
-      try {
-        const res = await updateCategory({ formData, categoryId: selectId });
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${CATEGORY} змінено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (activeUpdate === SUBCATEGORY) {
-      try {
-        const res = await updateSubCategory({
-          formData,
-          subcategoryId: selectId,
-        });
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${SUBCATEGORY} змінено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (activeUpdate === COLOR) {
-      try {
-        const res = await updateColor({ formData, colorId: selectId });
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${COLOR} змінено`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
+
     handleClose();
   };
   return (
     <div>
-      Редагувати {activeUpdate}
+      Редагувати категорію
       <Formik
         validationSchema={formSchemaUpdateAny}
         initialValues={{
-          name: selectItem,
+          name: selectItem.name,
           url: '',
         }}
         onSubmit={handleSubmit}
