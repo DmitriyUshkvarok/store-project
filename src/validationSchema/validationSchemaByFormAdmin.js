@@ -19,7 +19,7 @@ export const formUpdateSchemaProduct = yup.object().shape({
   price: yup.number(),
   description: yup.string(),
   brand: yup.string(),
-  weight: yup.number(),
+  weight: yup.string().matches(/^[0-9,.]*$/, 'Тільки цифри,крапка і кома'),
   packingType: yup.string(),
   country: yup.string(),
   color: yup.string(),

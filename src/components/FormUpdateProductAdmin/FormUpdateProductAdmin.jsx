@@ -109,7 +109,7 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
             <label>
               Щільність: <Field type="text" name="density" />
               <ErrorMessage name="density">
-                {(msg) => <div>{msg}</div>}
+                {(msg) => <div>введіть тільки цифри</div>}
               </ErrorMessage>
             </label>
             <label>
@@ -121,7 +121,7 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
             <label>
               Ціна: <Field type="text" name="price" />
               <ErrorMessage name="price">
-                {(msg) => <div>{msg}</div>}
+                {(msg) => <div>введіть тільки цифри</div>}
               </ErrorMessage>
             </label>
             <label>

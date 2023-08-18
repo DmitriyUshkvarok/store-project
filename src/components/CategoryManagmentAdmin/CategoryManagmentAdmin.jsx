@@ -1,11 +1,6 @@
 'use client';
-import {
-  useGetAllCountriesQuery,
-  useGetAllCategoryQuery,
-  useGetAllSubcategoryQuery,
-  useGetAllColorQuery,
-} from '@/src/redux/ofertaApi/ofertaApi';
-
+import { useGetAllCategoryQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import { BsPlusCircleDotted } from 'react-icons/bs';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import { useState } from 'react';
 import FormAdd from '@/src/components/FormAdd/FormAdd';
@@ -13,7 +8,7 @@ import FormUpdate from '@/src/components/FormUpdate/FormUpdate';
 import FormAddAny from '@/src/components/FormAddAny/FormAddAny';
 import CaptionByCategory from '../CaptionByCategory/CaptionByCategory';
 import ListByCategory from '../ListByCategory/ListByCategory';
-import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
+// import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
 import { Box, Container, BoxCategory } from './CategoryManagmentAdmin.styled';
 
 const CategoryManagmentAdmin = () => {
@@ -26,18 +21,18 @@ const CategoryManagmentAdmin = () => {
   const [selectId, setSelectId] = useState(null);
 
   const handleShow = (action, title, name, id) => {
-    if (action === 'update') {
-      setShowModalUpdate(true);
-      setShowModalUpdateAny(title);
-      setSelectItem(name);
-      setSelectId(id);
-    }
-    if (action === 'add') {
+    // if (action === 'update') {
+    //   setShowModalUpdate(true);
+    //   setShowModalUpdateAny(title);
+    //   setSelectItem(name);
+    //   setSelectId(id);
+    // }
+    if (action === 'add product') {
       setShowModalAdd(true);
     }
-    if (action !== 'add' && action !== 'update') {
-      setShowModalAddAny(action);
-    }
+    // if (action !== 'add' && action !== 'update') {
+    //   setShowModalAddAny(action);
+    // }
 
     setShow(true);
   };
@@ -48,48 +43,34 @@ const CategoryManagmentAdmin = () => {
     setShowModalAddAny(null);
     setShow(false);
   };
-  const { data: countries } = useGetAllCountriesQuery();
-  const { data: categories } = useGetAllCategoryQuery();
-  const { data: subcategories } = useGetAllSubcategoryQuery();
-  const { data: colors } = useGetAllColorQuery();
-
+  // const { data: countries } = useGetAllCountriesQuery();
+  const { data } = useGetAllCategoryQuery();
+  // const { data: subcategories } = useGetAllSubcategoryQuery();
+  // const { data: colors } = useGetAllColorQuery();
+  console.log(data);
   return (
     <Container>
-      <CaptionByCategory handleShow={handleShow} />
+      <div>
+        <p>Додати новий товар</p>
+        <button type="button" onClick={() => handleShow('add product')}>
+          <BsPlusCircleDotted size={14} />
+        </button>
+      </div>
+      {/* <CaptionByCategory handleShow={handleShow} /> */}
       <Box>
         <BoxCategory>
           <ListByCategory
-            data={countries}
+            data={data}
             handleShow={handleShow}
-            title={COUNTRY}
+            title="Категорії"
           />
-          <ListByCategory
-            data={categories}
-            handleShow={handleShow}
-            title={CATEGORY}
-          />
-        </BoxCategory>
-        <BoxCategory>
-          <ListByCategory
-            data={subcategories}
-            handleShow={handleShow}
-            title={SUBCATEGORY}
-          />
-
-          <ListByCategory data={colors} handleShow={handleShow} title={COLOR} />
         </BoxCategory>
       </Box>
       <ModalAdminByForm show={show} handleClose={handleClose}>
         {showModalAdd && (
-          <FormAdd
-            countries={countries}
-            categories={categories}
-            subcategories={subcategories}
-            colors={colors}
-            handleClose={handleClose}
-          />
+          <FormAdd categories={data} handleClose={handleClose} />
         )}
-        {showModalUpdate && (
+        {/* {showModalUpdate && (
           <FormUpdate
             activeUpdate={showModalUpdateAny}
             selectItem={selectItem}
@@ -99,7 +80,7 @@ const CategoryManagmentAdmin = () => {
         )}
         {showModalAddAny && (
           <FormAddAny activeForm={showModalAddAny} handleClose={handleClose} />
-        )}
+        )} */}
       </ModalAdminByForm>
     </Container>
   );

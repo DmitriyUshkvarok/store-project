@@ -6,14 +6,14 @@ import { useAddProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { formAddSchemaProduct } from '@/src/validationSchema/validationSchemaByFormAdmin';
 
 const FormAdd = ({
-  countries,
   categories,
-  subcategories,
-  colors,
+
   handleClose,
 }) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [add] = useAddProductMutation();
+
+  console.log(categories);
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -46,17 +46,21 @@ const FormAdd = ({
       <Formik
         validationSchema={formAddSchemaProduct}
         initialValues={{
+          category: '',
+          chemicalFormula: '',
+          color: '',
+          country: '',
+          density: '',
+          fullName: '',
           name: '',
           price: '',
           url: '',
+          pdfUrl: '',
+          type: '',
           description: '',
           brand: '',
           weight: '',
           packingType: '',
-          country: '',
-          category: '',
-          subcategory: '',
-          color: '',
         }}
         onSubmit={handleSubmit}
       >
@@ -106,7 +110,7 @@ const FormAdd = ({
             </ErrorMessage>
           </label>
 
-          <label>
+          {/* <label>
             Країна:{' '}
             <Field as="select" name="country">
               <option>Оберіть країну</option>
@@ -119,7 +123,7 @@ const FormAdd = ({
             <ErrorMessage name="country">
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
-          </label>
+          </label> */}
           <label>
             Категорія:{' '}
             <Field as="select" name="category">
@@ -134,7 +138,7 @@ const FormAdd = ({
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
           </label>
-          <label>
+          {/* <label>
             Підкатегорія:{' '}
             <Field as="select" name="subcategory">
               <option>Оберіть підкатегорію</option>
@@ -147,8 +151,8 @@ const FormAdd = ({
             <ErrorMessage name="subcategory">
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
-          </label>
-          <label>
+          </label> */}
+          {/* <label>
             Колір:{' '}
             <Field as="select" name="color">
               <option>Оберіть колір</option>
@@ -161,7 +165,7 @@ const FormAdd = ({
             <ErrorMessage name="color">
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
-          </label>
+          </label> */}
           <button type="submit">Додати</button>
         </Form>
       </Formik>
