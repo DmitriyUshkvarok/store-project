@@ -5,16 +5,25 @@ import {
 } from '@/src/redux/ofertaApi/ofertaApi';
 import { toast } from 'react-toastify';
 import Notiflix from 'notiflix';
-import { BsPlusCircleDotted } from 'react-icons/bs';
+
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import { useState } from 'react';
 import FormAdd from '@/src/components/FormAdd/FormAdd';
 import FormUpdate from '@/src/components/FormUpdate/FormUpdate';
 import FormAddAny from '@/src/components/FormAddAny/FormAddAny';
 
+import { AiOutlinePlus } from 'react-icons/ai';
+
 import ListByCategory from '../ListByCategory/ListByCategory';
 
-import { Box, Container, BoxCategory } from './CategoryManagmentAdmin.styled';
+import {
+  Box,
+  Container,
+  BoxCategory,
+  Title,
+  BoxAdd,
+  BtnPlus,
+} from './CategoryManagmentAdmin.styled';
 
 const CategoryManagmentAdmin = () => {
   const [show, setShow] = useState(false);
@@ -78,12 +87,12 @@ const CategoryManagmentAdmin = () => {
 
   return (
     <Container>
-      <div>
-        <p>Додати новий товар</p>
-        <button type="button" onClick={() => handleShow('add product')}>
-          <BsPlusCircleDotted size={14} />
-        </button>
-      </div>
+      <BoxAdd>
+        <Title>Додати новий товар</Title>
+        <BtnPlus type="button" onClick={() => handleShow('add product')}>
+          <AiOutlinePlus style={{ width: '30px', height: '30px' }} />
+        </BtnPlus>
+      </BoxAdd>
 
       <Box>
         <BoxCategory>

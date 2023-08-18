@@ -2,17 +2,16 @@ import styled from 'styled-components';
 
 import Pagination from 'react-bootstrap/Pagination';
 
-export const StyledPagination = styled(Pagination)`
-  // ваші стилі тут
-  /* background-color: #f3f3f3; */
+export const Box = styled.div`
+  overflow: auto;
+`;
 
+export const StyledPagination = styled(Pagination)`
   li {
-    // стилі для елементів списку
     margin: 0 3px;
 
     a,
     span {
-      // стилі для посилань та спанів в елементах списку
       color: rgb(51, 51, 51);
       padding: 5px 10px;
       border-radius: 5px;

@@ -39,23 +39,33 @@ export const StyledTable = styled.table`
   tr:hover {
     background-color: #e6f7ff;
   }
+
+  td:nth-child(3) {
+    padding: 0;
+  }
   th:nth-child(4) {
     min-width: 70px;
   }
+
   th:nth-child(9),
   td:nth-child(9),
   th:nth-child(10),
   td:nth-child(10),
   th:nth-child(11),
-  td:nth-child(11) {
+  td:nth-child(11),
+  th:nth-child(12),
+  td:nth-child(12) {
     text-align: center;
   }
 `;
 
 export const StyledImage = styled(Image)`
-  max-width: 100%;
   display: block;
   margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-width: 100px;
+  max-height: 70px;
 `;
 
 export const CheckboxLabel = styled.label`

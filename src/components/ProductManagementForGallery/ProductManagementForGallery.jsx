@@ -145,11 +145,14 @@ const ProductManagementForGallery = () => {
             <Spinner />
           ) : (
             currentPhotos.map(({ url, _id }) => (
-              <li key={_id}>
+              <li key={_id} style={{ textAlign: 'end' }}>
                 <a href={url}>
                   <Picture src={url} alt={`Image`} width="330" height="206" />
                 </a>
-                <RiDeleteBin2Fill onClick={() => handleDeleteImage(_id)} />
+                <RiDeleteBin2Fill
+                  style={{ cursor: 'pointer', fontSize: '20px' }}
+                  onClick={() => handleDeleteImage(_id)}
+                />
               </li>
             ))
           )}

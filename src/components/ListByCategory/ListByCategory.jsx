@@ -1,52 +1,69 @@
 'use client';
-import Image from 'next/image';
-import { BsPlusCircleDotted } from 'react-icons/bs';
 
 import {
   Box,
-  List,
-  Item,
-  WrapContent,
-  TitleDesc,
-  Title,
+  BtnPlus,
   Btn,
   DeleteForever,
   Create,
-  BoxBtn,
+  ResponsiveTableContainer,
+  StyledTable,
+  StyledImage,
 } from './ListByCategory.styled';
-
+import { AiOutlinePlus } from 'react-icons/ai';
 const ListByCategory = ({ data, handleShow, title, handleDelete }) => {
   return (
     <Box>
-      <div>
-        <Title>{title}</Title>
-        <div>
-          <p>Додати </p>
-          <button type="button" onClick={() => handleShow('add category')}>
-            <BsPlusCircleDotted size={14} />
-          </button>
-        </div>
-      </div>
+      {/* <BoxAdd>
+        <Title> Додати {title}</Title>
+      </BoxAdd> */}
 
-      <List>
-        {data?.map((item) => (
-          <Item key={item._id}>
-            <WrapContent>
-              <Image src={item.url} alt={item.name} width={30} height={30} />
-              <TitleDesc>{item.name}</TitleDesc>
-            </WrapContent>
+      <ResponsiveTableContainer>
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>Зображення</th>
+              <th>
+                Категорії{' '}
+                <BtnPlus
+                  type="button"
+                  onClick={() => handleShow('add category')}
+                >
+                  <AiOutlinePlus style={{ width: '25px', height: '25px' }} />
+                </BtnPlus>
+              </th>
+              <th>Редагувати</th>
+              <th>Видалити</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((item) => (
+              <tr key={item._id}>
+                <td>
+                  <StyledImage
+                    src={item.url}
+                    alt={item.name}
+                    width={30}
+                    height={30}
+                  />
+                </td>
+                <td>{item.name}</td>
 
-            <BoxBtn>
-              <Btn onClick={() => handleDelete(item)} type="button">
-                <DeleteForever />
-              </Btn>
-              <Btn onClick={() => handleShow('update', item)} type="button">
-                <Create />
-              </Btn>
-            </BoxBtn>
-          </Item>
-        ))}
-      </List>
+                <td>
+                  <Btn onClick={() => handleShow('update', item)} type="button">
+                    <Create />
+                  </Btn>
+                </td>
+                <td>
+                  <Btn onClick={() => handleDelete(item)} type="button">
+                    <DeleteForever />
+                  </Btn>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </StyledTable>
+      </ResponsiveTableContainer>
     </Box>
   );
 };
