@@ -29,18 +29,15 @@ export const CartListSection = styled.div`
 
 export const TotalPriceWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  /* background-color: rgba(0, 0, 0, 0.1); */
-  padding: 10px;
-  border-radius: 4px;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  margin-right: 20px;
 `;
 
-export const TotalPriceTitle = styled.h4`
-  margin-right: 10px;
-  font-weight: normal;
-  color: gray;
+export const TotalPriceTitle = styled.p`
+  font-weight: 400;
+  font-size: 14px;
 `;
 
 export const PriceBox = styled.div`
@@ -49,23 +46,21 @@ export const PriceBox = styled.div`
   align-items: center;
 `;
 
-export const TotalWeight = styled.div`
-  font-weight: normal;
-  color: gray;
-  font-size: 1.5rem;
+export const TotalWeight = styled.p`
+  font-weight: 400;
+  font-size: 14px;
 `;
 
 export const SpanTotalWeight = styled.span`
   font-weight: bold;
-  font-size: 20px;
-  color: #222;
+  font-size: 15px;
   margin-left: 10px;
 `;
 
 export const TotalPriceInfo = styled.p`
   font-weight: bold;
-  font-size: 20px;
-  color: #222;
+  font-size: 15px;
+  margin-left: 10px;
 `;
 
 export const CartList = styled.ul`
@@ -79,13 +74,13 @@ export const CartList = styled.ul`
 
 export const CartListItem = styled.li`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 3px;
+  padding: 10px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
-  border-radius: 4px;
+  gap: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
@@ -97,7 +92,6 @@ export const StyleCartImage = styled(Image)`
   height: 100%;
   object-fit: cover;
   width: 100px;
-  border-radius: 10px 0 0 10px;
 `;
 
 export const OrdersGroup = styled.div`
@@ -105,26 +99,40 @@ export const OrdersGroup = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+
+  /* border: 1px solid red; */
+
+  @media screen and (min-width: 1000px) {
+    width: 120px;
+  }
 `;
 
 export const SubOrdersInfo = styled.div`
-  color: lightcoral;
+  font-size: 13px;
+  font-weight: 300;
 `;
 
-export const ProductName = styled.h3`
+export const ProductName = styled.div`
   text-align: center;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 10px;
+  /* margin-bottom: 10px; */
+  height: 40px;
+`;
+
+export const ProductNameTitle = styled.div`
+  font-weight: 500;
+  font-size: 12px;
+  margin-top: auto;
 `;
 
 export const CounterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  max-width: 100px;
+  background-color: rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+  max-width: 70px;
   padding: 5px;
 `;
 
@@ -133,7 +141,7 @@ export const BtnIncrement = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 13px;
   border: none;
   background-color: transparent;
   color: #222;
@@ -149,9 +157,8 @@ export const InputCounter = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 13px;
   background-color: transparent;
-  color: #222;
   width: 100%;
   outline: none;
   appearance: none;
@@ -179,10 +186,10 @@ export const BtnDecrement = styled.button`
 `;
 
 export const DataInfo = styled.p`
-  font-size: 14px;
+  font-size: 10px;
+  margin-top: 10px;
   font-weight: 700;
   color: gray;
-  text-shadow: 1px, 1px, 1px black;
 `;
 
 export const StylePrice = styled.div`

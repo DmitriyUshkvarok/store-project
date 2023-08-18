@@ -135,7 +135,7 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup>
             <OrderBtn type="submit">
-              {isLoading ? 'Чекайте...' : 'Підтвердити замовлення'}
+              {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
             </OrderBtn>
           </FormWrapper>
         </StyleOrderForm>
