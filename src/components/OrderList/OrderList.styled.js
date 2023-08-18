@@ -4,24 +4,27 @@ import { RiDeleteBin5Fill } from 'react-icons/ri';
 
 export const NotOrderWrapper = styled.div`
   max-width: 800px;
-  padding: 30px;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* padding: 30px; */
+  /* background-color: rgba(0, 0, 0, 0.1); */
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 4px;
+  margin-bottom: 30px;
+  /* border-radius: 4px; */
 `;
 
 export const NotOrder = styled.h2`
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
-  color: lightcoral;
+  color: #e3010f;
 `;
 
 export const CartListSection = styled.div`
-  margin-top: 30px;
+  /* margin-top: 30px; */
+  padding-top: 30px;
+  border-top: 4px solid gray;
 `;
 
 export const TotalPriceWrapper = styled.div`

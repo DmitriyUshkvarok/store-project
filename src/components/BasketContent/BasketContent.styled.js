@@ -2,35 +2,53 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 export const BasketSection = styled.section`
-  width: 100vw;
-  min-height: 100vh;
-  background-color: #80808029;
-  padding-top: 140px;
-  padding-bottom: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1060px) {
+    justify-content: start;
+  }
 `;
 
 export const BasketTitle = styled.h2`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-weight: 500;
   font-size: 38px;
-  margin-bottom: 20px;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  text-transform: uppercase;
+  margin-top: 30px;
 `;
 
 export const InfoTextOddersClear = styled.div`
   text-align: center;
   margin-top: 10px;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #222;
+  /* text-transform: uppercase; */
+  font-weight: 400;
+  /* color: #222; */
 `;
 
 export const StyleLink = styled(Link)`
-  color: lightcoral;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-left: 10px;
+  font-size: 12px;
+  display: block;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: blue;
+  text-decoration: underline;
+
+  &:hover,
+  &focus {
+    text-decoration: none;
+  }
 `;
