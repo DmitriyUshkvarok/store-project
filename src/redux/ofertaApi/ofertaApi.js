@@ -176,7 +176,7 @@ export const ofertaApi = createApi({
     //   invalidatesTags: ['countries'],
     // }),
     deleteCategory: builder.mutation({
-      query: (id) => ({
+      query: ({ id }) => ({
         url: `/categories/${id}`,
         method: 'DELETE',
       }),

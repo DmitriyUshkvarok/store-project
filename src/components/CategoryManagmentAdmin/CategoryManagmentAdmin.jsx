@@ -6,33 +6,29 @@ import { useState } from 'react';
 import FormAdd from '@/src/components/FormAdd/FormAdd';
 import FormUpdate from '@/src/components/FormUpdate/FormUpdate';
 import FormAddAny from '@/src/components/FormAddAny/FormAddAny';
-import CaptionByCategory from '../CaptionByCategory/CaptionByCategory';
+
 import ListByCategory from '../ListByCategory/ListByCategory';
-// import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
+
 import { Box, Container, BoxCategory } from './CategoryManagmentAdmin.styled';
 
 const CategoryManagmentAdmin = () => {
   const [show, setShow] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalAdd, setShowModalAdd] = useState(false);
-  const [showModalAddAny, setShowModalAddAny] = useState(null);
-  const [showModalUpdateAny, setShowModalUpdateAny] = useState(null);
+  const [showModalAddAny, setShowModalAddAny] = useState(false);
   const [selectItem, setSelectItem] = useState(null);
-  const [selectId, setSelectId] = useState(null);
 
-  const handleShow = (action, title, name, id) => {
-    // if (action === 'update') {
-    //   setShowModalUpdate(true);
-    //   setShowModalUpdateAny(title);
-    //   setSelectItem(name);
-    //   setSelectId(id);
-    // }
+  const handleShow = (action, activItem) => {
     if (action === 'add product') {
       setShowModalAdd(true);
     }
-    // if (action !== 'add' && action !== 'update') {
-    //   setShowModalAddAny(action);
-    // }
+    if (action === 'add category') {
+      setShowModalAddAny(true);
+    }
+    if (action === 'update') {
+      setShowModalUpdate(true);
+      setSelectItem(activItem);
+    }
 
     setShow(true);
   };
@@ -40,14 +36,12 @@ const CategoryManagmentAdmin = () => {
   const handleClose = () => {
     setShowModalUpdate(false);
     setShowModalAdd(false);
-    setShowModalAddAny(null);
+    setShowModalAddAny(false);
     setShow(false);
   };
-  // const { data: countries } = useGetAllCountriesQuery();
+
   const { data } = useGetAllCategoryQuery();
-  // const { data: subcategories } = useGetAllSubcategoryQuery();
-  // const { data: colors } = useGetAllColorQuery();
-  console.log(data);
+
   return (
     <Container>
       <div>
@@ -56,7 +50,7 @@ const CategoryManagmentAdmin = () => {
           <BsPlusCircleDotted size={14} />
         </button>
       </div>
-      {/* <CaptionByCategory handleShow={handleShow} /> */}
+
       <Box>
         <BoxCategory>
           <ListByCategory
@@ -70,17 +64,10 @@ const CategoryManagmentAdmin = () => {
         {showModalAdd && (
           <FormAdd categories={data} handleClose={handleClose} />
         )}
-        {/* {showModalUpdate && (
-          <FormUpdate
-            activeUpdate={showModalUpdateAny}
-            selectItem={selectItem}
-            selectId={selectId}
-            handleClose={handleClose}
-          />
+        {showModalUpdate && (
+          <FormUpdate selectItem={selectItem} handleClose={handleClose} />
         )}
-        {showModalAddAny && (
-          <FormAddAny activeForm={showModalAddAny} handleClose={handleClose} />
-        )} */}
+        {showModalAddAny && <FormAddAny handleClose={handleClose} />}
       </ModalAdminByForm>
     </Container>
   );

@@ -48,6 +48,7 @@ const CatalogManagementAdmin = () => {
   };
 
   const filterSearch = (e) => {
+    console.log(e.target.value);
     setFilterName(e.target.value);
   };
 

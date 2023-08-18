@@ -1,16 +1,27 @@
 import * as yup from 'yup';
 
 export const formAddSchemaProduct = yup.object().shape({
+  fullName: yup.string().required('обов’язкове поле'),
   name: yup.string().required('обов’язкове поле'),
-  price: yup.number().required('обов’язкове поле'),
-
+  price: yup
+    .string()
+    .matches(/^[0-9]*$/, 'Тільки цифри')
+    .required('обов’язкове поле'),
+  type: yup.string().required('обов’язкове поле'),
   description: yup.string().required('обов’язкове поле'),
+  density: yup
+    .string()
+    .matches(/^[0-9,.]*$/, 'Тільки цифри,крапка і кома')
+    .required('обов’язкове поле'),
   brand: yup.string().required('обов’язкове поле'),
-  weight: yup.number().required('обов’язкове поле'),
+  weight: yup
+    .string()
+    .matches(/^[0-9,.]*$/, 'Тільки цифри,крапка і кома')
+    .required('обов’язкове поле'),
+  chemicalFormula: yup.string().required('обов’язкове поле'),
   packingType: yup.string().required('обов’язкове поле'),
   country: yup.string().required('обов’язкове поле'),
   category: yup.string().required('обов’язкове поле'),
-  subcategory: yup.string().required('обов’язкове поле'),
   color: yup.string().required('обов’язкове поле'),
 });
 

@@ -2,77 +2,32 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import {
-  useAddCountriesMutation,
-  useAddCategotiesMutation,
-  useAddSubCategotiesMutation,
-  useAddColorosMutation,
-} from '@/src/redux/ofertaApi/ofertaApi';
+import { useAddCategotiesMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { formAddSchemaAny } from '@/src/validationSchema/validationSchemaByFormAdmin';
 
-import { COUNTRY, CATEGORY, SUBCATEGORY, COLOR } from '@/src/utils/constant';
-
-const FormAddAny = ({ activeForm, handleClose }) => {
+const FormAddAny = ({ handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
-  const [addCountry] = useAddCountriesMutation();
   const [addCategory] = useAddCategotiesMutation();
-  const [addSubCategory] = useAddSubCategotiesMutation();
-  const [addColor, result] = useAddColorosMutation();
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('file', selectedImg);
 
-    if (activeForm === COUNTRY) {
-      try {
-        const res = await addCountry(formData);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${COUNTRY} додано`);
-      } catch (error) {
-        return toast.error(`${error}`);
+    try {
+      const res = await addCategory(formData);
+      if (res.error) {
+        throw new Error(res.error.data.message);
       }
-    }
-    if (activeForm === CATEGORY) {
-      try {
-        const res = await addCategory(formData);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${CATEGORY} додано`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (activeForm === SUBCATEGORY) {
-      try {
-        const res = await addSubCategory(formData);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${SUBCATEGORY} додано`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
-    }
-    if (activeForm === COLOR) {
-      try {
-        const res = await addColor(formData);
-        if (res.error) {
-          throw new Error(res.error.data.message);
-        }
-        toast.success(`${COLOR} додано`);
-      } catch (error) {
-        return toast.error(`${error}`);
-      }
+      toast.success(`${values.name} додано`);
+    } catch (error) {
+      return toast.error(`${error}`);
     }
     handleClose();
   };
   return (
     <div>
-      Додати {activeForm}
+      Додати категорію
       <Formik
         validationSchema={formAddSchemaAny}
         initialValues={{
