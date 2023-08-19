@@ -22,8 +22,7 @@ import {
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 import CryptoJS from 'crypto-js';
-import { useState } from 'react';
-import { useEffect } from 'react';
+const uuid = require('uuid');
 
 const initialValues = {
   name: '',
@@ -33,8 +32,6 @@ const initialValues = {
 };
 
 const OrderFom = ({ setOrderSuccess }) => {
-  // console.log(`values-----------`, values);
-  // const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector(cartSelector.getIsItems);
   const totalPrice = useSelector(cartSelector.geTotalPrice);
@@ -42,7 +39,7 @@ const OrderFom = ({ setOrderSuccess }) => {
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
-  // console.log(`quantity=====>>>>>>>>>>>>>>>>>>>>`, quantity);
+
   /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
 
   /** ВИНЕСТИ В ENV */
@@ -57,12 +54,11 @@ const OrderFom = ({ setOrderSuccess }) => {
     productPrice.push(obj.price.toString());
     productCount.push(quantity[obj.id].toString());
   }
-  // console.log(`totalPric11111111111=====>`, totalPrice.toString());
 
   const data = {
     merchantAccount: 'test_merch_n1',
     merchantDomainName: 'www.market.ua',
-    orderReference: 'DHddww000ssfffdwwpv2ssss33411556333',
+    orderReference: uuid.v4(),
     orderDate: Math.floor(Date.now() / 1000).toString(),
     amount: totalPriceString,
     currency: 'UAH',
@@ -71,8 +67,6 @@ const OrderFom = ({ setOrderSuccess }) => {
     productPrice: productPrice,
     productCount: productCount,
   };
-  typeof myVariable === 'object';
-  console.log(`+++++++++++++++++++`, data);
 
   const replaceNewlines = (text) => text.replace(/\n/g, ' ');
   const productNameString = data.productName.map(replaceNewlines).join(';');
@@ -83,8 +77,6 @@ const OrderFom = ({ setOrderSuccess }) => {
     CryptoJS.enc.Hex
   );
   const formRef = useRef(null);
-
-  console.log(`hashed_value===============>`, hashed_value);
   /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -110,7 +102,6 @@ const OrderFom = ({ setOrderSuccess }) => {
     /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
 
     data['merchantSignature'] = hashed_value;
-    // data.amount = totalPrice.toString();
     formRef.current.submit();
     /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
@@ -130,8 +121,6 @@ const OrderFom = ({ setOrderSuccess }) => {
     } catch (error) {
       console.error('Ошибка при отправке заказа:', error);
     }
-    console.log(`totalPrice===============>`, totalPrice);
-    console.log(`hashed_value===============>`, hashed_value);
   };
 
   return (
@@ -147,95 +136,80 @@ const OrderFom = ({ setOrderSuccess }) => {
             type="hidden"
             name="merchantAccount"
             value={data.merchantAccount}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
           <input
             type="hidden"
             name="merchantDomainName"
             value={data.merchantDomainName}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
           <input
             type="hidden"
             name="orderReference"
             value={data.orderReference}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
           <input
             type="hidden"
             name="orderDate"
             value={data.orderDate}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
           <input
+            type="hidden"
             name="amount"
             value={data.amount}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
           <input
             type="hidden"
             name="currency"
             value={data.currency}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
           <input
             type="hidden"
             name="orderTimeout"
             value={data.orderTimeout}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
+          {data.productName.map((name, index) => (
+            <input
+              key={`productName_${index}`}
+              type="hidden"
+              name="productName[]"
+              value={name}
+              onChange={() => {}}
+            />
+          ))}
+
+          {data.productPrice.map((price, index) => (
+            <input
+              key={`productPrice_${index}`}
+              type="hidden"
+              name="productPrice[]"
+              value={price}
+              onChange={() => {}}
+            />
+          ))}
+
+          {data.productCount.map((count, index) => (
+            <input
+              key={`productCount_${index}`}
+              type="hidden"
+              name="productCount[]"
+              value={count}
+              onChange={() => {}}
+            />
+          ))}
           <input
             type="hidden"
-            name="productName[]"
-            value={data.productName[0]}
-            onChange={() => console.log('say')}
-          />
-          {/* <input
-            type="hidden"
-            name="productName[]"
-            defaultValue={data.productName[1]}
-          /> */}
-          <input
-            type="hidden"
-            name="productPrice[]"
-            value={data.productPrice[0]}
-            onChange={() => console.log('say')}
-          />
-          {/* <input
-            type="hidden"
-            name="productPrice[]"
-            defaultValue={data.productPrice[1]}
-          /> */}
-          <input
-            type="hidden"
-            name="productCount[]"
-            value={data.productCount[0]}
-            onChange={() => console.log('say')}
-          />
-          {/* <input
-            type="hidden"
-            name="productCount[]"
-            defaultValue={data.productCount[1]}
-          /> */}
-          <input
-            type="hidden"
-            name="clientFirstName"
-            value={data.clientFirstName}
-            onChange={() => console.log('say')}
-          />
-          <input
-            type="hidden"
-            name="clientLastName"
-            value={data.clientLastName}
-            onChange={() => console.log('say')}
-          />
-          <input
             name="merchantSignature"
             value={hashed_value}
-            onChange={() => console.log('say')}
+            onChange={() => {}}
           />
         </form>
-        {/* <input type="button" value="Test" onClick={handleSubmitPay} /> */}
       </div>
       <Formik
         initialValues={initialValues}
@@ -247,7 +221,6 @@ const OrderFom = ({ setOrderSuccess }) => {
             <OrderFormTitle>Оформлення замовлення</OrderFormTitle>
             <OrderFormSubTitle>Контактні дані:</OrderFormSubTitle>
             <OrderFormGroup>
-              {/* <OrderFormLabel htmlFor="order-name">Ім&#39;я:</OrderFormLabel> */}
               <OrderStyleField
                 type="text"
                 name="name"
@@ -284,7 +257,6 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup> */}
             <OrderFormGroup>
-              {/* <OrderFormLabel htmlFor="order-phone">Телефон:</OrderFormLabel> */}
               <OrderStyleField
                 name="phone"
                 placeholder="Телефон:"
