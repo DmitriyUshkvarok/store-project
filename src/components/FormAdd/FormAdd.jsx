@@ -1,14 +1,33 @@
 'use client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useAddProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { formAddSchemaProduct } from '@/src/validationSchema/validationSchemaByFormAdmin';
+import {
+  ImageSelector,
+  StyledButton,
+  StyledError,
+  StyledErrorMessage,
+  StyledFileInput,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+  Title,
+} from './FormAdd.styled';
+
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const FormAdd = ({ categories, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [selectPdf, setSelectPdf] = useState(null);
   const [add] = useAddProductMutation();
+
+  const fileInputRef = useRef(null);
+  const pdfInputRef = useRef(null);
+
+  const [selectedFileName, setSelectedFileName] = useState('');
+  const [selectedPdfName, setSelectedPdfName] = useState('');
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -41,7 +60,7 @@ const FormAdd = ({ categories, handleClose }) => {
   };
   return (
     <div>
-      <h2>Додати продукт</h2>
+      <Title>Додати продукт</Title>
       <Formik
         validationSchema={formAddSchemaProduct}
         initialValues={{
@@ -63,110 +82,136 @@ const FormAdd = ({ categories, handleClose }) => {
         }}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <label>
-            Повна назва: <Field type="text" name="fullName" />
-            <ErrorMessage name="fullName">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Назва: <Field type="text" name="name" />
-            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
-          <label>
-            Категорія:{' '}
-            <Field as="select" name="category">
+        <StyledForm>
+          <StyledLabel>
+            Повна назва: <StyledInput type="text" name="fullName" />
+            <StyledErrorMessage name="fullName">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Назва: <StyledInput type="text" name="name" />
+            <StyledErrorMessage name="name">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Категорія:
+            <StyledInput component="select" name="category">
               <option>Оберіть категорію</option>
               {categories?.map((category) => (
                 <option value={category._id} key={category._id}>
                   {category.name}
                 </option>
               ))}
-            </Field>
-            <ErrorMessage name="category">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Країна: <Field type="text" name="country" />
-            <ErrorMessage name="country">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Колір: <Field type="text" name="color" />
-            <ErrorMessage name="color">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Тип: <Field type="text" name="type" />
-            <ErrorMessage name="type">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
-          <label>
-            Щільність: <Field type="text" name="density" />
-            <ErrorMessage name="density">
-              {(msg) => <div>введіть тільки цифри</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Хімічна формула: <Field type="text" name="chemicalFormula" />
-            <ErrorMessage name="chemicalFormula">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Ціна: <Field type="text" name="price" />
-            <ErrorMessage name="price">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Зображення:{' '}
-            <input
+            </StyledInput>
+            <StyledErrorMessage name="category">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Країна: <StyledInput type="text" name="country" />
+            <StyledErrorMessage name="country">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Колір: <StyledInput type="text" name="color" />
+            <StyledErrorMessage name="color">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Тип: <StyledInput type="text" name="type" />
+            <StyledErrorMessage name="type">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Щільність: <StyledInput type="text" name="density" />
+            <StyledErrorMessage name="density">
+              {(msg) => <StyledError>введіть тільки цифри</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Хімічна формула: <StyledInput type="text" name="chemicalFormula" />
+            <StyledErrorMessage name="chemicalFormula">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Ціна: <StyledInput type="text" name="price" />
+            <StyledErrorMessage name="price">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Зображення:
+            <ImageSelector onClick={() => fileInputRef.current?.click()}>
+              {selectedFileName || (
+                <>
+                  Виберіть зображення <AiOutlinePlus size={20} />
+                </>
+              )}
+            </ImageSelector>
+            <StyledFileInput
               type="file"
               accept="image/*"
               name="url"
-              onChange={(e) => setSelectedImg(e.target.files[0])}
+              onChange={(e) => {
+                setSelectedImg(e.target.files[0]);
+                setSelectedFileName(e.target.files[0]?.name || '');
+              }}
             />
-            <ErrorMessage name="url">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
-          <label>
-            PDF:{' '}
-            <input
+            <StyledErrorMessage name="url">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            PDF:
+            <ImageSelector onClick={() => pdfInputRef.current?.click()}>
+              {selectedPdfName || (
+                <>
+                  Виберіть PDF файл <AiOutlinePlus size={20} />
+                </>
+              )}
+            </ImageSelector>
+            <StyledFileInput
               type="file"
               accept="application/pdf"
               name="pdfUrl"
-              onChange={(e) => setSelectPdf(e.target.files[0])}
+              onChange={(e) => {
+                setSelectPdf(e.target.files[0]);
+                setSelectedPdfName(e.target.files[0]?.name || '');
+              }}
             />
-          </label>
-          <label>
-            Опис: <Field type="text" name="description" />
-            <ErrorMessage name="description">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Бренд: <Field type="text" name="brand" />
-            <ErrorMessage name="brand">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Вага: <Field type="text" name="weight" />
-            <ErrorMessage name="weight">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <label>
-            Тип пакування: <Field type="text" name="packingType" />
-            <ErrorMessage name="packingType">
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
-          </label>
-          <button type="submit">Додати</button>
-        </Form>
+          </StyledLabel>
+          <StyledLabel>
+            Опис: <StyledInput type="text" name="description" />
+            <StyledErrorMessage name="description">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Бренд: <StyledInput type="text" name="brand" />
+            <StyledErrorMessage name="brand">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Вага: <StyledInput type="text" name="weight" />
+            <StyledErrorMessage name="weight">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Тип пакування: <StyledInput type="text" name="packingType" />
+            <StyledErrorMessage name="packingType">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledButton type="submit">Додати</StyledButton>
+        </StyledForm>
       </Formik>
     </div>
   );
