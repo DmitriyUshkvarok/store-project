@@ -1,4 +1,5 @@
 'use client';
+import React, { useRef } from 'react';
 import {
   StyleOrderForm,
   FormWrapper,
@@ -20,6 +21,7 @@ import {
   removeAllFromCart,
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
+import CryptoJS from 'crypto-js';
 
 const initialValues = {
   name: '',
@@ -36,6 +38,49 @@ const OrderFom = ({ setOrderSuccess }) => {
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
+
+  /** ================= WAY FOR PAY (DON'T TOUCH) ==============START */
+
+  //** ВИНЕСТИ В ENV */
+  const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
+
+  const data = {
+    merchantAccount: 'test_merch_n1',
+    merchantDomainName: 'www.market.ua',
+    orderReference: 'DH16923556fddf',
+    orderDate: '1415379863',
+    amount: '1547.36',
+    currency: 'UAH',
+    orderTimeout: '49000',
+    productName: ['Процессор Intel Core i9-4670 3.4GHz', 'Память'],
+    productPrice: ['100', '547.36'],
+    productCount: ['1', '1'],
+    clientFirstName: 'Вася',
+    clientLastName: 'Пупкин',
+    clientAddress: 'пр. Гагарина, 12',
+    clientCity: 'Днепропетровск',
+    clientEmail: 'some@mail.com',
+    defaultPaymentSystem: 'card',
+  };
+
+  const replaceNewlines = (text) => text.replace(/\n/g, ' ');
+  const productNameString = data.productName.map(replaceNewlines).join(';');
+  const productCountString = data.productCount.join(';');
+  const productPriceString = data.productPrice.join(';');
+  const stringForHash = `${data.merchantAccount};${data.merchantDomainName};${data.orderReference};${data.orderDate};${data.amount};${data.currency};${productNameString};${productCountString};${productPriceString}`;
+  const hashed_value = CryptoJS.HmacMD5(stringForHash, SECRET_KEY).toString(
+    CryptoJS.enc.Hex
+  );
+  data['merchantSignature'] = hashed_value;
+
+  const formRef = useRef(null);
+
+  const handleSubmitPay = (event) => {
+    event.preventDefault();
+    formRef.current.submit();
+  };
+
+  /** =================== WAY FOR PAY (DON'T TOUCH) =================END */
 
   const handleSubmit = async (values, { resetForm }) => {
     const formDataAndOrder = {
@@ -134,6 +179,113 @@ const OrderFom = ({ setOrderSuccess }) => {
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
+            <div>
+              <form
+                ref={formRef}
+                method="post"
+                action="https://secure.wayforpay.com/pay"
+                acceptCharset="UTF-8"
+              >
+                <input
+                  type="hidden"
+                  name="merchantAccount"
+                  defaultValue={data.merchantAccount}
+                />
+                <input
+                  type="hidden"
+                  name="merchantDomainName"
+                  defaultValue={data.merchantDomainName}
+                />
+                <input
+                  type="hidden"
+                  name="orderReference"
+                  defaultValue={data.orderReference}
+                />
+                <input
+                  type="hidden"
+                  name="orderDate"
+                  defaultValue={data.orderDate}
+                />
+                <input type="hidden" name="amount" defaultValue={data.amount} />
+                <input
+                  type="hidden"
+                  name="currency"
+                  defaultValue={data.currency}
+                />
+                <input
+                  type="hidden"
+                  name="orderTimeout"
+                  defaultValue={data.orderTimeout}
+                />
+                <input
+                  type="hidden"
+                  name="productName[]"
+                  defaultValue={data.productName[0]}
+                />
+                <input
+                  type="hidden"
+                  name="productName[]"
+                  defaultValue={data.productName[1]}
+                />
+                <input
+                  type="hidden"
+                  name="productPrice[]"
+                  defaultValue={data.productPrice[0]}
+                />
+                <input
+                  type="hidden"
+                  name="productPrice[]"
+                  defaultValue={data.productPrice[1]}
+                />
+                <input
+                  type="hidden"
+                  name="productCount[]"
+                  defaultValue={data.productCount[0]}
+                />
+                <input
+                  type="hidden"
+                  name="productCount[]"
+                  defaultValue={data.productCount[1]}
+                />
+                <input
+                  type="hidden"
+                  name="clientFirstName"
+                  defaultValue={data.clientFirstName}
+                />
+                <input
+                  type="hidden"
+                  name="clientLastName"
+                  defaultValue={data.clientLastName}
+                />
+                <input
+                  type="hidden"
+                  name="clientAddress"
+                  defaultValue={data.clientAddress}
+                />
+                <input
+                  type="hidden"
+                  name="clientCity"
+                  defaultValue={data.clientCity}
+                />
+                <input
+                  type="hidden"
+                  name="clientEmail"
+                  defaultValue={data.clientEmail}
+                />
+                <input
+                  type="hidden"
+                  name="defaultPaymentSystem"
+                  defaultValue={data.defaultPaymentSystem}
+                />
+                <input
+                  type="hidden"
+                  name="merchantSignature"
+                  defaultValue={hashed_value}
+                />
+              </form>
+              {/* Перенесена кнопка поза форму */}
+              <input type="button" value="Test" onClick={handleSubmitPay} />
+            </div>
             <OrderBtn type="submit">
               {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
             </OrderBtn>
