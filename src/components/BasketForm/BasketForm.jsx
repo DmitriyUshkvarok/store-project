@@ -22,6 +22,8 @@ import {
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 import CryptoJS from 'crypto-js';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const initialValues = {
   name: '',
@@ -31,37 +33,46 @@ const initialValues = {
 };
 
 const OrderFom = ({ setOrderSuccess }) => {
+  // console.log(`values-----------`, values);
   // const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector(cartSelector.getIsItems);
   const totalPrice = useSelector(cartSelector.geTotalPrice);
+  const totalPriceString = totalPrice.toString();
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
+  // console.log(`quantity=====>>>>>>>>>>>>>>>>>>>>`, quantity);
+  /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
 
-  /** ================= WAY FOR PAY (DON'T TOUCH) ==============START */
-
-  //** ВИНЕСТИ В ENV */
+  /** ВИНЕСТИ В ENV */
   const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
+
+  const productName = [];
+  const productPrice = [];
+  const productCount = [];
+
+  for (const obj of cartItems) {
+    productName.push(obj.title);
+    productPrice.push(obj.price.toString());
+    productCount.push(quantity[obj.id].toString());
+  }
+  // console.log(`totalPric11111111111=====>`, totalPrice.toString());
 
   const data = {
     merchantAccount: 'test_merch_n1',
     merchantDomainName: 'www.market.ua',
-    orderReference: 'DH16923556fddf',
-    orderDate: '1415379863',
-    amount: '1547.36',
+    orderReference: 'DHddww000ssfffdwwpv2ssss33411556333',
+    orderDate: Math.floor(Date.now() / 1000).toString(),
+    amount: totalPriceString,
     currency: 'UAH',
     orderTimeout: '49000',
-    productName: ['Процессор Intel Core i9-4670 3.4GHz', 'Память'],
-    productPrice: ['100', '547.36'],
-    productCount: ['1', '1'],
-    clientFirstName: 'Вася',
-    clientLastName: 'Пупкин',
-    clientAddress: 'пр. Гагарина, 12',
-    clientCity: 'Днепропетровск',
-    clientEmail: 'some@mail.com',
-    defaultPaymentSystem: 'card',
+    productName: productName,
+    productPrice: productPrice,
+    productCount: productCount,
   };
+  typeof myVariable === 'object';
+  console.log(`+++++++++++++++++++`, data);
 
   const replaceNewlines = (text) => text.replace(/\n/g, ' ');
   const productNameString = data.productName.map(replaceNewlines).join(';');
@@ -71,16 +82,10 @@ const OrderFom = ({ setOrderSuccess }) => {
   const hashed_value = CryptoJS.HmacMD5(stringForHash, SECRET_KEY).toString(
     CryptoJS.enc.Hex
   );
-  data['merchantSignature'] = hashed_value;
-
   const formRef = useRef(null);
 
-  const handleSubmitPay = (event) => {
-    event.preventDefault();
-    formRef.current.submit();
-  };
-
-  /** =================== WAY FOR PAY (DON'T TOUCH) =================END */
+  console.log(`hashed_value===============>`, hashed_value);
+  /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
   const handleSubmit = async (values, { resetForm }) => {
     const formDataAndOrder = {
@@ -102,6 +107,13 @@ const OrderFom = ({ setOrderSuccess }) => {
       totalPrice: totalPrice,
     };
 
+    /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
+
+    data['merchantSignature'] = hashed_value;
+    // data.amount = totalPrice.toString();
+    formRef.current.submit();
+    /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
+
     try {
       const response = await createOrders(formDataAndOrder);
 
@@ -118,10 +130,113 @@ const OrderFom = ({ setOrderSuccess }) => {
     } catch (error) {
       console.error('Ошибка при отправке заказа:', error);
     }
+    console.log(`totalPrice===============>`, totalPrice);
+    console.log(`hashed_value===============>`, hashed_value);
   };
 
   return (
     <>
+      <div>
+        <form
+          ref={formRef}
+          method="post"
+          action="https://secure.wayforpay.com/pay"
+          acceptCharset="UTF-8"
+        >
+          <input
+            type="hidden"
+            name="merchantAccount"
+            value={data.merchantAccount}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="merchantDomainName"
+            value={data.merchantDomainName}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="orderReference"
+            value={data.orderReference}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="orderDate"
+            value={data.orderDate}
+            onChange={() => console.log('say')}
+          />
+          <input
+            name="amount"
+            value={data.amount}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="currency"
+            value={data.currency}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="orderTimeout"
+            value={data.orderTimeout}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="productName[]"
+            value={data.productName[0]}
+            onChange={() => console.log('say')}
+          />
+          {/* <input
+            type="hidden"
+            name="productName[]"
+            defaultValue={data.productName[1]}
+          /> */}
+          <input
+            type="hidden"
+            name="productPrice[]"
+            value={data.productPrice[0]}
+            onChange={() => console.log('say')}
+          />
+          {/* <input
+            type="hidden"
+            name="productPrice[]"
+            defaultValue={data.productPrice[1]}
+          /> */}
+          <input
+            type="hidden"
+            name="productCount[]"
+            value={data.productCount[0]}
+            onChange={() => console.log('say')}
+          />
+          {/* <input
+            type="hidden"
+            name="productCount[]"
+            defaultValue={data.productCount[1]}
+          /> */}
+          <input
+            type="hidden"
+            name="clientFirstName"
+            value={data.clientFirstName}
+            onChange={() => console.log('say')}
+          />
+          <input
+            type="hidden"
+            name="clientLastName"
+            value={data.clientLastName}
+            onChange={() => console.log('say')}
+          />
+          <input
+            name="merchantSignature"
+            value={hashed_value}
+            onChange={() => console.log('say')}
+          />
+        </form>
+        {/* <input type="button" value="Test" onClick={handleSubmitPay} /> */}
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={orderSchema}
@@ -179,113 +294,7 @@ const OrderFom = ({ setOrderSuccess }) => {
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
-            <div>
-              <form
-                ref={formRef}
-                method="post"
-                action="https://secure.wayforpay.com/pay"
-                acceptCharset="UTF-8"
-              >
-                <input
-                  type="hidden"
-                  name="merchantAccount"
-                  defaultValue={data.merchantAccount}
-                />
-                <input
-                  type="hidden"
-                  name="merchantDomainName"
-                  defaultValue={data.merchantDomainName}
-                />
-                <input
-                  type="hidden"
-                  name="orderReference"
-                  defaultValue={data.orderReference}
-                />
-                <input
-                  type="hidden"
-                  name="orderDate"
-                  defaultValue={data.orderDate}
-                />
-                <input type="hidden" name="amount" defaultValue={data.amount} />
-                <input
-                  type="hidden"
-                  name="currency"
-                  defaultValue={data.currency}
-                />
-                <input
-                  type="hidden"
-                  name="orderTimeout"
-                  defaultValue={data.orderTimeout}
-                />
-                <input
-                  type="hidden"
-                  name="productName[]"
-                  defaultValue={data.productName[0]}
-                />
-                <input
-                  type="hidden"
-                  name="productName[]"
-                  defaultValue={data.productName[1]}
-                />
-                <input
-                  type="hidden"
-                  name="productPrice[]"
-                  defaultValue={data.productPrice[0]}
-                />
-                <input
-                  type="hidden"
-                  name="productPrice[]"
-                  defaultValue={data.productPrice[1]}
-                />
-                <input
-                  type="hidden"
-                  name="productCount[]"
-                  defaultValue={data.productCount[0]}
-                />
-                <input
-                  type="hidden"
-                  name="productCount[]"
-                  defaultValue={data.productCount[1]}
-                />
-                <input
-                  type="hidden"
-                  name="clientFirstName"
-                  defaultValue={data.clientFirstName}
-                />
-                <input
-                  type="hidden"
-                  name="clientLastName"
-                  defaultValue={data.clientLastName}
-                />
-                <input
-                  type="hidden"
-                  name="clientAddress"
-                  defaultValue={data.clientAddress}
-                />
-                <input
-                  type="hidden"
-                  name="clientCity"
-                  defaultValue={data.clientCity}
-                />
-                <input
-                  type="hidden"
-                  name="clientEmail"
-                  defaultValue={data.clientEmail}
-                />
-                <input
-                  type="hidden"
-                  name="defaultPaymentSystem"
-                  defaultValue={data.defaultPaymentSystem}
-                />
-                <input
-                  type="hidden"
-                  name="merchantSignature"
-                  defaultValue={hashed_value}
-                />
-              </form>
-              {/* Перенесена кнопка поза форму */}
-              <input type="button" value="Test" onClick={handleSubmitPay} />
-            </div>
+
             <OrderBtn type="submit">
               {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
             </OrderBtn>
