@@ -5,15 +5,10 @@ import { useSelector } from 'react-redux';
 
 const CallOfCurrentUser = ({ children }) => {
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
-  const isRefreshing = useSelector(authSelector.getIsRefreshing);
   const { data } = useCheckTokenQuery({
     skip: !isLoggedIn,
     refetchOnMount: isLoggedIn,
   });
-
-  if (isRefreshing) {
-    return <p>Loading...</p>;
-  }
 
   return <>{children}</>;
 };
