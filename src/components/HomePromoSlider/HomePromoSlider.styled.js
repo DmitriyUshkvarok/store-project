@@ -14,6 +14,7 @@ export const Section = styled.section`
 `;
 
 export const Box = styled.div`
+  pointer-events: none;
   @media screen and (min-width: 320px) {
     position: relative;
     height: 315px;
@@ -26,14 +27,7 @@ export const Box = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 100;
-  background: red;
+  pointer-events: auto;
 `;
 
 export const ScrollImage = styled(Image)`

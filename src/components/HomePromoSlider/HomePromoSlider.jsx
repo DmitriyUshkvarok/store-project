@@ -11,9 +11,15 @@ import {
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+//
+
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export const HomePromoSlider = () => {
   const EmptyArrow = () => <div style={{ display: 'none' }}></div>;
+
+  const router = typeof window !== 'undefined' ? useRouter : undefined;
 
   const settings = {
     speed: 3000,
@@ -23,7 +29,9 @@ export const HomePromoSlider = () => {
     autoplaySpeed: 1000,
     prevArrow: <EmptyArrow />,
     nextArrow: <EmptyArrow />,
-    fade: true,
+    // fade: true,
+    pauseOnHover: false,
+    fade: false,
   };
 
   return (
@@ -31,21 +39,20 @@ export const HomePromoSlider = () => {
       <div>
         <Slider {...settings}>
           <Box>
-            <StyledLink href={`/about`}>
-              <ScrollImage
-                src={'/autoScroll/Flag.jpg'}
-                alt={'autoScroll'}
-                width="2000"
-                height="650"
-                priority={true}
-              />
-              <BoxTitle>
-                <Title>СЛАВА УКРАЇНІ!</Title>
-              </BoxTitle>
-            </StyledLink>
+            <ScrollImage
+              src={'/autoScroll/Flag.jpg'}
+              alt={'autoScroll'}
+              width="2000"
+              height="650"
+              priority={true}
+            />
+            <BoxTitle>
+              <Title>СЛАВА УКРАЇНІ!</Title>
+            </BoxTitle>
           </Box>
+
           <Box>
-            <StyledLink href={`/gallery`}>
+            <StyledLink href="/gallery">
               <ScrollImage
                 src={'/autoScroll/horse.jpg'}
                 alt={'autoScroll'}
@@ -59,7 +66,7 @@ export const HomePromoSlider = () => {
             </StyledLink>
           </Box>
           <Box>
-            <StyledLink href={`/about`}>
+            <StyledLink href="/allproducts">
               <ScrollImage
                 src={'/autoScroll/strawberry.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -71,8 +78,9 @@ export const HomePromoSlider = () => {
               </BoxTitle>
             </StyledLink>
           </Box>
+
           <Box>
-            <StyledLink href={`/allproducts`}>
+            <StyledLink href="/oferta">
               <ScrollImage
                 src={'/autoScroll/promo-farby.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -86,7 +94,7 @@ export const HomePromoSlider = () => {
           </Box>
 
           <Box>
-            <StyledLink href={`/allproducts`}>
+            <StyledLink href="/gallery">
               <ScrollImage
                 src={'/autoScroll/1.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -99,7 +107,7 @@ export const HomePromoSlider = () => {
             </StyledLink>
           </Box>
           <Box>
-            <StyledLink href={`/oferta`}>
+            <StyledLink href="/oferta">
               <ScrollImage
                 src={'/autoScroll/3.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -112,7 +120,7 @@ export const HomePromoSlider = () => {
             </StyledLink>
           </Box>
           <Box>
-            <StyledLink href={`/oferta`}>
+            <StyledLink href="/allproducts">
               <ScrollImage
                 src={'/autoScroll/6.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
