@@ -40,7 +40,7 @@ export const WrapNav = styled.div`
 
 export const CurrentNavDecor = styled.span`
   color: #6c757d;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);s
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const ListCatalog = styled.ul`

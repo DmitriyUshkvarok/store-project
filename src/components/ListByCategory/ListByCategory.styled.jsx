@@ -1,9 +1,15 @@
 import styled from 'styled-components';
-
+import Image from 'next/image';
 import { MdDeleteForever, MdCreate } from 'react-icons/md';
 
 export const Box = styled.div`
   width: 100%;
+`;
+
+export const BoxAdd = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
 `;
 
 export const Title = styled.h2`
@@ -11,63 +17,68 @@ export const Title = styled.h2`
   font-size: 18px;
 `;
 
-export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  padding-right: 10px;
-  /*  */
+export const ResponsiveTableContainer = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+`;
 
-  height: fit-content;
-  height: 350px;
-  overflow-y: auto;
+export const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
 
-  ::-webkit-scrollbar {
-    background: #ccc;
-    width: 6px;
-    border-radius: 12px;
+  th,
+  td {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    text-align: left;
   }
 
-  ::-webkit-scrollbar-thumb {
-    width: 6px;
-    border-radius: 12px;
-    background-color: gray;
+  th {
+    background-color: #f5f5f5;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  td {
+    font-size: 12px;
+    line-height: 14px;
   }
 
-  ::-webkit-scrollbar-track {
-    width: 6px;
-    /* height: 300px; */
-    flex-shrink: 0;
+  tr:nth-child(even) {
+    background-color: #fafafa;
+  }
 
-    border-radius: 12px;
+  tr:hover {
+    background-color: #e6f7ff;
+  }
+  td:nth-child(1) {
+    padding: 0;
+  }
+  td:nth-child(3),
+  td:nth-child(4) {
+    text-align: center;
   }
 `;
 
-/*  */
+export const StyledImage = styled(Image)`
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-width: 100px;
+  max-height: 70px;
+`;
 
-export const Item = styled.li`
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  justify-content: space-between;
-  padding-left: 10px;
+export const BtnPlus = styled.button`
+  border: none;
+  background: none;
+  margin-left: 5px;
+
   &:hover {
-    color: red;
+    scale: calc(1.3);
   }
 `;
-
-export const WrapContent = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`;
-
-export const TitleDesc = styled.h3`
-  margin: 0;
-  padding: 10px;
-  font-size: 16px;
-`;
-
 export const Btn = styled.button`
   border: none;
   color: #b7b5b5;
@@ -77,11 +88,6 @@ export const Btn = styled.button`
     scale: calc(1.3);
     color: gray;
   }
-`;
-
-export const BoxBtn = styled.div`
-  display: flex;
-  gap: 15px;
 `;
 
 export const DeleteForever = styled(MdDeleteForever)`

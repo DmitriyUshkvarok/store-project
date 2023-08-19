@@ -11,7 +11,7 @@ const AdminLayout = ({ children }) => {
             <div>
               <AdminSidebar />
             </div>
-            <div>{children}</div>
+            <div className={styles.box}>{children}</div>
           </div>
         </Container>
       </section>

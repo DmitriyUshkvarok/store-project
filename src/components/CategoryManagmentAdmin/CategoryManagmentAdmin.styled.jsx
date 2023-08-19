@@ -4,13 +4,17 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const BoxAdd = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
 export const Title = styled.h2`
   margin: 0;
-  margin-top: 30px;
   font-size: 18px;
 `;
+
 export const Box = styled.div`
-  padding-top: 50px;
   padding-bottom: 100px;
   @media screen and (min-width: 768px) {
     display: flex;
@@ -25,5 +29,14 @@ export const BoxCategory = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
     gap: 20px;
+  }
+`;
+
+export const BtnPlus = styled.button`
+  border: none;
+  background: none;
+
+  &:hover {
+    scale: calc(1.3);
   }
 `;

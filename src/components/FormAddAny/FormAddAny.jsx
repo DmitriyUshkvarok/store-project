@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAddCategotiesMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { formAddSchemaAny } from '@/src/validationSchema/validationSchemaByFormAdmin';
+import { Input, StyledForm } from './FormAddAny.styled';
 
 const FormAddAny = ({ handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -36,14 +37,14 @@ const FormAddAny = ({ handleClose }) => {
         }}
         onSubmit={handleSubmit}
       >
-        <Form>
+        <StyledForm>
           <label>
             Назва: <Field type="text" name="name" />
             <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
           </label>
           <label>
-            Зображення:{' '}
-            <input
+            Зображення:
+            <Input
               type="file"
               accept="image/*"
               name="url"
@@ -53,7 +54,7 @@ const FormAddAny = ({ handleClose }) => {
           </label>
 
           <button type="submit">Додати</button>
-        </Form>
+        </StyledForm>
       </Formik>
     </div>
   );
