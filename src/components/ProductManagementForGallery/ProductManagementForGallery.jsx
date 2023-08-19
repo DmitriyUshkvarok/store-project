@@ -22,7 +22,7 @@ import {
 } from './ProductManagementForGallery.styled';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 
 const ProductManagementForGallery = () => {
   const { data, isError, isLoading } = useGetGalleryQuery();

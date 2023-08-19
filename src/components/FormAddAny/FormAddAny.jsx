@@ -1,14 +1,29 @@
 'use client';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useState } from 'react';
+import { Formik } from 'formik';
+import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAddCategotiesMutation } from '@/src/redux/ofertaApi/ofertaApi';
 import { formAddSchemaAny } from '@/src/validationSchema/validationSchemaByFormAdmin';
-import { Input, StyledForm } from './FormAddAny.styled';
+import {
+  StyledInput,
+  StyledForm,
+  StyledLabel,
+  StyledFileInput,
+  StyledErrorMessage,
+  StyledButton,
+  Title,
+  StyledError,
+  ImageSelector,
+} from './FormAddAny.styled';
+
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const FormAddAny = ({ handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [addCategory] = useAddCategotiesMutation();
+  const fileInputRef = useRef(null);
+
+  const [selectedFileName, setSelectedFileName] = useState('');
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -28,7 +43,7 @@ const FormAddAny = ({ handleClose }) => {
   };
   return (
     <div>
-      Додати категорію
+      <Title> Додати категорію</Title>
       <Formik
         validationSchema={formAddSchemaAny}
         initialValues={{
@@ -38,22 +53,36 @@ const FormAddAny = ({ handleClose }) => {
         onSubmit={handleSubmit}
       >
         <StyledForm>
-          <label>
-            Назва: <Field type="text" name="name" />
-            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
-          <label>
+          <StyledLabel>
+            Назва: <StyledFileInput type="text" name="name" />
+            <StyledErrorMessage name="name">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
             Зображення:
-            <Input
+            <ImageSelector onClick={() => fileInputRef.current?.click()}>
+              {selectedFileName || (
+                <>
+                  Виберіть зображення <AiOutlinePlus size={20} />
+                </>
+              )}
+            </ImageSelector>
+            <StyledInput
               type="file"
               accept="image/*"
               name="url"
-              onChange={(e) => setSelectedImg(e.target.files[0])}
+              onChange={(e) => {
+                setSelectedImg(e.target.files[0]);
+                setSelectedFileName(e.target.files[0]?.name || '');
+              }}
             />
-            <ErrorMessage name="url">{(msg) => <div>{msg}</div>}</ErrorMessage>
-          </label>
+            <StyledErrorMessage name="url">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
 
-          <button type="submit">Додати</button>
+          <StyledButton type="submit">Додати</StyledButton>
         </StyledForm>
       </Formik>
     </div>

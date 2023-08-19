@@ -1,15 +1,35 @@
 'use client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useUpdateProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { formUpdateSchemaProduct } from '@/src/validationSchema/validationSchemaByFormAdmin';
+import {
+  ImageSelector,
+  Link,
+  StyledButton,
+  StyledError,
+  StyledErrorMessage,
+  StyledFileInput,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+  Title,
+} from './FormUpdateProductAdmin.styled';
+
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [selectPdf, setSelectPdf] = useState(null);
 
   const [updateProduct] = useUpdateProductMutation();
+
+  const fileInputRef = useRef(null);
+  const pdfInputRef = useRef(null);
+
+  const [selectedFileName, setSelectedFileName] = useState('');
+  const [selectedPdfName, setSelectedPdfName] = useState('');
 
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -50,135 +70,158 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
   };
   return (
     selectProduct && (
-      <Formik
-        validationSchema={formUpdateSchemaProduct}
-        initialValues={{
-          category: selectProduct.category.name,
-          chemicalFormula: selectProduct.chemicalFormula,
-          color: selectProduct.color,
-          country: selectProduct.country,
-          density: selectProduct.density,
-          fullName: selectProduct.fullName,
-          name: selectProduct.name,
-          price: selectProduct.price,
-          url: '',
-          pdfUrl: '',
-          type: selectProduct.type,
-          description: selectProduct.description,
-          brand: selectProduct.brand,
-          weight: selectProduct.weight,
-          packingType: selectProduct.packingType,
-        }}
-        onSubmit={handleSubmit}
-      >
-        {({ values }) => (
-          <Form>
-            <label>
-              Повна назва: <Field type="text" name="fullName" />
-              <ErrorMessage name="fullName">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Назва: <Field type="text" name="name" />
-              <ErrorMessage name="name">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Категорія: <Field readOnly type="text" name="category" />
-            </label>
-            <label>
-              Країна: <Field type="text" name="country" />
-              <ErrorMessage name="country">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Колір: <Field type="text" name="color" />
-              <ErrorMessage name="color">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Тип: <Field type="text" name="type" />
-              <ErrorMessage name="type">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Щільність: <Field type="text" name="density" />
-              <ErrorMessage name="density">
-                {(msg) => <div>введіть тільки цифри</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Хімічна формула: <Field type="text" name="chemicalFormula" />
-              <ErrorMessage name="chemicalFormula">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Ціна: <Field type="text" name="price" />
-              <ErrorMessage name="price">
-                {(msg) => <div>введіть тільки цифри</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Зображення:{' '}
-              <input
-                type="file"
-                accept="image/*"
-                name="url"
-                onChange={(e) => setSelectedImg(e.target.files[0])}
-              />
-            </label>
-            <label>
-              PDF:{' '}
-              <input
-                type="file"
-                accept="application/pdf"
-                name="pdfUrl"
-                onChange={(e) => setSelectPdf(e.target.files[0])}
-              />
-            </label>
-
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={selectProduct.pdfUrl}
-            >
-              <span>Переглянути PGF файл</span>
-            </a>
-
-            <label>
-              Опис: <Field type="text" name="description" />
-              <ErrorMessage name="description">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Бренд: <Field type="text" name="brand" />
-              <ErrorMessage name="brand">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Вага: <Field type="text" name="weight" />
-              <ErrorMessage name="weight">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <label>
-              Тип пакування: <Field type="text" name="packingType" />
-              <ErrorMessage name="packingType">
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-            </label>
-            <button type="submit">Зберегти</button>
-          </Form>
-        )}
-      </Formik>
+      <>
+        <Title> Редагувати:</Title>
+        <Formik
+          validationSchema={formUpdateSchemaProduct}
+          initialValues={{
+            category: selectProduct.category.name,
+            chemicalFormula: selectProduct.chemicalFormula,
+            color: selectProduct.color,
+            country: selectProduct.country,
+            density: selectProduct.density,
+            fullName: selectProduct.fullName,
+            name: selectProduct.name,
+            price: selectProduct.price,
+            url: '',
+            pdfUrl: '',
+            type: selectProduct.type,
+            description: selectProduct.description,
+            brand: selectProduct.brand,
+            weight: selectProduct.weight,
+            packingType: selectProduct.packingType,
+          }}
+          onSubmit={handleSubmit}
+        >
+          {({ values }) => (
+            <StyledForm>
+              <StyledLabel>
+                Повна назва: <StyledInput type="text" name="fullName" />
+                <StyledErrorMessage name="fullName">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Назва: <StyledInput type="text" name="name" />
+                <StyledErrorMessage name="name">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Категорія: <Field readOnly type="text" name="category" />
+              </StyledLabel>
+              <StyledLabel>
+                Країна: <StyledInput type="text" name="country" />
+                <StyledErrorMessage name="country">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Колір: <StyledInput type="text" name="color" />
+                <StyledErrorMessage name="color">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Тип: <StyledInput type="text" name="type" />
+                <StyledErrorMessage name="type">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Щільність: <StyledInput type="text" name="density" />
+                <StyledErrorMessage name="density">
+                  {(msg) => <StyledError>введіть тільки цифри</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Хімічна формула:{' '}
+                <StyledInput type="text" name="chemicalFormula" />
+                <StyledErrorMessage name="chemicalFormula">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Ціна: <StyledInput type="text" name="price" />
+                <StyledErrorMessage name="price">
+                  {(msg) => <StyledError>введіть тільки цифри</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Зображення:{' '}
+                <ImageSelector onClick={() => fileInputRef.current?.click()}>
+                  {selectedFileName || (
+                    <>
+                      Виберіть зображення <AiOutlinePlus size={20} />
+                    </>
+                  )}
+                </ImageSelector>
+                <StyledFileInput
+                  type="file"
+                  accept="image/*"
+                  name="url"
+                  onChange={(e) => {
+                    setSelectedImg(e.target.files[0]);
+                    setSelectedFileName(e.target.files[0]?.name || '');
+                  }}
+                />
+              </StyledLabel>
+              <StyledLabel>
+                PDF:{' '}
+                <ImageSelector onClick={() => pdfInputRef.current?.click()}>
+                  {selectedPdfName || (
+                    <>
+                      Виберіть PDF файл <AiOutlinePlus size={20} />
+                    </>
+                  )}
+                </ImageSelector>
+                <StyledFileInput
+                  type="file"
+                  accept="application/pdf"
+                  name="pdfUrl"
+                  onChange={(e) => {
+                    setSelectPdf(e.target.files[0]);
+                    setSelectedPdfName(e.target.files[0]?.name || '');
+                  }}
+                />
+              </StyledLabel>
+              Переглянути:
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={selectProduct.pdfUrl}
+              >
+                <span> PGF файл</span>
+              </Link>
+              <StyledLabel>
+                Опис: <StyledInput type="text" name="description" />
+                <StyledErrorMessage name="description">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Бренд: <StyledInput type="text" name="brand" />
+                <StyledErrorMessage name="brand">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Вага: <StyledInput type="text" name="weight" />
+                <StyledErrorMessage name="weight">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledLabel>
+                Тип пакування: <StyledInput type="text" name="packingType" />
+                <StyledErrorMessage name="packingType">
+                  {(msg) => <StyledError>{msg}</StyledError>}
+                </StyledErrorMessage>
+              </StyledLabel>
+              <StyledButton type="submit">Зберегти</StyledButton>
+            </StyledForm>
+          )}
+        </Formik>{' '}
+      </>
     )
   );
 };

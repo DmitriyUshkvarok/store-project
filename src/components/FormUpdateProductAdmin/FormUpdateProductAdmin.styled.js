@@ -12,18 +12,17 @@ export const Title = styled.h3`
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
   max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 1rem auto;
+  padding: 1rem;
   border: 1px solid #ccc;
 `;
 
 export const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 `;
 
 export const ImageSelector = styled.div`
@@ -33,9 +32,8 @@ export const ImageSelector = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  /* font-weight: bold; */
-  height: 42px;
-  line-height: 42px;
+  height: 40px;
+  line-height: 38px;
   text-transform: uppercase;
   border: 1px solid;
 
@@ -45,8 +43,9 @@ export const ImageSelector = styled.div`
   }
 `;
 
-export const StyledInput = styled.input`
-  display: none;
+export const StyledInput = styled(Field)`
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
 `;
 export const StyledError = styled.p`
   color: red;
@@ -56,9 +55,8 @@ export const StyledErrorMessage = styled(ErrorMessage)`
   color: red;
 `;
 
-export const StyledFileInput = styled(Field)`
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
+export const StyledFileInput = styled.input`
+  display: none;
 `;
 
 export const StyledButton = styled.button`
@@ -73,9 +71,17 @@ export const StyledButton = styled.button`
   line-height: 42px;
   text-transform: uppercase;
   border: 2px solid;
+  margin-top: 1rem;
 
   &:hover {
     outline: none;
     opacity: 0.7;
   }
+`;
+
+export const Link = styled.a`
+  /* margin-top: 1rem; */
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
 `;
