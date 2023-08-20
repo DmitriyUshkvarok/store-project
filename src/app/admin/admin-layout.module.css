@@ -18,4 +18,5 @@
 }
 .box {
   overflow: auto;
+  width: 100%;
 }

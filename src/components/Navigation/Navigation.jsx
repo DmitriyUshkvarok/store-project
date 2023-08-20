@@ -19,11 +19,14 @@ import { IoIosBasket } from 'react-icons/io';
 import { RxExit } from 'react-icons/rx';
 import { usePathname } from 'next/navigation';
 import cartSelector from '@/src/redux/cart/cartSelector';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Notiflix from 'notiflix';
 import { useLogoutMutation } from '@/src/redux/adminAuthApi/authApi';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
 import { useState, useRef, useEffect } from 'react';
+import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import { slugify } from 'transliteration';
+import { setDataAndId } from '@/src/redux/ofertaApi/ofertaSlice';
 
 const Navigation = () => {
   const [togle, setTogle] = useState(false);
@@ -31,6 +34,11 @@ const Navigation = () => {
   const pathname = usePathname();
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const [logOut] = useLogoutMutation();
+  const { data, isLoading } = useGetOfertaQuery();
+  const dispatch = useDispatch();
+  const handleChooseCategory = (category) => {
+    dispatch(setDataAndId(category));
+  };
 
   const dropdownRef = useRef(null);
 
@@ -90,17 +98,20 @@ const Navigation = () => {
           </StyleLink>
           <DropDownMenu>
             <ul>
-              <ItemForBurger>
-                <LinkForB href="/oferta/ukraina?id=64cc2ff867326ed9bd3fce3c&country=64cc2ff867326ed9bd3fce3c">
-                  Країна
-                </LinkForB>
-              </ItemForBurger>
-              <ItemForBurger>
-                <LinkForB href="/about">Країни виробництва</LinkForB>
-              </ItemForBurger>
-              <ItemForBurger>
-                <LinkForB href="/about">Клас</LinkForB>
-              </ItemForBurger>
+              {data?.map((category) => (
+                <ItemForBurger
+                  onClick={() => handleChooseCategory(category)}
+                  key={category._id}
+                >
+                  <LinkForB
+                    href={{
+                      pathname: `/oferta/${slugify(category.name)}`,
+                    }}
+                  >
+                    {category.name}
+                  </LinkForB>
+                </ItemForBurger>
+              ))}
               <ItemForBurger>
                 <LinkForB href="/allproducts">Увесь наш товар</LinkForB>
               </ItemForBurger>
@@ -162,6 +173,14 @@ const Navigation = () => {
                   className={pathname === '/gallery' ? 'active' : ''}
                 >
                   Галерея
+                </StyleLinkForBurger>
+              </li>
+              <li>
+                <StyleLinkForBurger
+                  href="/contact"
+                  className={pathname === '/contact' ? 'active' : ''}
+                >
+                  Контакти
                 </StyleLinkForBurger>
               </li>
             </MenuBurger>
