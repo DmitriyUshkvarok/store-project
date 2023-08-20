@@ -5,7 +5,7 @@ import { persistReducer } from 'redux-persist';
 const cartPersistConfig = {
   key: 'cart',
   storage,
-  whitelist: ['items', 'totalPrice'],
+  whitelist: ['items'],
 };
 
 const cartSlice = createSlice({

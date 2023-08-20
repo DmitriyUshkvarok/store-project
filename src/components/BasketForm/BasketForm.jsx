@@ -99,12 +99,6 @@ const OrderFom = ({ setOrderSuccess }) => {
       totalPrice: totalPrice,
     };
 
-    /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
-
-    data['merchantSignature'] = hashed_value;
-    formRef.current.submit();
-    /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
-
     try {
       const response = await createOrders(formDataAndOrder);
 
@@ -114,6 +108,12 @@ const OrderFom = ({ setOrderSuccess }) => {
         dispatch(updateTotalPrice(0));
         dispatch(removeAllFromCart());
         dispatch(clearAllQuantities());
+
+        /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
+
+        data['merchantSignature'] = hashed_value;
+        formRef.current.submit();
+        /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
         resetForm();
         setOrderSuccess(true);
