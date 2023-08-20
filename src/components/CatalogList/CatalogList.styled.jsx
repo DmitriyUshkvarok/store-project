@@ -47,12 +47,11 @@ export const CurrentNavDecor = styled.span`
 
 export const ListCatalog = styled.ul`
   display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
   padding-top: 30px;
   border-top: 4px solid gray;
 
@@ -79,12 +78,6 @@ export const ItemListCatalog = styled.li`
 
   @media screen and (min-width: 420px) {
     width: 300px;
-  }
-
-  @media screen and (min-width: 874px) {
-    &:last-child {
-      margin-right: auto;
-    }
   }
 
   &:hover {
