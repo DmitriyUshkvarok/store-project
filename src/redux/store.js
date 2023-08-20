@@ -20,6 +20,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { propertiesApi } from './propertiesApi/propertiesApi';
+import { ofertaAllApi } from './ofertaApi/ofertaAllApi';
 
 const store = configureStore({
   reducer: {
@@ -34,6 +35,7 @@ const store = configureStore({
     [galleryApi.reducerPath]: galleryApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
     [adminOrdersApi.reducerPath]: adminOrdersApi.reducer,
+    [ofertaAllApi.reducerPath]: ofertaAllApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -46,7 +48,8 @@ const store = configureStore({
       propertiesApi.middleware,
       galleryApi.middleware,
       ordersApi.middleware,
-      adminOrdersApi.middleware
+      adminOrdersApi.middleware,
+      ofertaAllApi.middleware
     ),
 });
 

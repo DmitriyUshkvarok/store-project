@@ -26,7 +26,8 @@ import {
   Producer,
   Info,
 } from './AllProducts.styled';
-import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
+// import { useGetAllProductsFilteredQuery } from '@/src/redux/ofertaApi/ofertaApi';
+import { useGetAllProductsFilteredNoToketQuery } from '@/src/redux/ofertaApi/ofertaAllApi';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import { useDispatch } from 'react-redux';
 import { slugify } from 'transliteration';
@@ -46,7 +47,8 @@ const AllProducts = () => {
   });
   const dispatch = useDispatch();
 
-  const { data, isError, isLoading } = useGetAllProductsFilteredQuery(qwery);
+  const { data, isError, isLoading } =
+    useGetAllProductsFilteredNoToketQuery(qwery);
   const [totalElements, setTotalElements] = useState(0);
 
   console.log(`data`, data);
