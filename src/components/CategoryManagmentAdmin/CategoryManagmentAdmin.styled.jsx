@@ -8,7 +8,6 @@ export const BoxAdd = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
-  width: 100%;
 `;
 export const Title = styled.h2`
   margin: 0;

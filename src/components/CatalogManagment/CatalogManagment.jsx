@@ -3,10 +3,9 @@
 import { useGetAllInfoProductQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
-
+import { animateScroll as scroll } from 'react-scroll';
 import ModalAdminByForm from '../ModalAdminByForm/ModalAdminByForm';
 import FormUpdateProductAdmin from '@/src/components/FormUpdateProductAdmin/FormUpdateProductAdmin';
-// import CaptionByCatalog from '../CaptionByCatalog/CaptionByCatalog';
 import ListByCatalog from '../ListByCatalog/ListByCatalog';
 import SearchFormAdmin from '../SearchFormAdmin/SearchFormAdmin';
 import { renderPaginationItems } from '@/src/helper/renderPageButtons';
@@ -46,6 +45,10 @@ const CatalogManagementAdmin = () => {
 
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
+    scroll.scrollToTop({
+      duration: 250,
+      smooth: 'easeInOutQuad',
+    });
   };
 
   const filterSearch = (e) => {
@@ -53,14 +56,10 @@ const CatalogManagementAdmin = () => {
     setFilterName(e.target.value);
   };
 
-  // const handleAllProduct = () => {
-  //   setFilterName('');
-  // };
-
   return (
     <>
       <SearchFormAdmin filterSearch={filterSearch} />
-      {/* <CaptionByCatalog /> */}
+
       {products.length === 0 ? (
         <div>
           <p>Такого товару не знайдено</p>
