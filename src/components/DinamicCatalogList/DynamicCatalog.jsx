@@ -15,7 +15,6 @@ import {
 } from '@/src/components/CatalogList/CatalogList.styled';
 import {
   AboutBox,
-  ProductsList,
   Picture,
   Item,
   BoxTitle,
@@ -24,10 +23,10 @@ import {
   Overlay,
   TextOverlay,
   PictureOverlay,
-  Box,
   TitleCountry,
 } from '@/src/components/AllProducts/AllProducts.styled';
 import { useEffect, useState } from 'react';
+import { Box, Boxer, ProductsList } from './DynamicCategory.styled';
 
 const DynamicCatalogList = () => {
   const [selectedCountry, setSelectCountry] = useState('');
@@ -78,70 +77,72 @@ const DynamicCatalogList = () => {
 
   return (
     <AboutBox>
-      <WrapNav>
-        <Link href={`/home`}>
-          <DecorSpanBackLink>Головна /</DecorSpanBackLink>
-        </Link>
-        <Link href={`/oferta`}>
-          <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
-        </Link>
-        <CurrentNavDecor>{category?.name}</CurrentNavDecor>
-      </WrapNav>
-      <TitleCard>{category?.name}</TitleCard>
-      <Box>
-        <FilterByCategoryProducts
-          selectedColor={selectedColor}
-          selectedCountry={selectedCountry}
-          countries={listCountries}
-          colors={listColors}
-          select={handleChooseCountry}
-          selectColor={handleChooseColor}
-          reset={reserFilter}
-        />
-        <ProductsList>
-          {isLoading ? (
-            <Spinner />
-          ) : products?.length !== 0 ? (
-            products?.map((product) => (
-              <Item
-                onClick={() => handleChooseProduct(product)}
-                key={product._id}
-              >
-                <Link
-                  href={{
-                    pathname: `/oferta/${params.product}/${slugify(
-                      product.name
-                    )}`,
-                  }}
+      <Boxer>
+        <WrapNav>
+          <Link href={`/home`}>
+            <DecorSpanBackLink>Головна /</DecorSpanBackLink>
+          </Link>
+          <Link href={`/oferta`}>
+            <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
+          </Link>
+          <CurrentNavDecor>{category?.name}</CurrentNavDecor>
+        </WrapNav>
+        <TitleCard>{category?.name}</TitleCard>
+        <Box>
+          <FilterByCategoryProducts
+            selectedColor={selectedColor}
+            selectedCountry={selectedCountry}
+            countries={listCountries}
+            colors={listColors}
+            select={handleChooseCountry}
+            selectColor={handleChooseColor}
+            reset={reserFilter}
+          />
+          <ProductsList>
+            {isLoading ? (
+              <Spinner />
+            ) : products?.length !== 0 ? (
+              products?.map((product) => (
+                <Item
+                  onClick={() => handleChooseProduct(product)}
+                  key={product._id}
                 >
-                  <PictureOverlay>
-                    <Picture
-                      src={product?.url}
-                      alt={`Image`}
-                      width="250"
-                      height="1270"
-                      priority={true}
-                    />
-                    <Overlay>
-                      <TextOverlay>{product?.description}</TextOverlay>
-                    </Overlay>
-                  </PictureOverlay>
+                  <Link
+                    href={{
+                      pathname: `/oferta/${params.product}/${slugify(
+                        product.name
+                      )}`,
+                    }}
+                  >
+                    <PictureOverlay>
+                      <Picture
+                        src={product?.url}
+                        alt={`Image`}
+                        width="250"
+                        height="1270"
+                        priority={true}
+                      />
+                      <Overlay>
+                        <TextOverlay>{product?.description}</TextOverlay>
+                      </Overlay>
+                    </PictureOverlay>
 
-                  <BoxTitle>
-                    <TitleProduct>{product?.name}</TitleProduct>
-                    <Price>Ціна: {product?.price} грн.</Price>
-                    <TitleCountry>Виробник: {product?.country}</TitleCountry>
-                  </BoxTitle>
-                </Link>
-              </Item>
-            ))
-          ) : (
-            <div>
-              <p>На ваш запит нічого не знайдено</p>
-            </div>
-          )}
-        </ProductsList>
-      </Box>
+                    <BoxTitle>
+                      <TitleProduct>{product?.name}</TitleProduct>
+                      <Price>Ціна: {product?.price} грн.</Price>
+                      <TitleCountry>Виробник: {product?.country}</TitleCountry>
+                    </BoxTitle>
+                  </Link>
+                </Item>
+              ))
+            ) : (
+              <div>
+                <p>На ваш запит нічого не знайдено</p>
+              </div>
+            )}
+          </ProductsList>
+        </Box>
+      </Boxer>
     </AboutBox>
   );
 };

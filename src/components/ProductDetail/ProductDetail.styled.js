@@ -10,7 +10,7 @@ export const ProductDetailSection = styled.section`
 `;
 
 export const LinkPanel = styled.div`
-  margin-top: 30px;
+  margin-top: 55px;
 `;
 
 export const Product = styled.div`

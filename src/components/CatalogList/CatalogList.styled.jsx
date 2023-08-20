@@ -133,5 +133,3 @@ export const DecorSpanBackLink = styled.span`
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
-
-//------------------------------------------
