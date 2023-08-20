@@ -3,10 +3,7 @@ import Link from 'next/link';
 import { slugify } from 'transliteration';
 import { useParams } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  useGetCategoryProductsQuery,
-  useGetFilterCategoryProductsQuery,
-} from '@/src/redux/ofertaApi/ofertaApi';
+import { useGetCategoryProductsQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { setDataAndIdProduct } from '@/src/redux/ofertaApi/ofertaSlice';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import FilterByCategoryProducts from '@/src/components/FilterByCategoryProducts/FilterByCategoryProducts';
@@ -88,9 +85,9 @@ const DynamicCatalogList = () => {
         <Link href={`/oferta`}>
           <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
         </Link>
-        <CurrentNavDecor>{category.name}</CurrentNavDecor>
+        <CurrentNavDecor>{category?.name}</CurrentNavDecor>
       </WrapNav>
-      <TitleCard>{category.name}</TitleCard>
+      <TitleCard>{category?.name}</TitleCard>
       <Box>
         <FilterByCategoryProducts
           selectedColor={selectedColor}
@@ -119,21 +116,21 @@ const DynamicCatalogList = () => {
                 >
                   <PictureOverlay>
                     <Picture
-                      src={product.url}
+                      src={product?.url}
                       alt={`Image`}
                       width="250"
                       height="1270"
                       priority={true}
                     />
                     <Overlay>
-                      <TextOverlay>{product.description}</TextOverlay>
+                      <TextOverlay>{product?.description}</TextOverlay>
                     </Overlay>
                   </PictureOverlay>
 
                   <BoxTitle>
-                    <TitleProduct>{product.name}</TitleProduct>
-                    <Price>Ціна: {product.price} грн.</Price>
-                    <TitleCountry>Виробник: {product.country}</TitleCountry>
+                    <TitleProduct>{product?.name}</TitleProduct>
+                    <Price>Ціна: {product?.price} грн.</Price>
+                    <TitleCountry>Виробник: {product?.country}</TitleCountry>
                   </BoxTitle>
                 </Link>
               </Item>

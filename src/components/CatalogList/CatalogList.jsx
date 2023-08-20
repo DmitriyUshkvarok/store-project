@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { slugify } from 'transliteration';
-import BtnBuy from '../BtnBuy/BtnBuy';
 import { useDispatch } from 'react-redux';
 import { setDataAndId } from '@/src/redux/ofertaApi/ofertaSlice';
 import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
@@ -11,7 +10,6 @@ import {
   ItemListCatalog,
   StyledImage,
   WrapContentCard,
-  ThumbCardImg,
   Container,
   WrapNav,
   CurrentNavDecor,
@@ -45,24 +43,24 @@ const CatalogList = () => {
           ) : (
             data?.map((item) => (
               <ItemListCatalog
-                key={item._id}
+                key={item?._id}
                 onClick={() => handleChooseCategory(item)}
               >
                 <StyledLink
                   href={{
-                    pathname: `/oferta/${slugify(item.name)}`,
+                    pathname: `/oferta/${slugify(item?.name)}`,
                   }}
                 >
                   <StyledImage
                     priority
-                    src={item.url}
-                    alt={item.name}
+                    src={item?.url}
+                    alt={item?.name}
                     width={350}
                     height={180}
                   />
 
                   <WrapContentCard>
-                    <ProductTitleCard>{item.name}</ProductTitleCard>
+                    <ProductTitleCard>{item?.name}</ProductTitleCard>
                   </WrapContentCard>
                 </StyledLink>
               </ItemListCatalog>

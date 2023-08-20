@@ -1,5 +1,5 @@
 'use client';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { useRef, useState } from 'react';
 import { useAddProductMutation } from '@/src/redux/ofertaApi/ofertaApi';
@@ -21,6 +21,8 @@ import { AiOutlinePlus } from 'react-icons/ai';
 const FormAdd = ({ categories, handleClose }) => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [selectPdf, setSelectPdf] = useState(null);
+  const [errorByImg, setErrorByImg] = useState('none');
+  const [errorByPdf, setErrorByPdf] = useState('none');
   const [add] = useAddProductMutation();
 
   const fileInputRef = useRef(null);
@@ -46,6 +48,14 @@ const FormAdd = ({ categories, handleClose }) => {
     formData.append('density', values.density);
     formData.append('chemicalFormula', values.chemicalFormula);
     formData.append('fullName', values.fullName);
+    if (!selectedImg) {
+      setErrorByImg('block');
+      return;
+    }
+    if (!selectPdf) {
+      setErrorByPdf('block');
+      return;
+    }
     try {
       const res = await add(formData);
       if (res.error) {
@@ -190,11 +200,12 @@ const FormAdd = ({ categories, handleClose }) => {
               onChange={(e) => {
                 setSelectedImg(e.target.files[0]);
                 setSelectedFileName(e.target.files[0]?.name || '');
+                setErrorByImg('none');
               }}
             />
-            <StyledErrorMessage name="url">
-              {(msg) => <StyledError>{msg}</StyledError>}
-            </StyledErrorMessage>
+            <div style={{ display: errorByImg }}>
+              <StyledError>оберіть зображення</StyledError>
+            </div>
           </StyledLabel>
           <StyledLabel>
             PDF:
@@ -212,10 +223,13 @@ const FormAdd = ({ categories, handleClose }) => {
               onChange={(e) => {
                 setSelectPdf(e.target.files[0]);
                 setSelectedPdfName(e.target.files[0]?.name || '');
+                setErrorByPdf('none');
               }}
             />
           </StyledLabel>
-
+          <div style={{ display: errorByPdf }}>
+            <StyledError>оберіть зображення</StyledError>
+          </div>
           <StyledButton type="submit">Додати</StyledButton>
         </StyledForm>
       </Formik>
