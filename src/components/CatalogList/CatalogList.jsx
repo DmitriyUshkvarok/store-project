@@ -17,6 +17,7 @@ import {
   TitleCard,
   ProductTitleCard,
   DecorSpanBackLink,
+  Box,
 } from './CatalogList.styled';
 import Spinner from '../SpinerOferta/SpinerOferta';
 
@@ -29,7 +30,7 @@ const CatalogList = () => {
   };
   return (
     <Container>
-      <div>
+      <Box>
         <WrapNav>
           <Link href={`/home`}>
             <DecorSpanBackLink>Головна /</DecorSpanBackLink>
@@ -67,7 +68,7 @@ const CatalogList = () => {
             ))
           )}
         </ListCatalog>
-      </div>
+      </Box>
     </Container>
   );
 };

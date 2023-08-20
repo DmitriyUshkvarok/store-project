@@ -297,7 +297,7 @@ export const OrderBtnDetails = styled.button`
   align-items: center;
   border: none;
   border-radius: 20px;
-  color: lightgreen;
+  color: #b8fbb8;
   text-transform: uppercase;
   font-weight: 500;
   background-color: rgba(0, 0, 0, 0.5);
