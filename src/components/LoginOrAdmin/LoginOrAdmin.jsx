@@ -4,6 +4,7 @@ import AdminForm from '../AdminForm/AdminForm';
 import { useSelector } from 'react-redux';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
 import { useCheckTokenQuery } from '@/src/redux/adminAuthApi/authApi';
+import Spinner from '@/src/components/SpinerOferta/SpinerOferta';
 
 const LoginOrAdmin = () => {
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
@@ -18,7 +19,7 @@ const LoginOrAdmin = () => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (

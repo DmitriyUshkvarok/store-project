@@ -1,5 +1,7 @@
+import Spinner from '@/src/components/SpinerOferta/SpinerOferta';
+
 const Loading = () => {
-  return <div>Loding...</div>;
+  return <Spinner />;
 };
 
 export default Loading;

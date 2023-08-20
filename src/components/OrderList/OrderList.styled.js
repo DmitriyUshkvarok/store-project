@@ -29,8 +29,10 @@ export const TotalPriceWrapper = styled.div`
   align-items: flex-end;
   margin-bottom: 20px;
   margin-right: 20px;
+
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
+    align-items: center;
   }
 `;
 
@@ -73,6 +75,10 @@ export const CartList = styled.ul`
     flex-direction: row;
     width: calc(100vw - 80px);
     overflow-x: auto;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

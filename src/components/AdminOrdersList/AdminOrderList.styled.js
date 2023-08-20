@@ -153,6 +153,13 @@ export const StyleAdminRiDeleteBin5Fill = styled(RiDeleteBin5Fill)`
   }
 `;
 
+export const LoaderDeleted = styled.p`
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: coral;
+`;
+
 export const OrderData = styled.p`
   color: gray;
   text-align: center;

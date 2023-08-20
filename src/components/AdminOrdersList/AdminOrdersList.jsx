@@ -28,6 +28,7 @@ import {
   OrderPrice,
   OrderQuantity,
   StyleAdminRiDeleteBin5Fill,
+  LoaderDeleted,
 } from './AdminOrderList.styled';
 import { useState } from 'react';
 import { MdPendingActions } from 'react-icons/md';
@@ -42,6 +43,8 @@ import { toast } from 'react-toastify';
 import { animateScroll as scroll } from 'react-scroll';
 
 const AdminOrdersList = () => {
+  const [isDeleting, setIsDeleting] = useState({});
+  const [isUpdating, setIsUpdating] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [showDone, setShowDone] = useState(false);
   const pageSize = 10;
@@ -87,17 +90,23 @@ const AdminOrdersList = () => {
 
   const handleDeleteOrder = async (orderId) => {
     try {
+      setIsDeleting((prev) => ({ ...prev, [orderId]: true }));
       await deleteOrderMutation(orderId);
+      setIsDeleting((prev) => ({ ...prev, [orderId]: false }));
     } catch (error) {
+      setIsDeleting((prev) => ({ ...prev, [orderId]: false }));
       console.log(error);
     }
   };
 
   const handleToggleStatus = async (orderId, done) => {
     try {
+      setIsUpdating((prev) => ({ ...prev, [orderId]: true }));
       await updateOrderStatusMutation({ orderId, done });
+      setIsUpdating((prev) => ({ ...prev, [orderId]: false }));
       toast.success('товар додано до виконаних замовлень');
     } catch (error) {
+      setIsUpdating((prev) => ({ ...prev, [orderId]: false }));
       console.log(error);
     }
   };
@@ -144,35 +153,29 @@ const AdminOrdersList = () => {
           .map((order) => (
             <AllOrdersList key={order._id}>
               <BtnStatusBlock>
-                <BtnStatus
-                  onClick={() => handleToggleStatus(order._id, !order.done)}
-                  disabled={order.done}
-                >
-                  {order.done ? (
-                    <>
-                      Виконано <AiFillCheckCircle color="green" size={20} />
-                    </>
-                  ) : (
-                    <>
-                      В очікуванні <MdPendingActions color="orange" size={20} />
-                    </>
-                  )}
-                </BtnStatus>
+                {isUpdating[order._id] ? (
+                  <p>Зміна статусу...</p>
+                ) : order.done ? (
+                  <BtnStatus disabled>
+                    Виконано <AiFillCheckCircle color="green" size={20} />
+                  </BtnStatus>
+                ) : (
+                  <BtnStatus
+                    onClick={() => handleToggleStatus(order._id, !order.done)}
+                    disabled={order.done || isUpdating[order._id]} // Блокируем кнопку при обновлении
+                  >
+                    В очікуванні <MdPendingActions color="orange" size={20} />
+                  </BtnStatus>
+                )}
               </BtnStatusBlock>
               <UserInfoBlock>
                 <UserInfoTitle>Інформація про покупця:</UserInfoTitle>
                 <UserInfoName>
                   Name: <SpanInfoUser>{order.buyer.name}</SpanInfoUser>
                 </UserInfoName>
-                {/* <UserInfoEmail>
-                  Email: <SpanInfoUser>{order.buyer.email}</SpanInfoUser>
-                </UserInfoEmail> */}
                 <UserInfoPhone>
                   Phone: <SpanInfoUser>{order.buyer.phone}</SpanInfoUser>
                 </UserInfoPhone>
-                {/* <UserInfLocation>
-                  Location: <SpanInfoUser>{order.buyer.address}</SpanInfoUser>
-                </UserInfLocation> */}
               </UserInfoBlock>
               <OrderItemsBlock>
                 <OrderItemsTitle>Елементи замовлення:</OrderItemsTitle>
@@ -205,10 +208,14 @@ const AdminOrdersList = () => {
                 <h2>Разом:</h2>
                 <p>{order.totalPrice} гривень</p>
               </TotalPriceBlock>
-              <StyleAdminRiDeleteBin5Fill
-                size={25}
-                onClick={() => handleDeleteOrder(order._id)}
-              />
+              {isDeleting[order._id] ? (
+                <LoaderDeleted>Видалення...</LoaderDeleted>
+              ) : (
+                <StyleAdminRiDeleteBin5Fill
+                  size={25}
+                  onClick={() => handleDeleteOrder(order._id)}
+                />
+              )}
             </AllOrdersList>
           ))
       )}
