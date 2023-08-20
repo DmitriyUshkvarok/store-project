@@ -1,4 +1,5 @@
 'use client';
+import React, { useRef } from 'react';
 import {
   StyleOrderForm,
   FormWrapper,
@@ -20,6 +21,8 @@ import {
   removeAllFromCart,
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
+import CryptoJS from 'crypto-js';
+const uuid = require('uuid');
 
 const initialValues = {
   name: '',
@@ -29,13 +32,52 @@ const initialValues = {
 };
 
 const OrderFom = ({ setOrderSuccess }) => {
-  // const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector(cartSelector.getIsItems);
   const totalPrice = useSelector(cartSelector.geTotalPrice);
+  const totalPriceString = totalPrice.toString();
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
+
+  /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
+
+  /** ВИНЕСТИ В ENV */
+  const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
+
+  const productName = [];
+  const productPrice = [];
+  const productCount = [];
+
+  for (const obj of cartItems) {
+    productName.push(obj.title);
+    productPrice.push(obj.price.toString());
+    productCount.push(quantity[obj.id].toString());
+  }
+
+  const data = {
+    merchantAccount: 'test_merch_n1',
+    merchantDomainName: 'www.market.ua',
+    orderReference: uuid.v4(),
+    orderDate: Math.floor(Date.now() / 1000).toString(),
+    amount: totalPriceString,
+    currency: 'UAH',
+    orderTimeout: '49000',
+    productName: productName,
+    productPrice: productPrice,
+    productCount: productCount,
+  };
+
+  const replaceNewlines = (text) => text.replace(/\n/g, ' ');
+  const productNameString = data.productName.map(replaceNewlines).join(';');
+  const productCountString = data.productCount.join(';');
+  const productPriceString = data.productPrice.join(';');
+  const stringForHash = `${data.merchantAccount};${data.merchantDomainName};${data.orderReference};${data.orderDate};${data.amount};${data.currency};${productNameString};${productCountString};${productPriceString}`;
+  const hashed_value = CryptoJS.HmacMD5(stringForHash, SECRET_KEY).toString(
+    CryptoJS.enc.Hex
+  );
+  const formRef = useRef(null);
+  /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
   const handleSubmit = async (values, { resetForm }) => {
     const formDataAndOrder = {
@@ -57,6 +99,12 @@ const OrderFom = ({ setOrderSuccess }) => {
       totalPrice: totalPrice,
     };
 
+    /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
+
+    data['merchantSignature'] = hashed_value;
+    formRef.current.submit();
+    /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
+
     try {
       const response = await createOrders(formDataAndOrder);
 
@@ -77,6 +125,92 @@ const OrderFom = ({ setOrderSuccess }) => {
 
   return (
     <>
+      <div>
+        <form
+          ref={formRef}
+          method="post"
+          action="https://secure.wayforpay.com/pay"
+          acceptCharset="UTF-8"
+        >
+          <input
+            type="hidden"
+            name="merchantAccount"
+            value={data.merchantAccount}
+            onChange={() => {}}
+          />
+          <input
+            type="hidden"
+            name="merchantDomainName"
+            value={data.merchantDomainName}
+            onChange={() => {}}
+          />
+          <input
+            type="hidden"
+            name="orderReference"
+            value={data.orderReference}
+            onChange={() => {}}
+          />
+          <input
+            type="hidden"
+            name="orderDate"
+            value={data.orderDate}
+            onChange={() => {}}
+          />
+          <input
+            type="hidden"
+            name="amount"
+            value={data.amount}
+            onChange={() => {}}
+          />
+          <input
+            type="hidden"
+            name="currency"
+            value={data.currency}
+            onChange={() => {}}
+          />
+          <input
+            type="hidden"
+            name="orderTimeout"
+            value={data.orderTimeout}
+            onChange={() => {}}
+          />
+          {data.productName.map((name, index) => (
+            <input
+              key={`productName_${index}`}
+              type="hidden"
+              name="productName[]"
+              value={name}
+              onChange={() => {}}
+            />
+          ))}
+
+          {data.productPrice.map((price, index) => (
+            <input
+              key={`productPrice_${index}`}
+              type="hidden"
+              name="productPrice[]"
+              value={price}
+              onChange={() => {}}
+            />
+          ))}
+
+          {data.productCount.map((count, index) => (
+            <input
+              key={`productCount_${index}`}
+              type="hidden"
+              name="productCount[]"
+              value={count}
+              onChange={() => {}}
+            />
+          ))}
+          <input
+            type="hidden"
+            name="merchantSignature"
+            value={hashed_value}
+            onChange={() => {}}
+          />
+        </form>
+      </div>
       <Formik
         initialValues={initialValues}
         validationSchema={orderSchema}
@@ -87,7 +221,6 @@ const OrderFom = ({ setOrderSuccess }) => {
             <OrderFormTitle>Оформлення замовлення</OrderFormTitle>
             <OrderFormSubTitle>Контактні дані:</OrderFormSubTitle>
             <OrderFormGroup>
-              {/* <OrderFormLabel htmlFor="order-name">Ім&#39;я:</OrderFormLabel> */}
               <OrderStyleField
                 type="text"
                 name="name"
@@ -124,7 +257,6 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup> */}
             <OrderFormGroup>
-              {/* <OrderFormLabel htmlFor="order-phone">Телефон:</OrderFormLabel> */}
               <OrderStyleField
                 name="phone"
                 placeholder="Телефон:"
@@ -134,6 +266,7 @@ const OrderFom = ({ setOrderSuccess }) => {
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
+
             <OrderBtn type="submit">
               {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
             </OrderBtn>
