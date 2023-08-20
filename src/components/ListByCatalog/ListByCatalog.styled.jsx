@@ -8,6 +8,27 @@ export const ResponsiveTableContainer = styled.div`
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+
+  ::-webkit-scrollbar {
+    background: #fff;
+    width: 4px;
+    border-radius: 12px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    width: 4px;
+    border-radius: 12px;
+    background-color: gray;
+  }
+
+  ::-webkit-scrollbar-track {
+    width: 4px;
+    flex-shrink: 0;
+
+    border-radius: 12px;
+    background: #fff;
+  }
 `;
 
 export const StyledTable = styled.table`

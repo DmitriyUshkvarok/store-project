@@ -110,6 +110,13 @@ const FormAdd = ({ categories, handleClose }) => {
             </StyledErrorMessage>
           </StyledLabel>
           <StyledLabel>
+            Бренд: <StyledInput type="text" name="brand" />
+            <StyledErrorMessage name="brand">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+
+          <StyledLabel>
             Країна: <StyledInput type="text" name="country" />
             <StyledErrorMessage name="country">
               {(msg) => <StyledError>{msg}</StyledError>}
@@ -139,12 +146,34 @@ const FormAdd = ({ categories, handleClose }) => {
               {(msg) => <StyledError>{msg}</StyledError>}
             </StyledErrorMessage>
           </StyledLabel>
+
+          <StyledLabel>
+            Опис: <StyledInput type="text" name="description" />
+            <StyledErrorMessage name="description">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+
+          <StyledLabel>
+            Вага: <StyledInput type="text" name="weight" />
+            <StyledErrorMessage name="weight">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+          <StyledLabel>
+            Тип пакування: <StyledInput type="text" name="packingType" />
+            <StyledErrorMessage name="packingType">
+              {(msg) => <StyledError>{msg}</StyledError>}
+            </StyledErrorMessage>
+          </StyledLabel>
+
           <StyledLabel>
             Ціна: <StyledInput type="text" name="price" />
             <StyledErrorMessage name="price">
               {(msg) => <StyledError>{msg}</StyledError>}
             </StyledErrorMessage>
           </StyledLabel>
+
           <StyledLabel>
             Зображення:
             <ImageSelector onClick={() => fileInputRef.current?.click()}>
@@ -186,30 +215,7 @@ const FormAdd = ({ categories, handleClose }) => {
               }}
             />
           </StyledLabel>
-          <StyledLabel>
-            Опис: <StyledInput type="text" name="description" />
-            <StyledErrorMessage name="description">
-              {(msg) => <StyledError>{msg}</StyledError>}
-            </StyledErrorMessage>
-          </StyledLabel>
-          <StyledLabel>
-            Бренд: <StyledInput type="text" name="brand" />
-            <StyledErrorMessage name="brand">
-              {(msg) => <StyledError>{msg}</StyledError>}
-            </StyledErrorMessage>
-          </StyledLabel>
-          <StyledLabel>
-            Вага: <StyledInput type="text" name="weight" />
-            <StyledErrorMessage name="weight">
-              {(msg) => <StyledError>{msg}</StyledError>}
-            </StyledErrorMessage>
-          </StyledLabel>
-          <StyledLabel>
-            Тип пакування: <StyledInput type="text" name="packingType" />
-            <StyledErrorMessage name="packingType">
-              {(msg) => <StyledError>{msg}</StyledError>}
-            </StyledErrorMessage>
-          </StyledLabel>
+
           <StyledButton type="submit">Додати</StyledButton>
         </StyledForm>
       </Formik>

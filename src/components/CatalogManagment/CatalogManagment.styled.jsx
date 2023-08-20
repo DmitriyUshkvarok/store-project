@@ -7,6 +7,7 @@ export const Box = styled.div`
 `;
 
 export const StyledPagination = styled(Pagination)`
+  padding-top: 30px;
   li {
     margin: 0 3px;
 
