@@ -43,3 +43,46 @@ export const ItemListDynamic = styled.li`
     transform: scale(1.1);
   }
 `;
+
+export const ProductsList = styled.ul`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px 20px;
+
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+
+  @media screen and (min-width: 1000px) {
+    justify-content: start;
+  }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  margin-top: 30px;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 4px solid gray;
+  @media screen and (max-width: 710px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media screen and (min-width: 1000px) {
+    justify-content: start;
+  }
+`;
+
+export const Boxer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1060px) {
+    justify-content: start;
+  }
+`;

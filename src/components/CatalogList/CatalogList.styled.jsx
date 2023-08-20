@@ -17,25 +17,27 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Container = styled.div`
-  padding: 80px 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+`;
 
-  overflow: hidden;
-  background-color: #80808029;
-  @media screen and (min-width: 768px) {
-    padding: 70px 30px;
-  }
+export const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
 
-  @media screen and (min-width: 1340px) {
+  @media screen and (min-width: 1060px) {
+    justify-content: start;
   }
 `;
 
 export const WrapNav = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 60px;
+  margin-top: 5px;
 `;
 
 export const CurrentNavDecor = styled.span`
@@ -45,19 +47,22 @@ export const CurrentNavDecor = styled.span`
 
 export const ListCatalog = styled.ul`
   display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  padding-top: 30px;
+  border-top: 4px solid gray;
+
+  margin-top: 30px;
 
   @media screen and (min-width: 874px) {
-    margin: 0 auto;
-    width: 621px;
+    /* margin: 0 auto; */
+    /* width: 621px; */
   }
   @media screen and (min-width: 1000px) {
-    width: 944px;
+    /* width: 944px; */
   }
 `;
 
@@ -73,12 +78,6 @@ export const ItemListCatalog = styled.li`
 
   @media screen and (min-width: 420px) {
     width: 300px;
-  }
-
-  @media screen and (min-width: 874px) {
-    &:last-child {
-      margin-right: auto;
-    }
   }
 
   &:hover {
@@ -115,18 +114,8 @@ export const WrapContentCard = styled.div`
   color: #212529;
 `;
 
-export const TitleCard = styled.h3`
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: #222;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding-bottom: 33px;
-
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+export const TitleCard = styled.h1`
+  margin-top: 5px;
 `;
 
 export const ProductTitleCard = styled.p`
@@ -144,5 +133,3 @@ export const DecorSpanBackLink = styled.span`
   color: #222;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
-
-//------------------------------------------

@@ -9,8 +9,6 @@ export const AboutBox = styled.div`
   padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 34px;
-  max-width: 1000px;
 `;
 
 export const Title = styled.h1`
@@ -322,7 +320,7 @@ export const ProductPackingType = styled.p`
 `;
 
 export const CategorySpan = styled.span`
-  color: lightcoral;
+  color: #ffb4b4;
   font-weight: normal;
   margin-left: 10px;
 `;
@@ -464,7 +462,7 @@ export const OrderBtnDetails = styled.button`
   align-items: center;
   border: none;
   border-radius: 20px;
-  color: lightgreen;
+  color: #b8fbb8;
   text-transform: uppercase;
   font-weight: 500;
   background-color: rgba(0, 0, 0, 0.5);

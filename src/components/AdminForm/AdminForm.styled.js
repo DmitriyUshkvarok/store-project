@@ -127,7 +127,7 @@ export const BtnLogIn = styled.button`
   z-index: 1;
   transition: all 0.3s;
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
-  color: lightgreen;
+  color: #b8fbb8;
   text-transform: uppercase;
   display: flex;
   justify-content: center;

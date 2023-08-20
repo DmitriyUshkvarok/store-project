@@ -31,8 +31,9 @@ export const AllOrdersList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: lightslategray;
+  background-color: #c5c5c5cc;
   padding: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 `;
 
 export const BtnStatusBlock = styled.div`
@@ -56,16 +57,18 @@ export const BtnStatus = styled.button`
   border-radius: 4px;
 `;
 
-export const UserInfoTitle = styled.h3`
+export const UserInfoTitle = styled.p`
   display: flex;
   justify-content: center;
-  text-transform: uppercase;
+  font-weight: 500;
+  /* text-transform: uppercase; */
+  font-size: 17px;
   margin-bottom: 10px;
   text-align: center;
 `;
 
 export const UserInfoBlock = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const UserInfoName = styled.p`
@@ -100,14 +103,15 @@ export const OrderItemsBlock = styled.div`
 export const OrderItemsList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
   background-color: lightyellow;
-  padding: 5px;
-  margin-bottom: 20px;
+  padding: 2px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const OrderItemsListItem = styled.li`
-  background-color: lightcoral;
+  background-color: #ffb4b4;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -115,14 +119,15 @@ export const OrderItemsListItem = styled.li`
   padding: 3px;
   border-radius: 4px;
   transition: background-color 0.4s;
+  padding: 8px;
 
   ${({ isPending }) =>
     isPending
       ? css`
-          background-color: lightgreen;
+          background-color: #b8fbb8;
         `
       : css`
-          background-color: lightcoral;
+          background-color: #ffb4b4;
         `}
 
   @media screen and (max-width: 850px) {
@@ -130,10 +135,12 @@ export const OrderItemsListItem = styled.li`
   }
 `;
 
-export const OrderItemsTitle = styled.h4`
+export const OrderItemsTitle = styled.p`
   display: flex;
   justify-content: center;
-  text-transform: uppercase;
+  font-weight: 400;
+  /* text-transform: uppercase; */
+  font-size: 15px;
   margin-bottom: 10px;
   text-align: center;
 `;
@@ -161,27 +168,37 @@ export const LoaderDeleted = styled.p`
 `;
 
 export const OrderData = styled.p`
-  color: gray;
   text-align: center;
+  font-weight: 300;
+  font-size: 12px;
 `;
 
-export const OrderName = styled.h4`
+export const OrderName = styled.p`
   text-align: center;
-  font-size: 21px;
+  font-size: 18px;
+  font-weight: 400;
 `;
 
 export const OrderColor = styled.p`
   text-align: center;
+  font-weight: 400;
+  font-size: 14px;
 `;
 
 export const OrderBrand = styled.p`
   text-align: center;
+  font-weight: 400;
+  font-size: 14px;
 `;
 
 export const OrderPrice = styled.p`
   text-align: center;
+  font-weight: 400;
+  font-size: 14px;
 `;
 
 export const OrderQuantity = styled.p`
   text-align: center;
+  font-weight: 400;
+  font-size: 14px;
 `;

@@ -17,9 +17,9 @@ const CustomBarChart = ({ data }) => {
               height: (item.value / maxValue) * 100 + '%',
               backgroundColor:
                 item.label === 'Виконано'
-                  ? 'lightgreen'
+                  ? '#b8fbb8'
                   : item.label === 'Активні'
-                  ? 'lightcoral'
+                  ? '#ffb4b4'
                   : '#8884d8',
             }}
           >
@@ -39,16 +39,10 @@ const CustomBarChart = ({ data }) => {
         ))}
       </div>
       <div className={css.legend}>
-        <span
-          className={css.legendItem}
-          style={{ backgroundColor: 'lightgreen' }}
-        >
+        <span className={css.legendItem} style={{ backgroundColor: '#b8fbb8' }}>
           Виконано
         </span>
-        <span
-          className={css.legendItem}
-          style={{ backgroundColor: 'lightcoral' }}
-        >
+        <span className={css.legendItem} style={{ backgroundColor: '#ffb4b4' }}>
           Активні
         </span>
         <span className={css.legendItem} style={{ backgroundColor: '#8884d8' }}>

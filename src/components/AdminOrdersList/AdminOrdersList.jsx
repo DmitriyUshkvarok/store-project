@@ -133,7 +133,7 @@ const AdminOrdersList = () => {
   return (
     <OrderAdminWrapper>
       <CustomBarChart data={chartData} />
-      <p>Общая прибыль: {totalProfit} гривень</p>
+      <p>Загальна дохідність: {totalProfit} гривень</p>
       <FilterCheckBoxBlock>
         <LabelFilter>
           Показати виконані замовлення:
@@ -169,12 +169,12 @@ const AdminOrdersList = () => {
                 )}
               </BtnStatusBlock>
               <UserInfoBlock>
-                <UserInfoTitle>Інформація про покупця:</UserInfoTitle>
+                <UserInfoTitle>Інформація про покупку</UserInfoTitle>
                 <UserInfoName>
-                  Name: <SpanInfoUser>{order.buyer.name}</SpanInfoUser>
+                  Ім&rsquo;я: <SpanInfoUser>{order.buyer.name}</SpanInfoUser>
                 </UserInfoName>
                 <UserInfoPhone>
-                  Phone: <SpanInfoUser>{order.buyer.phone}</SpanInfoUser>
+                  Телефон: <SpanInfoUser>{order.buyer.phone}</SpanInfoUser>
                 </UserInfoPhone>
               </UserInfoBlock>
               <OrderItemsBlock>
@@ -186,7 +186,7 @@ const AdminOrdersList = () => {
                       isPending={order.done}
                     >
                       <OrderName>{item.name}</OrderName>
-                      <OrderData>Дата заказа: {item.date}</OrderData>
+                      <OrderData>Дата замовлення: {item.date}</OrderData>
                       <OrderColor>Колір: {item.color}</OrderColor>
                       <OrderBrand>Бренд: {item.brand}</OrderBrand>
                       <OrderPrice>Ціна: {item.price}</OrderPrice>
@@ -205,8 +205,8 @@ const AdminOrdersList = () => {
                 </OrderItemsList>
               </OrderItemsBlock>
               <TotalPriceBlock>
-                <h2>Разом:</h2>
-                <p>{order.totalPrice} гривень</p>
+                <UserInfoName>Разом:</UserInfoName>
+                <SpanInfoUser>{order.totalPrice} гривень</SpanInfoUser>
               </TotalPriceBlock>
               {isDeleting[order._id] ? (
                 <LoaderDeleted>Видалення...</LoaderDeleted>
