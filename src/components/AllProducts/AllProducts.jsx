@@ -96,164 +96,162 @@ const AllProducts = () => {
   };
 
   return (
-    <>
-      <AboutBox>
-        <Title>Увесь товар</Title>
+    <AboutBox>
+      <Title>Увесь товар</Title>
 
-        <Box>
-          {/* ===============ФІЛЬР ====================*/}
-          <BoxFilter>
-            <TitleF>ФІЛЬТР</TitleF>
+      <Box>
+        {/* ===============ФІЛЬР ====================*/}
+        <BoxFilter>
+          <TitleF>ФІЛЬТР</TitleF>
 
-            <div>
-              <TitleFilter> Країна</TitleFilter>
-              <StyledSelect
-                value={qwery.country}
-                onChange={(e) => {
-                  const selectedCountryId = e.target.value;
-                  setQwery((prevQwery) => ({
-                    ...prevQwery,
-                    country: selectedCountryId,
-                  }));
-                }}
+          <div>
+            <TitleFilter> Країна</TitleFilter>
+            <StyledSelect
+              value={qwery.country}
+              onChange={(e) => {
+                const selectedCountryId = e.target.value;
+                setQwery((prevQwery) => ({
+                  ...prevQwery,
+                  country: selectedCountryId,
+                }));
+              }}
+            >
+              <option value="">Всі країни</option>
+              {isLoading ? (
+                <option value="">Loading</option>
+              ) : (
+                data?.countries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))
+              )}
+            </StyledSelect>
+          </div>
+          <div>
+            <TitleFilter>Кетегорію товару</TitleFilter>
+
+            <StyledSelect
+              value={qwery.categoryId}
+              onChange={(e) => {
+                const selectedCategoryId = e.target.value;
+                setQwery((prevQwery) => ({
+                  ...prevQwery,
+                  categoryId: selectedCategoryId,
+                }));
+              }}
+            >
+              <option value="">Всі категорії</option>
+              {isLoading ? (
+                <option value="">Loading</option>
+              ) : (
+                data?.categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))
+              )}
+            </StyledSelect>
+          </div>
+          <div>
+            <TitleFilter>Колір</TitleFilter>
+            <StyledSelect
+              value={qwery.color}
+              onChange={(e) => {
+                const selectedCountryId = e.target.value;
+                setQwery((prevQwery) => ({
+                  ...prevQwery,
+                  color: selectedCountryId,
+                }));
+              }}
+            >
+              <option value="">Всі кольори</option>
+              {isLoading ? (
+                <option value="">Loading</option>
+              ) : (
+                data?.colors.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
+                ))
+              )}
+            </StyledSelect>
+          </div>
+          <div>
+            <TitleFilter> Ціна: </TitleFilter>
+            <Chip>
+              {qwery.minPrice} грн. - {qwery.maxPrice} грн.
+            </Chip>
+            <StyledSlider
+              range
+              value={[qwery.minPrice, qwery.maxPrice]}
+              onChange={(values) => {
+                setQwery((prevQwery) => ({
+                  ...prevQwery,
+                  minPrice: values[0],
+                  maxPrice: values[1],
+                }));
+              }}
+              min={0}
+              max={10000}
+            />
+          </div>
+          <SetFilterBtn onClick={resetFilter} type="button">
+            Скинути фільтр
+          </SetFilterBtn>
+        </BoxFilter>
+        {/* ===============ФІЛЬР END ====================*/}
+
+        <ProductsList>
+          {isLoading ? (
+            <Spinner />
+          ) : allProductsFiltered?.length !== 0 ? (
+            allProductsFiltered?.map((product) => (
+              <Item
+                key={product._id}
+                onClick={() => handleChooseProduct(product)}
               >
-                <option value="">Всі країни</option>
-                {isLoading ? (
-                  <option value="">Loading</option>
-                ) : (
-                  data?.countries.map((country) => (
-                    <option key={country} value={country}>
-                      {country}
-                    </option>
-                  ))
-                )}
-              </StyledSelect>
-            </div>
-            <div>
-              <TitleFilter>Кетегорію товару</TitleFilter>
-
-              <StyledSelect
-                value={qwery.categoryId}
-                onChange={(e) => {
-                  const selectedCategoryId = e.target.value;
-                  setQwery((prevQwery) => ({
-                    ...prevQwery,
-                    categoryId: selectedCategoryId,
-                  }));
-                }}
-              >
-                <option value="">Всі категорії</option>
-                {isLoading ? (
-                  <option value="">Loading</option>
-                ) : (
-                  data?.categories.map((category) => (
-                    <option key={category._id} value={category._id}>
-                      {category.name}
-                    </option>
-                  ))
-                )}
-              </StyledSelect>
-            </div>
-            <div>
-              <TitleFilter>Колір</TitleFilter>
-              <StyledSelect
-                value={qwery.color}
-                onChange={(e) => {
-                  const selectedCountryId = e.target.value;
-                  setQwery((prevQwery) => ({
-                    ...prevQwery,
-                    color: selectedCountryId,
-                  }));
-                }}
-              >
-                <option value="">Всі кольори</option>
-                {isLoading ? (
-                  <option value="">Loading</option>
-                ) : (
-                  data?.colors.map((color) => (
-                    <option key={color} value={color}>
-                      {color}
-                    </option>
-                  ))
-                )}
-              </StyledSelect>
-            </div>
-            <div>
-              <TitleFilter> Ціна: </TitleFilter>
-              <Chip>
-                {qwery.minPrice} грн. - {qwery.maxPrice} грн.
-              </Chip>
-              <StyledSlider
-                range
-                value={[qwery.minPrice, qwery.maxPrice]}
-                onChange={(values) => {
-                  setQwery((prevQwery) => ({
-                    ...prevQwery,
-                    minPrice: values[0],
-                    maxPrice: values[1],
-                  }));
-                }}
-                min={0}
-                max={10000}
-              />
-            </div>
-            <SetFilterBtn onClick={resetFilter} type="button">
-              Скинути фільтр
-            </SetFilterBtn>
-          </BoxFilter>
-          {/* ===============ФІЛЬР END ====================*/}
-
-          <ProductsList>
-            {isLoading ? (
-              <Spinner />
-            ) : allProductsFiltered?.length !== 0 ? (
-              allProductsFiltered?.map((product) => (
-                <Item
-                  key={product._id}
-                  onClick={() => handleChooseProduct(product)}
+                <Link
+                  href={`/oferta/${slugify(product.category.name)}/${slugify(
+                    product.name
+                  )}`}
                 >
-                  <Link
-                    href={`/oferta/${slugify(product.category.name)}/${slugify(
-                      product.name
-                    )}`}
-                  >
-                    <PictureOverlay>
-                      <Picture
-                        src={product.url}
-                        alt={`Image`}
-                        width="250"
-                        height="1270"
-                        priority={true}
-                      />
-                      <Overlay>
-                        <TextOverlay>{product.description}</TextOverlay>
-                      </Overlay>
-                    </PictureOverlay>
+                  <PictureOverlay>
+                    <Picture
+                      src={product.url}
+                      alt={`Image`}
+                      width="250"
+                      height="1270"
+                      priority={true}
+                    />
+                    <Overlay>
+                      <TextOverlay>{product.description}</TextOverlay>
+                    </Overlay>
+                  </PictureOverlay>
 
-                    <BoxTitle>
-                      <TitleProduct>{product.name}</TitleProduct>
-                      <Producer>
-                        Виробник: <Info>{product.country}</Info>{' '}
-                      </Producer>
-                      <Price>
-                        Ціна: <Info>{product.price} грн.</Info>
-                      </Price>
-                    </BoxTitle>
-                  </Link>
-                </Item>
-              ))
-            ) : (
-              <div>
-                <p>На ваш запит нічого не знайдено</p>
-              </div>
-            )}
-          </ProductsList>
-        </Box>
-        {allProductsFiltered.length !== totalElements && (
-          <Btn onClick={handelMoreLoad}>Завантажити ще...</Btn>
-        )}
-      </AboutBox>
-    </>
+                  <BoxTitle>
+                    <TitleProduct>{product.name}</TitleProduct>
+                    <Producer>
+                      Виробник: <Info>{product.country}</Info>{' '}
+                    </Producer>
+                    <Price>
+                      Ціна: <Info>{product.price} грн.</Info>
+                    </Price>
+                  </BoxTitle>
+                </Link>
+              </Item>
+            ))
+          ) : (
+            <div>
+              <p>На ваш запит нічого не знайдено</p>
+            </div>
+          )}
+        </ProductsList>
+      </Box>
+      {allProductsFiltered.length !== totalElements && (
+        <Btn onClick={handelMoreLoad}>Завантажити ще...</Btn>
+      )}
+    </AboutBox>
   );
 };
 
