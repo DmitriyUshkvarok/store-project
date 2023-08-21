@@ -23,8 +23,8 @@ import {
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 import CryptoJS from 'crypto-js';
-const uuid = require('uuid');
 
+const uuid = require('uuid');
 const initialValues = {
   name: '',
   phone: '',
