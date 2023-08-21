@@ -79,8 +79,8 @@ export const CartCount = styled.span`
 
 export const ItemForBurger = styled.li`
   color: #b1b1b1;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 500;
   padding: 10px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
