@@ -12,7 +12,7 @@ const PrivatRoute = ({ children }) => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      router.replace('/admin');
+      router.replace('/don-pedro');
     } else {
       setLoading(false);
     }
