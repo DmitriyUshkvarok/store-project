@@ -26,13 +26,13 @@ export const CartListSection = styled.div`
 export const TotalPriceWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   margin-bottom: 20px;
   margin-right: 20px;
-
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
-    align-items: center;
+  }
+  @media screen and (min-width: 1000px) {
+    align-items: flex-end;
   }
 `;
 
@@ -50,6 +50,7 @@ export const PriceBox = styled.div`
 export const TotalWeight = styled.p`
   font-weight: 400;
   font-size: 14px;
+  text-align: center;
 `;
 
 export const SpanTotalWeight = styled.span`
@@ -75,10 +76,6 @@ export const CartList = styled.ul`
     flex-direction: row;
     width: calc(100vw - 80px);
     overflow-x: auto;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
