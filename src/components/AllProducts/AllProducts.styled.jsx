@@ -9,6 +9,8 @@ export const AboutBox = styled.div`
   padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 34px;
+  max-width: 1000px;
 `;
 
 export const Title = styled.h1`
@@ -160,6 +162,7 @@ export const Item = styled.li`
   background-color: #fff;
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
   border-radius: 4px;
+  height: 250px;
 
   transition: transform 0.25s;
 
@@ -320,7 +323,7 @@ export const ProductPackingType = styled.p`
 `;
 
 export const CategorySpan = styled.span`
-  color: #ffb4b4;
+  color: lightcoral;
   font-weight: normal;
   margin-left: 10px;
 `;
@@ -462,7 +465,7 @@ export const OrderBtnDetails = styled.button`
   align-items: center;
   border: none;
   border-radius: 20px;
-  color: #b8fbb8;
+  color: lightgreen;
   text-transform: uppercase;
   font-weight: 500;
   background-color: rgba(0, 0, 0, 0.5);

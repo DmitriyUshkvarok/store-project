@@ -88,6 +88,7 @@ export const ItemListCatalog = styled.li`
 export const StyledImage = styled(Image)`
   width: 100%;
   height: 160px;
+  object-fit: cover;
 
   object-position: center;
   border-top-left-radius: 4px;
