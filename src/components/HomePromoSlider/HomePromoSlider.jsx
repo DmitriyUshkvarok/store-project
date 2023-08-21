@@ -11,45 +11,51 @@ import {
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export const HomePromoSlider = () => {
   const EmptyArrow = () => <div style={{ display: 'none' }}></div>;
+  // const router = typeof window !== 'undefined' ? useRouter : undefined;
 
-  const router = typeof window !== 'undefined' ? useRouter : undefined;
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
-    speed: 3000,
+    speed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1000,
     prevArrow: <EmptyArrow />,
     nextArrow: <EmptyArrow />,
-    pauseOnHover: false,
-    fade: false,
+    // pauseOnHover: false,
+    fade: true,
+    afterChange: (current) => {
+      setCurrentSlide(current);
+    },
   };
 
   return (
     <Section>
       <div>
         <Slider {...settings}>
-          <Box>
-            <ScrollImage
-              src={'/autoScroll/Flag.jpg'}
-              alt={'autoScroll'}
-              width="2000"
-              height="650"
-              priority={true}
-            />
-            <BoxTitle>
-              <Title>СЛАВА УКРАЇНІ!</Title>
-            </BoxTitle>
-          </Box>
-
-          <Box>
-            <StyledLink href="/gallery">
+          {/* <StyledLink href={currentSlide === 0 ? '/home' : '#'}> */}
+          <StyledLink href={currentSlide === 0 ? '/home' : '#'}>
+            <Box>
+              <ScrollImage
+                src={'/autoScroll/Flag.jpg'}
+                alt={'autoScroll'}
+                width="2000"
+                height="650"
+                priority={true}
+              />
+              <BoxTitle>
+                <Title>СЛАВА УКРАЇНІ!</Title>
+              </BoxTitle>
+            </Box>
+          </StyledLink>
+          {/* <StyledLink href="/gallery" passHref> */}
+          <StyledLink href={currentSlide === 1 ? '/gallery' : '#'}>
+            <Box>
               <ScrollImage
                 src={'/autoScroll/horse.jpg'}
                 alt={'autoScroll'}
@@ -60,10 +66,11 @@ export const HomePromoSlider = () => {
               <BoxTitle>
                 <Title>PRETIOX TITANIUM WHITE</Title>
               </BoxTitle>
-            </StyledLink>
-          </Box>
-          <Box>
-            <StyledLink href="/allproducts">
+            </Box>
+          </StyledLink>
+          {/* </StyledLink> */}
+          <StyledLink href={currentSlide === 2 ? '/allproducts' : '#'}>
+            <Box>
               <ScrollImage
                 src={'/autoScroll/strawberry.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -73,11 +80,10 @@ export const HomePromoSlider = () => {
               <BoxTitle>
                 <Title>пігменти для фарб</Title>
               </BoxTitle>
-            </StyledLink>
-          </Box>
-
-          <Box>
-            <StyledLink href="/oferta">
+            </Box>
+          </StyledLink>
+          <StyledLink href={currentSlide === 3 ? '/oferta' : '#'}>
+            <Box>
               <ScrollImage
                 src={'/autoScroll/promo-farby.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -87,11 +93,10 @@ export const HomePromoSlider = () => {
               <BoxTitle>
                 <Title>пігменти для бетону</Title>
               </BoxTitle>
-            </StyledLink>
-          </Box>
-
-          <Box>
-            <StyledLink href="/gallery">
+            </Box>
+          </StyledLink>
+          <StyledLink href={currentSlide === 4 ? '/gallery' : '#'}>
+            <Box>
               <ScrollImage
                 src={'/autoScroll/1.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -101,10 +106,10 @@ export const HomePromoSlider = () => {
               <BoxTitle>
                 <Title>пігменти кобальтовий синій</Title>
               </BoxTitle>
-            </StyledLink>
-          </Box>
-          <Box>
-            <StyledLink href="/oferta">
+            </Box>
+          </StyledLink>
+          <StyledLink href={currentSlide === 5 ? '/oferta' : '#'}>
+            <Box>
               <ScrollImage
                 src={'/autoScroll/3.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -114,10 +119,10 @@ export const HomePromoSlider = () => {
               <BoxTitle>
                 <Title>пігменти для асфальту</Title>
               </BoxTitle>
-            </StyledLink>
-          </Box>
-          <Box>
-            <StyledLink href="/allproducts">
+            </Box>
+          </StyledLink>
+          <StyledLink href={currentSlide === 6 ? '/allproducts' : '#'}>
+            <Box>
               <ScrollImage
                 src={'/autoScroll/6.jpg'}
                 alt={'PRETIOX TITANIUM WHITE'}
@@ -127,8 +132,8 @@ export const HomePromoSlider = () => {
               <BoxTitle>
                 <Title>пігменти хром зелений</Title>
               </BoxTitle>
-            </StyledLink>
-          </Box>
+            </Box>
+          </StyledLink>
         </Slider>
       </div>
     </Section>

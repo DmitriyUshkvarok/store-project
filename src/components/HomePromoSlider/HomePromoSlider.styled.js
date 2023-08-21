@@ -28,6 +28,12 @@ export const Box = styled.div`
 
 export const StyledLink = styled(Link)`
   pointer-events: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100000;
 `;
 
 export const ScrollImage = styled(Image)`

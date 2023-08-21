@@ -46,8 +46,7 @@ const AllProducts = () => {
   });
   const dispatch = useDispatch();
 
-  const { data, isLoading } =
-    useGetAllProductsFilteredNoToketQuery(qwery);
+  const { data, isLoading } = useGetAllProductsFilteredNoToketQuery(qwery);
   const [totalElements, setTotalElements] = useState(0);
 
   console.log(`data`, data);
@@ -230,12 +229,13 @@ const AllProducts = () => {
 
                   <BoxTitle>
                     <TitleProduct>{product.name}</TitleProduct>
-                    <Producer>
-                      Виробник: <Info>{product.country}</Info>{' '}
-                    </Producer>
+
                     <Price>
                       Ціна: <Info>{product.price} грн.</Info>
                     </Price>
+                    <Producer>
+                      Виробник: <Info>{product.country}</Info>{' '}
+                    </Producer>
                   </BoxTitle>
                 </Link>
               </Item>
