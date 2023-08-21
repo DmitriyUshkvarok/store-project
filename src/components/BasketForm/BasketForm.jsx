@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleOrderForm,
   FormWrapper,
@@ -9,8 +9,10 @@ import {
   OrderStyleField,
   ValidationError,
   OrderBtn,
+  OrderFormGroupRadio,
+  OrderFormSubTitleRadio,
 } from './BasketForm.styled';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, Field } from 'formik';
 import orderSchema from '@/src/validationSchema/orderFormSchema';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,8 +23,10 @@ import {
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 import CryptoJS from 'crypto-js';
-const uuid = require('uuid');
+import PaymentForm from '../PaymentsForm/PaymentsForm';
+import PaymentMethod from '../PaymentsMethod/PaymentsMethod';
 
+const uuid = require('uuid');
 const initialValues = {
   name: '',
   phone: '',
@@ -36,6 +40,7 @@ const OrderFom = ({ setOrderSuccess }) => {
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
+  const [cardPayment, setCardPayment] = useState(false);
 
   const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
 
@@ -103,107 +108,23 @@ const OrderFom = ({ setOrderSuccess }) => {
         dispatch(clearAllQuantities());
 
         /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
-
-        data['merchantSignature'] = hashed_value;
-        formRef.current.submit();
+        if (cardPayment) {
+          data['merchantSignature'] = hashed_value;
+          formRef.current.submit();
+        }
         /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
         resetForm();
         setOrderSuccess(true);
       }
     } catch (error) {
-      console.error('Ошибка при отправке заказа:', error);
+      console.error('Помилка при відправці замовлення:', error);
     }
   };
 
   return (
     <>
-      <div>
-        <form
-          ref={formRef}
-          method="post"
-          action="https://secure.wayforpay.com/pay"
-          acceptCharset="UTF-8"
-        >
-          <input
-            type="hidden"
-            name="merchantAccount"
-            value={data.merchantAccount}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="merchantDomainName"
-            value={data.merchantDomainName}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="orderReference"
-            value={data.orderReference}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="orderDate"
-            value={data.orderDate}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="amount"
-            value={data.amount}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="currency"
-            value={data.currency}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="orderTimeout"
-            value={data.orderTimeout}
-            onChange={() => {}}
-          />
-          {data.productName.map((name, index) => (
-            <input
-              key={`productName_${index}`}
-              type="hidden"
-              name="productName[]"
-              value={name}
-              onChange={() => {}}
-            />
-          ))}
-
-          {data.productPrice.map((price, index) => (
-            <input
-              key={`productPrice_${index}`}
-              type="hidden"
-              name="productPrice[]"
-              value={price}
-              onChange={() => {}}
-            />
-          ))}
-
-          {data.productCount.map((count, index) => (
-            <input
-              key={`productCount_${index}`}
-              type="hidden"
-              name="productCount[]"
-              value={count}
-              onChange={() => {}}
-            />
-          ))}
-          <input
-            type="hidden"
-            name="merchantSignature"
-            value={hashed_value}
-            onChange={() => {}}
-          />
-        </form>
-      </div>
+      <PaymentForm formRef={formRef} data={data} hashed_value={hashed_value} />
       <Formik
         initialValues={initialValues}
         validationSchema={orderSchema}
@@ -235,8 +156,17 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup>
 
+            <PaymentMethod
+              cardPayment={cardPayment}
+              setCardPayment={setCardPayment}
+            />
+
             <OrderBtn type="submit">
-              {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
+              {isLoading
+                ? 'Зачекайте...'
+                : cardPayment
+                ? 'Перейти до оплати'
+                : 'Підтвердити замовлення'}
             </OrderBtn>
           </FormWrapper>
         </StyleOrderForm>

@@ -114,6 +114,7 @@ export const ProductsList = styled.ul`
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
+  margin-bottom: 30px;
 
   @media screen and (min-width: 1000px) {
     justify-content: start;
@@ -162,7 +163,7 @@ export const Item = styled.li`
   background-color: #fff;
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
   border-radius: 4px;
-  height: 250px;
+  min-height: 270px;
 
   transition: transform 0.25s;
 
