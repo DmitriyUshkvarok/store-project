@@ -162,6 +162,7 @@ export const Item = styled.li`
   background-color: #fff;
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.7);
   border-radius: 4px;
+  height: 250px;
 
   transition: transform 0.25s;
 
