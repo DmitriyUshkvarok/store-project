@@ -6,7 +6,6 @@ import {
   OrderFormTitle,
   OrderFormSubTitle,
   OrderFormGroup,
-  OrderFormLabel,
   OrderStyleField,
   ValidationError,
   OrderBtn,
@@ -26,8 +25,6 @@ const uuid = require('uuid');
 
 const initialValues = {
   name: '',
-  // email: '',
-  // address: '',
   phone: '',
 };
 
@@ -40,9 +37,6 @@ const OrderFom = ({ setOrderSuccess }) => {
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
 
-  /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
-
-  /** ВИНЕСТИ В ENV */
   const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
 
   const productName = [];
@@ -77,7 +71,6 @@ const OrderFom = ({ setOrderSuccess }) => {
     CryptoJS.enc.Hex
   );
   const formRef = useRef(null);
-  /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
   const handleSubmit = async (values, { resetForm }) => {
     const formDataAndOrder = {
@@ -231,31 +224,6 @@ const OrderFom = ({ setOrderSuccess }) => {
                 {(msg) => <ValidationError>{msg}</ValidationError>}
               </ErrorMessage>
             </OrderFormGroup>
-            {/* <OrderFormGroup>
-              <OrderFormLabel htmlFor="order-email">
-                Електронна адреса:
-              </OrderFormLabel>
-              <OrderStyleField
-                type="email"
-                name="email"
-                placeholder="Електронна адреса"
-                id="order-email"
-              />
-              <ErrorMessage name="email">
-                {(msg) => <ValidationError>{msg}</ValidationError>}
-              </ErrorMessage>
-            </OrderFormGroup> */}
-            {/* <OrderFormGroup>
-              <OrderFormLabel htmlFor="order-adress">Адреса:</OrderFormLabel>
-              <OrderStyleField
-                name="address"
-                placeholder="Адреса:"
-                id="order-adress"
-              />
-              <ErrorMessage name="address">
-                {(msg) => <ValidationError>{msg}</ValidationError>}
-              </ErrorMessage>
-            </OrderFormGroup> */}
             <OrderFormGroup>
               <OrderStyleField
                 name="phone"

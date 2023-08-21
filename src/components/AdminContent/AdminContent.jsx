@@ -1,4 +1,4 @@
-import Orders from '@/src/app/admin/orders/page';
+import Orders from '@/src/app/don-pedro/orders/page';
 
 const AdminContent = () => {
   return (

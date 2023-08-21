@@ -55,13 +55,13 @@ export const BtnStatus = styled.button`
   border: none;
   padding: 5px;
   border-radius: 4px;
+  font-size: 12px;
 `;
 
 export const UserInfoTitle = styled.p`
   display: flex;
   justify-content: center;
   font-weight: 500;
-  /* text-transform: uppercase; */
   font-size: 17px;
   margin-bottom: 10px;
   text-align: center;
@@ -139,7 +139,6 @@ export const OrderItemsTitle = styled.p`
   display: flex;
   justify-content: center;
   font-weight: 400;
-  /* text-transform: uppercase; */
   font-size: 15px;
   margin-bottom: 10px;
   text-align: center;

@@ -164,7 +164,8 @@ const AdminOrdersList = () => {
                     onClick={() => handleToggleStatus(order._id, !order.done)}
                     disabled={order.done || isUpdating[order._id]} // Блокируем кнопку при обновлении
                   >
-                    В очікуванні <MdPendingActions color="orange" size={20} />
+                    Перемістити у виконані
+                    <MdPendingActions color="orange" size={20} />
                   </BtnStatus>
                 )}
               </BtnStatusBlock>

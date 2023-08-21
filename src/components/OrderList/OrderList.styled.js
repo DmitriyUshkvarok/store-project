@@ -76,6 +76,10 @@ export const CartList = styled.ul`
     flex-direction: row;
     width: calc(100vw - 80px);
     overflow-x: auto;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 

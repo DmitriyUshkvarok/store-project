@@ -24,13 +24,10 @@ import {
   TotalPriceTitle,
   TotalPriceInfo,
   DataInfo,
-  StylePrice,
-  StyleQuantity,
   StyleRiDeleteBin5Fill,
   PriceBox,
   TotalWeight,
   SpanTotalWeight,
-  ProductNameTitle,
 } from './OrderList.styled';
 
 import { removeFromCart, updateTotalPrice } from '@/src/redux/cart/cartSlise';
@@ -126,10 +123,6 @@ const OrderList = () => {
                     </CounterWrapper>
                     <DataInfo>{item.data}</DataInfo>
                   </OrdersGroup>
-                  {/* <OrdersGroup>
-                    <ProductName>Кількість:</ProductName>
-                    <SubOrdersInfo>{quantity[item.id] || 0}</SubOrdersInfo>
-                  </OrdersGroup> */}
                   <OrdersGroup>
                     <ProductName>Вага:</ProductName>
                     <SubOrdersInfo>{item.weight} кг</SubOrdersInfo>
