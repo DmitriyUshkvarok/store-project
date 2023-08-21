@@ -63,7 +63,7 @@ export const StyledSelect = styled.select`
   width: 100%;
   min-width: 150px;
   padding: 5px;
-  border: 2px solid #0051ff;
+  border: 2px solid #aaaaaa;
   font-size: 14px;
   appearance: none;
   outline: none;
@@ -208,7 +208,6 @@ export const Producer = styled.p`
   font-weight: bold;
   letter-spacing: 0.025em;
   line-height: 20px;
-  margin-bottom: 13px;
 `;
 
 export const Info = styled.span`
