@@ -23,6 +23,8 @@ import {
 } from '@/src/redux/cart/cartSlise';
 import { clearAllQuantities } from '@/src/redux/orderQantity/quantitySlice';
 import CryptoJS from 'crypto-js';
+import PaymentForm from '../PaymentsForm/PaymentsForm';
+import PaymentMethod from '../PaymentsMethod/PaymentsMethod';
 
 const uuid = require('uuid');
 const initialValues = {
@@ -38,9 +40,7 @@ const OrderFom = ({ setOrderSuccess }) => {
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
-  const [cardPayment, setCardPayment] = useState(
-    'По перерахунку за реквізитами'
-  );
+  const [cardPayment, setCardPayment] = useState(false);
 
   const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
 
@@ -112,107 +112,19 @@ const OrderFom = ({ setOrderSuccess }) => {
           data['merchantSignature'] = hashed_value;
           formRef.current.submit();
         }
-
         /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
         resetForm();
         setOrderSuccess(true);
       }
     } catch (error) {
-      console.error('Ошибка при отправке заказа:', error);
+      console.error('Помилка при відправці замовлення:', error);
     }
   };
 
   return (
     <>
-      <div>
-        <form
-          ref={formRef}
-          method="post"
-          action="https://secure.wayforpay.com/pay"
-          acceptCharset="UTF-8"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <input
-            type="hidden"
-            name="merchantAccount"
-            value={data.merchantAccount}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="merchantDomainName"
-            value={data.merchantDomainName}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="orderReference"
-            value={data.orderReference}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="orderDate"
-            value={data.orderDate}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="amount"
-            value={data.amount}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="currency"
-            value={data.currency}
-            onChange={() => {}}
-          />
-          <input
-            type="hidden"
-            name="orderTimeout"
-            value={data.orderTimeout}
-            onChange={() => {}}
-          />
-          {data.productName.map((name, index) => (
-            <input
-              key={`productName_${index}`}
-              type="hidden"
-              name="productName[]"
-              value={name}
-              onChange={() => {}}
-            />
-          ))}
-
-          {data.productPrice.map((price, index) => (
-            <input
-              key={`productPrice_${index}`}
-              type="hidden"
-              name="productPrice[]"
-              value={price}
-              onChange={() => {}}
-            />
-          ))}
-
-          {data.productCount.map((count, index) => (
-            <input
-              key={`productCount_${index}`}
-              type="hidden"
-              name="productCount[]"
-              value={count}
-              onChange={() => {}}
-            />
-          ))}
-          <input
-            type="hidden"
-            name="merchantSignature"
-            value={hashed_value}
-            onChange={() => {}}
-          />
-        </form>
-      </div>
+      <PaymentForm formRef={formRef} data={data} hashed_value={hashed_value} />
       <Formik
         initialValues={initialValues}
         validationSchema={orderSchema}
@@ -244,47 +156,10 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup>
 
-            <OrderFormSubTitleRadio>Оплата:</OrderFormSubTitleRadio>
-            <OrderFormGroupRadio>
-              <input
-                type="radio"
-                id="paymentMethod-1"
-                name="paymentMethod"
-                value="По перерахунку за реквізитами"
-                onClick={() => setCardPayment(false)}
-                style={{ cursor: 'pointer' }}
-                defaultChecked={true}
-              />
-              <label htmlFor="paymentMethod-1" style={{ cursor: 'pointer' }}>
-                По перерахунку за реквізитами
-              </label>
-            </OrderFormGroupRadio>
-            <OrderFormGroupRadio>
-              <input
-                type="radio"
-                id="paymentMethod-2"
-                name="paymentMethod"
-                value="Готівкою"
-                onClick={() => setCardPayment(false)}
-                style={{ cursor: 'pointer' }}
-              />
-              <label htmlFor="paymentMethod-2" style={{ cursor: 'pointer' }}>
-                Готівкою
-              </label>
-            </OrderFormGroupRadio>
-            <OrderFormGroupRadio>
-              <input
-                type="radio"
-                id="paymentMethod-3"
-                name="paymentMethod"
-                value="Картою"
-                onClick={() => setCardPayment(true)}
-                style={{ cursor: 'pointer' }}
-              />
-              <label htmlFor="paymentMethod-3" style={{ cursor: 'pointer' }}>
-                Картою
-              </label>
-            </OrderFormGroupRadio>
+            <PaymentMethod
+              cardPayment={cardPayment}
+              setCardPayment={setCardPayment}
+            />
 
             <OrderBtn type="submit">
               {isLoading
