@@ -28,6 +28,7 @@ import { useGetOfertaQuery } from '@/src/redux/ofertaApi/ofertaApi';
 import { slugify } from 'transliteration';
 import { setDataAndId } from '@/src/redux/ofertaApi/ofertaSlice';
 
+
 const Navigation = () => {
   const [togle, setTogle] = useState(false);
   const cartItems = useSelector(cartSelector.getIsItems);
