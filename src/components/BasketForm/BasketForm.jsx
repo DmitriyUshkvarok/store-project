@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleOrderForm,
   FormWrapper,
@@ -9,8 +9,10 @@ import {
   OrderStyleField,
   ValidationError,
   OrderBtn,
+  OrderFormGroupRadio,
+  OrderFormSubTitleRadio,
 } from './BasketForm.styled';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, Field } from 'formik';
 import orderSchema from '@/src/validationSchema/orderFormSchema';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useSelector, useDispatch } from 'react-redux';
@@ -36,6 +38,9 @@ const OrderFom = ({ setOrderSuccess }) => {
   const quantity = useSelector((state) => state.quantity);
   const [createOrders, { isLoading, isError, isSuccess }] =
     useCreateOrdersMutation();
+  const [cardPayment, setCardPayment] = useState(
+    'По перерахунку за реквізитами'
+  );
 
   const SECRET_KEY = 'flk3409refn54t54t*FNJRET';
 
@@ -103,9 +108,11 @@ const OrderFom = ({ setOrderSuccess }) => {
         dispatch(clearAllQuantities());
 
         /** START============== WAY FOR PAY (DON'T TOUCH) ==============START */
+        if (cardPayment) {
+          data['merchantSignature'] = hashed_value;
+          formRef.current.submit();
+        }
 
-        data['merchantSignature'] = hashed_value;
-        formRef.current.submit();
         /** END=================== WAY FOR PAY (DON'T TOUCH) =================END */
 
         resetForm();
@@ -124,6 +131,8 @@ const OrderFom = ({ setOrderSuccess }) => {
           method="post"
           action="https://secure.wayforpay.com/pay"
           acceptCharset="UTF-8"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <input
             type="hidden"
@@ -235,8 +244,54 @@ const OrderFom = ({ setOrderSuccess }) => {
               </ErrorMessage>
             </OrderFormGroup>
 
+            <OrderFormSubTitleRadio>Оплата:</OrderFormSubTitleRadio>
+            <OrderFormGroupRadio>
+              <input
+                type="radio"
+                id="paymentMethod-1"
+                name="paymentMethod"
+                value="По перерахунку за реквізитами"
+                onClick={() => setCardPayment(false)}
+                style={{ cursor: 'pointer' }}
+                defaultChecked={true}
+              />
+              <label htmlFor="paymentMethod-1" style={{ cursor: 'pointer' }}>
+                По перерахунку за реквізитами
+              </label>
+            </OrderFormGroupRadio>
+            <OrderFormGroupRadio>
+              <input
+                type="radio"
+                id="paymentMethod-2"
+                name="paymentMethod"
+                value="Готівкою"
+                onClick={() => setCardPayment(false)}
+                style={{ cursor: 'pointer' }}
+              />
+              <label htmlFor="paymentMethod-2" style={{ cursor: 'pointer' }}>
+                Готівкою
+              </label>
+            </OrderFormGroupRadio>
+            <OrderFormGroupRadio>
+              <input
+                type="radio"
+                id="paymentMethod-3"
+                name="paymentMethod"
+                value="Картою"
+                onClick={() => setCardPayment(true)}
+                style={{ cursor: 'pointer' }}
+              />
+              <label htmlFor="paymentMethod-3" style={{ cursor: 'pointer' }}>
+                Картою
+              </label>
+            </OrderFormGroupRadio>
+
             <OrderBtn type="submit">
-              {isLoading ? 'Зачекайте...' : 'Підтвердити замовлення'}
+              {isLoading
+                ? 'Зачекайте...'
+                : cardPayment
+                ? 'Перейти до оплати'
+                : 'Підтвердити замовлення'}
             </OrderBtn>
           </FormWrapper>
         </StyleOrderForm>
