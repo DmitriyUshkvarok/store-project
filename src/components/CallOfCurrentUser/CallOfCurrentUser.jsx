@@ -7,7 +7,7 @@ const CallOfCurrentUser = ({ children }) => {
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const { data } = useCheckTokenQuery({
     skip: !isLoggedIn,
-    refetchOnMount: isLoggedIn,
+    refetchOnMount: true,
   });
 
   return <>{children}</>;

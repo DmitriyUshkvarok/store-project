@@ -15,7 +15,7 @@ const LoginOrAdmin = () => {
     isLoading,
   } = useCheckTokenQuery({
     skip: !isLoggedIn,
-    refetchOnMount: isLoggedIn,
+    refetchOnMount: true,
   });
 
   if (isLoading) {
