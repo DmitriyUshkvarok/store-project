@@ -1,9 +1,6 @@
 import css from './CustomBarChart.module.css';
 
 const CustomBarChart = ({ data }) => {
-  const totalValue = data.find(
-    (item) => item.label === 'Загальна кількість'
-  ).value;
   const maxValue = Math.max(...data.map((item) => item.value));
 
   return (

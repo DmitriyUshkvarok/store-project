@@ -1,8 +1,4 @@
 import Pagination from 'react-bootstrap/Pagination';
-import {
-  ActivePaginationItem,
-  InactivePaginationItem,
-} from '@/src/components/CatalogManagment/CatalogManagment.styled';
 
 export const renderPaginationItems = (
   totalPages,

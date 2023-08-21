@@ -79,13 +79,16 @@ export const CartCount = styled.span`
 
 export const ItemForBurger = styled.li`
   color: #b1b1b1;
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 33px;
-  padding: 0 21px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px;
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  border-bottom: 2px solid #46464647;
+  text-transform: lowercase;
+  line-height: 19px;
+  letter-spacing: 0.4px;
+ 
   &:hover,
   &:focus {
     background-color: #e3010f;

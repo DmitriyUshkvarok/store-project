@@ -14,8 +14,8 @@ const AdminSidebar = () => {
       <PanelCategoryList>
         <PanelCategoryListItem>
           <StyleLink
-            className={pathname === '/admin/orders' ? 'active' : ''}
-            href="/admin/orders"
+            className={pathname === '/don-pedro/orders' ? 'active' : ''}
+            href="/don-pedro/orders"
           >
             Замовлення
           </StyleLink>
@@ -23,8 +23,10 @@ const AdminSidebar = () => {
         </PanelCategoryListItem>
         <PanelCategoryListItem>
           <StyleLink
-            className={pathname === '/admin/catalog-management' ? 'active' : ''}
-            href="/admin/catalog-management"
+            className={
+              pathname === '/don-pedro/catalog-management' ? 'active' : ''
+            }
+            href="/don-pedro/catalog-management"
           >
             Керування Каталогом
           </StyleLink>
@@ -33,9 +35,9 @@ const AdminSidebar = () => {
         <PanelCategoryListItem>
           <StyleLink
             className={
-              pathname === '/admin/category-management' ? 'active' : ''
+              pathname === '/don-pedro/category-management' ? 'active' : ''
             }
-            href="/admin/category-management"
+            href="/don-pedro/category-management"
           >
             Додати товар
           </StyleLink>
@@ -43,8 +45,10 @@ const AdminSidebar = () => {
         </PanelCategoryListItem>
         <PanelCategoryListItem>
           <StyleLink
-            className={pathname === '/admin/product-management' ? 'active' : ''}
-            href="/admin/product-management"
+            className={
+              pathname === '/don-pedro/product-management' ? 'active' : ''
+            }
+            href="/don-pedro/product-management"
           >
             Галерея
           </StyleLink>

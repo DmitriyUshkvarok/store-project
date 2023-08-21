@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import Spinner from '../SpinerOferta/SpinerOferta';
 import {
   useGetGalleryQuery,
@@ -25,10 +24,9 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { Formik } from 'formik';
 
 const ProductManagementForGallery = () => {
-  const { data, isError, isLoading } = useGetGalleryQuery();
+  const { data, isLoading } = useGetGalleryQuery();
   const [deleteGalleryItem] = useDeleteGalleryItemMutation();
-  const [addGalleryItem, { isLoading: isAdding, error: addError }] =
-    useAddGalleryItemMutation();
+  const [addGalleryItem] = useAddGalleryItemMutation();
 
   const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +47,7 @@ const ProductManagementForGallery = () => {
     }
   };
 
-  const handleSubmit = async (value, { resetForm }) => {
+  const handleSubmit = async ({ resetForm }) => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append('picture', selectedFile);

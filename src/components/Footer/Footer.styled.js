@@ -96,7 +96,6 @@ export const BoxAbout = styled.div`
 /** */
 
 export const Btn = styled.button`
-  /* margin-left: 10px; */
   padding: 10px;
   border: none;
   background: none;

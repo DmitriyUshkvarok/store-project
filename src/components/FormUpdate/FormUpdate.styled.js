@@ -33,7 +33,6 @@ export const ImageSelector = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  /* font-weight: bold; */
   height: 42px;
   line-height: 42px;
   text-transform: uppercase;

@@ -14,17 +14,13 @@ import { AiOutlinePlus } from 'react-icons/ai';
 const ListByCategory = ({ data, handleShow, title, handleDelete }) => {
   return (
     <Box>
-      {/* <BoxAdd>
-        <Title> Додати {title}</Title>
-      </BoxAdd> */}
-
       <ResponsiveTableContainer>
         <StyledTable>
           <thead>
             <tr>
               <th>Зображення</th>
               <th>
-                Категорії{' '}
+                Категорії
                 <BtnPlus
                   type="button"
                   onClick={() => handleShow('add category')}

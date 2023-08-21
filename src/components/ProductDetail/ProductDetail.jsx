@@ -63,8 +63,6 @@ const ProductDetail = () => {
     productId: product.id,
   });
 
-  console.log(data);
-
   const productInfo = data;
 
   const isProductInCart = cartItems.some(
@@ -148,7 +146,6 @@ const ProductDetail = () => {
                       height={200}
                     />
                   </ImageBlock>
-                  {/* <ProductСharacterization>Опис</ProductСharacterization> */}
                   <ProductDescription>
                     {productInfo?.description}
                   </ProductDescription>

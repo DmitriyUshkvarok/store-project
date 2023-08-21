@@ -11,8 +11,6 @@ import {
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-//
-
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -29,7 +27,6 @@ export const HomePromoSlider = () => {
     autoplaySpeed: 1000,
     prevArrow: <EmptyArrow />,
     nextArrow: <EmptyArrow />,
-    // fade: true,
     pauseOnHover: false,
     fade: false,
   };

@@ -119,7 +119,6 @@ export const Create = styled(MdCreate)`
   font-weight: bold;
 `;
 
-/** */
 
 export const ListOferta = styled.ul`
   display: flex;

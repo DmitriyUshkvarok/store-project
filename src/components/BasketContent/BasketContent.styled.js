@@ -30,9 +30,7 @@ export const BasketTitle = styled.h2`
 export const InfoTextOddersClear = styled.div`
   text-align: center;
   margin-top: 10px;
-  /* text-transform: uppercase; */
   font-weight: 400;
-  /* color: #222; */
 `;
 
 export const StyleLink = styled(Link)`
