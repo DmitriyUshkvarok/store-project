@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import authSelector from '@/src/redux/adminAuthApi/authSelectors';
 import { useEffect, useState } from 'react';
+import Spinner from '@/src/components/SpinerOferta/SpinerOferta';
 
 const PrivatRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ const PrivatRoute = ({ children }) => {
   }, [isLoggedIn, router]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   return <>{children}</>;

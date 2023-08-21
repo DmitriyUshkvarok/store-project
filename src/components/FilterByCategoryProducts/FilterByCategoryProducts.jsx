@@ -54,9 +54,6 @@ const FilterByCategoryProducts = ({
       <Btn onClick={reset} type="button">
         Скинути фільтр
       </Btn>
-      {/* <ButtonWhiteAndBlack onClick={reset} type="button">
-        Скинути фільтр
-      </ButtonWhiteAndBlack> */}
     </div>
   );
 };

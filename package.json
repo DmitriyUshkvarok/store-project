@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "crypto-js": "^4.1.1",
     "date-fns": "^2.30.0",
@@ -39,7 +38,6 @@
     "simplelightbox": "^2.14.1",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.1",
-    "swiper": "^10.1.0",
     "transliteration": "^2.3.5",
     "use-debounce": "^9.0.4",
     "uuid": "^9.0.0",

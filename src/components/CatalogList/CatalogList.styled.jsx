@@ -56,14 +56,6 @@ export const ListCatalog = styled.ul`
   border-top: 4px solid gray;
 
   margin-top: 30px;
-
-  @media screen and (min-width: 874px) {
-    /* margin: 0 auto; */
-    /* width: 621px; */
-  }
-  @media screen and (min-width: 1000px) {
-    /* width: 944px; */
-  }
 `;
 
 export const ItemListCatalog = styled.li`

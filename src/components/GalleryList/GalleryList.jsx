@@ -4,7 +4,6 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import ButtonWhiteAndBlack from '../ButtonWhiteAndBlack/ButtonWhiteAndBlack';
 import Spinner from '../SpinerOferta/SpinerOferta';
-// import { smoothScrollToTop } from '@/src/utils/smoothScrollToTop';
 import { animateScroll as scroll } from 'react-scroll';
 import { useGetGalleryQuery } from '@/src/redux/galleryApi/galleryApi';
 import {

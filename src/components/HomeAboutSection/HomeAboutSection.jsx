@@ -33,8 +33,6 @@ const HomeAboutSection = () => {
   const EmptyArrow = () => <div style={{ display: 'none' }}></div>;
 
   const settings = {
-    // dots: true,
-    // infinite: true,
     speed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -206,7 +204,6 @@ const HomeAboutSection = () => {
 
             <StyledLink href={`/about`}>
               більше
-              {/*  переносить на сторінку Запевняємо */}
               <BsArrowRight size="20px" />
             </StyledLink>
           </BoxAssure>

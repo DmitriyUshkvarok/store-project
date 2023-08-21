@@ -1,4 +1,3 @@
-import { BsArrowRight } from 'react-icons/bs';
 import { Btn } from './BynBuy.styled';
 
 const BtnBuy = ({ handleBuy, isAddedToCart }) => {
