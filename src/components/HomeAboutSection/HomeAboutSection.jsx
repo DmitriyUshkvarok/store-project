@@ -29,6 +29,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import imagesData from '../../../imagesData.json';
+
 const HomeAboutSection = () => {
   const EmptyArrow = () => <div style={{ display: 'none' }}></div>;
 
@@ -42,29 +44,12 @@ const HomeAboutSection = () => {
     nextArrow: <EmptyArrow />,
     fade: true,
   };
-  const images = [
-    { src: '/pigment/92f4.jpeg', alt: 'Slide photo 1' },
-    { src: '/pigment/000.jpg', alt: 'Slide photo 2' },
-    { src: '/pigment/111.jpeg', alt: 'Slide photo 3' },
-  ];
 
-  const imagesR = [
-    { src: '/pigment/111.jpeg', alt: 'Slide photo 1' },
-    { src: '/pigment/abstract.jpeg', alt: 'Slide photo 2' },
-    { src: '/pigment/generated.webp', alt: 'Slide photo 3' },
-  ];
+  const images = imagesData.find((item) => item.id === 'images').data;
+  const imagesR = imagesData.find((item) => item.id === 'imagesR').data;
 
-  const imagesP = [
-    { src: '/pigment/poroshkovye.jpeg', alt: 'Slide photo 1' },
-    { src: '/pigment/istock4.jpeg', alt: 'Slide photo 2' },
-    { src: '/pigment/fc01.jpeg', alt: 'Slide photo 3' },
-  ];
-
-  const imagesE = [
-    { src: '/pigment/000.jpg', alt: 'Slide photo 1' },
-    { src: '/pigment/colourblock.jpeg', alt: 'Slide photo 2' },
-    { src: '/pigment/gears.jpg', alt: 'Slide photo 3' },
-  ];
+  const imagesP = imagesData.find((item) => item.id === 'imagesP').data;
+  const imagesE = imagesData.find((item) => item.id === 'imagesE').data;
 
   return (
     <Overlay>
@@ -92,7 +77,7 @@ const HomeAboutSection = () => {
               </Slider>
             </Item>
             <Item>
-              <ItemLink href={`/oferta`}>
+              <ItemLink href={`/allproducts`}>
                 <Chip>пігменти </Chip>рідина
               </ItemLink>
             </Item>
@@ -124,7 +109,7 @@ const HomeAboutSection = () => {
             </Item>
 
             <Item>
-              <ItemLink href={`/oferta`}>
+              <ItemLink href={`/gallery`}>
                 <Chip>еко-пігменти </Chip>порошок
               </ItemLink>
             </Item>
