@@ -18,6 +18,34 @@ export const metadata = {
   title: 'Shop | Home',
   description:
     'Інтернет-магазин промислових фарбових пігментів у порошках, рідкій та гранульованій формі. Великий асортимент промислових фарбових матеріалів для виробництва та інших промислових потреб.',
+  keywords: [
+    'промислові фарбові пігменти',
+    'порошкові фарби',
+    'JavaScript',
+    'рідкі фарби',
+    'гранульовані фарби',
+    'промислові матеріали',
+  ],
+  openGraph: {
+    type: 'website',
+    siteName: 'Хімбрук',
+    description:
+      'Інтернет-магазин промислових фарбових пігментів різних видів для виробництва та промислових потреб. Великий асортимент промислових фарбових матеріалів.',
+    authors: [
+      'Dmitriy Ushkvarok',
+      'Oleh Paslavskiy',
+      'Anastasiia Hudymenko',
+      'Vitalii Nozhenko',
+      'Anastasiia Kor',
+    ],
+    images: [
+      {
+        url: '/for-shop.png"',
+        width: 800,
+        height: 600,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -30,21 +58,6 @@ export default function RootLayout({ children }) {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <meta
-            name="description"
-            content="Інтернет-магазин промислових фарбових пігментів у порошках, рідкій та гранульованій формі. Великий асортимент промислових фарбових матеріалів для виробництва та інших промислових потреб."
-          />
-          <meta
-            name="keywords"
-            content="промислові фарбові пігменти, порошкові фарби, рідкі фарби, гранульовані фарби, промислові матеріали"
-          />
-
-          <meta
-            property="og:description"
-            content="Інтернет-магазин промислових фарбових пігментів різних видів для виробництва та промислових потреб. Великий асортимент промислових фарбових матеріалів."
-          />
-          <meta property="og:image" content="/for-shop.png" />
-          <meta property="og:type" content="website" />
         </Head>
 
         <body className={roboto.className}>
@@ -52,7 +65,7 @@ export default function RootLayout({ children }) {
             <ProvaiderToastContainer />
             <Header />
             <main>{children}</main>
-            <BtnUpDown/>
+            <BtnUpDown />
           </CallOfCurrentUser>
         </body>
       </html>

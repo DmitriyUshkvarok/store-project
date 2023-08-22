@@ -56,6 +56,7 @@ export const HomePromoSlider = () => {
                   width="2000"
                   height="650"
                   priority={true}
+                  sizes="100vw"
                 />
                 <BoxTitle>
                   <Title>{slide.title}</Title>
