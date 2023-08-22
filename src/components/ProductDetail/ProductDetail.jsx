@@ -52,6 +52,9 @@ import {
 import Container from '../Container/Container';
 import BtnBuy from '../BtnBuy/BtnBuy';
 import cartSelector from '@/src/redux/cart/cartSelector';
+import {  DecorSpanBackLink,
+  CurrentNavDecor, } from "@/src/components/CatalogList/CatalogList.styled";
+import Link from 'next/link';
 
 const ProductDetail = () => {
   const params = useParams();
@@ -120,13 +123,17 @@ const ProductDetail = () => {
     <ProductDetailSection>
       <Box>
         <LinkPanel>
-          <StyleLinkDetail href={`/home`}>Головна /</StyleLinkDetail>
-          <StyleLinkDetail href={`/oferta`}>Каталог /</StyleLinkDetail>
-          <StyleLinkDetail href={`/oferta/${params.product}`}>
-            {category.name} /
-          </StyleLinkDetail>
-
-          <CurrentLink>{data?.name}</CurrentLink>
+          <Link href={`/home`}> 
+          <DecorSpanBackLink>Головна /</DecorSpanBackLink>
+          </Link>
+          <Link href={`/oferta`}>
+            <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
+          </Link>
+          <Link href={`/oferta/${params.product}`}>
+            <DecorSpanBackLink>{category.name} /</DecorSpanBackLink>
+          </Link>
+          <CurrentNavDecor>{data?.name}</CurrentNavDecor>
+         
         </LinkPanel>
         <Product>
           {isLoading ? (
