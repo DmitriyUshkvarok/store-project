@@ -1,11 +1,18 @@
 "use client"
 import { BsArrowUpCircle } from "react-icons/bs";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
+import { usePathname } from 'next/navigation';
 import { Btn } from "./BtnUpDown.styled";
 
 const BtnUpDown = () => {
   const [showButton, setShowButton] = useState(false);
+  const pathname = usePathname();
+  
+
+  const isAdminPanel = pathname.includes("/don-pedro")
+
+  
 
   const handleScroll = () => {
     if (window.scrollY > 100) {
@@ -29,7 +36,9 @@ const BtnUpDown = () => {
     });
   }
 
- return ( showButton && <Btn onClick={handleClickTop} type="button"><BsArrowUpCircle size={24}/></Btn>)
+ return (
+  !isAdminPanel && showButton && <Btn onClick={handleClickTop} type="button"><BsArrowUpCircle size={24}/>
+   </Btn>)
 
   
 }

@@ -14,9 +14,8 @@ import {
   LinkForB,
   MenuBurger,
 } from './Navigation.styled';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { RxHamburgerMenu ,RxExit} from 'react-icons/rx';
 import { IoIosBasket } from 'react-icons/io';
-import { RxExit } from 'react-icons/rx';
 import { usePathname } from 'next/navigation';
 import cartSelector from '@/src/redux/cart/cartSelector';
 import { useSelector, useDispatch } from 'react-redux';
