@@ -72,6 +72,7 @@ const HomeAboutSection = () => {
                     alt={image.alt}
                     width="250"
                     height="188"
+                    sizes="100vw"
                   />
                 ))}
               </Slider>
@@ -90,9 +91,10 @@ const HomeAboutSection = () => {
                     alt={image.alt}
                     width="250"
                     height="188"
+                    sizes="100vw"
                   />
                 ))}
-              </Slider>{' '}
+              </Slider>
             </Item>
             <Item>
               <Slider {...settings}>
@@ -103,6 +105,7 @@ const HomeAboutSection = () => {
                     alt={image.alt}
                     width="250"
                     height="188"
+                    sizes="100vw"
                   />
                 ))}
               </Slider>
@@ -122,6 +125,7 @@ const HomeAboutSection = () => {
                     alt={image.alt}
                     width="250"
                     height="188"
+                    sizes="100vw"
                   />
                 ))}
               </Slider>
@@ -142,6 +146,7 @@ const HomeAboutSection = () => {
                 width="500"
                 height="550"
                 priority={true}
+                sizes="100vw"
               />
             </Salamander>
 
@@ -183,6 +188,7 @@ const HomeAboutSection = () => {
                   alt="paint pigments"
                   width="160"
                   height="160"
+                  sizes="100vw"
                 />
               </Pigments>
             </ListAssure>

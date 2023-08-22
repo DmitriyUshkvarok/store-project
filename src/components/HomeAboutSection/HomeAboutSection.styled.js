@@ -5,7 +5,8 @@ import Image from 'next/image';
 
 export const SwiperImage = styled(Image)`
   width: 250px;
-  height: 100%;
+  height: 188px;
+  object-fit: cover;
 `;
 
 export const Overlay = styled.section`
