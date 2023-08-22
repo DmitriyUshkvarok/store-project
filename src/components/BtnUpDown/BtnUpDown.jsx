@@ -8,13 +8,9 @@ import { Btn } from "./BtnUpDown.styled";
 const BtnUpDown = () => {
   const [showButton, setShowButton] = useState(false);
   const pathname = usePathname();
-  
-
   const isAdminPanel = pathname.includes("/don-pedro")
 
-  
-
-  const handleScroll = () => {
+ const handleScroll = () => {
     if (window.scrollY > 100) {
       setShowButton(true);
     } else {
@@ -37,7 +33,7 @@ const BtnUpDown = () => {
   }
 
  return (
-  !isAdminPanel && showButton && <Btn onClick={handleClickTop} type="button"><BsArrowUpCircle size={24}/>
+  !isAdminPanel && showButton && <Btn onClick={handleClickTop} type="button" aria-label="button arrow top scroll"><BsArrowUpCircle size={24}/>
    </Btn>)
 
   
