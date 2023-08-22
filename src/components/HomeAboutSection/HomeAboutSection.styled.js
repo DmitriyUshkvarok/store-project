@@ -130,6 +130,7 @@ export const Salamander = styled.div`
   @media screen and (min-width: 320px) {
     display: none;
   }
+
   @media screen and (min-width: 768px) {
     display: flex;
     position: absolute;
@@ -141,7 +142,6 @@ export const Salamander = styled.div`
 export const Subject = styled.h2`
   border-bottom: 4px solid #b2b2b2;
   color: #131313;
-
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 0.025em;
@@ -149,6 +149,7 @@ export const Subject = styled.h2`
   margin-bottom: 27px;
   padding-bottom: 5px;
 `;
+
 export const Text = styled.p`
   color: #666666;
   font-size: 14px;

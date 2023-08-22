@@ -144,8 +144,7 @@ const HomeAboutSection = () => {
                 src="/ready.png"
                 alt="Salamander"
                 width="500"
-                height="550"
-                priority={true}
+                height="500"
                 sizes="100vw"
               />
             </Salamander>

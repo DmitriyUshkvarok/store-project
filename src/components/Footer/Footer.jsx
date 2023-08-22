@@ -28,7 +28,6 @@ import {
 } from './Footer.styled';
 import { useState, useRef, useEffect } from 'react';
 
-
 const Footer = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
@@ -124,7 +123,7 @@ const Footer = () => {
       </Container>
       <BoxAbout>
         <p>Усі права захищено 2023 Хімбрук веб-сайт </p>
-        <Btn ref={buttonRef} onClick={toggleMenu}>
+        <Btn type="button" name="button" ref={buttonRef} onClick={toggleMenu}>
           <MdOutlineDesktopMac />
         </Btn>
         {menuVisible && (
