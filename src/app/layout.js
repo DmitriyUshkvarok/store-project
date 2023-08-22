@@ -7,6 +7,7 @@ import ReduxProvider from '../redux/ReduxProvider/ReduxProvider';
 import ProvaiderToastContainer from '../components/ToastContainer/ToastContainer';
 import 'react-toastify/dist/ReactToastify.css';
 import CallOfCurrentUser from '../components/CallOfCurrentUser/CallOfCurrentUser';
+import BtnUpDown from '../components/BtnUpDown/BtnUpDown';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
             <ProvaiderToastContainer />
             <Header />
             <main>{children}</main>
+            <BtnUpDown/>
           </CallOfCurrentUser>
         </body>
       </html>
