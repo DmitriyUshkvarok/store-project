@@ -26,25 +26,19 @@ export const metadata = {
     'гранульовані фарби',
     'промислові матеріали',
   ],
+  authors: [
+    { name: 'Dmitriy Ushkvarok' },
+    { name: 'Oleh Paslavskiy' },
+    { name: 'Anastasiia Hudymenko' },
+    { name: 'Vitalii Nozhenko' },
+    { name: 'Anastasiia Kor' },
+  ],
   openGraph: {
+    images: '/for-shop.png',
     type: 'website',
     siteName: 'Хімбрук',
     description:
       'Інтернет-магазин промислових фарбових пігментів різних видів для виробництва та промислових потреб. Великий асортимент промислових фарбових матеріалів.',
-    authors: [
-      'Dmitriy Ushkvarok',
-      'Oleh Paslavskiy',
-      'Anastasiia Hudymenko',
-      'Vitalii Nozhenko',
-      'Anastasiia Kor',
-    ],
-    images: [
-      {
-        url: '/for-shop.png"',
-        width: 800,
-        height: 600,
-      },
-    ],
   },
 };
 
