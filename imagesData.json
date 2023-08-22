@@ -1,0 +1,82 @@
+[
+  {
+    "id": "images",
+    "data": [
+      { "src": "/pigment/92f4.jpeg", "alt": "Slide photo 1" },
+      { "src": "/pigment/000.jpg", "alt": "Slide photo 2" },
+      { "src": "/pigment/111.jpeg", "alt": "Slide photo 3" }
+    ]
+  },
+  {
+    "id": "imagesR",
+    "data": [
+      { "src": "/pigment/111.jpeg", "alt": "Slide photo 1" },
+      { "src": "/pigment/abstract.jpeg", "alt": "Slide photo 2" },
+      { "src": "/pigment/generated.webp", "alt": "Slide photo 3" }
+    ]
+  },
+  {
+    "id": "imagesP",
+    "data": [
+      { "src": "/pigment/poroshkovye.jpeg", "alt": "Slide photo 1" },
+      { "src": "/pigment/istock4.jpeg", "alt": "Slide photo 2" },
+      { "src": "/pigment/fc01.jpeg", "alt": "Slide photo 3" }
+    ]
+  },
+
+  {
+    "id": "imagesE",
+    "data": [
+      { "src": "/pigment/000.jpg", "alt": "Slide photo 1" },
+      { "src": "/pigment/colourblock.jpeg", "alt": "Slide photo 2" },
+      { "src": "/pigment/gears.jpg", "alt": "Slide photo 3" }
+    ]
+  },
+  {
+    "id": "SLIDES",
+    "data": [
+      {
+        "src": "/autoScroll/Flag.jpg",
+        "alt": "autoScroll",
+        "title": "СЛАВА УКРАЇНІ!",
+        "link": "/home"
+      },
+      {
+        "src": "/autoScroll/horse.jpg",
+        "alt": "autoScroll",
+        "title": "PRETIOX TITANIUM WHITE",
+        "link": "/gallery"
+      },
+      {
+        "src": "/autoScroll/strawberry.jpg",
+        "alt": "PRETIOX TITANIUM WHITE",
+        "title": "пігменти для фарб",
+        "link": "/allproducts"
+      },
+      {
+        "src": "/autoScroll/promo-farby.jpg",
+        "alt": "PRETIOX TITANIUM WHITE",
+        "title": "пігменти для бетону",
+        "link": "/oferta"
+      },
+      {
+        "src": "/autoScroll/1.jpg",
+        "alt": "PRETIOX TITANIUM WHITE",
+        "title": "пігменти кобальтовий синій",
+        "link": "/gallery"
+      },
+      {
+        "src": "/autoScroll/3.jpg",
+        "alt": "PRETIOX TITANIUM WHITE",
+        "title": "пігменти для асфальту",
+        "link": "/oferta"
+      },
+      {
+        "src": "/autoScroll/6.jpg",
+        "alt": "PRETIOX TITANIUM WHITE",
+        "title": "пігменти хром зелений",
+        "link": "/allproducts"
+      }
+    ]
+  }
+]
