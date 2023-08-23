@@ -2,34 +2,34 @@
   {
     "id": "images",
     "data": [
-      { "src": "/pigment/92f4.jpeg", "alt": "Slide photo 1" },
-      { "src": "/pigment/000.jpg", "alt": "Slide photo 2" },
-      { "src": "/pigment/111.jpeg", "alt": "Slide photo 3" }
+      { "src": "/pigment/92f4.webp", "alt": "Slide photo 1" },
+      { "src": "/pigment/000.webp", "alt": "Slide photo 2" },
+      { "src": "/pigment/111.webp", "alt": "Slide photo 3" }
     ]
   },
   {
     "id": "imagesR",
     "data": [
-      { "src": "/pigment/111.jpeg", "alt": "Slide photo 1" },
-      { "src": "/pigment/abstract.jpeg", "alt": "Slide photo 2" },
+      { "src": "/pigment/111.webp", "alt": "Slide photo 1" },
+      { "src": "/pigment/abstract.webp", "alt": "Slide photo 2" },
       { "src": "/pigment/generated.webp", "alt": "Slide photo 3" }
     ]
   },
   {
     "id": "imagesP",
     "data": [
-      { "src": "/pigment/poroshkovye.jpeg", "alt": "Slide photo 1" },
-      { "src": "/pigment/istock4.jpeg", "alt": "Slide photo 2" },
-      { "src": "/pigment/fc01.jpeg", "alt": "Slide photo 3" }
+      { "src": "/pigment/poroshkovye.webp", "alt": "Slide photo 1" },
+      { "src": "/pigment/istock4.webp", "alt": "Slide photo 2" },
+      { "src": "/pigment/fc01.webp", "alt": "Slide photo 3" }
     ]
   },
 
   {
     "id": "imagesE",
     "data": [
-      { "src": "/pigment/000.jpg", "alt": "Slide photo 1" },
-      { "src": "/pigment/colourblock.jpeg", "alt": "Slide photo 2" },
-      { "src": "/pigment/gears.jpg", "alt": "Slide photo 3" }
+      { "src": "/pigment/000.webp", "alt": "Slide photo 1" },
+      { "src": "/pigment/colourblock.webp", "alt": "Slide photo 2" },
+      { "src": "/pigment/gears.webp", "alt": "Slide photo 3" }
     ]
   },
   {

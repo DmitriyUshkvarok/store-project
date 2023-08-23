@@ -71,7 +71,7 @@ const HomeAboutSection = () => {
                     src={image.src}
                     alt={image.alt}
                     width="250"
-                    height="188"
+                    height="200"
                     sizes="100vw"
                   />
                 ))}
@@ -90,7 +90,7 @@ const HomeAboutSection = () => {
                     src={image.src}
                     alt={image.alt}
                     width="250"
-                    height="188"
+                    height="200"
                     sizes="100vw"
                   />
                 ))}
@@ -104,7 +104,7 @@ const HomeAboutSection = () => {
                     src={image.src}
                     alt={image.alt}
                     width="250"
-                    height="188"
+                    height="200"
                     sizes="100vw"
                   />
                 ))}
@@ -124,7 +124,7 @@ const HomeAboutSection = () => {
                     src={image.src}
                     alt={image.alt}
                     width="250"
-                    height="188"
+                    height="200"
                     sizes="100vw"
                   />
                 ))}

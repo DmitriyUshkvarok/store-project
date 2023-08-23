@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export const SwiperImage = styled(Image)`
   width: 250px;
-  height: 188px;
+  height: 200px;
   object-fit: cover;
 `;
 
@@ -13,7 +13,7 @@ export const Overlay = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
 
-  background-image: url('/background-basket-page.jpeg');
+  background-image: url('/background-basket-page.webp');
   background-repeat: no-repeat;
 
   background-position: center;
@@ -54,7 +54,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   width: 250px;
-  height: 188px;
+  height: 200px;
   color: #ffffff;
   font-size: 22px;
   font-weight: 500;
