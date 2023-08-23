@@ -6,6 +6,7 @@ export const BasketSection = styled.section`
   padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
+  min-height: calc(100vh - 750px);
 `;
 
 export const Box = styled.div`

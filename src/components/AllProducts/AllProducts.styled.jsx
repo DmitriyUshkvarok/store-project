@@ -11,6 +11,7 @@ export const AboutBox = styled.div`
   margin-right: auto;
   padding-bottom: 34px;
   max-width: 1000px;
+  min-height: calc(100vh - 890px);
 `;
 
 export const Title = styled.h1`

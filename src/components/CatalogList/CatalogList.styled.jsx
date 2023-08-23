@@ -30,6 +30,7 @@ export const Box = styled.div`
   flex-direction: column;
   max-width: 1000px;
   margin: 0 auto;
+  min-height: calc(100vh - 890px);
 
   @media screen and (min-width: 1060px) {
     justify-content: start;

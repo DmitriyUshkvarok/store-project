@@ -7,6 +7,7 @@ export const ProductDetailSection = styled.section`
   padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
+  min-height: calc(100vh - 890px);
 `;
 
 export const LinkPanel = styled.div`
