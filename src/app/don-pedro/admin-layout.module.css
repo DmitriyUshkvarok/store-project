@@ -1,7 +1,7 @@
 .layoutSection {
   padding-top: 110px;
   background-color: rgba(128, 128, 128, 0.16);
-  min-height: 100vh;
+  min-height: calc(100vh - 53px);
 }
 
 .layoutWrapper {
