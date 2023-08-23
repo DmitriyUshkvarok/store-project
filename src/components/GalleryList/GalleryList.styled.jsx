@@ -6,6 +6,7 @@ export const GalleryBox = styled.div`
   padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
+  min-height: calc(100vh - 890px);
 `;
 
 export const Gallery = styled.ul`

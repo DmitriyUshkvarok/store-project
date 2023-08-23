@@ -20,6 +20,7 @@ export const Overlay = styled.section`
   background-size: cover;
   overflow: hidden;
   background-color: #303030;
+  min-height: calc(100vh - 1223px);
 `;
 
 export const BoxOffer = styled.div`

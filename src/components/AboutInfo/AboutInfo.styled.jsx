@@ -6,6 +6,7 @@ export const AboutBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 34px;
+  min-height: calc(100vh - 928px);
 `;
 
 export const Title = styled.h1`
