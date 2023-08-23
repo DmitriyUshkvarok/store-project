@@ -123,7 +123,13 @@ const Footer = () => {
       </Container>
       <BoxAbout>
         <p>Усі права захищено 2023 Хімбрук веб-сайт </p>
-        <Btn type="button" name="button" ref={buttonRef} onClick={toggleMenu}>
+        <Btn
+          type="button"
+          name="button"
+          aria-label="Name"
+          ref={buttonRef}
+          onClick={toggleMenu}
+        >
           <MdOutlineDesktopMac />
         </Btn>
         {menuVisible && (

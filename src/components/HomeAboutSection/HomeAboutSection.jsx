@@ -179,17 +179,16 @@ const HomeAboutSection = () => {
               <ItemAssure>
                 використовувати для виробництва зеленої енергії з
                 фотоелектричних панелей
+                <Pigments>
+                  <Image
+                    src="/box.png"
+                    alt="paint pigments"
+                    width="160"
+                    height="160"
+                    sizes="100vw"
+                  />
+                </Pigments>
               </ItemAssure>
-
-              <Pigments>
-                <Image
-                  src="/box.png"
-                  alt="paint pigments"
-                  width="160"
-                  height="160"
-                  sizes="100vw"
-                />
-              </Pigments>
             </ListAssure>
 
             <StyledLink href={`/about`}>

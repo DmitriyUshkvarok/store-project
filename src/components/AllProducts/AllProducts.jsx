@@ -49,8 +49,6 @@ const AllProducts = () => {
   const { data, isLoading } = useGetAllProductsFilteredNoToketQuery(qwery);
   const [totalElements, setTotalElements] = useState(0);
 
-  console.log(`data`, data);
-
   const handelMoreLoad = () => {
     setIsLoadingMore(true);
     const nextPage = qwery.page + 1;
