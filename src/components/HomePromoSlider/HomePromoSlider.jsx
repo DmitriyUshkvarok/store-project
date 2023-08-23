@@ -30,7 +30,7 @@ export const HomePromoSlider = () => {
     autoplaySpeed: 1000,
     prevArrow: <EmptyArrow />,
     nextArrow: <EmptyArrow />,
-    // pauseOnHover: false,
+    pauseOnHover: false,
     fade: true,
     afterChange: (current) => {
       setCurrentSlide(current);
@@ -54,9 +54,8 @@ export const HomePromoSlider = () => {
                   src={slide.src}
                   alt={slide.alt}
                   width="2000"
-                  height="650"
+                  height="550"
                   priority={true}
-                  sizes="100vw"
                 />
                 <BoxTitle>
                   <Title>{slide.title}</Title>

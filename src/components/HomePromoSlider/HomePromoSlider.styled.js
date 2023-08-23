@@ -9,7 +9,7 @@ export const Section = styled.section`
   }
 
   @media screen and (min-width: 1280px) {
-    height: 646px;
+    height: 500px;
   }
 `;
 
@@ -22,7 +22,7 @@ export const Box = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    height: 646px;
+    height: 500px;
   }
 `;
 
@@ -49,7 +49,7 @@ export const ScrollImage = styled(Image)`
   }
 
   @media screen and (min-width: 1280px) {
-    height: 646px;
+    height: 500px;
   }
 `;
 export const BoxTitle = styled.div`
