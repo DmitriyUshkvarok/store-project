@@ -12,7 +12,7 @@ export const galleryApi = createApi({
   reducerPath: 'galleryApi',
   baseQuery: fetchBaseQuery({
     // baseUrl: 'https://paints.onrender.com',
-    baseUrl: `${protocol}:3001/api`,
+    baseUrl: `${protocol}/api`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
