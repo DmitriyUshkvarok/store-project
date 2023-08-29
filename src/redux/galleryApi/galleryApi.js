@@ -11,7 +11,8 @@ if (typeof window !== 'undefined') {
 export const galleryApi = createApi({
   reducerPath: 'galleryApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${protocol}/${host}:3001/api`,
+    // baseUrl: 'https://paints.onrender.com',
+    baseUrl: `${protocol}:3001/api`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
