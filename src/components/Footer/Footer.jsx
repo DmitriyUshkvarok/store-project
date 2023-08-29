@@ -122,7 +122,7 @@ const Footer = () => {
         </BoxFooter>
       </Container>
       <BoxAbout>
-        <p>Усі права захищено 2023 Хімбрук веб-сайт </p>
+        <p>Усі права захищено 2023 Хімбрук веб-сайт! </p>
         <Btn
           type="button"
           name="button"
