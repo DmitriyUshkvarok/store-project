@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseUrl } from '@/src/apiConfig';
 
 export const ofertaApi = createApi({
   reducerPath: 'ofertaApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://paints.onrender.com',
+    baseUrl: baseUrl,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {

@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseUrl } from '@/src/apiConfig';
 
 export const ofertaAllApi = createApi({
   reducerPath: 'ofertaAllApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://paints.onrender.com',
+    baseUrl: baseUrl,
   }),
   tagTypes: ['products', 'categories'],
   endpoints: (builder) => ({

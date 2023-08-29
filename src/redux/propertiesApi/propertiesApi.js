@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseUrl } from '@/src/apiConfig';
 
 export const propertiesApi = createApi({
   reducerPath: 'propertiesApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://paints.onrender.com',
+    baseUrl: baseUrl,
   }),
   tagTypes: ['countries', 'categories', 'subcategories', 'colors'],
   endpoints: (builder) => ({
