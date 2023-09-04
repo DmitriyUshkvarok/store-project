@@ -11,7 +11,7 @@ export const StyleNavigation = styled.nav`
 export const StyleLink = styled(Link)`
   display: inherit;
 
-  @media (0px <= width <= 1000px) {
+  @media screen and (max-width: 1000px) {
     display: none;
   }
   color: #ffffff;
@@ -88,7 +88,7 @@ export const ItemForBurger = styled.li`
   text-transform: lowercase;
   line-height: 19px;
   letter-spacing: 0.4px;
- 
+
   &:hover,
   &:focus {
     background-color: #e3010f;
@@ -130,7 +130,7 @@ export const BurgerMenu = styled.div`
   display: none;
   cursor: pointer;
   padding: 15px;
-  @media (width < 1001px) {
+  @media screen and (max-width: 1000px) {
     display: block;
     position: relative;
     display: inline-block;
@@ -139,8 +139,7 @@ export const BurgerMenu = styled.div`
 
 export const StyleLinkForBurger = styled(Link)`
   display: none;
-
-  @media (width < 1001px) {
+  @media screen and (max-width: 1000px) {
     display: block;
   }
   color: #ffffff;

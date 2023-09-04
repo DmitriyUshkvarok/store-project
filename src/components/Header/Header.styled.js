@@ -9,7 +9,7 @@ export const StyleHeader = styled.header`
   z-index: 999;
   display: flex;
   justify-content: center;
-  @media (width < 1001px) {
+  @media screen and (max-width: 1000px) {
     justify-content: flex-end;
   }
 `;
@@ -25,7 +25,7 @@ export const ImageStyled = styled(Image)`
   /* height: auto; */
   z-index: 1111111;
 
-  @media (width < 606px) {
+  @media screen and (max-width: 606px) {
     display: none;
   }
 `;
@@ -33,7 +33,7 @@ export const ImageStyled = styled(Image)`
 export const HeaderBox = styled.div`
   display: flex;
   align-items: flex-start;
-  @media (width < 580px) {
+  @media screen and (max-width: 580px) {
     margin-right: 20px;
   }
 `;
