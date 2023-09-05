@@ -1,4 +1,8 @@
-import ProductDetail from '@/src/components/ProductDetail/ProductDetail';
+import dynamic from 'next/dynamic';
+
+const ProductDetail = dynamic(() =>
+  import('../../../../components/ProductDetail/ProductDetail')
+);
 
 const InfoPage = () => {
   return (

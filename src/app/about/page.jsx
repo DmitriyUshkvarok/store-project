@@ -1,11 +1,12 @@
-import AboutInfo from '@/src/components/AboutInfo/AboutInfo';
-import React from 'react';
+import dynamic from 'next/dynamic';
+
+const AboutInfo = dynamic(() => import('../../components/AboutInfo/AboutInfo'));
 
 const About = () => {
   return (
-    <div>
+    <>
       <AboutInfo />
-    </div>
+    </>
   );
 };
 

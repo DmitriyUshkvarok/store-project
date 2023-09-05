@@ -1,4 +1,8 @@
-import LoginOrAdmin from '@/src/components/LoginOrAdmin/LoginOrAdmin';
+import dynamic from 'next/dynamic';
+
+const LoginOrAdmin = dynamic(() =>
+  import('../../components/LoginOrAdmin/LoginOrAdmin')
+);
 
 const Admin = () => {
   return (

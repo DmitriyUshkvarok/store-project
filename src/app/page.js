@@ -1,6 +1,8 @@
 import styles from './page.module.css';
-import HomeLayout from './home/layout';
-import HomePage from './home/page';
+import dynamic from 'next/dynamic';
+
+const HomePage = dynamic(() => import('./home/page.jsx'));
+const HomeLayout = dynamic(() => import('./home/layout.jsx'));
 
 export default function Home() {
   return (

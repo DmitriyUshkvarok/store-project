@@ -1,5 +1,8 @@
-import AllProducts from '@/src/components/AllProducts/AllProducts';
-import React from 'react';
+import dynamic from 'next/dynamic';
+
+const AllProducts = dynamic(() =>
+  import('../../components/AllProducts/AllProducts')
+);
 
 const AllProductsComp = () => {
   return (

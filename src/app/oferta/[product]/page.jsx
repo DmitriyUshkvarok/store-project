@@ -1,4 +1,8 @@
-import DynamicCatalogList from '@/src/components/DinamicCatalogList/DynamicCatalog';
+import dynamic from 'next/dynamic';
+
+const DynamicCatalogList = dynamic(() =>
+  import('../../../components/DinamicCatalogList/DynamicCatalog')
+);
 
 const ProductPage = () => {
   return <DynamicCatalogList />;

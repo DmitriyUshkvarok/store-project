@@ -1,5 +1,8 @@
-import ContactInfo from '@/src/components/ContactInfo/ContactInfo';
-import React from 'react';
+import dynamic from 'next/dynamic';
+
+const ContactInfo = dynamic(() =>
+  import('../../components/ContactInfo/ContactInfo')
+);
 
 const Contact = () => {
   return (

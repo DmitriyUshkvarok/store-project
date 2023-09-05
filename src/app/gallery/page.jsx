@@ -1,4 +1,8 @@
-import GalleryList from '@/src/components/GalleryList/GalleryList';
+import dynamic from 'next/dynamic';
+
+const GalleryList = dynamic(() =>
+  import('../../components/GalleryList/GalleryList')
+);
 
 const Gallery = () => {
   return (
