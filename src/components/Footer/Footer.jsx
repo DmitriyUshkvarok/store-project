@@ -28,7 +28,6 @@ import {
 } from './Footer.styled';
 import { useState, useRef, useEffect } from 'react';
 
-
 const Footer = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
@@ -93,7 +92,7 @@ const Footer = () => {
                   <a href="mailto:info@devstudio.com">petro-pedro@gmail.com</a>
                 </ItemContact>
                 <ItemContact>
-                  <a href="tel:+380961111111">+38 096 777 77 77</a>
+                  <a href="tel:+380961111111">+38 096 888 88 88</a>
                 </ItemContact>
               </ListContact>
             </address>
