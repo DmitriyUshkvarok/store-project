@@ -37,7 +37,7 @@ import {
   ProductCountry,
   ProductType,
   ProductFormula,
-  ProductDensity,
+  Productdosage,
   ProductPdf,
   CounterAndBtnWrapper,
   CounterWrapper,
@@ -190,10 +190,10 @@ const ProductDetail = () => {
                         {productInfo?.chemicalFormula}
                       </CategorySpan>
                     </ProductFormula>
-                    <ProductDensity>
+                    <Productdosage>
                       Дозування:
-                      <CategorySpan>{productInfo?.density}</CategorySpan>
-                    </ProductDensity>
+                      <CategorySpan>{productInfo?.dosage}</CategorySpan>
+                    </Productdosage>
                     <ProductPdf>
                       <a
                         href={productInfo?.pdfUrl}

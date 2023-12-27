@@ -35,7 +35,7 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
     const formData = new FormData();
     formData.append('fullName', values.fullName);
     formData.append('type', values.type);
-    formData.append('density', values.density);
+    formData.append('dosage', values.dosage);
     formData.append('chemicalFormula', values.chemicalFormula);
     formData.append('weight', values.weight);
     formData.append('packingType', values.packingType);
@@ -79,7 +79,7 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
             chemicalFormula: selectProduct.chemicalFormula,
             color: selectProduct.color,
             country: selectProduct.country,
-            density: selectProduct.density,
+            dosage: selectProduct.dosage,
             fullName: selectProduct.fullName,
             name: selectProduct.name,
             price: selectProduct.price,
@@ -136,8 +136,8 @@ const FormUpdateProductAdmin = ({ selectProduct, handleClose }) => {
                 </StyledErrorMessage>
               </StyledLabel>
               <StyledLabel>
-                Дозування: <StyledInput type="text" name="density" />
-                <StyledErrorMessage name="density">
+                Дозування: <StyledInput type="text" name="dosage" />
+                <StyledErrorMessage name="dosage">
                   {(msg) => <StyledError>введіть дані</StyledError>}
                 </StyledErrorMessage>
               </StyledLabel>

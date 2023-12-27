@@ -45,7 +45,7 @@ const FormAdd = ({ categories, handleClose }) => {
     formData.append('category', values.category);
     formData.append('color', values.color);
     formData.append('type', values.type);
-    formData.append('density', values.density);
+    formData.append('dosage', values.dosage);
     formData.append('chemicalFormula', values.chemicalFormula);
     formData.append('fullName', values.fullName);
     if (!selectedImg) {
@@ -78,7 +78,7 @@ const FormAdd = ({ categories, handleClose }) => {
           chemicalFormula: '',
           color: '',
           country: '',
-          density: '',
+          dosage: '',
           fullName: '',
           name: '',
           price: '',
@@ -145,8 +145,8 @@ const FormAdd = ({ categories, handleClose }) => {
             </StyledErrorMessage>
           </StyledLabel>
           <StyledLabel>
-            Дозування: <StyledInput type="text" name="density" />
-            <StyledErrorMessage name="density">
+            Дозування: <StyledInput type="text" name="dosage" />
+            <StyledErrorMessage name="dosage">
               {(msg) => <StyledError>введіть дані</StyledError>}
             </StyledErrorMessage>
           </StyledLabel>

@@ -196,7 +196,7 @@ export const ProductFormula = styled.p`
   margin-bottom: 10px;
 `;
 
-export const ProductDensity = styled.p`
+export const Productdosage = styled.p`
   font-weight: 500;
   color: black;
   margin-bottom: 10px;

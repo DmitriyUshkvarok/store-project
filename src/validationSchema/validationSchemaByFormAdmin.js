@@ -9,7 +9,7 @@ export const formAddSchemaProduct = yup.object().shape({
     .required('обов’язкове поле'),
   type: yup.string().required('обов’язкове поле'),
   description: yup.string().required('обов’язкове поле'),
-  density: yup
+  dosage: yup
     .string()
     // .matches(/^[0-9,.]*$/, 'Тільки цифри,крапка і кома')
     .required('обов’язкове поле'),
@@ -35,7 +35,7 @@ export const formUpdateSchemaProduct = yup.object().shape({
   country: yup.string(),
   color: yup.string(),
   chemicalFormula: yup.string(),
-  density: yup.string(),
+  dosage: yup.string(),
   fullName: yup.string(),
   type: yup.string(),
 });
