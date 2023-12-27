@@ -22,29 +22,29 @@ const ContactBlock = () => {
           <Item>
             <Telephone />
             <div>
-              <Text>Гаряча лінія</Text>
-              <Link href="tel:801003015">801 00 30 15</Link>
+              <Text>Подзвоніть нам</Text>
+              <Link href="+380505558510">+38 050 555 85 10</Link>
             </div>
           </Item>
           <Item>
             <Phone />
             <div>
-              <Text>виклик</Text>
-              <Link href="tel:509908030">509 90 80 30</Link>
+              <Text>Viber</Text>
+              <Link href="tel:+380962097636">+38 096 209 76 36</Link>
             </div>
           </Item>
           <Item>
             <Mail />
             <div>
               <Text>Напишіть нам</Text>
-              <Link href="mailto:biuro@zwukso.pl">biuro@zwukso.pl</Link>
+              <Link href="mailto:pigments@email.ua">pigments@email.ua</Link>
             </div>
           </Item>
           <Item>
             <Clock />
             <div>
               <Text>Години обслуговування</Text>
-              <Desc> Пн-Пт з 9:00 до 15:00</Desc>
+              <Desc> Пн-Пт з 10:00 до 20:00</Desc>
             </div>
           </Item>
         </List>

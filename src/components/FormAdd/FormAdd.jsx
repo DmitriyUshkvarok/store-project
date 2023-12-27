@@ -145,9 +145,9 @@ const FormAdd = ({ categories, handleClose }) => {
             </StyledErrorMessage>
           </StyledLabel>
           <StyledLabel>
-            Щільність: <StyledInput type="text" name="density" />
+            Дозування: <StyledInput type="text" name="density" />
             <StyledErrorMessage name="density">
-              {(msg) => <StyledError>введіть тільки цифри</StyledError>}
+              {(msg) => <StyledError>введіть дані</StyledError>}
             </StyledErrorMessage>
           </StyledLabel>
           <StyledLabel>

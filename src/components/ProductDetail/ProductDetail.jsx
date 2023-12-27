@@ -52,8 +52,10 @@ import {
 import Container from '../Container/Container';
 import BtnBuy from '../BtnBuy/BtnBuy';
 import cartSelector from '@/src/redux/cart/cartSelector';
-import {  DecorSpanBackLink,
-  CurrentNavDecor, } from "@/src/components/CatalogList/CatalogList.styled";
+import {
+  DecorSpanBackLink,
+  CurrentNavDecor,
+} from '@/src/components/CatalogList/CatalogList.styled';
 import Link from 'next/link';
 
 const ProductDetail = () => {
@@ -123,8 +125,8 @@ const ProductDetail = () => {
     <ProductDetailSection>
       <Box>
         <LinkPanel>
-          <Link href={`/home`}> 
-          <DecorSpanBackLink>Головна /</DecorSpanBackLink>
+          <Link href={`/home`}>
+            <DecorSpanBackLink>Головна /</DecorSpanBackLink>
           </Link>
           <Link href={`/oferta`}>
             <DecorSpanBackLink>Каталог /</DecorSpanBackLink>
@@ -133,7 +135,6 @@ const ProductDetail = () => {
             <DecorSpanBackLink>{category.name} /</DecorSpanBackLink>
           </Link>
           <CurrentNavDecor>{data?.name}</CurrentNavDecor>
-         
         </LinkPanel>
         <Product>
           {isLoading ? (
@@ -190,7 +191,7 @@ const ProductDetail = () => {
                       </CategorySpan>
                     </ProductFormula>
                     <ProductDensity>
-                      Щільність:
+                      Дозування:
                       <CategorySpan>{productInfo?.density}</CategorySpan>
                     </ProductDensity>
                     <ProductPdf>

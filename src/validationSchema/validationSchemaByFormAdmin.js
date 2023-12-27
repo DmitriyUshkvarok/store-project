@@ -11,7 +11,7 @@ export const formAddSchemaProduct = yup.object().shape({
   description: yup.string().required('обов’язкове поле'),
   density: yup
     .string()
-    .matches(/^[0-9,.]*$/, 'Тільки цифри,крапка і кома')
+    // .matches(/^[0-9,.]*$/, 'Тільки цифри,крапка і кома')
     .required('обов’язкове поле'),
   brand: yup.string().required('обов’язкове поле'),
   weight: yup
