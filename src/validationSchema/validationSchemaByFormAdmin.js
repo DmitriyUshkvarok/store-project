@@ -35,7 +35,7 @@ export const formUpdateSchemaProduct = yup.object().shape({
   country: yup.string(),
   color: yup.string(),
   chemicalFormula: yup.string(),
-  density: yup.number(),
+  density: yup.string(),
   fullName: yup.string(),
   type: yup.string(),
 });
