@@ -22,14 +22,14 @@ const ContactBlock = () => {
           <Item>
             <Telephone />
             <div>
-              <Text>Гаряча лінія</Text>
+              <Text>Подзвоніть нам</Text>
               <Link href="+380505558510">+38 050 555 85 10</Link>
             </div>
           </Item>
           <Item>
             <Phone />
             <div>
-              <Text>виклик</Text>
+              <Text>Viber</Text>
               <Link href="tel:+380962097636">+38 096 209 76 36</Link>
             </div>
           </Item>
