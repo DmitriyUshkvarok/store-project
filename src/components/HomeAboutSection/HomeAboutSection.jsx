@@ -60,7 +60,7 @@ const HomeAboutSection = () => {
           <List>
             <Item>
               <ItemLink href={`/oferta`}>
-                <Chip> пігменти </Chip>порошок
+                <Chip> Пігменти </Chip>порошкові
               </ItemLink>
             </Item>
             <Item>
@@ -78,8 +78,8 @@ const HomeAboutSection = () => {
               </Slider>
             </Item>
             <Item>
-              <ItemLink href={`/allproducts`}>
-                <Chip>пігменти </Chip>рідина
+              <ItemLink href={`/oferta`}>
+                <Chip>Рідкі</Chip>пігменти
               </ItemLink>
             </Item>
             <Item>
@@ -112,8 +112,8 @@ const HomeAboutSection = () => {
             </Item>
 
             <Item>
-              <ItemLink href={`/gallery`}>
-                <Chip>еко-пігменти </Chip>порошок
+              <ItemLink href={`/oferta`}>
+                <Chip>Палстифікатори</Chip>
               </ItemLink>
             </Item>
             <Item>
@@ -132,7 +132,7 @@ const HomeAboutSection = () => {
             </Item>
             <Item>
               <ItemLink href={`/oferta`}>
-                <Chip> еко-пігменти</Chip> рідина
+                <Chip> Інші</Chip>товари
               </ItemLink>
             </Item>
           </List>
@@ -151,13 +151,12 @@ const HomeAboutSection = () => {
 
             <Subject>Про компанію</Subject>
             <Text>
-              <strong> ZWUKSO Sp. z o. o. Sp.k. </strong> на ринку з 1989 року.
-              Ми є провідною компанією, яка займається виробництвом, імпортом та
-              дистрибуцією кольорових неорганічних пігментів у Польщі. Наша
-              комерційна пропозиція включає широкий спектр кольорів найякісніших
-              порошкових, рідких, гранульованих і мікронізованих пігментів -
-              переважно з Європейського Союзу. Крім того, ми виробляємо
-              екологічні пігменти за допомогою процесу фотокаталізу.
+              <strong> Приватне підприємство &rsquo;Хімбрук&rsquo; </strong> на
+              ринку з 2006 року. Підприємство займається імпортом та
+              дистрибуцією неорганічних синтетичних пігментів та різноманітних
+              добавок які використовуються у різних галузях промисловості таких
+              як: виробництва виробів з бетону, будівельних матеріалів,
+              лакофарбової продукції штучних пластмас та ін.
             </Text>
             <StyledLink href={`/about`}>
               більше
@@ -170,15 +169,13 @@ const HomeAboutSection = () => {
 
             <ListAssure>
               <ItemAssure>
-                найбільша кольорова палітра синтетичних неорганічних пігментів у
-                Польщі
+                Широка кольорова палітра неорганічних синтетичних пігментів.
               </ItemAssure>
-              <ItemAssure>професійне та доброзичливе обслуговування</ItemAssure>
-              <ItemAssure>привабливі ціни та висока якість</ItemAssure>
-              <ItemAssure>швидке виконання замовлення</ItemAssure>
+              <ItemAssure>Професійна консультація</ItemAssure>
+              <ItemAssure>Привабливі ціни та висока якість</ItemAssure>
+              <ItemAssure>Швидке виконання замовлення</ItemAssure>
               <ItemAssure>
-                використовувати для виробництва зеленої енергії з
-                фотоелектричних панелей
+                Здійснюємо доставку по всій країні
                 <Pigments>
                   <Image
                     src="/box.png"

@@ -85,14 +85,17 @@ const Footer = () => {
                     href="https://goo.gl/maps/zSzGXAno3n1fgtpi9"
                     target="_blank"
                   >
-                    м. Львів, пл. Ринок, 1
+                    м. Львів вул. Шараневича 1/14
                   </a>
                 </ItemContact>
                 <ItemContact>
-                  <a href="mailto:info@devstudio.com">petro-pedro@gmail.com</a>
+                  <a href="mailto:mail: pigments@email.ua">pigments@email.ua</a>
                 </ItemContact>
                 <ItemContact>
-                  <a href="tel:+380961111111">+38 096 888 88 88</a>
+                  <a href="tel:+380962097636"> +38 096 209 76 36</a>
+                </ItemContact>
+                <ItemContact>
+                  <a href="tel:+380505558510">+38 050 555 85 10</a>
                 </ItemContact>
               </ListContact>
             </address>

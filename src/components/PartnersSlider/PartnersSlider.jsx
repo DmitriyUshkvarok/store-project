@@ -12,14 +12,17 @@ const PartnersSlider = () => {
           <List>
             <li>
               <a href="https://goo.gl/maps/zSzGXAno3n1fgtpi9" target="_blank">
-                м. Львів, пл. Ринок, 1
+                м. Львів вул. Шараневича 1/14,
               </a>
             </li>
             <li>
-              <a href="mailto:info@devstudio.com">petro-pedro@gmail.com</a>
+              <a href="mailto:mail: pigments@email.ua">pigments@email.ua</a>,
             </li>
             <li>
-              <a href="tel:+380961111111">+38 096 777 77 77</a>
+              <a href="tel:+380962097636"> +38 096 209 76 36</a>,
+            </li>
+            <li>
+              <a href="tel:+380505558510">+38 050 555 85 10</a>,
             </li>
           </List>
         </Marquee>

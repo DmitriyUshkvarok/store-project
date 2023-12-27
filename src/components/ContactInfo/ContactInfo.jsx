@@ -41,28 +41,31 @@ const ContactInfo = () => {
             <ul>
               <AddressItem>
                 <AddressLink
-                  href="https://goo.gl/maps/zSzGXAno3n1fgtpi9"
+                  href="https://maps.app.goo.gl/SWUJe7yLFAhQVuz97"
                   target="_blank"
                 >
-                  Україна 79000, м. Львів, пл. Ринок, 1
+                  Україна, 79018, м.Львів вул.Шараневича 1/14
                 </AddressLink>
               </AddressItem>
               <AddressItem>
-                <AddressMailTel href="mailto:info@devstudio.com">
-                  don-pedro@gmail.com
+                <AddressMailTel href="mailto:pigments@email.ua">
+                  pigments@email.ua
                 </AddressMailTel>
               </AddressItem>
               <AddressItem>
-                <AddressMailTel href="tel:+380961111111">
-                  +38 096 777 77 77
+                <AddressMailTel href="tel:+380962097636">
+                  +38 096 209 76 36
+                </AddressMailTel>
+              </AddressItem>
+              <AddressItem>
+                <AddressMailTel href="tel:+380505558510">
+                  +38 050 555 85 10
                 </AddressMailTel>
               </AddressItem>
             </ul>
           </Address>
 
-          <p>IBAN: UA26003301007668</p>
-          <p>МФО: 385316 в АТ «Сенс-Банк»</p>
-          <p>ЄДРПОУ: 35227281</p>
+          <p>Свідоцтво №100051194</p>
           <p>Директор Діокер Петро Омелянович</p>
         </Contacts>
       </Box>

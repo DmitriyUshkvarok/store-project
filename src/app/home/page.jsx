@@ -1,9 +1,5 @@
+import HomeAboutSection from '@/src/components/HomeAboutSection/HomeAboutSection';
 import { HomePromoSlider } from '@/src/components/HomePromoSlider/HomePromoSlider';
-import dynamic from 'next/dynamic';
-
-const HomeAboutSection = dynamic(() =>
-  import('../../components/HomeAboutSection/HomeAboutSection')
-);
 
 const HomePage = () => {
   return (
